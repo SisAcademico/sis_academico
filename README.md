@@ -1,7 +1,7 @@
 # sis_academico
-Sistema Académico ISC
-
+SISTEMA ACADÉMICO ISC
 ------------------------------------------------------------------------------------------
+
 PASOS PRE_PRE-INSTALACIÓN:
 Registro y alta en github
 0.- Crear una cuenta en https://github.com/join
@@ -9,11 +9,11 @@ Registro y alta en github
 2.- Luego de iniciado la APP, logearse con su respectivo usuario y contraseña que crearon.
 
 ------------------------------------------------------------------------------------------
-
 PASOS PARA LA PRE-INSTALACIÓN:
 ------------------------------
 
-3.- Clonar el repositorio: https://github.com/SisAcademico/sis_academico.git
+1.- Clonar el repositorio: https://github.com/SisAcademico/sis_academico.git
+2.- Cuando se les pida la carpeta para clonar, ingresar su carpeta "htdocs" ó "www", según tengan congifurado con el XAMP o WAMP
 
 
 PASOS PARA LA INSTALACIÓN:
