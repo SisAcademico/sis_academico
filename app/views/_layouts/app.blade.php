@@ -139,8 +139,8 @@
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Panel</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="panel"><i class="fa fa-circle-o"></i> Panel v1</a></li>
+              <ul class="{{ Request::is( 'panel') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/panel') }}"><i class="fa fa-circle-o"></i> Panel v1</a></li>
               </ul>
             </li>
 			<li class="treeview">
@@ -161,16 +161,16 @@
                 <li><a href="#"><i class="fa fa-plus"></i> Agregar Alumno</a></li>
               </ul>
             </li>
-            <li class="treeview">
+            <li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
               <a href="#">
                 <i class="fa fa-money"></i> <span>Pagos</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="listar"><i class="fa fa-list"></i> Listar pagos</a></li>
-                <li><a href="insertar"><i class="fa fa-plus"></i> Agregar pago</a></li>
+              <ul class="{{ Request::is( 'pago') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/pago/listar') }}"><i class="fa fa-list"></i> Listar pagos</a></li>
+                <li><a href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> Agregar pago</a></li>
               </ul>
             </li>
-			<li class="active treeview">
+			<li class="treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>@lang('sistema.carrera')s</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
