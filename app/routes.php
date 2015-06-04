@@ -12,6 +12,7 @@
 */
 
 //Route::get('/', 'AuthController@mostrarLogin');
+
 Route::get('/', 'PanelController@mostrarPanel');
 Route::get('/panel', 'PanelController@mostrarPanel');
 
@@ -20,3 +21,11 @@ Route::get('/carrera/crear', 'CarreraController@crearCarrera');
 
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
+
+
+Route::get('alumno/listar', 'AlumnoController@listarAlumnos');
+Route::get('alumno/insertar', 'AlumnoController@insertarAlumno');
+
+
+
+
