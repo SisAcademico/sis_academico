@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'AuthController@mostrarLogin');
+Route::get('/panel', 'PanelController@mostrarPanel');
+Route::get('/carrera', 'CarreraController@listarCarreras');
+Route::get('/carrera/crear', 'CarreraController@crearCarrera');

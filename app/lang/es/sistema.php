@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	"nombre_sistema" => "Sistema Académico - ISC",
 	"nombre_usuario" => "Nombre de usuario",
 	"olvidar_contrasena" => "¿Olvidaste tu contraseña?",
     "contrasena" => "Contraseña",
@@ -10,6 +11,10 @@ return array(
     "recuperar_contrasena"=>"Recuperar contraseña",
     "link_recuperar_contrasena"=>"Enlace para recuperar su contraseña",
     "link_msg_recuperar_contrasena"=>"Haga click aquí para recuperar su contraseña",
+	
+	"carrera"=>"Carrera",
+	"listar_carreras"=>"Listar carreras",
+	"agregar_carrera"=>"Agregar carrera",
 	
 	"pantalla_acceso"=>"Pantalla de acceso",
     "administracion"=>"Administración",
@@ -42,6 +47,6 @@ return array(
 	
     "contactos"=>"Contactos",
 
-    "home"=>"Inicio",
+    "inicio"=>"Inicio",
 
 );
