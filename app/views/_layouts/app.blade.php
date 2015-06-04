@@ -161,6 +161,15 @@
                 <li><a href="#"><i class="fa fa-plus"></i> Agregar Alumno</a></li>
               </ul>
             </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-money"></i> <span>Pagos</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="listar"><i class="fa fa-list"></i> Listar pagos</a></li>
+                <li><a href="insertar"><i class="fa fa-plus"></i> Agregar pago</a></li>
+              </ul>
+            </li>
 			<li class="active treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>@lang('sistema.carrera')s</span> <i class="fa fa-angle-left pull-right"></i>

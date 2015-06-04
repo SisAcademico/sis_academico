@@ -15,7 +15,12 @@ return array(
 	"carrera"=>"Carrera",
 	"listar_carreras"=>"Listar carreras",
 	"agregar_carrera"=>"Agregar carrera",
-	
+
+    "pagos"=>"Pagos",
+	"listar_pagos"=>"Listar Pagos",
+	"insertar_pago"=>"Insertar pago",
+	"nro_boleta"=>"Nro. de boleta",
+
 	"pantalla_acceso"=>"Pantalla de acceso",
     "administracion"=>"Administración",
     "notificacion"=>"Notificaciones",

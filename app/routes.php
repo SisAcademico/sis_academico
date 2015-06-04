@@ -15,3 +15,5 @@ Route::get('/', 'AuthController@mostrarLogin');
 Route::get('/panel', 'PanelController@mostrarPanel');
 Route::get('/carrera', 'CarreraController@listarCarreras');
 Route::get('/carrera/crear', 'CarreraController@crearCarrera');
+Route::get('pago/listar', 'PagoController@listarPagos');
+Route::get('pago/insertar', 'PagoController@insertarPago');
