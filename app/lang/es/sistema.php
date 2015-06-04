@@ -2,6 +2,9 @@
 
 return array(
 	"nombre_sistema" => "Sistema Académico - ISC",
+    "nombre_sistema_corto1" => "Sistema - ISC",
+    "menu_navegacion" => "Menu de navegación",
+    "nombre_sistema_corto" => "SIS-ISC",
 	"nombre_usuario" => "Nombre de usuario",
 	"olvidar_contrasena" => "¿Olvidaste tu contraseña?",
     "contrasena" => "Contraseña",
@@ -41,8 +44,8 @@ return array(
     "edicion"=>"Edición",
     "editar"=>"Editar",
     "buscar"=>"Buscar",
-    "perfil"=>"Mi perfil",
-    "cerra_sesion"=>"Cerrar sesión",
+    "perfil"=>"Perfil",
+    "cerrar_sesion"=>"Cerrar sesión",
 	
     "emails"=>"Emails",
     "email"=>"Email",

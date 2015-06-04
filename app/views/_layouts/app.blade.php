@@ -31,9 +31,9 @@
 		<!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>LT</span>
+          <span class="logo-mini"><b>@lang('sistema.nombre_sistema_corto')</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>LTE</span>
+          <span class="logo-lg"><b>@lang('sistema.nombre_sistema_corto1')</b></span>
         </a>
 		<!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -78,28 +78,23 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                  {{ HTML::image('adminlte/dist/img/user2-160x160.jpg','Imagen de usuario', array('class' => 'user-image')) }}
                   <span class="hidden-xs">Nombre de usuario</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    {{ HTML::image('adminlte/dist/img/user2-160x160.jpg','Imagen de usuario', array('class' => 'img-circle')) }}
                     <p>Nombre completo</p>
                   </li>
                   <!-- Menu Body -->
-                  <li class="user-body">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Seguidores</a>
-                    </div>
-                  </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">@lang('sistema.sis_perfil')</a>
+                      <a href="#" class="btn btn-default btn-flat">@lang('sistema.perfil')</a>
                     </div>
                     <div class="pull-right">
-                      <a href="{{ url('/auth/logout') }}" class="btn btn-default btn-flat">@lang('sistema.sis_cerra_sesion')</a>
+                      <a href="{{ url('/auth/logout') }}" class="btn btn-default btn-flat">@lang('sistema.cerrar_sesion')</a>
                     </div>
                   </li>
                 </ul>
@@ -115,7 +110,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                {{ HTML::image('adminlte/dist/img/user2-160x160.jpg','Imagen de usuario', array('class' => 'img-circle')) }}
             </div>
             <div class="pull-left info">
               <p>Nombre Usuario</p>
@@ -134,15 +129,8 @@
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header" style="color:#fff;">PANEL DE NAVEGACIÓN</li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Panel</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="{{ Request::is( 'panel') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/panel') }}"><i class="fa fa-circle-o"></i> Panel v1</a></li>
-              </ul>
-            </li>
+            <li class="header" style="color:#fff;">{{ strtoupper(Lang::get('sistema.menu_navegacion'))}}</li>
+            <li><a href="{{ URL::to( '/panel') }}"><i class="fa fa-dashboard"></i> @lang('sistema.panel')</a></li>
 			<li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i> <span>Docentes</span> <i class="fa fa-angle-left pull-right"></i>
