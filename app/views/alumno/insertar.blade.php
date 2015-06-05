@@ -2,6 +2,9 @@
 @section('titulo')
     @lang('Crear alumno')
 @stop
+@section ('estilos')
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
+@stop
 @section('titulo_cabecera')
     @lang('Alumnos')<small>@lang('')</small>
 @stop
@@ -73,7 +76,7 @@
                     <div class="form-group">
                         {{ Form::label('fecha_ingreso', Lang::get('fecha de ingreso'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <!-- DATE TIME PICKER, -->
+                            <input type="text" id="theInput" placeholder="Seleccione Fecha" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -97,5 +100,8 @@
         </div>
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
+    @section ('scrips_n')
+        <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+    @stop
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
 @endsection

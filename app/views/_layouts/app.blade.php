@@ -18,6 +18,8 @@
 	<link href="{{asset('/adminlte/plugins/iCheck/square/blue.css')}}" rel="stylesheet" type="text/css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins -->
 	<link href="{{asset('/adminlte/dist/css/skins/_all-skins.min.css')}}" rel="stylesheet" type="text/css">
+  
+  @yield('estilos')
 		
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -242,5 +244,6 @@
       });
     </script>
 	<!-- FIN: Scripts JS -->
+  @yield('scrips_n')
 </body>
 </html>
