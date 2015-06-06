@@ -16,7 +16,8 @@ class PagoController extends \BaseController {
      */
     public function listarPagos()
     {
-        return View::make('pago.listar');
+        $pagos = Pago::all();
+        return View::make('pago.listar', array('pagos' => $pagos));
     }
 
 	/**

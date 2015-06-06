@@ -17,31 +17,31 @@
 					<div class="col-md-12 col-sm-8">
 						 <div class="box box-success">
 								<div class="box-header with-border">
-								  <h3 class="box-title">Listado de pagos</h3>
+								  <h3 class="box-title">@lang('sistema.listado_de_pagos')</h3>
+                                  <a class="btn btn-primary pull-right" href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> @lang('sistema.registrar_pago')</a>
 								</div><!-- /.box-header -->
 								<div class="box-body">
 								  <table class="table table-bordered">
-									<tr>
-									  <th style="width: 10px">#</th>
-									  <th>Nombre</th>
-									  <th style="width: 80px">Accion</th>
-									</tr>
-									<tr>
-									  <td>1.</td>
-									  <td>Carrera 1</td>
-									  <td>
-										<a class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-										<a class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
-									  </td>
-									</tr>
-									<tr>
-									  <td>2.</td>
-									  <td>Carrera 2</td>
-									  <td>
-										<a class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-										<a class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
-									  </td>
-									</tr>
+                                      <thead>
+                                        <tr>
+                                          <th style="width: 10px">@lang('sistema.id')</th>
+                                          <th>@lang('sistema.nro_boleta')</th>
+                                          <th>@lang('sistema.serie')</th>
+                                          <th>@lang('sistema.fecha_pago')</th>
+                                          <th style="width: 80px">@lang('sistema.accion')</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      @foreach($pagos as $pago)
+                                          <tr>
+                                              <td>{{ $pago->idpago }}</td>
+                                              <td>{{ $pago->nro_boleta }}</td>
+                                              <td>{{ $pago->serie }}</td>
+                                              <td>{{ $pago->fecha_pago }}</td>
+                                              <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/pago/{{ $pago->idpago }}"><i class="fa fa-eye"></i> </a></td>
+                                          </tr>
+                                      @endforeach
+                                      </tbody>
 								  </table>
 								</div><!-- /.box-body -->
 								<div class="box-footer clearfix text-center">

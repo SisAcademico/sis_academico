@@ -21,8 +21,13 @@ return array(
 
     "pagos"=>"Pagos",
 	"listar_pagos"=>"Listar Pagos",
-	"insertar_pago"=>"Insertar pago",
+    "listado_de_pagos"=>"Listado de pagos",
+	"registrar__nuevo_pago"=>"Registrar nuevo pago",
+    "registrar_pago"=>"Registrar pago",
+    "insertar_pago"=>"Insertar pago",
 	"nro_boleta"=>"Nro. de boleta",
+	"serie"=>"Serie",
+	"fecha_pago"=>"Fecha de pago",
 
 	"pantalla_acceso"=>"Pantalla de acceso",
     "administracion"=>"Administración",
@@ -42,10 +47,13 @@ return array(
     "msg_warning_input"=>"Se produjo errores con los valores que ingreso",
 
     "edicion"=>"Edición",
+    "accion"=>"Acción",
     "editar"=>"Editar",
     "buscar"=>"Buscar",
     "perfil"=>"Perfil",
     "cerrar_sesion"=>"Cerrar sesión",
+
+    "id"=>"ID",
 	
     "emails"=>"Emails",
     "email"=>"Email",
