@@ -139,7 +139,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="#"><i class="fa fa-list"></i> Listar Docente</a></li>
-                <li><a href="#"><i class="fa fa-plus"></i> Agregar Docente</a></li>
+                 <li><a href="#"><i class="fa fa-plus"></i> Agregar Docente</a></li>
               </ul>
             </li>
 			<li class="treeview">

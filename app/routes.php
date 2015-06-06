@@ -26,6 +26,7 @@ Route::get('pago/insertar', 'PagoController@insertarPago');
 Route::get('alumno/listar', 'AlumnoController@listarAlumnos');
 Route::get('alumno/insertar', 'AlumnoController@insertarAlumno');
 
-
+Route::get('docente/listar', 'DocenteController@listarDocente');
+Route::get('docente/insertar', 'DocenteController@insertarDocente');
 
 
