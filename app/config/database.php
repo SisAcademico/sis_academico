@@ -56,12 +56,11 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'db_sisacademico',
-			'username'  => 'root',
-			'password'  => '',
+			'username'  => 'jack',
+			'password'  => 'macfoxes',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
-			'port'		=> '3306',
 		),
 
 		'pgsql' => array(
