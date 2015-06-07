@@ -18,7 +18,7 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-            {{ Form::open(array('url' => 'pago','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+            {{ Form::open(array('url' => 'alumno', 'files' => true, 'class' => 'form-horizontal')) }}
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Insertar Alumno</h3>
@@ -41,6 +41,12 @@
                         {{ Form::label('id_alumno', Lang::get('idalumno'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('id_alumno',null,array('class'=>'form-control','id'=>'id_alumno','placeholder'=>Lang::get('IdAlumno'))) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                            {{ Form::text('dni',null,array('class'=>'form-control','id'=>'dni','placeholder'=>Lang::get('DNI'))) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -76,23 +82,17 @@
                     <div class="form-group">
                         {{ Form::label('fecha_ingreso', Lang::get('fecha de ingreso'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input type="text" id="theInput" placeholder="Seleccione Fecha" />
+                            <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha" />
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('foto', Lang::get('foto'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input type="file" id="foto">
+                            {{ Form::file('photo') }}
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
-                <!-- 
-                    Se debe insertar en talumno,
-                    tfoto(auto_increment, fotoElegida),
-                    en tusuario: idusuario = DNI, passwors =DNI //valores por defecto
-                    el alumno y usuario tiene por defecto el estado "activo"
-                -->
                     {{ Form::submit(Lang::get('Crear Alumno'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div>

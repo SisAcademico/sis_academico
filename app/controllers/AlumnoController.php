@@ -5,27 +5,12 @@ class AlumnoController extends \BaseController {
     /**
      * Mostrar el formulario de inserción de alumnos
      */
-    public function insertarAlumno()
-    {
-        return View::make('alumno.insertar');
-    }
 
-    /**
-     * Listar alumnos
-     */
-    public function listarAlumnos()
-    {
-        return View::make('alumno.listar');
-    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+		$alumno = Alumno::all();
+		return View::make('alumno.listar')->with('alumnos',$alumno);
 	}
 
 
@@ -36,7 +21,7 @@ class AlumnoController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('alumno.insertar');
 	}
 
 
@@ -47,7 +32,28 @@ class AlumnoController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$alumnos = new Alumno;
+		$foto = new Foto;
+		$id = DB::table('tusuario')->insertGetId(
+    	['password' => Input::get('id_alumno').'i', 'tipo_usuario' => 'alumno']
+		);
+		$id2 = DB::table('tfoto')->insertGetId(
+    	['imagen' => Input::file("photo")]
+		);
+
+		$alumnos->idalumno = Input::get('id_alumno');
+		$alumnos->idusuario = $id;
+		$alumnos->dni = Input::get('dni');
+		$alumnos->nombres = Input::get('nombres');
+		$alumnos->apellidos = Input::get('apellidos');
+		$alumnos->direccion = Input::get('direccion');
+		$alumnos->telefono = Input::get('telefono');
+		$alumnos->correo = Input::get('correo');
+		$alumnos->fecha_ingreso = Input::get('fecha');
+		$alumnos->idfoto = $id2;
+		$alumnos->estado = 'activo';
+		$alumnos->save();
+		return Redirect::to('alumno');
 	}
 
 
