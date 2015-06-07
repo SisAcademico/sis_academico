@@ -19,7 +19,7 @@
       
       animate_current   : true,
       animation       : "fadein",
-      format        : "m/d/Y",
+      format        : "Y/m/d",
       lang        : "es",
       lock        : false,
       maxYear       : dd_y_current,

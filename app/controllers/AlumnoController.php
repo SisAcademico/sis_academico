@@ -63,9 +63,11 @@ class AlumnoController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($ids)
 	{
-		//
+		//$alumno = Alumno::where('idalumno', '=', $ids)->get();
+		//return View::make('alumno.listar')->with('alumnos',$alumno);
+
 	}
 
 
@@ -77,7 +79,9 @@ class AlumnoController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$alumno = Alumno::where('idalumno', '=', $id)->get();
+		return View::make('alumno.editar')->with('alumnos',$alumno);
+
 	}
 
 	/**
@@ -88,7 +92,21 @@ class AlumnoController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$entra = Input::all();
+		$alumno = DB::table('talumno')
+            ->where('idalumno', $id)
+            ->update(array(
+            'idalumno' => $entra['id_alumno'],
+            'dni' => $entra['dni'],
+            'nombres' => $entra['nombres'],
+            'apellidos' => $entra['apellidos'],
+            'direccion' => $entra['direccion'],
+            'telefono' => $entra['telefono'],
+            'correo' => $entra['correo'],
+            'fecha_ingreso' => $entra['fecha'],
+            'estado' => 'activo',
+            ));
+		return Redirect::to('alumno');
 	}
 
 

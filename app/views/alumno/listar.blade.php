@@ -39,8 +39,9 @@
                             <td>{{$alu->dni}}</td>
                             <td>{{$alu->estado}}</td>
                             <td>
-                                <a class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-                                
+                                <!--<a href="/sis_academico/public/alumno/{{ $alu->idalumno }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                -->
+                                <a href="/sis_academico/public/alumno/{{ $alu->idalumno }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                         @endforeach
