@@ -19,6 +19,15 @@ return array(
 	"listar_carreras"=>"Listar carreras",
 	"agregar_carrera"=>"Agregar carrera",
 
+    "semestre"=>"Semestre",
+    "listar_semestre"=>"Listar semestre",
+    "agregar_semestre"=>"Agregar semestre",
+    "fecha_inicio"=>"Fecha de inicio",
+    "fecha_fin"=>"Fecha de fin",
+
+    "aula"=>"Aula",
+    "listar_aulas"=>"Listar aulas",
+
     "pagos"=>"Pagos",
 	"listar_pagos"=>"Listar Pagos",
     "listado_de_pagos"=>"Listado de pagos",
