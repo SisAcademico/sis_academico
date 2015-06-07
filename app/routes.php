@@ -30,3 +30,4 @@ Route::get('docente/listar', 'DocenteController@listarDocente');
 Route::get('docente/insertar', 'DocenteController@insertarDocente');
 
 
+

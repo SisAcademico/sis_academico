@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Session;
 class DocenteController extends \BaseController {
 
     /**
@@ -7,7 +7,10 @@ class DocenteController extends \BaseController {
      */
     public function insertarDocente()
     {
-        return View::make('docente.insertar');
+        //return View::make('docente.insertar');
+        $tdocente=docente::all();
+		
+        return View::make('docente.insertar')->with('tdocente',$tdocente);
     }
 
     /**
@@ -15,7 +18,9 @@ class DocenteController extends \BaseController {
      */
     public function listarDocente()
     {
-        return View::make('docente.listar');  
+    	//return View::make('docente.listar');
+        $Docentestodo=docente::all();
+        return View::make('docente.listar')->with('Docentestodo',$Docentestodo);
     }
 
 	/**
@@ -24,8 +29,10 @@ class DocenteController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
+	{  
 		//
+		/*$posts=Post::all();
+		return View::make('docente.listar')->with('docentes',$posts)*/
 	}
 
 
@@ -47,7 +54,20 @@ class DocenteController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$docente=new docente;
+		$docente->iddocente=Input::post('iddocente');
+		$docente->dni=Input::post('dni');
+		$docente->nombres=Input::post('nombres');
+		$docente->apellidos=Input::post('apellidos');
+		$docente->direccion=Input::post('direccion');
+		$docente->telefono=Input::post('telefono');
+		$docente->correo=Input::post('correo');
+		$docente->cargo=Input::post('cargo');
+		$docente->estado=Input::post('estado');
+		$docente->fecha_inicio=Input::post('fecha_inicio');
+		$docente->idfoto=Input::post('idfoto');
+		$docente->save();
+		return Redirect::to('docente.listar');
 	}
 
 
@@ -59,7 +79,7 @@ class DocenteController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		
 	}
 
 
@@ -94,7 +114,11 @@ class DocenteController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$docente= Docente::find($id);
+		$docente-> delete();
+		Session::flash('message',$docente->nombres.'fue eliminado de la base de datos');
+		return Redirect::to('docente.listar');
+		//dd("Id Eliminado".$id);
 	}
 
 

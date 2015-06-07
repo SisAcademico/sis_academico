@@ -147,8 +147,8 @@
                 <i class="fa fa-users"></i> <span>Alumnos</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-list"></i> Listar Alumnos</a></li>
-                <li><a href="#"><i class="fa fa-plus"></i> Agregar Alumno</a></li>
+                <li><a href="{{ URL::to( '/alumno/listar') }}"><i class="fa fa-list"></i> Listar Alumnos</a></li>
+                <li><a href="{{ URL::to( '/alumno/insertar') }}"><i class="fa fa-plus"></i> Agregar Alumno</a></li>
               </ul>
             </li>
             <li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
