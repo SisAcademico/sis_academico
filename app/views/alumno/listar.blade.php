@@ -13,6 +13,7 @@
 
 @section('contenido')
     <!-- Main row -->
+    <a href="/sis_academico/public/alumno/create">Crear</a>
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
@@ -23,19 +24,26 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Nombre</th>
-                            <th style="width: 80px">Accion</th>
+                            <th style="width: 20px">Id</th>
+                            <th >Nombres</th>
+                            <th >Correo</th>
+                            <th >DNI</th>
+                            <th >Estado</th>
                         </tr>
                         <!-- LISTAR ALUMNOS-->
+                        @foreach($alumnos as $alu)
                         <tr>
-                            <td>1.</td>
-                            <td>AlumnoXXX</td>
+                            <td>{{$alu->idalumno}}</td>
+                            <td>{{$alu->nombres}} {{$alu->apellidos}}</td>
+                            <td>{{$alu->correo}}</td>
+                            <td>{{$alu->dni}}</td>
+                            <td>{{$alu->estado}}</td>
                             <td>
                                 <a class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 
                             </td>
                         </tr>
+                        @endforeach
                         
                     </table>
                 </div><!-- /.box-body -->

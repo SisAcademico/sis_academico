@@ -9,3 +9,5 @@ Thumbs.db
 .idea
 .idea/workspace.xml
 .idea/misc.xml
+app/config/database.php
+composer.json
