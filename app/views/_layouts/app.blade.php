@@ -146,20 +146,20 @@
               <a href="#">
                 <i class="fa fa-users"></i> <span>Alumnos</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-list"></i> Listar Alumnos</a></li>
-                <li><a href="#"><i class="fa fa-plus"></i> Agregar Alumno</a></li>
+              <ul class="{{ Request::is( 'alumno') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/alumno') }}"><i class="fa fa-list"></i> Listar Alumnos</a></li>
+                <li><a href="{{ URL::to( '/alumno/create') }}"><i class="fa fa-list"></i> Agregar alumno</a></li>
               </ul>
             </li>
-            <li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
+			<li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
               <a href="#">
-                <i class="fa fa-money"></i> <span>Pagos</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-list"></i> <span>Asignaturas</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="{{ Request::is( 'pago') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/pago/listar') }}"><i class="fa fa-list"></i> Listar pagos</a></li>
-                <li><a href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> Agregar pago</a></li>
+              <ul class="{{ Request::is( 'asignatura') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/asignatura/listar') }}"><i class="fa fa-list"></i> Listar Asignaturas</a></li>
+                <li><a href="{{ URL::to( '/asignatura/agregar') }}"><i class="fa fa-plus"></i> Agregar Asignatura</a></li>
               </ul>
-            </li>
+			</li>
 			<li class="treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>@lang('sistema.carrera')s</span> <i class="fa fa-angle-left pull-right"></i>
@@ -187,29 +187,17 @@
                 <li><a href="{{ URL::to( '/aula/agregar') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a></li>
               </ul>
             </li>
-            <li class="treeview">
+			<li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
               <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span>Tipos</span>
-                <span class="label label-primary pull-right">4</span>
+                <i class="fa fa-money"></i> <span>Pagos</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> tipo 1</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> tipo 2</a></li>
-                <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> tipo 3</a></li>
-                <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> tipo 4</a></li>
+              <ul class="{{ Request::is( 'pago') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/pago/listar') }}"><i class="fa fa-list"></i> Listar pagos</a></li>
+                <li><a href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> Agregar pago</a></li>
               </ul>
             </li>
-            <li>
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Ejemplo 2</span> <small class="label pull-right bg-green">nuevo</small>
-              </a>
-            </li>
+            
             <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Ayuda</span></a></li>
-            <li class="header">ETIQUETAS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
           </ul>
         </section>
         <!-- /.sidebar -->

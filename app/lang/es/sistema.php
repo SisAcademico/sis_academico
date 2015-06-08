@@ -37,6 +37,18 @@ return array(
 	"nro_boleta"=>"Nro. de boleta",
 	"serie"=>"Serie",
 	"fecha_pago"=>"Fecha de pago",
+	
+	"idasignatura"=>"Id Asignatura",
+    "asignaturas"=>"Asignatura",
+    "listar_asignaturas"=>"Listar Asignaturas",
+    "agregar_asignaturas"=>"Agregar Asignatura",
+    "editar_asignatura"=>"Editar Asignatura",
+    "nombre_asignatura" => "Nombre Asignatura",
+    "horas_semanales" =>  "Horas Semanales",
+    "horas_totales" => "Horas Totales",
+    "idmodulo" => "Modulo",
+    "pre_requisito" => "Pre Requisito",
+    "actualizar" => "Actualizar",
 
 	"pantalla_acceso"=>"Pantalla de acceso",
     "administracion"=>"Administración",
