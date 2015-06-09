@@ -18,8 +18,8 @@ class AsignaturaController extends BaseController{
     public function index()
     {
         //
-            $asignaturas=Asignatura::all();
-            return View::make('asignatura.listar') -> With('asignatura',$asignaturas);
+        $asignaturas=Asignatura::all();
+        return View::make('asignatura.listar') -> With('asignatura',$asignaturas);
     }
 
 
@@ -34,7 +34,7 @@ class AsignaturaController extends BaseController{
     public function create()
     {
         //
-             return View::make('asignatura.insertar');
+        return View::make('asignatura.insertar');
     }
 
 
@@ -50,15 +50,18 @@ class AsignaturaController extends BaseController{
     public function store()
     {
         //
-            $asignaturas = new Asignatura;
-            $asignaturas->idasignatura = Input::get('id_asignatura');
-            $asignaturas->nombre_asignatura = Input::get('nombre_asignatura');
-            $asignaturas->horas_semanales = Input::get('horas_semanales');
-            $asignaturas->horas_totales = Input::get('horas_totales');
-            $asignaturas->idmodulo = Input::get('idmodulo');
-            $asignaturas->pre_requisito = Input::get('pre_requisito');
-            $asignaturas->save();
-            return Redirect::to('asignatura');
+
+        $asignaturas = new Asignatura;
+
+
+        $asignaturas->idasignatura = Input::get('id_asignatura');
+        $asignaturas->nombre_asignatura = Input::get('nombre_asignatura');
+        $asignaturas->horas_semanales = Input::get('horas_semanales');
+        $asignaturas->horas_totales = Input::get('horas_totales');
+        $asignaturas->idmodulo = Input::get('idmodulo');
+        $asignaturas->pre_requisito = Input::get('pre_requisito');
+        $asignaturas->save();
+        return Redirect::to('asignatura');
     }
 
 
@@ -86,8 +89,8 @@ class AsignaturaController extends BaseController{
     public function edit($id)
     {
         //
-            $asignatura = Asignatura::where('idasignatura', '=', $id)->get();
-            return View::make('asignatura.editar')->with('asignaturas',$asignatura);
+        $asignatura = Asignatura::where('idasignatura', '=', $id)->get();
+        return View::make('asignatura.editar')->with('asignaturas',$asignatura);
     }
 
 
@@ -103,18 +106,18 @@ class AsignaturaController extends BaseController{
     public function update($id)
     {
         //
-            $entra = Input::all();
-            $asignatura = DB::table('tasignatura')
+        $entra = Input::all();
+        $asignatura = DB::table('tasignatura')
             ->where('idasignatura', $id)
             ->update(array(
-            'idasignatura' => $entra['id_asignatura'],
-            'nombre_asignatura' => $entra['nombre_asignatura'],
-            'horas_semanales' => $entra['horas_semanales'],
-            'horas_totales' => $entra['horas_totales'],
-            'idmodulo' => $entra['idmodulo'],
-            'pre_requisito' => $entra['pre_requisito'],
+                'idasignatura' => $entra['id_asignatura'],
+                'nombre_asignatura' => $entra['nombre_asignatura'],
+                'horas_semanales' => $entra['horas_semanales'],
+                'horas_totales' => $entra['horas_totales'],
+                'idmodulo' => $entra['idmodulo'],
+                'pre_requisito' => $entra['pre_requisito'],
             ));
-            return Redirect::to('asignatura');
+        return Redirect::to('asignatura');
     }
 
 
@@ -131,3 +134,4 @@ class AsignaturaController extends BaseController{
 }
 
 ?>
+

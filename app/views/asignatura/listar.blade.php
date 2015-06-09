@@ -11,49 +11,47 @@
 @stop
 
 @section('contenido')
-			<!-- Main row -->
-			<div class="row" >
-				<!-- INICIO: BOX PANEL -->
-					<div class="col-md-12 col-sm-8">
-						 <div class="box box-success">
-								<div class="box-header with-border">
-								  <h3 class="box-title">Listado de Asignaturas</h3>
-								</div><!-- /.box-header -->
-								<div class="box-body">
-								  <table class="table table-bordered">
-									<tr>
-									  <th style="width: 10px">#</th>
-									  <th>Nombre Asignatura</th>
-									  <th style="width: 80px">Accion</th>
-									</tr>
+    <!-- Main row -->
+    <div class="row" >
+        <!-- INICIO: BOX PANEL -->
+        <div class="col-md-12 col-sm-8">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Listado de Asignaturas</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Nombre Asignatura</th>
+                            <th style="width: 80px">Accion</th>
+                        </tr>
 
 
-									@foreach($asignatura as $asig)
-									<tr>
-										<td>1.</td>
-										<td>{{ $asig->nombre_asignatura }}</td>
-										 <!--<form action="actualizar.blade.php" method="post">-->
-												<td>
-												{{ HTML::link('views/asignatura/actualizar/'.$asig->idasignatura,'Actualizar')}}
-												<!--<a class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>-->
-												<!--<input type="submit" name="submit" value="Actulizar"/>-->
-											    </td>									    
-									</tr>
-									@endforeach
+                        @foreach($asignatura as $asig)
+                            <tr>
+                                <td>1.</td>
+                                <td>{{ $asig->nombre_asignatura }}</td>
+                                <!--<form action="actualizar.blade.php" method="post">-->
+                                <td>
+                                    <a href="/sis_academico/public/asignatura/{{ $asig->idasignatura}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
 
-								  </table>
-								</div><!-- /.box-body -->
-								<div class="box-footer clearfix text-center">
-								  <ul class="pagination pagination-sm no-margin">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">&raquo;</a></li>
-								  </ul>
-								</div>
-						 </div><!-- /.box -->
-					</div>
-				  <!-- INICIO: BOX PANEL -->
-			</div><!-- /.box -->
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix text-center">
+                    <ul class="pagination pagination-sm no-margin">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div><!-- /.box -->
+        </div>
+        <!-- INICIO: BOX PANEL -->
+    </div><!-- /.box -->
 @endsection
