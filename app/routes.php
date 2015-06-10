@@ -38,5 +38,7 @@ Route::get('alumno/insertar', 'AlumnoController@insertarAlumno');
 
 Route::get('docente/listar', 'DocenteController@listarDocente');
 Route::get('docente/insertar', 'DocenteController@insertarDocente');
+//*** administrador
+Route::get('/admninistrador/listar', 'AdministradorController@listarAdministrador');
 
 
