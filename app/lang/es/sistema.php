@@ -85,5 +85,19 @@ return array(
     "contactos"=>"Contactos",
 
     "inicio"=>"Inicio",
+    //----------------
+    "patalla_aministracion"=>"Crear Administrador",
+    "administrador"=>"Administrador",
+    "dni" => "DNI",
+    "nombre" => "Nombre",
+    "apellido" =>"Apellido ",
+    "direccion" =>"Direccion",
+    "telefono" =>"Telefono",
+    "correo" =>"Email",    
+    "modificar_administrador"=>"Modificar",   
+    "agregar_admin"=>"Agregar",  
+    "crear_administrador" =>"Crear Alministrador",
+
+
 
 );
