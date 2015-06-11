@@ -12,6 +12,7 @@
 */
 
 Route::resource('alumno', 'AlumnoController');
+Route::resource('nota', 'NotaController');
 
 Route::get('/', 'PanelController@mostrarPanel');
 Route::get('/panel', 'PanelController@mostrarPanel');
@@ -34,6 +35,9 @@ Route::get('aula/agregar', 'AulaController@agregarAula');
 
 Route::get('alumno/listar', 'AlumnoController@listarAlumnos');
 Route::get('alumno/insertar', 'AlumnoController@insertarAlumno');
+
+Route::get('nota/listar', 'AlumnoController@listarAlumnos');
+Route::get('nota/insertar', 'NotaController@create');
 */
 
 Route::get('docente/listar', 'DocenteController@listarDocente');
