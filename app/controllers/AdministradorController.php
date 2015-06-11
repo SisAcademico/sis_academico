@@ -1,6 +1,6 @@
 <?php
 
-class Administradorcontroller extends BaseController {
+class AdministradorController extends BaseController {
 
 
 

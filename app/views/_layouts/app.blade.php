@@ -135,6 +135,14 @@
             <li><a href="{{ URL::to( '/panel') }}"><i class="fa fa-dashboard"></i> @lang('sistema.panel')</a></li>
 			<li class="treeview">
               <a href="#">
+                <i class="fa fa-users"></i> <span>Administradores</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ URL::to( '/administrador/listar') }}"><i class="fa fa-list"></i> Listar  administradores</a></li>
+              </ul>
+            </li>
+			<li class="treeview">
+              <a href="#">
                 <i class="fa fa-users"></i> <span>Docentes</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
