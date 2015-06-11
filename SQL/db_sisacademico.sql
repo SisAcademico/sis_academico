@@ -1,10 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.12
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Versión del servidor: 5.5.43
--- Versión de PHP: 5.4.38
+-- Servidor: 127.0.0.1
+-- Tiempo de generaciÃ³n: 11-06-2015 a las 19:41:14
+-- VersiÃ³n del servidor: 5.6.17
+-- VersiÃ³n de PHP: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,7 +36,10 @@ CREATE TABLE IF NOT EXISTS `tadministrador` (
   `telefono` varchar(9) DEFAULT NULL,
   `correo` varchar(50) DEFAULT NULL,
   `idfoto` int(11) DEFAULT NULL,
-  `estado` varchar(20) DEFAULT NULL
+  `estado` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`idadministrador`),
+  KEY `idusuario` (`idusuario`),
+  KEY `idfoto` (`idfoto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -55,7 +59,10 @@ CREATE TABLE IF NOT EXISTS `talumno` (
   `correo` varchar(50) DEFAULT NULL,
   `fecha_ingreso` datetime DEFAULT NULL,
   `idfoto` int(11) DEFAULT NULL,
-  `estado` varchar(20) DEFAULT NULL
+  `estado` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`idalumno`),
+  KEY `idusuario` (`idusuario`),
+  KEY `idfoto` (`idfoto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -70,7 +77,9 @@ CREATE TABLE IF NOT EXISTS `tasignatura` (
   `horas_semanales` int(11) DEFAULT NULL,
   `horas_totales` int(11) DEFAULT NULL,
   `idmodulo` int(11) DEFAULT NULL,
-  `pre_requisito` varchar(40) DEFAULT NULL
+  `pre_requisito` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`idasignatura`),
+  KEY `idmodulo` (`idmodulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -82,7 +91,8 @@ CREATE TABLE IF NOT EXISTS `tasignatura` (
 CREATE TABLE IF NOT EXISTS `tasignatura_cl` (
   `idasignatura_cl` varchar(10) NOT NULL,
   `nombre_asig_cl` varchar(50) DEFAULT NULL,
-  `horas_totales` int(11) DEFAULT NULL
+  `horas_totales` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idasignatura_cl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -92,11 +102,13 @@ CREATE TABLE IF NOT EXISTS `tasignatura_cl` (
 --
 
 CREATE TABLE IF NOT EXISTS `tasistencia_alumno` (
-  `idasistencia_alumno` int(11) NOT NULL,
+  `idasistencia_alumno` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_asist_alumn` datetime DEFAULT NULL,
   `observacion` varchar(10) DEFAULT NULL,
-  `iddetalle_matricula` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `iddetalle_matricula` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idasistencia_alumno`),
+  KEY `iddetalle_matricula` (`iddetalle_matricula`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -105,12 +117,14 @@ CREATE TABLE IF NOT EXISTS `tasistencia_alumno` (
 --
 
 CREATE TABLE IF NOT EXISTS `tasistencia_docente` (
-  `idasistencia_docente` int(11) NOT NULL,
+  `idasistencia_docente` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_asist_doc` datetime DEFAULT NULL,
   `observacion` varchar(10) DEFAULT NULL,
   `tema` varchar(50) DEFAULT NULL,
-  `idcarga_academica` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idcarga_academica` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idasistencia_docente`),
+  KEY `idcarga_academica` (`idcarga_academica`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -122,7 +136,8 @@ CREATE TABLE IF NOT EXISTS `taula` (
   `idaula` varchar(10) NOT NULL,
   `estado` varchar(15) DEFAULT NULL,
   `capacidad` int(11) DEFAULT NULL,
-  `tipo` varchar(15) DEFAULT NULL
+  `tipo` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`idaula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -133,7 +148,10 @@ CREATE TABLE IF NOT EXISTS `taula` (
 
 CREATE TABLE IF NOT EXISTS `taula_carga` (
   `idcarga_academica` int(11) NOT NULL DEFAULT '0',
-  `idaula` varchar(10) NOT NULL DEFAULT ''
+  `idaula` varchar(10) NOT NULL DEFAULT '',
+  PRIMARY KEY (`idcarga_academica`,`idaula`),
+  KEY `idcarga_academica` (`idcarga_academica`),
+  KEY `idaula` (`idaula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -143,13 +161,17 @@ CREATE TABLE IF NOT EXISTS `taula_carga` (
 --
 
 CREATE TABLE IF NOT EXISTS `tcarga_academica` (
-  `idcarga_academica` int(11) NOT NULL,
+  `idcarga_academica` int(11) NOT NULL AUTO_INCREMENT,
   `grupo` varchar(20) DEFAULT NULL,
   `turno` varchar(20) DEFAULT NULL,
   `idsemestre` varchar(10) DEFAULT NULL,
   `idasignatura` varchar(10) DEFAULT NULL,
-  `idasignatura_cl` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idasignatura_cl` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`idcarga_academica`),
+  KEY `idsemestre` (`idsemestre`),
+  KEY `tcarga_academica_ibfk_2` (`idasignatura`),
+  KEY `tcarga_academica_ibfk_3` (`idasignatura_cl`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -159,7 +181,10 @@ CREATE TABLE IF NOT EXISTS `tcarga_academica` (
 
 CREATE TABLE IF NOT EXISTS `tcarga_horario` (
   `idhorario` int(11) NOT NULL DEFAULT '0',
-  `idcarga_academica` int(11) NOT NULL DEFAULT '0'
+  `idcarga_academica` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idhorario`,`idcarga_academica`),
+  KEY `idhorario` (`idhorario`),
+  KEY `idcarga_academica` (`idcarga_academica`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -171,7 +196,8 @@ CREATE TABLE IF NOT EXISTS `tcarga_horario` (
 CREATE TABLE IF NOT EXISTS `tcarrera` (
   `idcarrera` varchar(5) NOT NULL,
   `nombre_carrera` varchar(50) DEFAULT NULL,
-  `nro_modulos` int(11) DEFAULT NULL
+  `nro_modulos` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idcarrera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -181,11 +207,15 @@ CREATE TABLE IF NOT EXISTS `tcarrera` (
 --
 
 CREATE TABLE IF NOT EXISTS `tdetalle_matricula` (
-  `iddetalle_matricula` int(11) NOT NULL,
+  `iddetalle_matricula` int(11) NOT NULL AUTO_INCREMENT,
   `idmatricula` int(11) DEFAULT NULL,
   `idasignatura` varchar(10) DEFAULT NULL,
-  `idasignatura_cl` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idasignatura_cl` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`iddetalle_matricula`),
+  KEY `idmatricula` (`idmatricula`),
+  KEY `idasignatura` (`idasignatura`),
+  KEY `tdetalle_matricula_ibfk_3` (`idasignatura_cl`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -194,11 +224,13 @@ CREATE TABLE IF NOT EXISTS `tdetalle_matricula` (
 --
 
 CREATE TABLE IF NOT EXISTS `tdetalle_pago` (
-  `iddetalle_pago` int(11) NOT NULL,
+  `iddetalle_pago` int(11) NOT NULL AUTO_INCREMENT,
   `idpago` int(11) DEFAULT NULL,
   `concepto` varchar(50) DEFAULT NULL,
-  `monto` decimal(15,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `monto` decimal(15,2) DEFAULT NULL,
+  PRIMARY KEY (`iddetalle_pago`),
+  KEY `idpago` (`idpago`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -218,7 +250,10 @@ CREATE TABLE IF NOT EXISTS `tdocente` (
   `cargo` varchar(20) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL,
   `fecha_inicio` datetime DEFAULT NULL,
-  `idfoto` int(11) DEFAULT NULL
+  `idfoto` int(11) DEFAULT NULL,
+  PRIMARY KEY (`iddocente`),
+  KEY `idusuario` (`idusuario`),
+  KEY `idfoto` (`idfoto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -228,9 +263,10 @@ CREATE TABLE IF NOT EXISTS `tdocente` (
 --
 
 CREATE TABLE IF NOT EXISTS `tfoto` (
-  `idfoto` int(11) NOT NULL,
-  `imagen` longblob
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idfoto` int(11) NOT NULL AUTO_INCREMENT,
+  `imagen` longblob,
+  PRIMARY KEY (`idfoto`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -239,10 +275,11 @@ CREATE TABLE IF NOT EXISTS `tfoto` (
 --
 
 CREATE TABLE IF NOT EXISTS `thorario` (
-  `idhorario` int(11) NOT NULL,
+  `idhorario` int(11) NOT NULL AUTO_INCREMENT,
   `hora_inicio` time DEFAULT NULL,
-  `hora_fin` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `hora_fin` time DEFAULT NULL,
+  PRIMARY KEY (`idhorario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -251,12 +288,15 @@ CREATE TABLE IF NOT EXISTS `thorario` (
 --
 
 CREATE TABLE IF NOT EXISTS `tmatricula` (
-  `idmatricula` int(11) NOT NULL,
+  `idmatricula` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(20) DEFAULT NULL,
   `fecha_matricula` datetime DEFAULT NULL,
   `idpago` int(11) DEFAULT NULL,
-  `idalumno` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idalumno` varchar(10) NOT NULL,
+  PRIMARY KEY (`idmatricula`),
+  KEY `idpago` (`idpago`),
+  KEY `idalumno` (`idalumno`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -265,10 +305,12 @@ CREATE TABLE IF NOT EXISTS `tmatricula` (
 --
 
 CREATE TABLE IF NOT EXISTS `tmodulo` (
-  `idmodulo` int(11) NOT NULL,
+  `idmodulo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_modulo` varchar(10) DEFAULT NULL,
-  `idcarrera` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idcarrera` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`idmodulo`),
+  KEY `idcarrera` (`idcarrera`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -277,11 +319,13 @@ CREATE TABLE IF NOT EXISTS `tmodulo` (
 --
 
 CREATE TABLE IF NOT EXISTS `tnotas` (
-  `idnota` int(11) NOT NULL,
+  `idnota` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_nota` datetime DEFAULT NULL,
   `nota` decimal(10,2) DEFAULT NULL,
-  `iddetalle_matricula` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `iddetalle_matricula` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idnota`),
+  KEY `iddetalle_matricula` (`iddetalle_matricula`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -290,11 +334,12 @@ CREATE TABLE IF NOT EXISTS `tnotas` (
 --
 
 CREATE TABLE IF NOT EXISTS `tpago` (
-  `idpago` int(11) NOT NULL,
+  `idpago` int(11) NOT NULL AUTO_INCREMENT,
   `nro_boleta` varchar(10) DEFAULT NULL,
   `serie` varchar(10) DEFAULT NULL,
-  `fecha_pago` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `fecha_pago` datetime DEFAULT NULL,
+  PRIMARY KEY (`idpago`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -305,7 +350,8 @@ CREATE TABLE IF NOT EXISTS `tpago` (
 CREATE TABLE IF NOT EXISTS `tsemestre` (
   `idsemestre` varchar(10) NOT NULL,
   `fecha_inicio` datetime DEFAULT NULL,
-  `fecha_fin` datetime DEFAULT NULL
+  `fecha_fin` datetime DEFAULT NULL,
+  PRIMARY KEY (`idsemestre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -315,212 +361,13 @@ CREATE TABLE IF NOT EXISTS `tsemestre` (
 --
 
 CREATE TABLE IF NOT EXISTS `tusuario` (
-  `idusuario` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `tipo_usuario` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tipo_usuario` varchar(20) NOT NULL,
+  PRIMARY KEY (`idusuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tadministrador`
---
-ALTER TABLE `tadministrador`
-  ADD PRIMARY KEY (`idadministrador`), ADD KEY `idusuario` (`idusuario`), ADD KEY `idfoto` (`idfoto`);
-
---
--- Indices de la tabla `talumno`
---
-ALTER TABLE `talumno`
-  ADD PRIMARY KEY (`idalumno`), ADD KEY `idusuario` (`idusuario`), ADD KEY `idfoto` (`idfoto`);
-
---
--- Indices de la tabla `tasignatura`
---
-ALTER TABLE `tasignatura`
-  ADD PRIMARY KEY (`idasignatura`), ADD KEY `idmodulo` (`idmodulo`);
-
---
--- Indices de la tabla `tasignatura_cl`
---
-ALTER TABLE `tasignatura_cl`
-  ADD PRIMARY KEY (`idasignatura_cl`);
-
---
--- Indices de la tabla `tasistencia_alumno`
---
-ALTER TABLE `tasistencia_alumno`
-  ADD PRIMARY KEY (`idasistencia_alumno`), ADD KEY `iddetalle_matricula` (`iddetalle_matricula`);
-
---
--- Indices de la tabla `tasistencia_docente`
---
-ALTER TABLE `tasistencia_docente`
-  ADD PRIMARY KEY (`idasistencia_docente`), ADD KEY `idcarga_academica` (`idcarga_academica`);
-
---
--- Indices de la tabla `taula`
---
-ALTER TABLE `taula`
-  ADD PRIMARY KEY (`idaula`);
-
---
--- Indices de la tabla `taula_carga`
---
-ALTER TABLE `taula_carga`
-  ADD PRIMARY KEY (`idcarga_academica`,`idaula`), ADD KEY `idcarga_academica` (`idcarga_academica`), ADD KEY `idaula` (`idaula`);
-
---
--- Indices de la tabla `tcarga_academica`
---
-ALTER TABLE `tcarga_academica`
-  ADD PRIMARY KEY (`idcarga_academica`), ADD KEY `idsemestre` (`idsemestre`);
-
---
--- Indices de la tabla `tcarga_horario`
---
-ALTER TABLE `tcarga_horario`
-  ADD PRIMARY KEY (`idhorario`,`idcarga_academica`), ADD KEY `idhorario` (`idhorario`), ADD KEY `idcarga_academica` (`idcarga_academica`);
-
---
--- Indices de la tabla `tcarrera`
---
-ALTER TABLE `tcarrera`
-  ADD PRIMARY KEY (`idcarrera`);
-
---
--- Indices de la tabla `tdetalle_matricula`
---
-ALTER TABLE `tdetalle_matricula`
-  ADD PRIMARY KEY (`iddetalle_matricula`), ADD KEY `idmatricula` (`idmatricula`), ADD KEY `idasignatura` (`idasignatura`);
-
---
--- Indices de la tabla `tdetalle_pago`
---
-ALTER TABLE `tdetalle_pago`
-  ADD PRIMARY KEY (`iddetalle_pago`), ADD KEY `idpago` (`idpago`);
-
---
--- Indices de la tabla `tdocente`
---
-ALTER TABLE `tdocente`
-  ADD PRIMARY KEY (`iddocente`), ADD KEY `idusuario` (`idusuario`), ADD KEY `idfoto` (`idfoto`);
-
---
--- Indices de la tabla `tfoto`
---
-ALTER TABLE `tfoto`
-  ADD PRIMARY KEY (`idfoto`);
-
---
--- Indices de la tabla `thorario`
---
-ALTER TABLE `thorario`
-  ADD PRIMARY KEY (`idhorario`);
-
---
--- Indices de la tabla `tmatricula`
---
-ALTER TABLE `tmatricula`
-  ADD PRIMARY KEY (`idmatricula`), ADD KEY `idpago` (`idpago`), ADD KEY `idalumno` (`idalumno`);
-
---
--- Indices de la tabla `tmodulo`
---
-ALTER TABLE `tmodulo`
-  ADD PRIMARY KEY (`idmodulo`), ADD KEY `idcarrera` (`idcarrera`);
-
---
--- Indices de la tabla `tnotas`
---
-ALTER TABLE `tnotas`
-  ADD PRIMARY KEY (`idnota`), ADD KEY `iddetalle_matricula` (`iddetalle_matricula`);
-
---
--- Indices de la tabla `tpago`
---
-ALTER TABLE `tpago`
-  ADD PRIMARY KEY (`idpago`);
-
---
--- Indices de la tabla `tsemestre`
---
-ALTER TABLE `tsemestre`
-  ADD PRIMARY KEY (`idsemestre`);
-
---
--- Indices de la tabla `tusuario`
---
-ALTER TABLE `tusuario`
-  ADD PRIMARY KEY (`idusuario`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `tasistencia_alumno`
---
-ALTER TABLE `tasistencia_alumno`
-  MODIFY `idasistencia_alumno` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tasistencia_docente`
---
-ALTER TABLE `tasistencia_docente`
-  MODIFY `idasistencia_docente` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tcarga_academica`
---
-ALTER TABLE `tcarga_academica`
-  MODIFY `idcarga_academica` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tdetalle_matricula`
---
-ALTER TABLE `tdetalle_matricula`
-  MODIFY `iddetalle_matricula` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tdetalle_pago`
---
-ALTER TABLE `tdetalle_pago`
-  MODIFY `iddetalle_pago` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tfoto`
---
-ALTER TABLE `tfoto`
-  MODIFY `idfoto` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `thorario`
---
-ALTER TABLE `thorario`
-  MODIFY `idhorario` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tmatricula`
---
-ALTER TABLE `tmatricula`
-  MODIFY `idmatricula` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tmodulo`
---
-ALTER TABLE `tmodulo`
-  MODIFY `idmodulo` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tnotas`
---
-ALTER TABLE `tnotas`
-  MODIFY `idnota` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tpago`
---
-ALTER TABLE `tpago`
-  MODIFY `idpago` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `tusuario`
---
-ALTER TABLE `tusuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
@@ -529,95 +376,95 @@ ALTER TABLE `tusuario`
 -- Filtros para la tabla `tadministrador`
 --
 ALTER TABLE `tadministrador`
-ADD CONSTRAINT `tadministrador_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `tusuario` (`idusuario`),
-ADD CONSTRAINT `tadministrador_ibfk_2` FOREIGN KEY (`idfoto`) REFERENCES `tfoto` (`idfoto`);
+  ADD CONSTRAINT `tadministrador_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `tusuario` (`idusuario`),
+  ADD CONSTRAINT `tadministrador_ibfk_2` FOREIGN KEY (`idfoto`) REFERENCES `tfoto` (`idfoto`);
 
 --
 -- Filtros para la tabla `talumno`
 --
 ALTER TABLE `talumno`
-ADD CONSTRAINT `talumno_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `tusuario` (`idusuario`),
-ADD CONSTRAINT `talumno_ibfk_2` FOREIGN KEY (`idfoto`) REFERENCES `tfoto` (`idfoto`);
+  ADD CONSTRAINT `talumno_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `tusuario` (`idusuario`),
+  ADD CONSTRAINT `talumno_ibfk_2` FOREIGN KEY (`idfoto`) REFERENCES `tfoto` (`idfoto`);
 
 --
 -- Filtros para la tabla `tasignatura`
 --
 ALTER TABLE `tasignatura`
-ADD CONSTRAINT `tasignatura_ibfk_1` FOREIGN KEY (`idmodulo`) REFERENCES `tmodulo` (`idmodulo`);
+  ADD CONSTRAINT `tasignatura_ibfk_1` FOREIGN KEY (`idmodulo`) REFERENCES `tmodulo` (`idmodulo`);
 
 --
 -- Filtros para la tabla `tasistencia_alumno`
 --
 ALTER TABLE `tasistencia_alumno`
-ADD CONSTRAINT `tasistencia_alumno_ibfk_1` FOREIGN KEY (`iddetalle_matricula`) REFERENCES `tdetalle_matricula` (`iddetalle_matricula`);
+  ADD CONSTRAINT `tasistencia_alumno_ibfk_1` FOREIGN KEY (`iddetalle_matricula`) REFERENCES `tdetalle_matricula` (`iddetalle_matricula`);
 
 --
 -- Filtros para la tabla `tasistencia_docente`
 --
 ALTER TABLE `tasistencia_docente`
-ADD CONSTRAINT `tasistencia_docente_ibfk_1` FOREIGN KEY (`idcarga_academica`) REFERENCES `tcarga_academica` (`idcarga_academica`);
+  ADD CONSTRAINT `tasistencia_docente_ibfk_1` FOREIGN KEY (`idcarga_academica`) REFERENCES `tcarga_academica` (`idcarga_academica`);
 
 --
 -- Filtros para la tabla `taula_carga`
 --
 ALTER TABLE `taula_carga`
-ADD CONSTRAINT `taula_carga_ibfk_1` FOREIGN KEY (`idcarga_academica`) REFERENCES `tcarga_academica` (`idcarga_academica`),
-ADD CONSTRAINT `taula_carga_ibfk_2` FOREIGN KEY (`idaula`) REFERENCES `taula` (`idaula`);
+  ADD CONSTRAINT `taula_carga_ibfk_1` FOREIGN KEY (`idcarga_academica`) REFERENCES `tcarga_academica` (`idcarga_academica`),
+  ADD CONSTRAINT `taula_carga_ibfk_2` FOREIGN KEY (`idaula`) REFERENCES `taula` (`idaula`);
 
 --
 -- Filtros para la tabla `tcarga_academica`
 --
 ALTER TABLE `tcarga_academica`
-ADD CONSTRAINT `tcarga_academica_ibfk_1` FOREIGN KEY (`idsemestre`) REFERENCES `tsemestre` (`idsemestre`),
-ADD CONSTRAINT `tcarga_academica_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`),
-ADD CONSTRAINT `tcarga_academica_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`);
+  ADD CONSTRAINT `tcarga_academica_ibfk_1` FOREIGN KEY (`idsemestre`) REFERENCES `tsemestre` (`idsemestre`),
+  ADD CONSTRAINT `tcarga_academica_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`),
+  ADD CONSTRAINT `tcarga_academica_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`);
 
 --
 -- Filtros para la tabla `tcarga_horario`
 --
 ALTER TABLE `tcarga_horario`
-ADD CONSTRAINT `tcarga_horario_ibfk_1` FOREIGN KEY (`idhorario`) REFERENCES `thorario` (`idhorario`),
-ADD CONSTRAINT `tcarga_horario_ibfk_2` FOREIGN KEY (`idcarga_academica`) REFERENCES `tcarga_academica` (`idcarga_academica`);
+  ADD CONSTRAINT `tcarga_horario_ibfk_1` FOREIGN KEY (`idhorario`) REFERENCES `thorario` (`idhorario`),
+  ADD CONSTRAINT `tcarga_horario_ibfk_2` FOREIGN KEY (`idcarga_academica`) REFERENCES `tcarga_academica` (`idcarga_academica`);
 
 --
 -- Filtros para la tabla `tdetalle_matricula`
 --
 ALTER TABLE `tdetalle_matricula`
-ADD CONSTRAINT `tdetalle_matricula_ibfk_1` FOREIGN KEY (`idmatricula`) REFERENCES `tmatricula` (`idmatricula`),
-ADD CONSTRAINT `tdetalle_matricula_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`),
-ADD CONSTRAINT `tdetalle_matricula_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`);
+  ADD CONSTRAINT `tdetalle_matricula_ibfk_1` FOREIGN KEY (`idmatricula`) REFERENCES `tmatricula` (`idmatricula`),
+  ADD CONSTRAINT `tdetalle_matricula_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`),
+  ADD CONSTRAINT `tdetalle_matricula_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`);
 
 --
 -- Filtros para la tabla `tdetalle_pago`
 --
 ALTER TABLE `tdetalle_pago`
-ADD CONSTRAINT `tdetalle_pago_ibfk_1` FOREIGN KEY (`idpago`) REFERENCES `tpago` (`idpago`);
+  ADD CONSTRAINT `tdetalle_pago_ibfk_1` FOREIGN KEY (`idpago`) REFERENCES `tpago` (`idpago`);
 
 --
 -- Filtros para la tabla `tdocente`
 --
 ALTER TABLE `tdocente`
-ADD CONSTRAINT `tdocente_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `tusuario` (`idusuario`),
-ADD CONSTRAINT `tdocente_ibfk_2` FOREIGN KEY (`idfoto`) REFERENCES `tfoto` (`idfoto`);
+  ADD CONSTRAINT `tdocente_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `tusuario` (`idusuario`),
+  ADD CONSTRAINT `tdocente_ibfk_2` FOREIGN KEY (`idfoto`) REFERENCES `tfoto` (`idfoto`);
 
 --
 -- Filtros para la tabla `tmatricula`
 --
 ALTER TABLE `tmatricula`
-ADD CONSTRAINT `tmatricula_ibfk_1` FOREIGN KEY (`idpago`) REFERENCES `tpago` (`idpago`),
-ADD CONSTRAINT `tmatricula_ibfk_2` FOREIGN KEY (`idalumno`) REFERENCES `talumno` (`idalumno`);
+  ADD CONSTRAINT `tmatricula_ibfk_1` FOREIGN KEY (`idpago`) REFERENCES `tpago` (`idpago`),
+  ADD CONSTRAINT `tmatricula_ibfk_2` FOREIGN KEY (`idalumno`) REFERENCES `talumno` (`idalumno`);
 
 --
 -- Filtros para la tabla `tmodulo`
 --
 ALTER TABLE `tmodulo`
-ADD CONSTRAINT `tmodulo_ibfk_1` FOREIGN KEY (`idcarrera`) REFERENCES `tcarrera` (`idcarrera`);
+  ADD CONSTRAINT `tmodulo_ibfk_1` FOREIGN KEY (`idcarrera`) REFERENCES `tcarrera` (`idcarrera`);
 
 --
 -- Filtros para la tabla `tnotas`
 --
 ALTER TABLE `tnotas`
-ADD CONSTRAINT `tnotas_ibfk_1` FOREIGN KEY (`iddetalle_matricula`) REFERENCES `tdetalle_matricula` (`iddetalle_matricula`);
+  ADD CONSTRAINT `tnotas_ibfk_1` FOREIGN KEY (`iddetalle_matricula`) REFERENCES `tdetalle_matricula` (`iddetalle_matricula`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
