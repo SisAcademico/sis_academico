@@ -251,7 +251,8 @@ CREATE TABLE IF NOT EXISTS `tmatricula` (
   `idmatricula` int(11) NOT NULL,
   `tipo` varchar(20) DEFAULT NULL,
   `fecha_matricula` datetime DEFAULT NULL,
-  `idpago` int(11) DEFAULT NULL
+  `idpago` int(11) DEFAULT NULL,
+  `idalumno` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -420,7 +421,7 @@ ALTER TABLE `thorario`
 -- Indices de la tabla `tmatricula`
 --
 ALTER TABLE `tmatricula`
-  ADD PRIMARY KEY (`idmatricula`), ADD KEY `idpago` (`idpago`);
+  ADD PRIMARY KEY (`idmatricula`), ADD KEY `idpago` (`idpago`), ADD KEY `idalumno` (`idalumno`);
 
 --
 -- Indices de la tabla `tmodulo`
@@ -596,7 +597,8 @@ ADD CONSTRAINT `tdocente_ibfk_2` FOREIGN KEY (`idfoto`) REFERENCES `tfoto` (`idf
 -- Filtros para la tabla `tmatricula`
 --
 ALTER TABLE `tmatricula`
-ADD CONSTRAINT `tmatricula_ibfk_1` FOREIGN KEY (`idpago`) REFERENCES `tpago` (`idpago`);
+ADD CONSTRAINT `tmatricula_ibfk_1` FOREIGN KEY (`idpago`) REFERENCES `tpago` (`idpago`),
+ADD CONSTRAINT `tmatricula_ibfk_2` FOREIGN KEY (`idalumno`) REFERENCES `talumno` (`idalumno`);
 
 --
 -- Filtros para la tabla `tmodulo`

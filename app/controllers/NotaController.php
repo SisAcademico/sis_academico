@@ -31,7 +31,9 @@ class NotaController extends \BaseController {
 	 */
 	public function store()
 	{
-		$notas = new Nota;
+		$mytime = Carbon\Carbon::now();
+		echo $mytime->toDateTimeString();
+		/*$notas = new Nota;
 		//$id = seleccionar idDetallematricula en base a la ultima matricula de un alumno X en un curso Y;
 		/* -- al parecer existe un error en la BD, falta la relacion entre alumno y matricula :/ para solucionar esto
 			-- ponemos "alter table tmatricula add idalumno varchar(10) references talumno" en el php myadmin
@@ -42,11 +44,11 @@ class NotaController extends \BaseController {
 				tdetalle_matricula dm on dm.idmatricula = m.idmatricula where idasignatura = @id_asignatura.
 		*/
 		//$notas->idnota = Input::get('id_nota'); AUTO_INCREMENT
-		$notas->fecha_nota = Input::get('fecha_nota'); //se puede usar la fecha y hora del sistema
+		/*$notas->fecha_nota = Input::get('fecha_nota'); //se puede usar la fecha y hora del sistema
 		$notas->nota = Input::get('nota');
 		$notas->iddetalle_matricula = $id;
 		$alumnos->save();
-		return Redirect::to('nota');
+		return Redirect::to('nota');*/
 	}
 
 

@@ -15,7 +15,7 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-            {{ Form::open(array('url' => 'alumno', 'files' => true, 'class' => 'form-horizontal')) }}
+            {{ Form::open(array('url' => 'nota', 'files' => true, 'class' => 'form-horizontal')) }}
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Registrar Notas</h3>
