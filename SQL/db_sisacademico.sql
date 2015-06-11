@@ -146,7 +146,9 @@ CREATE TABLE IF NOT EXISTS `tcarga_academica` (
   `idcarga_academica` int(11) NOT NULL,
   `grupo` varchar(20) DEFAULT NULL,
   `turno` varchar(20) DEFAULT NULL,
-  `idsemestre` varchar(10) DEFAULT NULL
+  `idsemestre` varchar(10) DEFAULT NULL,
+  `idasignatura` varchar(10) DEFAULT NULL,
+  `idasignatura_cl` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -181,7 +183,8 @@ CREATE TABLE IF NOT EXISTS `tcarrera` (
 CREATE TABLE IF NOT EXISTS `tdetalle_matricula` (
   `iddetalle_matricula` int(11) NOT NULL,
   `idmatricula` int(11) DEFAULT NULL,
-  `idasignatura` varchar(10) DEFAULT NULL
+  `idasignatura` varchar(10) DEFAULT NULL,
+  `idasignatura_cl` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -313,8 +316,9 @@ CREATE TABLE IF NOT EXISTS `tsemestre` (
 
 CREATE TABLE IF NOT EXISTS `tusuario` (
   `idusuario` int(11) NOT NULL,
-  `password` varchar(20) DEFAULT NULL,
-  `tipo_usuario` varchar(20) DEFAULT NULL
+  `login` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `tipo_usuario` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -564,7 +568,9 @@ ADD CONSTRAINT `taula_carga_ibfk_2` FOREIGN KEY (`idaula`) REFERENCES `taula` (`
 -- Filtros para la tabla `tcarga_academica`
 --
 ALTER TABLE `tcarga_academica`
-ADD CONSTRAINT `tcarga_academica_ibfk_1` FOREIGN KEY (`idsemestre`) REFERENCES `tsemestre` (`idsemestre`);
+ADD CONSTRAINT `tcarga_academica_ibfk_1` FOREIGN KEY (`idsemestre`) REFERENCES `tsemestre` (`idsemestre`),
+ADD CONSTRAINT `tcarga_academica_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`),
+ADD CONSTRAINT `tcarga_academica_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`);
 
 --
 -- Filtros para la tabla `tcarga_horario`
@@ -578,7 +584,8 @@ ADD CONSTRAINT `tcarga_horario_ibfk_2` FOREIGN KEY (`idcarga_academica`) REFEREN
 --
 ALTER TABLE `tdetalle_matricula`
 ADD CONSTRAINT `tdetalle_matricula_ibfk_1` FOREIGN KEY (`idmatricula`) REFERENCES `tmatricula` (`idmatricula`),
-ADD CONSTRAINT `tdetalle_matricula_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`);
+ADD CONSTRAINT `tdetalle_matricula_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`),
+ADD CONSTRAINT `tdetalle_matricula_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`);
 
 --
 -- Filtros para la tabla `tdetalle_pago`
