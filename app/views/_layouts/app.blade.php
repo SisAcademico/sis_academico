@@ -164,8 +164,8 @@
                 <i class="fa fa-list"></i> <span>Asignaturas</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="{{ Request::is( 'asignatura') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/asignatura/listar') }}"><i class="fa fa-list"></i> Listar Asignaturas</a></li>
-                <li><a href="{{ URL::to( '/asignatura/agregar') }}"><i class="fa fa-plus"></i> Agregar Asignatura</a></li>
+                <li><a href="{{ URL::to( '/asignatura') }}"><i class="fa fa-list"></i> Listar Asignaturas</a></li>
+                <li><a href="{{ URL::to( '/asignatura/create') }}"><i class="fa fa-plus"></i> Agregar Asignatura</a></li>
               </ul>
 			</li>
 			<li class="treeview">

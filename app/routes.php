@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('nota', 'NotaController');
 
@@ -22,9 +22,6 @@ Route::get('/carrera/crear', 'CarreraController@crearCarrera');
 
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
-
-Route::get('/asignatura/listar', 'AsignaturaController@index');
-Route::get('/asignatura/agregar', 'AsignaturaController@create');
 
 /*
 Route::get('semestre/listar', 'SemestreController@listarSemestres');

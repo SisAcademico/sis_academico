@@ -13,7 +13,7 @@
 class Asignatura extends Eloquent
 {
 	protected $table = 'tasignatura' ;
-	public $timestap = false;
+	public $timestamps = false;
 }
 
 ?>

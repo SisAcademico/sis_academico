@@ -1,16 +1,7 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of users
- *
- * @author User
- */
-class AsignaturaController extends BaseController{
+class AsignaturaController extends \BaseController{
 
     /**
      * LISTAR ASIGNATURAS
@@ -19,7 +10,7 @@ class AsignaturaController extends BaseController{
     {
         //
         $asignaturas=Asignatura::all();
-        return View::make('asignatura.listar') -> With('asignatura',$asignaturas);
+        return View::make('asignatura.listar') ->with('asignatura',$asignaturas);
     }
 
 
@@ -37,7 +28,6 @@ class AsignaturaController extends BaseController{
         return View::make('asignatura.insertar');
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -50,18 +40,23 @@ class AsignaturaController extends BaseController{
     public function store()
     {
         //
+            $asignaturas = new Asignatura;
+            $idmodulo = DB::table('tmodulo')->where('idmodulo', Input::get('idmodulo'))->pluck('idmodulo');
+            $vprerequisito=DB::table('tasignatura')->where('idasignatura',Input::get('pre_requisito'))->pluck('idasignatura');
+            if(($idmodulo != NULL) || ($vprerequisito != NULL)) {
 
-        $asignaturas = new Asignatura;
-
-
-        $asignaturas->idasignatura = Input::get('id_asignatura');
-        $asignaturas->nombre_asignatura = Input::get('nombre_asignatura');
-        $asignaturas->horas_semanales = Input::get('horas_semanales');
-        $asignaturas->horas_totales = Input::get('horas_totales');
-        $asignaturas->idmodulo = Input::get('idmodulo');
-        $asignaturas->pre_requisito = Input::get('pre_requisito');
-        $asignaturas->save();
-        return Redirect::to('asignatura');
+                $asignaturas->idasignatura = Input::get('idasignatura');
+                $asignaturas->nombre_asignatura = Input::get('nombre_asignatura');
+                $asignaturas->horas_semanales = Input::get('horas_semanales');
+                $asignaturas->horas_totales = Input::get('horas_totales');
+                $asignaturas->idmodulo = $idmodulo;
+                $asignaturas->pre_requisito = $vprerequisito;
+                $asignaturas->save();
+                return Redirect::to('asignatura');
+            }
+            else {
+                echo "modulo o prerequisito no validos";
+            }
     }
 
 
