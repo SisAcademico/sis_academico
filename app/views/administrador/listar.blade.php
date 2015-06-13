@@ -57,8 +57,8 @@
 											<td>{{$Adm->estado}}</td>
 											<td>{{$Adm->idfoto}}</td>
 											 <td>
-										<a class="btn btn-xs btn-primary" href="{{ URL::to( '/administrador/editar') }}"><i class="fa fa-edit"></i></a>
-										<a class="btn btn-xs btn-danger" href="{{ URL::to( '/administrador/eliminar') }}"><i class="fa fa-trash"></i></a>
+										<a class="btn btn-xs btn-primary" href="{{ URL::to( '/administrador/modificar');}}/{{$Adm->idadministrador}}"><i class="fa fa-edit"></i></a>
+										<a class="btn btn-xs btn-danger" href="{{ URL::to( '/administrador/Eliminar');}}/{{$Adm->idadministrador}}"><i class="fa fa-trash"></i></a>
 										
 									  </td>
 											</tr>

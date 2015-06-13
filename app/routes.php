@@ -40,6 +40,12 @@ Route::get('nota/insertar', 'NotaController@create');
 Route::get('docente/listar', 'DocenteController@listarDocente');
 Route::get('docente/insertar', 'DocenteController@insertarDocente');
 //*** administrador
-Route::get('/administrador/listar', 'AdministradorController@listarAdministrador');
+Route::get('administrador/listar', 'AdministradorController@listarAdministrador');
+Route::get('administrador/insertar', 'AdministradorController@insertarAdministrador');
+Route::get('administrador/Eliminar/{id}','AdministradorController@destroy');
+Route::get('administrador/modificar/{id}','AdministradorController@show');
 
+Route::post('formulario/{id}','AdministradorController@update');
+
+Route::post('formulario', 'AdministradorController@store');
 
