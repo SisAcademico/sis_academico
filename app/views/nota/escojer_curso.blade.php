@@ -15,7 +15,7 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-            {{ Form::open(array('url' => 'nota', 'files' => true, 'class' => 'form-horizontal')) }}
+            {{ Form::open(array( 'files' => true, 'class' => 'form-horizontal', 'action' => array('NotaController@getCourseData') )) }}
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Registrar Notas</h3>
@@ -33,22 +33,22 @@
                     @endif
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <!-- EL DOCENTE INGRESA EL idasignatura y el semestre-->
+                  
                     <div class="form-group">
-                        {{ Form::label('nombre_asignatura', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('id_asignatura', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('nombre_asignatura',null,array('class'=>'form-control','id'=>'id_asignatura','placeholder'=>Lang::get('Asignatura'))) }}
+                            {{ Form::text('id_asignatura',null,array('class'=>'form-control','id'=>'id_asignatura','placeholder'=>Lang::get('Asignatura'))) }}
                         </div>
                     </div>
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         {{ Form::label('semestre', Lang::get('semestre'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('semestre',null,array('class'=>'form-control','id'=>'idsemestre','placeholder'=>Lang::get('Semestre'))) }}
                         </div>
-                    </div>  
+                    </div> -->
                 </div>
                 <div class="box-footer">
-                    {{ Form::submit(Lang::get('Ingresar Notas'), array('class' => 'btn btn-info pull-right')) }}
+                    {{ Form::submit(Lang::get('Ingresar Notas'), array('class' => 'btn btn-info pull-right', 'action' => 'NotaController@getCourseData')) }}
                 </div>
             </div>
             {{ Form::close() }}

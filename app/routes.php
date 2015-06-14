@@ -12,6 +12,15 @@
 */
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
+
+
+/*Route::post('nota/getCourseData', 'NotaController@getCourseData');
+Route::get('nota/{idasignatura}/getCourseData', function()
+{
+	return re
+}
+);*/
+Route::any('nota/getCourseData', 'NotaController@getCourseData');
 Route::resource('nota', 'NotaController');
 
 Route::get('/', 'PanelController@mostrarPanel');

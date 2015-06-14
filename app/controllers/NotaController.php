@@ -2,6 +2,11 @@
 
 class NotaController extends \BaseController {
 
+	
+	public function __construct()
+	{
+	    $this->datos = Input::has('team_id') ? Input::get('team_id') : "" ;
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -20,7 +25,7 @@ class NotaController extends \BaseController {
 	 */
 	public function create()
 	{
-		
+		return View::make('alumno.insertar')->with('datos', $this->datos );
 	}
 
 
@@ -31,6 +36,8 @@ class NotaController extends \BaseController {
 	 */
 	public function store()
 	{
+		$idasignatura =  Input::get('id_asignatura');
+		echo $idasignatura;
 		$mytime = Carbon\Carbon::now();
 		echo $mytime->toDateTimeString();
 		/*$notas = new Nota;
@@ -60,7 +67,7 @@ class NotaController extends \BaseController {
 	 */
 	public function show($id)
 	{
-
+		
 	}
 
 
@@ -72,8 +79,7 @@ class NotaController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$nota = Nota::where('idnota', '=', $id)->get();
-		return View::make('nota.editar')->with('notas',$nota);
+		//
 	}
 
 	/**
@@ -84,16 +90,7 @@ class NotaController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$entra = Input::all();
-		$nota = DB::table('tnota')
-            ->where('idnota', $id)
-            ->update(array(
-            'idnota' => $entra['id_nota'],
-            'fecha_nota' => $entra['fecha_nota'],
-            'nota' => $entra['nota'],
-            'iddetalle_matricula' => $entra['iddetalle_matricula']
-            ));
-		return Redirect::to('nota');
+		
 	}
 
 
@@ -107,6 +104,55 @@ class NotaController extends \BaseController {
 	{
 		//
 	}
+	public function getCourseData()
+	{
+		if(Request::isMethod('post'))
+		{
+			$isasig = Input::get('id_asignatura');
+			$tipo = substr($isasig, 0, 1);
+			if($tipo=="C")//curso libre
+			{
+				$data = DB::table('tdetalle_matricula')
+					->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
+					->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+					->join('talumno', 'talumno.idalumno','=','tmatricula.idalumno')
+					->select
+					(
+						'talumno.idalumno',
+						'talumno.nombres',
+						'talumno.apellidos',
+						'tnotas.nota',
+						'tdetalle_matricula.iddetalle_matricula'
+					)
+					->where('tdetalle_matricula.idasignatura_cl','=',$isasig)
+					->get();
+				return View::make('nota.insertar')->with('datos', $data);
+			}
+			else if($tipo=="A")
+			{
+				$data = DB::table('tdetalle_matricula')
+					->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
+					->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+					->join('talumno', 'talumno.idalumno','=','tmatricula.idalumno')
+					->select
+					(
+						'talumno.idalumno',
+						'talumno.nombres',
+						'talumno.apellidos',
+						'tnotas.nota',
+						'tdetalle_matricula.iddetalle_matricula'
+					)
+					->where('tdetalle_matricula.idasignatura','=',$isasig)
+					->get();
+				return View::make('nota.insertar')->with('datos', $data);
+			}
+			else
+				return Redirect::to('nota');
 
+		}
+		/*if(Request::isMethod('get'))
+		{
+		}*/
+	}
 
 }
