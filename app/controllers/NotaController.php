@@ -25,7 +25,7 @@ class NotaController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('alumno.insertar')->with('datos', $this->datos );
+		return View::make('nota.insertar')->with('datos', $this->datos );
 	}
 
 
@@ -36,10 +36,11 @@ class NotaController extends \BaseController {
 	 */
 	public function store()
 	{
-		$idasignatura =  Input::get('id_asignatura');
+		$idasignatura =  Input::get('idasig');
 		echo $idasignatura;
 		$mytime = Carbon\Carbon::now();
 		echo $mytime->toDateTimeString();
+
 		/*$notas = new Nota;
 		//$id = seleccionar idDetallematricula en base a la ultima matricula de un alumno X en un curso Y;
 		/* -- al parecer existe un error en la BD, falta la relacion entre alumno y matricula :/ para solucionar esto
@@ -112,24 +113,43 @@ class NotaController extends \BaseController {
 			$tipo = substr($isasig, 0, 1);
 			if($tipo=="C")//curso libre
 			{
+				$horas=DB::table('tasignatura_cl')
+				->select('horas_totales')->where('tasignatura_cl.idasignatura_cl','=',$isasig)->get();
+                 foreach ($horas as $hora) {
+                                    # code...
+                      $nroExamenes= $hora->horas_totales/20;
+                 }
+				if($nroExamenes==0)
+					$nroExamenes=1;
 				$data = DB::table('tdetalle_matricula')
 					->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
 					->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
 					->join('talumno', 'talumno.idalumno','=','tmatricula.idalumno')
+
 					->select
 					(
 						'talumno.idalumno',
 						'talumno.nombres',
 						'talumno.apellidos',
+						'tnotas.idnota',
 						'tnotas.nota',
 						'tdetalle_matricula.iddetalle_matricula'
 					)
 					->where('tdetalle_matricula.idasignatura_cl','=',$isasig)
+					->orderBy('talumno.idalumno','ASC')
 					->get();
-				return View::make('nota.insertar')->with('datos', $data);
+				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
 			else if($tipo=="A")
 			{
+				$horas=DB::table('tasignatura')
+				->select('horas_totales')->where('tasignatura.idasignatura','=',$isasig)->get();
+				 foreach ($horas as $hora) {
+                                    # code...
+                      $nroExamenes= $hora->horas_totales/40;
+                 }
+				if($nroExamenes==0)
+					$nroExamenes=1;
 				$data = DB::table('tdetalle_matricula')
 					->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
 					->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
@@ -139,12 +159,14 @@ class NotaController extends \BaseController {
 						'talumno.idalumno',
 						'talumno.nombres',
 						'talumno.apellidos',
+						'tnotas.idnota',
 						'tnotas.nota',
 						'tdetalle_matricula.iddetalle_matricula'
 					)
 					->where('tdetalle_matricula.idasignatura','=',$isasig)
+					->orderBy('talumno.idalumno','ASC')
 					->get();
-				return View::make('nota.insertar')->with('datos', $data);
+				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
 			else
 				return Redirect::to('nota');
