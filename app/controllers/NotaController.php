@@ -220,9 +220,6 @@ class NotaController extends \BaseController {
 			$tipo = substr($isasig, 0, 1);
 			if($tipo=="C")//curso libre
 			{
-				$nombr1=DB::table('tasignatura_cl')
-				->select('nombre_asig_cl')->where('idasignatura_cl','=',$isasig)->get();
-
 				$horas=DB::table('tasignatura_cl')
 				->select('horas_totales')->where('tasignatura_cl.idasignatura_cl','=',$isasig)->get();
                  foreach ($horas as $hora) {
@@ -249,13 +246,10 @@ class NotaController extends \BaseController {
 					->orderBy('talumno.idalumno','ASC')
 					->orderBy('tnotas.nro_parcial','ASC')
 					->get();
-				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig,'idasig3'=>$nombr1]);
+				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
 			else if($tipo=="A")
 			{
-				$nombr1=DB::table('tasignatura')
-				->select('nombre_asignatura')->where('idasignatura','=',$isasig)->get();
-
 				$horas=DB::table('tasignatura')
 				->select('horas_totales')->where('tasignatura.idasignatura','=',$isasig)->get();
 				 foreach ($horas as $hora) {
@@ -281,7 +275,7 @@ class NotaController extends \BaseController {
 					->orderBy('talumno.idalumno','ASC')
 					->orderBy('tnotas.nro_parcial','ASC')
 					->get();
-				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig,'idasig2'=>$nombr1]);
+				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
 			else
 				return Redirect::to('nota');
