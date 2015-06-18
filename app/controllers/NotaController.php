@@ -247,6 +247,7 @@ class NotaController extends \BaseController {
 					)
 					->where('tdetalle_matricula.idasignatura_cl','=',$isasig)
 					->orderBy('talumno.idalumno','ASC')
+					->orderBy('tnotas.nro_parcial','ASC')
 					->get();
 				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig,'idasig3'=>$nombr1]);
 			}
@@ -278,6 +279,7 @@ class NotaController extends \BaseController {
 					)
 					->where('tdetalle_matricula.idasignatura','=',$isasig)
 					->orderBy('talumno.idalumno','ASC')
+					->orderBy('tnotas.nro_parcial','ASC')
 					->get();
 				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig,'idasig2'=>$nombr1]);
 			}
