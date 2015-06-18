@@ -66,16 +66,17 @@
                                                 $var = $iddetalle_matricula.":".$i;
                                             ?>
                                             <td>
-                                            @if(empty($notas[$i]))
+                                            @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\">";
+                                                    $Promedio+=$notas[$i];
                                                 ?>
                                             
                                             @else
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\">";
+                                                    $Promedio+=$notas[$i];
                                                 ?>
-                                                {{$Promedio+=$notas[$i]}}
                                             @endif    
 
                                             </td><?php $notas[$i]=""; } ?>
@@ -124,16 +125,17 @@
                                                 $var = $iddetalle_matricula.":".$i;
                                             ?>
                                             <td>
-                                            @if(empty($notas[$i]))
+                                            @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\">";
+                                                    $Promedio+=$notas[$i];
                                                 ?>
                                             
                                             @else
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\">";
+                                                    $Promedio+=$notas[$i];
                                                 ?>
-                                                {{$Promedio+=$notas[$i]}}
                                             @endif   
 
                                             </td><?php $notas[$i]=""; } ?>
