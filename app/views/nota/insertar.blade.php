@@ -66,11 +66,8 @@
                                                 $var = $iddetalle_matricula.":".$i;
                                             ?>
                                             <td>
-<<<<<<< HEAD
-                                            @if(empty($notas[$i]))
-=======
+                                            
                                             @if(empty($notas[$i]) || $notas[$i]==0)
->>>>>>> origin/master
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\">";
                                                     $Promedio+=$notas[$i];
@@ -81,10 +78,6 @@
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\">";
                                                     $Promedio+=$notas[$i];
                                                 ?>
-<<<<<<< HEAD
-                                                
-=======
->>>>>>> origin/master
                                             @endif    
 
                                             </td><?php $notas[$i]=""; } ?>
@@ -133,11 +126,8 @@
                                                 $var = $iddetalle_matricula.":".$i;
                                             ?>
                                             <td>
-<<<<<<< HEAD
-                                            @if(empty($notas[$i]))
-=======
+                                            
                                             @if(empty($notas[$i]) || $notas[$i]==0)
->>>>>>> origin/master
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\">";
                                                     $Promedio+=$notas[$i];
@@ -148,10 +138,6 @@
                                                     echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\">";
                                                     $Promedio+=$notas[$i];
                                                 ?>
-<<<<<<< HEAD
-                                            
-=======
->>>>>>> origin/master
                                             @endif   
 
                                             </td><?php $notas[$i]=""; } ?>
