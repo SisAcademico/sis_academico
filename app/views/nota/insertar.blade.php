@@ -13,15 +13,36 @@
 
 @section('contenido')
     <!-- Main row -->
-    <a >Ingresar</a>
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
         {{ Form::open(array( 'files' => true, 'class' => 'form-horizontal', 'action' => array('NotaController@store') )) }}
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ingresar Notas</h3>
-                    <input type="text"  name="idasig" size="5" readonly="true" value=<?php echo $idasig ?> >
+                    @if(!empty($datos))
+                        @if($nroExamenes==2)
+                            @foreach($idasig2 as $ak)
+                            <h3 class="box-title">{{$ak->nombre_asignatura}}</h3>
+                            @endforeach
+                        @endif
+                        @if($nroExamenes==5)
+                            @foreach($idasig3 as $ak1)
+                            <h3 class="box-title">{{$ak1->nombre_asig_cl}}</h3>
+                            @endforeach
+                        @endif
+                    @endif
+                    @if(empty($datos))
+                        @if($nroExamenes==2)
+                            @foreach($idasig2 as $ak)
+                            <h3 class="box-title">{{$ak->nombre_asignatura}}</h3>
+                            @endforeach
+                            @else
+                                @foreach($idasig3 as $ak1)
+                                <h3 class="box-title">{{$ak1->nombre_asig_cl}}</h3>
+                                @endforeach
+                        @endif
+                    @endif
+                    
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
@@ -35,7 +56,6 @@
                             <th ><?php echo "Nota ".($i+1) ?></th><?php } ?>
                              <th >Promedio</th>
                         </tr>
-                        <!-- LISTAR ALUMNOS-->
                        @if(!empty($datos))
                             <ul class="nav">
                                 <?php  
@@ -43,7 +63,6 @@
                                 $nombre = $datos[0]->nombres;
                                 $apellido = $datos[0]->apellidos;
                                 $idalumno = $datos[0]->idalumno; 
-                                $iddetalle_matricula = $datos[0]->iddetalle_matricula;
                                 $it = 0;
                                 $nroAlumnos=sizeof($datos);
                                 $itAlumn=0;
@@ -63,20 +82,13 @@
                                             <td><?php echo $apellido ?></td>
                                             <?php for ($i=0; $i <$nroExamenes ; $i++) { 
                                                 # code...
-                                                $var = $iddetalle_matricula.":".$i;
                                             ?>
-                                            <td>
-                                            @if(empty($notas[$i]) || $notas[$i]==0)
-                                                <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\">";
-                                                    $Promedio+=$notas[$i];
-                                                ?>
-                                            
+                                            <td class="nr">
+                                            @if(empty($notas[$i]))
+                                                <input type="text" name=<?php $data->iddetalle_matricula.":".$i ?>  value = "NSP" size="5">
                                             @else
-                                                <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\">";
-                                                    $Promedio+=$notas[$i];
-                                                ?>
+                                                
+                                                {{ $notas[$i]; $Promedio+=$notas[$i]}}
                                             @endif    
 
                                             </td><?php $notas[$i]=""; } ?>
@@ -91,7 +103,6 @@
                                         $nombre = $data->nombres;
                                         $apellido = $data->apellidos;
                                         $idalumno = $data->idalumno;
-                                        $iddetalle_matricula = $data ->iddetalle_matricula;
                                         $notas[0] = $data->nota;
                                         $it=1;
                                     }
@@ -101,7 +112,6 @@
                                         $nombre = $data->nombres;
                                         $apellido = $data->apellidos;
                                         $idalumno = $data->idalumno;
-                                        $iddetalle_matricula = $data ->iddetalle_matricula;
                                         $notas[$it] = $data->nota;
                                         $it++;
                                     }
@@ -122,21 +132,14 @@
                                             <td><?php echo $apellido ?></td>
                                             <?php for ($i=0; $i <$nroExamenes ; $i++) { 
                                                 # code...
-                                                $var = $iddetalle_matricula.":".$i;
                                             ?>
-                                            <td>
-                                            @if(empty($notas[$i]) || $notas[$i]==0)
-                                                <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\">";
-                                                    $Promedio+=$notas[$i];
-                                                ?>
-                                            
+                                            <td class="nr">
+                                            @if(empty($notas[$i]))
+                                                <input type="text" name=s<?php $data->iddetalle_matricula.":".$i ?>  value = "NSP" size="5">
                                             @else
-                                                <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\">";
-                                                    $Promedio+=$notas[$i];
-                                                ?>
-                                            @endif   
+                                                
+                                                {{ $notas[$i]; $Promedio+=$notas[$i]}}
+                                            @endif    
 
                                             </td><?php $notas[$i]=""; } ?>
                                             <td>
@@ -148,13 +151,7 @@
                                         <?php
                                     }    
                                 }  ?>
-                        @endif  
-
-                        @if(empty($datos))
-                            <ul >
-                                  VACIO
-                            </ul> 
-                        @endif
+                        @endif 
                     </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix text-center">
@@ -174,4 +171,10 @@
         </div>
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
+    <script src="{{asset('/adminlte/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+    <script type="text/javascript">
+    
+           $("td:contains('NSP')").html("new");
+    
+    </script>
 @endsection
