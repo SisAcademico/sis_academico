@@ -14,7 +14,10 @@ class NotaController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('nota.escojer_curso');
+		
+		$asigna=Asignatura::all();
+		$asigna2=Asignatura2::all();
+		return View::make('nota.escojer_curso')->with(['asig'=> $asigna,'asig2'=> $asigna2]);
 	}
 
 

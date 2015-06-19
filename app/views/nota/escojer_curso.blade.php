@@ -37,15 +37,16 @@
                     <div class="form-group">
                         {{ Form::label('id_asignatura', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('id_asignatura',null,array('class'=>'form-control','id'=>'id_asignatura','placeholder'=>Lang::get('Asignatura'))) }}
+                            <select class="form-control input-sm" name="id_asignatura">
+                            @foreach($asig as $alu)
+                                <option value="{{$alu->idasignatura}}" >{{$alu->nombre_asignatura}}</option>
+                            @endforeach
+                            @foreach($asig2 as $alu2)
+                                <option value="{{$alu2->idasignatura_cl}}" >{{$alu2->nombre_asig_cl}}</option>
+                            @endforeach
+                            </select>
                         </div>
                     </div>
-                   <!-- <div class="form-group">
-                        {{ Form::label('semestre', Lang::get('semestre'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('semestre',null,array('class'=>'form-control','id'=>'idsemestre','placeholder'=>Lang::get('Semestre'))) }}
-                        </div>
-                    </div> -->
                 </div>
                 <div class="box-footer">
                     {{ Form::submit(Lang::get('Ingresar Notas'), array('class' => 'btn btn-info pull-right', 'action' => 'NotaController@getCourseData')) }}

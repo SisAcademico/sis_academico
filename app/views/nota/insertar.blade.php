@@ -35,7 +35,6 @@
                             <th ><?php echo "Nota ".($i+1) ?></th><?php } ?>
                              <th >Promedio</th>
                         </tr>
-                        <!-- LISTAR ALUMNOS-->
                        @if(!empty($datos))
                             <ul class="nav">
                                 <?php  
@@ -131,13 +130,7 @@
                                         <?php
                                     }    
                                 }  ?>
-                        @endif  
-
-                        @if(empty($datos))
-                            <ul >
-                                  VACIO
-                            </ul> 
-                        @endif
+                        @endif 
                     </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix text-center">
@@ -153,7 +146,6 @@
                     {{ Form::submit(Lang::get('Ingresar Notas'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div><!-- /.box -->
-             {{ View::share('id',$itAlumn) }}
              {{ Form::close()  }}
         </div>
         <!-- INICIO: BOX PANEL -->
