@@ -176,8 +176,5 @@
         </div>
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
-<<<<<<< HEAD
 @endsection
-=======
 @endsection
->>>>>>> origin/master
