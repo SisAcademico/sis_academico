@@ -153,13 +153,10 @@
               </ul>
             </li>
 			<li class="treeview">
-              <a href="#">
-                <i class="fa fa-users"></i> <span>Alumnos</span> <i class="fa fa-angle-left pull-right"></i>
+              <a href="{{ URL::to( '/alumno') }}">
+                <i class="fa fa-users"></i> <span>Alumnos</span>
               </a>
-              <ul class="{{ Request::is( 'alumno') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/alumno') }}"><i class="fa fa-list"></i> Listar Alumnos</a></li>
-                <li><a href="{{ URL::to( '/alumno/create') }}"><i class="fa fa-list"></i> Agregar alumno</a></li>
-              </ul>
+              
             </li>
 			<li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
               <a href="#">

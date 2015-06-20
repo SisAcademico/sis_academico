@@ -10,6 +10,11 @@
 namespace {
     exit("This file should not be included, only analyzed by your IDE");
 
+    class Fpdf extends \Anouar\Fpdf\Fpdf{
+        
+    }
+
+
     class App extends \Illuminate\Support\Facades\App{
         
         /**
