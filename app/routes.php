@@ -60,3 +60,22 @@ Route::post('formulario/{id}','AdministradorController@update');
 
 Route::post('formulario', 'AdministradorController@store');
 
+Route::get('/matricula/listar', 'MatriculaController@index');
+Route::get('/matricula/agregar', 'MatriculaController@create');
+
+Route::get('/detalleMatricula/agregar', 'DetalleMatriculaController@create');
+
+//-----------------------CARGA ACADEMICA-------------------
+//listar
+Route::get('carga_academica/listar', 'CargaAcademicaController@listarCargaAcademica');
+//insertar
+Route::get('carga_academica/insertar', 'CargaAcademicaController@insertar');
+Route::post('wilson', 'CargaAcademicaController@store');
+//modificar
+Route::get('carga_academica/modificar/{id}','CargaAcademicaController@recuperarparamodificar');
+Route::post('wilson/{id}','CargaAcademicaController@modificar');
+
+//-------------------------AULA CARGA------------------------------
+Route::get('aula_carga/listar', 'AulaCargaController@listarAulaCarga');
+Route::get('aula_carga/insertar', 'AulaCargaController@insertar');
+
