@@ -167,6 +167,16 @@
                 <li><a href="{{ URL::to( '/asignatura/create') }}"><i class="fa fa-plus"></i> Agregar Asignatura</a></li>
               </ul>
 			</li>
+        <li class="{{ Request::is( 'cursolibre') ? 'active' : '' }} treeview">
+              <a href="#">
+                <i class="fa fa-list"></i> <span>Cursos Libres</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="{{ Request::is( 'cursolibre') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/cursolibre/listar') }}"><i class="fa fa-list"></i> Listar Cursos Libres</a></li>
+                <li><a href="{{ URL::to( '/cursolibre/insertar') }}"><i class="fa fa-plus"></i> Agregar Cursos Libres</a></li>
+              </ul>
+            </li>
+
 			<li class="treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>@lang('sistema.carrera')s</span> <i class="fa fa-angle-left pull-right"></i>
