@@ -13,6 +13,7 @@
 
 @section('contenido')
     <!-- Main row -->
+    <a href="nota/PDFA">Prueba PDF</a>
     <a href="/sis_academico/public/alumno/create">Crear</a>
     <div class="row">
         <!-- INICIO: BOX PANEL -->
