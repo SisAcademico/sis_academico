@@ -82,6 +82,8 @@ class MatriculaController extends BaseController{
     public function edit($id)
     {
         //
+        $matricula = Matricula::where('idmatricula', '=', $id)->get();
+        return View::make('matricula.editar')->with('matriculas',$matricula);
 
     }
 
@@ -103,6 +105,17 @@ class MatriculaController extends BaseController{
     public function update($id)
     {
         //
+        $entra = Input::all();
+        $matricula = DB::table('tmatricula')
+            ->where('idmatricula', $id)
+            ->update(array(
+                'idmatricula' => $entra['idmatricula'],
+                'tipo' => $entra['tipo'],
+                'fecha_matricula' => $entra['fecha_matricula'],
+                'idpago' => $entra['idpago'],
+                'idalumno' => $entra['idalumno'],
+            ));
+        return Redirect::to('matricula');
 
     }
 
