@@ -1,6 +1,6 @@
 @extends('_layouts.app')
 @section('titulo')
-    @lang('sistema.asignaturas')
+    @lang('sistema.matriculas')
 @stop
 @section('titulo_cabecera')
     @lang('sistema.matriculas')<small>@lang('sistema.editar_matricula')</small>
@@ -42,26 +42,26 @@
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('tipo', Lang::get('sistema.tipo'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('tipo', Lang::get('tipo'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::text('tipo',$matri->tipo,array('class'=>'form-control','id'=>'tipo','placeholder'=>Lang::get('sistema.tipo'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('fecha_matricula', Lang::get('sistema.fecha_matricula'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('fecha_matricula', Lang::get('fecha_matricula'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::text('fecha_matricula',$matri->fecha_matricula,array('class'=>'form-control','id'=>'fecha_matricula','placeholder'=>Lang::get('sistema.fecha_matricula'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('idpago', Lang::get('sistema.idpago'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('idpago', Lang::get('idpago'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::text('idpago',$matri->idpago,array('class'=>'form-control','id'=>'idpago','placeholder'=>Lang::get('sistema.idpago'))) }}
                             </div>
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('idalumno', Lang::get('sistema.idalumno'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('idalumno', Lang::get('idalumno'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::text('idalumno',$matri->idalumno,array('class'=>'form-control','id'=>'idalumno','placeholder'=>Lang::get('sistema.idalumno'))) }}
                             </div>
