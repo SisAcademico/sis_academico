@@ -6,14 +6,14 @@
     @lang('Matriculas')<small>@lang('')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.matricula')</a></li>
-    <li class="active">@lang('sistema.listar_matricula')</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('Matricula')</a></li>
+    <li class="active">@lang('Listar Matricula')</li>
 @stop
 
 
 @section('contenido')
     <!-- Main row -->
-    <a href="/sis_academico/public/matricula/create">Crear</a>
+    <!--<a href="/sis/sis_academico/public/matricula/insertar">Crear</a>-->
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
@@ -29,7 +29,7 @@
                             <th >Id Alumno</th>
                             <th >Alumno</th>
                             <th >Fecha Matricula </th>
-                            <th >Id Pago</th>
+                            <th >Nro Boleta</th>
                             <th >Editar</th>
                             <th >Detalle</th>
 
@@ -43,12 +43,12 @@
                                 <td>{{$matri->idalumno}}</td>
                                 <td>{{$matri->nombres}} {{$matri->apellidos}}</td>
                                 <td>{{$matri->fecha_matricula}}</td>
-                                <td>{{$matri->idpago}}</td>
+                                <td>{{$matri->nro_boleta}}</td>
                                 <td>
-                                    <a href="/sis_academico/public/matricula/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                    <a href="/sis/sis_academico/public/matricula/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
                                 <td>
-                                    <a href="/sis_academico/public/matricula/{{ $matri->idmatricula }}/detail" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                    <a href="/sis/sis_academico/public/detalleMatricula/{{ $matri->idmatricula }}/detail" class="btn btn-xs btn-primary"><i class="fa fa-asterisk"></i></a>
                                 </td>
                             </tr>
                         @endforeach

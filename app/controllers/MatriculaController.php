@@ -17,12 +17,12 @@ class MatriculaController extends BaseController{
      */
     public function index()
     {
-        //
         $matriculas=Matricula::all();
         $alumnos=Alumno::all();
         $auxiliar=DB::table('tmatricula')
             ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
-            ->select('tmatricula.idmatricula','tmatricula.tipo' ,'talumno.idalumno', 'talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula','tmatricula.idpago')
+            ->join('tpago', 'tmatricula.idpago', '=', 'tpago.idpago')
+            ->select('tmatricula.idmatricula','tmatricula.tipo' ,'talumno.idalumno', 'talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula','tpago.nro_boleta')
             ->get();
         return View::make('matricula.listar') -> With('matricula',$auxiliar);
     }
@@ -39,6 +39,7 @@ class MatriculaController extends BaseController{
     public function create()
     {
         //
+            return View::make('matricula.insertar');
 
     }
 
@@ -54,7 +55,22 @@ class MatriculaController extends BaseController{
      */
     public function store()
     {
-
+        //
+            $matricula = new Matricula;
+            $idpago = DB::table('tpago')->where('idpago', Input::get('idpago'))->pluck('idpago');
+            $idalumno=DB::table('talumno')->where('idalumno',Input::get('idalumno'))->pluck('idalumno');
+            if(($idpago != NULL) || ($idalumno != NULL)) {
+                $matricula->idmatricula = Input::get('idmatricula');
+                $matricula->tipo = Input::get('tipo');
+                $matricula->fecha_matricula = Input::get('fecha_matricula');
+                $matricula->idpago = $idpago;
+                $matricula->idalumno = $idalumno;
+                $matricula->save();
+                return Redirect::to('matricula');
+            }
+            else {
+                echo "pago o alumno no son validos";
+            }
     }
 
 
@@ -82,17 +98,10 @@ class MatriculaController extends BaseController{
     public function edit($id)
     {
         //
-        $matricula = Matricula::where('idmatricula', '=', $id)->get();
-        return View::make('matricula.editar')->with('matriculas',$matricula);
 
     }
 
-/**/
-    public function details($id)
-    {
-        
 
-    }
     /**
      * Update the specified resource in storage.
      *
@@ -105,17 +114,6 @@ class MatriculaController extends BaseController{
     public function update($id)
     {
         //
-        $entra = Input::all();
-        $matricula = DB::table('tmatricula')
-            ->where('idmatricula', $id)
-            ->update(array(
-                'idmatricula' => $entra['idmatricula'],
-                'tipo' => $entra['tipo'],
-                'fecha_matricula' => $entra['fecha_matricula'],
-                'idpago' => $entra['idpago'],
-                'idalumno' => $entra['idalumno'],
-            ));
-        return Redirect::to('matricula');
 
     }
 
