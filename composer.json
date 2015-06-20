@@ -7,8 +7,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"barryvdh/laravel-ide-helper": "~1.11",
-		"fzaninotto/faker":"1.5.0"
-
+		"fzaninotto/faker":"1.5.0",
+		"anouar/fpdf": "1.0.2"
 	},
 	"autoload": {
 		"classmap": [

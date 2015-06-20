@@ -21,6 +21,7 @@ Route::get('nota/{idasignatura}/getCourseData', function()
 }
 );*/
 Route::any('nota/getCourseData', 'NotaController@getCourseData');
+Route::any('nota/PDFA', 'NotaController@getPDF');
 Route::resource('nota', 'NotaController');
 
 Route::get('/', 'PanelController@mostrarPanel');

@@ -94,7 +94,8 @@ return array(
 	*/
 
 	'providers' => array(
-
+         
+        'Anouar\Fpdf\FpdfServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
@@ -152,6 +153,7 @@ return array(
 
 	'aliases' => array(
 
+        'Fpdf'              => 'Anouar\Fpdf\Fpdf',
 		'App'               => 'Illuminate\Support\Facades\App',
 		'Artisan'           => 'Illuminate\Support\Facades\Artisan',
 		'Auth'              => 'Illuminate\Support\Facades\Auth',
