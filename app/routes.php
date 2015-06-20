@@ -12,6 +12,7 @@
 */
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
+Route::resource('matricula','MatriculaController');
 
 
 /*Route::post('nota/getCourseData', 'NotaController@getCourseData');

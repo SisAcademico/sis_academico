@@ -206,7 +206,15 @@
                 <li><a href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> Agregar pago</a></li>
               </ul>
             </li>
-            
+        <li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
+              <a href="#">
+                <i class="fa fa-list"></i> <span>Matricula</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="{{ Request::is( 'matricula') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/matricula') }}"><i class="fa fa-list"></i> Listar Matriculas</a></li>
+                <li><a href="{{ URL::to( '/matricula/create') }}"><i class="fa fa-plus"></i> Realizar Matricula</a></li>
+              </ul>
+      </li>
             <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Ayuda</span></a></li>
           </ul>
         </section>
