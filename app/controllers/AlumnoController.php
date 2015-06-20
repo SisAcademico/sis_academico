@@ -21,7 +21,7 @@ class AlumnoController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('alumno.insertar');
+		//return View::make('alumno.insertar');
 	}
 
 

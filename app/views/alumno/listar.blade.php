@@ -4,6 +4,7 @@
 @stop
 @section ('estilos')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/btn.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
 @stop
 @section('titulo_cabecera')
     @lang('Alumnos')<small>@lang('')</small>
@@ -160,5 +161,6 @@
     </div><!-- /.box -->
     @section ('scrips_n')
         <script src="{{asset('/js/ja1.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
     @stop
 @endsection
