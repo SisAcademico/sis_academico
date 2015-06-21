@@ -68,7 +68,7 @@
 
       </div>
     </div>
-    <a href="nota/PDFA">Prueba PDF</a>
+    <a href="horario/PDFA">Prueba PDF</a>
 
     <div class="row">
         <!-- INICIO: BOX PANEL -->
@@ -80,19 +80,21 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 20px">Id</th>
+                            <th style="width: 20px">Nro</th>
                             <th >Hora Inicio</th>
                             <th >Hora Fin</th>
                         </tr>
                         <!-- LISTAR HORARIOS-->
+                        <?php $i=1 ?>
                         @foreach($horarios as $horario)
                         <tr>
-                            <td>{{$horario->idhorario}}</td>
+                            <td>{{$i++}}</td>
                             <td>{{$horario->hora_inicio}}</td>
                             <td>{{$horario->hora_fin}}</td>
                             <td>
                                 <a href="/sis_academico/public/horario/{{ $horario->idhorario }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                             </td>
+
                         </tr>
                         @endforeach
                        

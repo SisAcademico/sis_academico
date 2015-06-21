@@ -2,6 +2,25 @@
 
 class HorarioController extends \BaseController {
 
+	public function getPDF()
+	{
+	    $fpdf = new PDF();
+	    $colu = array('NRO', 'Hora de Inicio', 'Hora de Fin');
+	    $data= Horario::all();
+        //$fpdf->Image("unsaac.png",10,6,30);
+        $fpdf->SetFont('Arial','',13);
+		$fpdf->AddPage();
+		$fpdf->Cell(80);
+		$fpdf->Cell(30,5,'Lista de Horarios', 0, 1, 'C');
+		$fpdf->SetFont('Arial','B',9);
+		$fpdf->Ln(2);
+		$fpdf->SetFont('Arial','B',10);
+		$fpdf->FancyTableHorario($colu,$data);
+
+        $cabe=['Content-Type' => 'application/pdf'];
+        return 	Response::make($fpdf->Output(),200,$cabe);
+
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

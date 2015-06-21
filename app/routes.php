@@ -13,6 +13,8 @@
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');
+
+Route::any('horario/PDFA','HorarioController@getPDF');
 Route::resource('horario','HorarioController');
 Route::resource('horarioCarga','HorarioCargaController');
 
