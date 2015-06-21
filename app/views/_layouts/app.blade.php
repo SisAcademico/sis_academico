@@ -150,6 +150,8 @@
               <ul class="treeview-menu">
                 <li><a href="{{ URL::to( '/docente/listar') }}"><i class="fa fa-list"></i> Listar  Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/insertar') }}"><i class="fa fa-plus"></i> Agregar  Docente</a></li>
+                <li><a href="{{ URL::to( '/docente/listarasistencia') }}"><i class="fa fa-list"></i> Listar Asistencia Docente</a></li>
+                <li><a href="{{ URL::to( '/docente/insertarasistencia') }}"><i class="fa fa-plus"></i> Agregar Asistencia  Docente</a></li>
               </ul>
             </li>
 			<li class="treeview">
