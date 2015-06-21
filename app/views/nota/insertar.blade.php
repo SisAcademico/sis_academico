@@ -21,7 +21,7 @@
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Ingresar Notas</h3>
-                    <input type="text"  name="idasig" size="5" readonly="true" value=<?php echo $idasig ?> >
+                    <input type="hidden"  name="idasig" size="5" readonly="true" value=<?php echo $idasig ?> >
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">

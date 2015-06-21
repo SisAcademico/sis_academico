@@ -22,6 +22,7 @@ class HorarioController extends \BaseController {
 	public function create()
 	{
 		//
+
 	}
 
 
@@ -32,7 +33,12 @@ class HorarioController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$horario = new Horario();
+		$horario->hora_inicio = Input::get('hora_inicio');
+		$horario->hora_fin = Input::get('hora_fin');
+		//validar :D 
+		$horario->save();
+		return Redirect::to('horario');
 	}
 
 
@@ -56,7 +62,7 @@ class HorarioController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$horario = Horarip::where('idhorario', '=', $id)->get();
+		$horario = Horario::where('idhorario', '=', $id)->get();
 		return View::make('horario.editar')->with('horarios',$horario);
 	}
 
@@ -69,7 +75,16 @@ class HorarioController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$hora_inicio = Input::get('hora_inicio');
+		$hora_fin = Input::get('hora_fin');
+		//validar
+		DB::table('thorario')
+		 	->where('idhorario', $id)
+            ->update(array(
+            'hora_inicio' => $hora_inicio,
+            'hora_fin' => $hora_fin,
+            ));
+        return Redirect::to('horario');   
 	}
 
 
