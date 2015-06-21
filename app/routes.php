@@ -13,6 +13,8 @@
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');
+Route::resource('horario','HorarioController');
+Route::resource('horarioCarga','HorarioCargaController');
 
 Route::any('nota/getCourseData', 'NotaController@getCourseData');
 Route::any('nota/PDFA', 'NotaController@getPDF');
