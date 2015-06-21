@@ -26,12 +26,22 @@ class HorarioCargaController extends \BaseController {
 
 	/**
 	 * Store a newly created resource in storage.
+	 * Este modulo se usa para almacenar la relacion entre la tabla carga academica y horario
+	 * Lee(Input :: get('datos')) el idCargacademica y idhorario (puede aber mas un idhorario por cada idCaragCademica)
+	 * y lo inserta en la tabla tcarga_horario
+	 *
+	 *
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		//
+		$cargaHorario = new HorarioCarga();
+		$cargaHorario->idcarga_academica = Input::get('idcarga_academica');
+		$cargaHorario->idhorario = Input::get('idhorario');
+		//validar
+		$cargaHorario-> save();
+		return Redirect::to('carga_academica/listar');
 	}
 
 
