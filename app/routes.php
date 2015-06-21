@@ -83,4 +83,6 @@ Route::get('aula_carga/insertar', 'AulaCargaController@insertar');
 Route::get('docente/insertarasistencia', 'AsistenciaDocenteController@insertarAsistenciaDocente');
 Route::post('formulario2', 'AsistenciaDocenteController@store');
 Route::get('docente/listarasistencia', 'AsistenciaDocenteController@listar');
+Route::get('docente/Eliminarasistencia/{id}','AsistenciaDocenteController@destroy');
 Route::get('docente/modificarasistencia/{id}','AsistenciaDocenteController@show');
+Route::post('formulario2/{id}','AsistenciaDocenteController@update');

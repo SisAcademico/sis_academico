@@ -31,35 +31,33 @@ public function listar()
 		//return 'karennnnnnnn';
 	}
 
-public function update($id)
-	{
-		//
-		$recuperado = Input::all();
-		//print_r($recuperado) ;
-		$administrador = DB::table('tadministrador')
-			->where('idadministrador',$id)
-			->update(array(
-				//'iddocente'=>$recuperado['IDDOCENTE'],
-				'idusuario'=>1,
-				'dni'=>$recuperado['DNI'],
-				'nombres'=>$recuperado['NOMBRES'],
-				'apellidos'=>$recuperado['APELLIDOS'],
-				'direccion'=>$recuperado['DIRECCION'],
-				'telefono'=>$recuperado['TELEFONO'],
-				'correo'=>$recuperado['CORREO'],
-				
-				'estado'=>$recuperado['ESTADO'],
-				'idfoto'=>1,
-				 ));
 
-				return Redirect::to('administrador/listar');
-
-	}
 
 
 
 public function store()
 	{
+
+
+		$inputs = Input::all();
+		$reglas = array(
+
+			'idasistencia_docente' =>'required|min:2|max:11|unique:asistencia,idasistencia_docente',
+			'observacion' => 'required|min:2|max:10',
+			'tema' => 'required|min:2|max:10' 	,
+			'idcarga_academica' => 'required|min:2|max:10'
+
+			);
+		$mensajes= array('required' => 'Campo obligatorio');
+
+		$validar = Validator::make($inputs,$reglas,$mensajes);
+
+		if ($validar -> fails())
+		{
+			return Redirect::back()->withErrors($validar);
+		}
+else{
+
 
 		$asistencia=new AsistenciaDocente;
 
@@ -75,7 +73,59 @@ public function store()
 		return Redirect::to('docente/listarasistencia');
 	}
 
+	}
 
+public function update($id)
+	{
+
+		$inputs = Input::all();
+		$reglas = array(
+
+			'idasistencia_docente' =>'required|min:2|max:11|unique:asistencia,idasistencia_docente',
+			'observacion' => 'required|min:2|max:10',
+			'tema' => 'required|min:2|max:10' 	,
+			'idcarga_academica' => 'required|min:2|max:10'
+
+			);
+		$mensajes= array('required' => 'Campo obligatorio');
+
+		$validar = Validator::make($inputs,$reglas,$mensajes);
+
+		if ($validar -> fails())
+		{
+			return Redirect::back()->withErrors($validar);
+		}
+else{
+		//
+		$recuperado = Input::all();
+		//print_r($recuperado) ;
+		$asistencia = DB::table('tasistencia_docente')
+			->where('idasistencia_docente',$id)
+			->update(array(
+				//'idasistencia_docente'=>$recuperado['idasistencia_docente'],
+				'fecha_asist_doc'=>$recuperado['fecha'],
+				'observacion'=>$recuperado['observacion'],
+				'tema'=>$recuperado['tema'],
+				'idcarga_academica'=>$recuperado['idcarga_academica'],
+				
+				 ));
+
+				return Redirect::to('docente/listarasistencia');
+}
+	}
+
+public function destroy($id)
+	{
+		//
+		echo "esto es una prueba de eliminar";
+		//DB::delete('delete from tdocente where id = '.$id);
+		//$test = DB::table('tdocente')->where('iddocente',$id);
+		$test = AsistenciaDocente::where('idasistencia_docente','=',$id)->delete($id);
+		//print_r($test);
+		echo "elimiado";
+		//return $this->showUsers();
+return Redirect::to('docente/listarasistencia');
+	}
 
 
 }

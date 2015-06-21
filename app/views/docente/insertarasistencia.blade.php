@@ -41,6 +41,7 @@
                         {{ Form::label('idasistencia_docente', Lang::get('idasistencia'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('idasistencia_docente',null,array('class'=>'form-control','id'=>'idasistencia_docente','placeholder'=>Lang::get('idasistencia_docente'))) }}
+                            {{ $errors->first('idasistencia_docente')}}
                         </div>
                     </div>
 
@@ -54,18 +55,22 @@
                         {{ Form::label('observacion', Lang::get('observacion'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('observacion',null,array('class'=>'form-control','id'=>'observacion','placeholder'=>Lang::get('observacion'))) }}
+                            {{ $errors->first('observacion')}}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('tema', Lang::get('tema'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('tema',null,array('class'=>'form-control','id'=>'tema','placeholder'=>Lang::get('tema'))) }}
+                            {{ $errors->first('tema')}}
+
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('idcarga_academica', Lang::get('idcarga_academica'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('idcarga_academica',null,array('class'=>'form-control','id'=>'idcarga_academica','placeholder'=>Lang::get('idcarga_academica'))) }}
+                            {{ $errors->first('idcarga_academica')}}
                         </div>
                     </div>
                     
