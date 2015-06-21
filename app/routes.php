@@ -27,6 +27,11 @@ Route::get('/carrera/crear', 'CarreraController@crearCarrera');
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
 
+//----------------------modulo------------------------
+Route::get('modulo/listar', 'ModuloController@listarModulo');
+Route::get('modulo/insertar', 'ModuloController@insertarModulo');
+Route::get('modulo/Eliminar/{id}','ModuloController@destroy');
+Route::get('modulo/modificar/{id}','ModuloController@show');
 
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');

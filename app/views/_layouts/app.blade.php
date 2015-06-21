@@ -206,6 +206,15 @@
                 <li><a href="{{ URL::to( '/aula/agregar') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a></li>
               </ul>
             </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-list"></i> <span>@lang('Modulo')s</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="{{ Request::is( 'modulo') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/modulo/listar') }}"><i class="fa fa-list"></i> @lang('Listar Modulos')</a></li>
+                <li><a href="{{ URL::to( '/modulo/insertar') }}"><i class="fa fa-plus"></i> @lang('Insertar Modulo')</a></li>
+              </ul>
+            </li>
 			<li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
               <a href="#">
                 <i class="fa fa-money"></i> <span>Pagos</span> <i class="fa fa-angle-left pull-right"></i>
