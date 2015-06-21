@@ -37,6 +37,10 @@ return array(
 	"nro_boleta"=>"Nro. de boleta",
 	"serie"=>"Serie",
 	"fecha_pago"=>"Fecha de pago",
+
+    "idmodulo"=> "Id Modulo",
+    "nombre_modulo" => "Nombre Modulo",
+    "idcarrera"=> "Id Carrera",
 	
 	"idasignatura"=>"Id Asignatura",
     "asignaturas"=>"Asignatura",
