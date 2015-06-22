@@ -38,7 +38,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                        {{ Form::label('idasignatura', Lang::get('Id Asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('idasignatura', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('idasignatura',null,array('class'=>'form-control','id'=>'idasignatura','placeholder'=>Lang::get('id Asignatura'))) }}
                         </div>

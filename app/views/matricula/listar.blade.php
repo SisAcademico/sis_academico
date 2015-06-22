@@ -24,9 +24,9 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 20px">Id</th>
+                            <th style="width: 20px">Codigo</th>
                             <th >Tipo</th>
-                            <th >Id Alumno</th>
+                            <th >Codigo del Alumno</th>
                             <th >Alumno</th>
                             <th >Fecha Matricula </th>
                             <th >Nro Boleta</th>

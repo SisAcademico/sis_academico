@@ -38,7 +38,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                        {{ Form::label('id_matricula', Lang::get('Id Matricula'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('id_matricula', Lang::get('Codigo Matricula'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('id_matricula',null,array('class'=>'form-control','id'=>'id_matricula','placeholder'=>Lang::get('IdMatricula'))) }}
                         </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('idpado', Lang::get('Id Pago'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('idpado', Lang::get('Codigo de Pago'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('idpago',null,array('class'=>'form-control','id'=>'idpago','placeholder'=>Lang::get('idPago'))) }}
                         </div>
