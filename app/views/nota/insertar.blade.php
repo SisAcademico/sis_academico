@@ -69,13 +69,13 @@
                                             
                                             @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\">";
+                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\" maxlength=\"7\" onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;\">"; 
                                                     $Promedio+=$notas[$i];
                                                 ?>
                                             
                                             @else
                                                 <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\">";
+                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\" maxlength=\"7\" onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;\">";
                                                     $Promedio+=$notas[$i];
                                                 ?>
                                             @endif    
