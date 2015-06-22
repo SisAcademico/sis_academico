@@ -55,8 +55,8 @@ class HorarioController extends \BaseController {
 		$horario = new Horario();
 		$horario->hora_inicio = Input::get('hora_inicio');
 		$horario->hora_fin = Input::get('hora_fin');
-		//validar :D 
-		$horario->save();
+		if(sizeof($horario->hora_inicio)> 0 && sizeof($horario->hora_fin)> 0)
+			$horario->save();
 		return Redirect::to('horario');
 	}
 

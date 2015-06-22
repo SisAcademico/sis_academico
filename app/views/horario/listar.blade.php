@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {{ Form::submit(Lang::get('Crear Horario'), array('class' => 'btn btn-info pull-right')) }}
+                        {{ Form::submit(Lang::get('Crear Horario'), array('class' => 'btn btn-info pull-right', 'onclick' => 'validacionHoras()')) }}
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -138,6 +138,21 @@
                 te = String.fromCharCode(tecla);
                 return patron.test(te); 
             } 
+            function validacionHoras()
+            {
+                var inicio = document.getElementById("input-a").value;
+                var fin = document.getElementById("input-b").value;
+                if(inicio >= fin)
+                {
+                    alert('La hora de inicio debe ser menor que la hora de fin');
+                    document.getElementById("input-b").value = "";
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         </script>
     @stop
 @endsection
