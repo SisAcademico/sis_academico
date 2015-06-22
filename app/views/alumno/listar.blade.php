@@ -26,7 +26,7 @@
           <a href="#"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
 
         </div>
-        <div class="google-expando__card" aria-hidden="true">
+        <div class="google-expando__card" aria-hidden="true" >
               {{ Form::open(array('url' => 'alumno', 'files' => true, 'class' => 'form-horizontal')) }}
                 <div class="box box-success">
                     <div class="box-header with-border">
@@ -47,9 +47,9 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            {{ Form::label('id_alumno', Lang::get('idalumno'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('id_alumno', Lang::get('Código'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('id_alumno',null,array('class'=>'form-control','id'=>'id_alumno','placeholder'=>Lang::get('IdAlumno'))) }}
+                                {{ Form::text('id_alumno',null,array('class'=>'form-control','id'=>'id_alumno','placeholder'=>Lang::get('Código Alumno'))) }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,43 +59,43 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('nombres', Lang::get('nombres'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('nombres', Lang::get('Nombres'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('nombres',null,array('class'=>'form-control','id'=>'nombres','placeholder'=>Lang::get('nombres'))) }}
+                                {{ Form::text('nombres',null,array('class'=>'form-control','id'=>'nombres','placeholder'=>Lang::get('Nombres'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('apellidos', Lang::get('apellidos'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('apellidos', Lang::get('Apellidos'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('apellidos',null,array('class'=>'form-control','id'=>'apellidos','placeholder'=>Lang::get('apellidos'))) }}
+                                {{ Form::text('apellidos',null,array('class'=>'form-control','id'=>'apellidos','placeholder'=>Lang::get('Apellidos'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('direccion', Lang::get('direccion'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('direccion', Lang::get('Dirección'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('direccion',null,array('class'=>'form-control','id'=>'direccion','placeholder'=>Lang::get('direccion'))) }}
+                                {{ Form::text('direccion',null,array('class'=>'form-control','id'=>'direccion','placeholder'=>Lang::get('Dirección'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('telefono', Lang::get('telefono'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('telefono', Lang::get('Teléfono'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('telefono',null,array('class'=>'form-control','id'=>'telefono','placeholder'=>Lang::get('telefono'))) }}
+                                {{ Form::text('telefono',null,array('class'=>'form-control','id'=>'telefono','placeholder'=>Lang::get('Teléfono'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('correo', Lang::get('correo'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('correo', Lang::get('Correo'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('correo',null,array('class'=>'form-control','id'=>'correo','placeholder'=>Lang::get('correo'))) }}
+                                {{ Form::text('correo',null,array('class'=>'form-control','id'=>'correo','placeholder'=>Lang::get('Correo'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('fecha_ingreso', Lang::get('fecha de ingreso'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('fecha_ingreso', Lang::get('Fecha'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha" />
+                                <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha de Ingreso" />
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('foto', Lang::get('foto'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('foto', Lang::get('Foto'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::file('photo') }}
                             </div>
@@ -122,7 +122,7 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 20px">Id</th>
+                            <th style="width: 30px">Código</th>
                             <th >Nombres</th>
                             <th >Correo</th>
                             <th >DNI</th>

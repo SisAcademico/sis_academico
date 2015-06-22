@@ -1,6 +1,6 @@
 @extends('_layouts.app')
 @section('titulo')
-    @lang('Crear alumno')
+    @lang('Editar alumno')
 @stop
 @section ('estilos')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
@@ -38,9 +38,9 @@
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        {{ Form::label('id_alumno', Lang::get('idalumno'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('id_alumno', Lang::get('Código Alumno'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('id_alumno',$alu->idalumno,array('class'=>'form-control','id'=>'id_alumno','placeholder'=>Lang::get('IdAlumno'))) }}
+                            {{ Form::text('id_alumno',$alu->idalumno,array('class'=>'form-control','id'=>'id_alumno','placeholder'=>Lang::get('Código Alumno'))) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -50,50 +50,50 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('nombres', Lang::get('nombres'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('nombres', Lang::get('Nombres'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('nombres',$alu->nombres,array('class'=>'form-control','id'=>'nombres','placeholder'=>Lang::get('nombres'))) }}
+                            {{ Form::text('nombres',$alu->nombres,array('class'=>'form-control','id'=>'nombres','placeholder'=>Lang::get('Nombres'))) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('apellidos', Lang::get('apellidos'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('apellidos', Lang::get('Apellidos'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('apellidos',$alu->apellidos,array('class'=>'form-control','id'=>'apellidos','placeholder'=>Lang::get('apellidos'))) }}
+                            {{ Form::text('apellidos',$alu->apellidos,array('class'=>'form-control','id'=>'apellidos','placeholder'=>Lang::get('Apellidos'))) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('direccion', Lang::get('direccion'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('direccion', Lang::get('Dirección'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('direccion',$alu->direccion,array('class'=>'form-control','id'=>'direccion','placeholder'=>Lang::get('direccion'))) }}
+                            {{ Form::text('direccion',$alu->direccion,array('class'=>'form-control','id'=>'direccion','placeholder'=>Lang::get('Dirección'))) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('telefono', Lang::get('telefono'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('telefono', Lang::get('Teléfono'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('telefono',$alu->telefono,array('class'=>'form-control','id'=>'telefono','placeholder'=>Lang::get('telefono'))) }}
+                            {{ Form::text('telefono',$alu->telefono,array('class'=>'form-control','id'=>'telefono','placeholder'=>Lang::get('Teléfono'))) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('correo', Lang::get('correo'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('correo', Lang::get('Correo'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('correo',$alu->correo,array('class'=>'form-control','id'=>'correo','placeholder'=>Lang::get('correo'))) }}
+                            {{ Form::text('correo',$alu->correo,array('class'=>'form-control','id'=>'correo','placeholder'=>Lang::get('Correo'))) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('fecha_ingreso', Lang::get('fecha de ingreso'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('fecha_ingreso', Lang::get('Fecha de Ingreso'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha" value="{{$alu->fecha_ingreso}}" />
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('foto', Lang::get('foto'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('foto', Lang::get('Foto'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::file('photo') }} 
                         </div> 
                     </div>
                 </div>
                 <div class="box-footer">
-                    {{ Form::submit(Lang::get('Crear Alumno'), array('class' => 'btn btn-info pull-right')) }}
+                    {{ Form::submit(Lang::get('Editar Alumno'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div>
             {{ Form::close() }}

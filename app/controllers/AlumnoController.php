@@ -40,7 +40,6 @@ class AlumnoController extends \BaseController {
 		$id2 = DB::table('tfoto')->insertGetId(
     	['imagen' => Input::file("photo")]
 		);
-
 		$alumnos->idalumno = Input::get('id_alumno');
 		$alumnos->idusuario = $id;
 		$alumnos->dni = Input::get('dni');
@@ -51,7 +50,7 @@ class AlumnoController extends \BaseController {
 		$alumnos->correo = Input::get('correo');
 		$alumnos->fecha_ingreso = Input::get('fecha');
 		$alumnos->idfoto = $id2;
-		$alumnos->estado = 'activo';
+		$alumnos->estado = 'Activo';
 		$alumnos->save();
 		return Redirect::to('alumno');
 	}
@@ -93,6 +92,10 @@ class AlumnoController extends \BaseController {
 	public function update($id)
 	{
 		$entra = Input::all();
+		$foto = new Foto;
+		$id2 = DB::table('tfoto')->insertGetId(
+    	['imagen' => Input::file("photo")]
+		);
 		$alumno = DB::table('talumno')
             ->where('idalumno', $id)
             ->update(array(
@@ -104,7 +107,8 @@ class AlumnoController extends \BaseController {
             'telefono' => $entra['telefono'],
             'correo' => $entra['correo'],
             'fecha_ingreso' => $entra['fecha'],
-            'estado' => 'activo',
+            'estado' => 'Activo',
+            'idfoto' => $id2
             ));
 		return Redirect::to('alumno');
 	}
