@@ -37,7 +37,7 @@
                         <div class="form-group">
                             {{ Form::label('id_asignatura_cl', Lang::get('idasignatura_cl'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('id_asignatura_cl',$asig->idasignatura_cl,array('class'=>'form-control','id'=>'id_asignatura','placeholder'=>Lang::get('id CursoLibre'))) }}
+                                {{ Form::text('id_asignatura_cl',$asig->idasignatura_cl,array('class'=>'form-control','id'=>'id_asignatura_cl','placeholder'=>Lang::get('id CursoLibre'))) }}
                             </div>
                         </div>
 
