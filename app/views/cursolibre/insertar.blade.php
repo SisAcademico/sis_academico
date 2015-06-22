@@ -3,11 +3,11 @@
     @lang('sistema.cursolibre')
 @stop
 @section('titulo_cabecera')
-    @lang('sistema.cursolibre')<small>@lang('sistema.insertar_cursolibre')</small>
+    @lang('Cursos Libres')<small>@lang('Agregar nuevo curso libre')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.cursolibre')</a></li>
-    <li class="active">@lang('sistema.insertar_cursolibre')s</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('cursos libres')</a></li>
+    <li class="active">@lang('Agregar Nuevo')s</li>
 @stop
 
 @section('contenido')
@@ -35,27 +35,27 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="form-group">
-                {{ Form::label('idasignatura_cl', Lang::get('sistema.idasignatura_cl'),array('class'=>'col-sm-2 control-label')) }}
+                {{ Form::label('idasignatura_cl', Lang::get('Codigo'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-10">
-                     {{ Form::text('idasignatura_cl',null,array('class'=>'form-control','id'=>'idasignatura_cl','placeholder'=>Lang::get('sistema.idasignatura_cl'))) }}
+                     {{ Form::text('idasignatura_cl',null,array('class'=>'form-control','id'=>'idasignatura_cl','placeholder'=>Lang::get('Codigo'))) }}
                 </div>
             </div>
             <div class="form-group">
-                {{ Form::label('nombre_asig_cl', Lang::get('sistema.nombre_asig_cl'),array('class'=>'col-sm-2 control-label')) }}
+                {{ Form::label('nombre_asig_cl', Lang::get('Nombre'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-10">
-                    {{ Form::text('nombre_asig_cl',null,array('class'=>'form-control','id'=>'nombre_asig_cl','placeholder'=>Lang::get('sistema.nombre_asig_cl'))) }}
+                    {{ Form::text('nombre_asig_cl',null,array('class'=>'form-control','id'=>'nombre_asig_cl','placeholder'=>Lang::get('Nombre del Curso'))) }}
                 </div>
             </div>
             <div class="form-group">
                 {{ Form::label('horas_totales', Lang::get('sistema.horas_totales'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-10">
-                    {{ Form::text('horas_totales',null,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('sistema.horas_totales'))) }}
+                    {{ Form::text('horas_totales',null,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('Horas Totales'))) }}
                 </div>
             </div>
 
                 </div>
                 <div class="box-footer">
-                    {{ Form::submit(Lang::get('sistema.procesar_cursolibre'), array('class' => 'btn btn-info pull-right')) }}
+                    {{ Form::submit(Lang::get('Guardar'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div>
             {{ Form::close() }}

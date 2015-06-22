@@ -6,8 +6,8 @@
     @lang('Cursos Libres')<small>@lang('')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.cursolibre')</a></li>
-    <li class="active">@lang('sistema.cursolibre')s</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('Cursos Libres')</a></li>
+    <li class="active">@lang('Cursos Libres')s</li>
 @stop
 
 @section('contenido')
@@ -24,7 +24,7 @@
                                   <table class="table table-bordered">
                                       <thead>
                                         <tr>
-                                          <th>@lang('idCursoLibre')</th>
+                                          <th>@lang('Codigo')</th>
                                           <th>@lang('Nombre Curso Libre')</th>
                                           <th>@lang('Horas Totales')</th>
                                         </tr>
