@@ -5,6 +5,7 @@
 @section ('estilos')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/btn.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/mireloj.css')}}">
 @stop
 @section('titulo_cabecera')
     @lang('Horario')<small>@lang('')</small>
@@ -49,13 +50,13 @@
                         <div class="form-group">
                             {{ Form::label('hora_inicio', Lang::get('Hora  de Inicio'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('hora_inicio',null,array('class'=>'form-control','id'=>'Hora Inicio','placeholder'=>Lang::get('Inicio'))) }}
+                                <input id="input-a" value="" data-default="20:48" class="form-control" name="hora_inicio" onKeyPress="return validar(event)" maxlength="9" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('hora_fin', Lang::get('Hora de Fin'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('hora_fin',null,array('class'=>'form-control','id'=>'Hora fin','placeholder'=>Lang::get('Fin'))) }}
+                                <input id="input-b" value="" data-default="20:48" class="form-control" name="hora_fin" onKeyPress="return validar(event)" maxlength="9" required>
                             </div>
                         </div>
                     </div>
@@ -117,5 +118,26 @@
     @section ('scrips_n')
         <script src="{{asset('/js/ja1.js')}}" type="text/javascript"></script>
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/mireloj.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/dos.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            function validar(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true; 
+                if (tecla==44) return true; 
+                if (tecla==48) return false;
+                if (tecla==49) return false;
+                if (tecla==50) return false;
+                if (tecla==51) return false;
+                if (tecla==52) return false;
+                if (tecla==53) return false;
+                if (tecla==54) return false;
+                if (tecla==55) return false;
+                if (tecla==56) return false;
+                patron = /1/; //ver nota
+                te = String.fromCharCode(tecla);
+                return patron.test(te); 
+            } 
+        </script>
     @stop
 @endsection

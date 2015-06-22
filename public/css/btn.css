@@ -49,9 +49,9 @@ a:hover .dada{
       -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-align: center;
-  -webkit-align-items: center;
+  -webkit-align-items: flex-end;
       -ms-flex-align: center;
-          align-items: center;
+          align-items: flex-end;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
