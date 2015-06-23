@@ -46,6 +46,7 @@ class AsignaturaController extends \BaseController{
                 (
                     'horas_semanales'=>'required|integer|min:0',
                     'horas_totales'=>'required|integer|min:0',
+                    'idmodulo'=>'required|integer|min:0',
                 );
                 $validator=Validator::make(Input::All(),$rules);
                 if ($validator->passes()) {
@@ -119,6 +120,7 @@ class AsignaturaController extends \BaseController{
                 (
                     'horas_semanales'=>'required|integer|min:0',
                     'horas_totales'=>'required|integer|min:0',
+                    'idmodulo'=>'required|integer|min:0',
                 );
                 $validator=Validator::make(Input::All(),$rules);
                 if ($validator->passes()) {
