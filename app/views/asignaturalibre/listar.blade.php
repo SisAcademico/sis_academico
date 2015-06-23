@@ -3,11 +3,11 @@
     @lang('sistema.asignaturas')
 @stop
 @section('titulo_cabecera')
-    @lang('sistema.listar_asignaturas_libres')<small>@lang('sistema.listar_asignaturas_libres')</small>
+    @lang('Listar Asignaturas Libres')<small>@lang('sistema.listar_asignaturas_libres')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.asignaturalibre')</a></li>
-    <li class="active">@lang('sistema.asignaturalibre')s</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('Asignaturas libres')</a></li>
+    <li class="active">@lang('Asignaturas')s</li>
 @stop
 
 @section('contenido')

@@ -2,14 +2,14 @@
 
 @extends('_layouts.app')
 @section('titulo')
-    @lang('sistema.asignaturalibre')
+    @lang('sistema.Asignaturas Libre')
 @stop
 @section('titulo_cabecera')
-    @lang('sistema.asignaturalibre')<small>@lang('sistema.editar_asignatura')</small>
+    @lang('Asignatura Libre')<small>@lang('Editar Asignatura')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.asignaturas')</a></li>
-    <li class="active">@lang('sistema.editar_asignatura')s</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('Asignaturas Libres')</a></li>
+    <li class="active">@lang('Editar Asignatura')s</li>
 @stop
 
 @section('contenido')
@@ -39,18 +39,18 @@
                         <div class="form-group">
                             {{ Form::label('idasignatura_cl', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('idasignatura_cl',$asig->idasignatura_cl,array('class'=>'form-control','id'=>'idasignatura_cl','placeholder'=>Lang::get('id Asignatura'))) }}
+                                {{ Form::text('idasignatura_cl',$asig->idasignatura_cl,array('class'=>'form-control','id'=>'idasignatura_cl','placeholder'=>Lang::get('Codigo de Asignatura'))) }}
                             </div>
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('nombre_asig_cl', Lang::get('sistema.nombre_asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('nombre_asig_cl', Lang::get('Nombre de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::text('nombre_asig_cl',$asig->nombre_asig_cl,array('class'=>'form-control','id'=>'nombre_asig_cl','placeholder'=>Lang::get('sistema.nombre_asignatura'))) }}
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::label('horas_totales', Lang::get('sistema.horas_totales'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('horas_totales', Lang::get('Horas Totales'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::text('horas_totales',$asig->horas_totales,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('sistema.horas_totales'))) }}
                             </div>

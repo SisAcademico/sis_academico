@@ -9,8 +9,8 @@
     @lang('sistema.asignaturas')<small>@lang('')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.asignaturas')</a></li>
-    <li class="active">@lang('sistema.agregar_asignaturas' )</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('Asignaturas Libres')</a></li>
+    <li class="active">@lang('Agregar Asignatura Libre' )</li>
 @stop
 
 @section('contenido')
@@ -44,14 +44,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('nombre_asig_cl', Lang::get('sistema.nombre_asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('nombre_asig_cl', Lang::get('Nombre de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('nombre_asig_cl',null,array('class'=>'form-control','id'=>'nombre_asig_cl','placeholder'=>Lang::get('nombre asignatura'))) }}
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        {{ Form::label('horas_totales', Lang::get('sistema.horas_totales'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('horas_totales', Lang::get('Horas Totales'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('horas_totales',null,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('horas totales'))) }}
                         </div>
