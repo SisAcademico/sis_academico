@@ -46,15 +46,15 @@ Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 /*
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
-
+*/
 Route::get('semestre/listar', 'SemestreController@listarSemestres');
 Route::get('semestre/agregar', 'SemestreController@agregarSemestre');
 
 Route::get('aula/listar', 'AulaController@listarAulas');
 Route::get('aula/agregar', 'AulaController@agregarAula');
+/*
 
 Route::get('alumno/listar', 'AlumnoController@listarAlumnos');
-
 
 Route::get('nota/listar', 'AlumnoController@listarAlumnos');
 Route::get('nota/insertar', 'NotaController@create');

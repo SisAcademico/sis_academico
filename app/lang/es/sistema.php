@@ -21,12 +21,17 @@ return array(
 
     "semestre"=>"Semestre",
     "listar_semestre"=>"Listar semestre",
+    "listar_de_semestre"=>"Lista de semestres",
     "agregar_semestre"=>"Agregar semestre",
     "fecha_inicio"=>"Fecha de inicio",
     "fecha_fin"=>"Fecha de fin",
 
     "aula"=>"Aula",
     "listar_aulas"=>"Listar aulas",
+    "agregar_aula"=>"Agregar aula",
+    "capacidad"=>"Capacidad",
+    "ingrese_capacidad"=>"Ingrese la capacidad del ambiente",
+    "codigo_aula"=>"Código de aula",
 
     "pagos"=>"Pagos",
 	"listar_pagos"=>"Listar Pagos",
@@ -69,6 +74,10 @@ return array(
 	
 	"config"=>"Configuración",
 	"menu"=>"Menú",
+	"estado"=>"Estado",
+    "tipo"=>"Tipo",
+    "ejemplo"=>"Ejemplo",
+    "formato_fecha"=>"YYYY-MM-DD",
 
 
     "error_login"=>"Nombre de usuario o contraseña incorrectos",

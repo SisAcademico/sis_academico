@@ -1,12 +1,15 @@
 @extends('_layouts.app')
 @section('titulo')
-    @lang('sistema.semestre')
+	{{Lang::get('sistema.semestre')}}
+@stop
+@section ('estilos')
+    <link rel="stylesheet" type="text/css" href="{{asset('/adminlte/plugins/datepicker/css/bootstrap-datepicker3.standalone.css')}}">
 @stop
 @section('titulo_cabecera')
     @lang('sistema.semestre')<small>@lang('sistema.agregar_semestre')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.semestre')</a></li>
+    <li><a href="{{ URL::to( '/semestre/listar') }}"><i class="fa fa-list"></i> @lang('sistema.semestre')</a></li>
     <li class="active">@lang('sistema.agregar_semestre')s</li>
 @stop
 
@@ -36,20 +39,30 @@
 
             <div class="form-group">
                 {{ Form::label('idsemestre', Lang::get('sistema.semestre'),array('class'=>'col-sm-2 control-label')) }}
-                <div class="col-sm-10">
-                     {{ Form::text('idsemestre',null,array('class'=>'form-control','id'=>'idsemestre','placeholder'=>Lang::get('sistema.semestre'))) }}
+                <div class="col-sm-3">
+                     {{ Form::text('idsemestre',null,array('class'=>'form-control','id'=>'idsemestre','placeholder'=>Lang::get('sistema.ejemplo').': 2015-I')) }}
                 </div>
             </div>
             <div class="form-group">
                 {{ Form::label('fecha_inicio', Lang::get('sistema.fecha_inicio'),array('class'=>'col-sm-2 control-label')) }}
-                <div class="col-sm-10">
-                    {{ Form::text('fecha_inicio',null,array('class'=>'form-control','id'=>'fecha_inicio','placeholder'=>Lang::get('sistema.fecha_inicio'))) }}
+                <div class="col-sm-3">
+                    <div class="input-group input-group-sm">
+                        {{ Form::text('fecha_inicio',null,array('class'=>'form-control fecha_cal required','id'=>'fecha_inicio','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly')) }}
+                        <span class="input-group-btn">
+                          <button class="btn bg-purple btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 {{ Form::label('fecha_fin', Lang::get('sistema.fecha_fin'),array('class'=>'col-sm-2 control-label')) }}
-                <div class="col-sm-10">
-                    {{ Form::text('fecha_fin',null,array('class'=>'form-control','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.fecha_fin'))) }}
+                <div class="col-sm-3">
+                    <div class="input-group input-group-sm">
+                        {{ Form::text('fecha_fin',null,array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly')) }}
+                        <span class="input-group-btn">
+                          <button class="btn bg-purple btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -63,3 +76,8 @@
 	  <!-- INICIO: BOX PANEL -->
 	</div><!-- /.box -->
 @endsection
+@section ('scrips_n')
+    <script src="{{asset('/adminlte/plugins/datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/adminlte/plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}" type="text/javascript"></script>
+	<script src="{{asset('/js/sis_academico.js')}}" type="text/javascript"></script>
+@stop
