@@ -49,43 +49,43 @@
                         <div class="form-group">
                             {{ Form::label('id_alumno', Lang::get('Código'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="id_alumno" type="text" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="7" required>
+                                <input id="id_alumno"  type="text" placeholder="Código del Alumno" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="7" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="dni" type="text" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9" required>
+                                <input id="dni" type="text" placeholder="DNI" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('nombres', Lang::get('Nombres'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="nombres" type="text" class="form-control" name="nombres"  maxlength="50" required>
+                                <input id="nombres" type="text" placeholder="Nombres"  class="form-control" name="nombres"  maxlength="50" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('apellidos', Lang::get('Apellidos'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="apellidos" type="text" class="form-control" name="apellidos"  maxlength="60" required>
+                                <input id="apellidos" type="text" placeholder="Apellidos"  class="form-control" name="apellidos"  maxlength="60" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('direccion', Lang::get('Dirección'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="direccion" type="text" class="form-control" name="direccion"  maxlength="60" required>
+                                <input id="direccion" type="text" placeholder="Dirección" class="form-control" name="direccion"  maxlength="60" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('telefono', Lang::get('Teléfono'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="telefono" type="text" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9" required>
+                                <input id="telefono" type="text" placeholder="Teléfono" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('correo', Lang::get('Correo'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="correo" type="email" class="form-control" name="correo"  required>
+                                <input id="correo" type="email" placeholder="Correo" class="form-control" name="correo"  required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -176,6 +176,7 @@
                 if (tecla==54) return true;
                 if (tecla==55) return true;
                 if (tecla==56) return true;
+                if (tecla==57) return true;
                 patron = /1/; //ver nota
                 te = String.fromCharCode(tecla);
                 return patron.test(te); 

@@ -40,43 +40,43 @@
                     <div class="form-group">
                         {{ Form::label('id_alumno', Lang::get('Código Alumno'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('id_alumno',$alu->idalumno,array('class'=>'form-control','id'=>'id_alumno','placeholder'=>Lang::get('Código Alumno'))) }}
+                            <input id="id_alumno" type="text" placeholder="Código del Alumno"  value="{{$alu->idalumno}}" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="7" required>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('dni',$alu->dni,array('class'=>'form-control','id'=>'dni','placeholder'=>Lang::get('DNI'))) }}
+                            <input id="dni" type="text" placeholder="DNI" value="{{$alu->dni}}" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9" required>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('nombres', Lang::get('Nombres'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('nombres',$alu->nombres,array('class'=>'form-control','id'=>'nombres','placeholder'=>Lang::get('Nombres'))) }}
+                            <input id="nombres" type="text" placeholder="Nombres" value="{{$alu->nombres}}" class="form-control" name="nombres"  maxlength="50" required>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('apellidos', Lang::get('Apellidos'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('apellidos',$alu->apellidos,array('class'=>'form-control','id'=>'apellidos','placeholder'=>Lang::get('Apellidos'))) }}
+                            <input id="apellidos" type="text" placeholder="Apellidos" value="{{$alu->apellidos}}" class="form-control" name="apellidos"  maxlength="60" required>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('direccion', Lang::get('Dirección'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('direccion',$alu->direccion,array('class'=>'form-control','id'=>'direccion','placeholder'=>Lang::get('Dirección'))) }}
+                            <input id="direccion" type="text" placeholder="Dirección" value="{{$alu->direccion}}" class="form-control" name="direccion"  maxlength="60" required>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('telefono', Lang::get('Teléfono'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('telefono',$alu->telefono,array('class'=>'form-control','id'=>'telefono','placeholder'=>Lang::get('Teléfono'))) }}
-                        </div>
+                                <input id="telefono" type="text" placeholder="Teléfono"  value="{{$alu->telefono}}" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9" minlength="6" required>
+                            </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('correo', Lang::get('Correo'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('correo',$alu->correo,array('class'=>'form-control','id'=>'correo','placeholder'=>Lang::get('Correo'))) }}
+                            <input id="correo" type="email" placeholder="Correo" value="{{$alu->correo}}" class="form-control" name="correo"  required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,7 +102,28 @@
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
     @section ('scrips_n')
+        <script src="{{asset('/js/ja1.js')}}" type="text/javascript"></script>
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            function validar(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true; 
+                if (tecla==44) return true; 
+                if (tecla==48) return true;
+                if (tecla==49) return true;
+                if (tecla==50) return true;
+                if (tecla==51) return true;
+                if (tecla==52) return true;
+                if (tecla==53) return true;
+                if (tecla==54) return true;
+                if (tecla==55) return true;
+                if (tecla==56) return true;
+                if (tecla==57) return true;
+                patron = /1/; //ver nota
+                te = String.fromCharCode(tecla);
+                return patron.test(te); 
+            } 
+        </script>
     @stop
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
 @endsection
