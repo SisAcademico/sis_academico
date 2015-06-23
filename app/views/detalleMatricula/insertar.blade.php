@@ -29,7 +29,7 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 20px">Id</th>
+                            <th style="width: 20px">Codigo</th>
                             <th >Nombre Asignatura</th>
                             <th >Horas Semanales</th>
                             <th ></th>

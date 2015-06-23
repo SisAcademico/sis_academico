@@ -47,7 +47,7 @@
                       <td>{{$Mod->idcarrera}}</td>
                        <td>
                     <a class="btn btn-xs btn-primary" href="{{ URL::to( 'sis_academico/public/modulo/modificar');}}/{{$Mod->idmodulo}}"><i class="fa fa-edit"></i></a>
-                    <a class="btn btn-xs btn-danger" href="{{ URL::to( 'sis_academico/public/modulo/Eliminar');}}/{{$Mod->idmodulo}}"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-xs btn-success" href="{{ URL::to( 'sis_academico/public/modulo/Eliminar');}}/{{$Mod->idmodulo}}"><i class="fa fa-trash"></i></a>
                     
                     </td>
                       </tr>

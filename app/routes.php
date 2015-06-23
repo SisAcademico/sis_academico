@@ -13,6 +13,7 @@
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');
+Route::resource('asignaturalibre','AsignaturaLibreController');
 
 Route::any('horario/PDFA','HorarioController@getPDF');
 Route::resource('horario','HorarioController');
@@ -25,8 +26,10 @@ Route::resource('nota', 'NotaController');
 Route::get('/', 'PanelController@mostrarPanel');
 Route::get('/panel', 'PanelController@mostrarPanel');
 
-Route::get('/carrera', 'CarreraController@listarCarreras');
-Route::get('/carrera/crear', 'CarreraController@crearCarrera');
+Route::get('carrera/listar', 'CarreraController@listarCarreras');
+Route::get('carrera/insertar', 'CarreraController@insertarCarrera');
+Route::get('carrera/Eliminar/{id}','CarreraController@destroy');
+Route::get('carrera/modificar/{id}','CarreraController@show');
 
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');

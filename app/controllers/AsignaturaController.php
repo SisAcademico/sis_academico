@@ -40,23 +40,38 @@ class AsignaturaController extends \BaseController{
     public function store()
     {
         //
-            $asignaturas = new Asignatura;
-            $idmodulo = DB::table('tmodulo')->where('idmodulo', Input::get('idmodulo'))->pluck('idmodulo');
-            $vprerequisito=DB::table('tasignatura')->where('idasignatura',Input::get('pre_requisito'))->pluck('idasignatura');
-            if(($idmodulo != NULL) || ($vprerequisito != NULL)) {
 
-                $asignaturas->idasignatura = Input::get('idasignatura');
-                $asignaturas->nombre_asignatura = Input::get('nombre_asignatura');
-                $asignaturas->horas_semanales = Input::get('horas_semanales');
-                $asignaturas->horas_totales = Input::get('horas_totales');
-                $asignaturas->idmodulo = $idmodulo;
-                $asignaturas->pre_requisito = $vprerequisito;
-                $asignaturas->save();
-                return Redirect::to('asignatura');
-            }
-            else {
-                echo "modulo o prerequisito no validos";
-            }
+            $asignaturas = new Asignatura;
+             $rules= array
+                (
+                    'horas_semanales'=>'required|integer|min:0',
+                    'horas_totales'=>'required|integer|min:0',
+                    'idmodulo'=>'required|integer|min:0',
+                );
+                $validator=Validator::make(Input::All(),$rules);
+                if ($validator->passes()) {
+                        $idmodulo = DB::table('tmodulo')->where('idmodulo', Input::get('idmodulo'))->pluck('idmodulo');
+                        $vprerequisito=DB::table('tasignatura')->where('idasignatura',Input::get('pre_requisito'))->pluck('idasignatura');
+                        if(($idmodulo != NULL) || ($vprerequisito != NULL)) {
+
+                            $asignaturas->idasignatura = Input::get('idasignatura');
+                            $asignaturas->nombre_asignatura = Input::get('nombre_asignatura');
+                            $asignaturas->horas_semanales = Input::get('horas_semanales');
+                            $asignaturas->horas_totales = Input::get('horas_totales');
+                            $asignaturas->idmodulo = $idmodulo;
+                            $asignaturas->pre_requisito = $vprerequisito;
+                            $asignaturas->save();
+                            return Redirect::to('asignatura');
+                        }
+                        else {
+                            echo "modulo o prerequisito no validos";
+                        }
+                 }
+                else
+                {
+                    return Redirect::back()->withInput()->withErrors($validator);
+                }
+
     }
 
 
@@ -101,18 +116,32 @@ class AsignaturaController extends \BaseController{
     public function update($id)
     {
         //
-        $entra = Input::all();
-        $asignatura = DB::table('tasignatura')
-            ->where('idasignatura', $id)
-            ->update(array(
-                'idasignatura' => $entra['id_asignatura'],
-                'nombre_asignatura' => $entra['nombre_asignatura'],
-                'horas_semanales' => $entra['horas_semanales'],
-                'horas_totales' => $entra['horas_totales'],
-                'idmodulo' => $entra['idmodulo'],
-                'pre_requisito' => $entra['pre_requisito'],
-            ));
-        return Redirect::to('asignatura');
+        $rules= array
+                (
+                    'horas_semanales'=>'required|integer|min:0',
+                    'horas_totales'=>'required|integer|min:0',
+                    'idmodulo'=>'required|integer|min:0',
+                );
+                $validator=Validator::make(Input::All(),$rules);
+                if ($validator->passes()) {
+                        $entra = Input::all();
+                        $asignatura = DB::table('tasignatura')
+                            ->where('idasignatura', $id)
+                            ->update(array(
+                                'idasignatura' => $entra['id_asignatura'],
+                                'nombre_asignatura' => $entra['nombre_asignatura'],
+                                'horas_semanales' => $entra['horas_semanales'],
+                                'horas_totales' => $entra['horas_totales'],
+                                'idmodulo' => $entra['idmodulo'],
+                                'pre_requisito' => $entra['pre_requisito'],
+                            ));
+                        return Redirect::to('asignatura');
+                 }
+                else
+                {
+                    return Redirect::back()->withInput()->withErrors($validator);
+                }
+
     }
 
 

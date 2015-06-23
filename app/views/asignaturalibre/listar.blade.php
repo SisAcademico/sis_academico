@@ -3,11 +3,11 @@
     @lang('sistema.asignaturas')
 @stop
 @section('titulo_cabecera')
-    @lang('sistema.listar_asignaturas')<small>@lang('sistema.listar_asignaturas')</small>
+    @lang('Listar Asignaturas Libres')<small>@lang('sistema.listar_asignaturas_libres')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.asignaturas')</a></li>
-    <li class="active">@lang('sistema.asignaturas')s</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('Asignaturas libres')</a></li>
+    <li class="active">@lang('Asignaturas')s</li>
 @stop
 
 @section('contenido')
@@ -17,30 +17,24 @@
         <div class="col-md-12 col-sm-8">
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Listado de Asignaturas</h3>
+                    <h3 class="box-title">Listado de Asignaturas Libres</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th >Id</th>
+                            <th >Codigo</th>
                             <th >Nombre Asignatura</th>
-                            <th >Horas Semanales</th>
                             <th >Horas Totales </th>
-                            <th >Id Modulo</th>
-                            <th >Pre Requisito</th>
                         </tr>
 
 
-                        @foreach($asignatura as $asig)
+                        @foreach($asignaturalibre as $asig)
                             <tr>
-                                <td>{{ $asig->idasignatura }}</td>
-                                <td>{{ $asig->nombre_asignatura }}</td>
-                                <td>{{ $asig->horas_semanales }}</td>
+                                <td>{{ $asig->idasignatura_cl }}</td>
+                                <td>{{ $asig->nombre_asig_cl }}</td>
                                 <td>{{ $asig->horas_totales }}</td>
-                                <td>{{ $asig->idmodulo }}</td>
-                                <td>{{ $asig->pre_requisito }}</td>
                                 <td>
-                                    <a href="/sis_academico/public/asignatura/{{ $asig->idasignatura}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                    <a href="/sis_academico/public/asignaturalibre/{{ $asig->idasignatura_cl}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach
