@@ -1,16 +1,16 @@
 @extends('_layouts.app')
 @section('titulo')
-    @lang('Crear Modulo')
+    @lang('Modificar Carrera')
 @stop
 @section ('estilos')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
 @stop
 @section('titulo_cabecera')
-    @lang('Modulos')<small>@lang('')</small>
+    @lang('Carreras')<small>@lang('')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('modulo')</a></li>
-    <li class="active">@lang('modulo')es</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.carrera')</a></li>
+    <li class="active">@lang('sistema.modificar_carrera')es</li>
 @stop
 
 @section('contenido')
@@ -18,10 +18,10 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-        {{ Form::open(array('url' => 'formulario','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+            {{ Form::open(array('url' => 'formulario/'.$carreraaeditar[0]->idcarrera,'autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Insertar modulo</h3>
+                    <h3 class="box-title">modificar carrera</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     @if (count($errors) > 0)
@@ -38,28 +38,28 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                        {{ Form::label('idmodulo', Lang::get('Cod del Modulo'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('idcarrera', Lang::get('idcarrera'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('idmodulo',null,array('class'=>'form-control','id'=>'idmodulo','placeholder'=>Lang::get('Cod del Modulo'))) }}
+                            {{ Form::text('IDCARRERA',Lang::get(''.$carreraaeditar[0]->idcarrera),array('class'=>'form-control','id'=>'idcarrera','placeholder'=>Lang::get('idcarrera'))) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('nombre_modulo', Lang::get('Nombre del Modulo'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('nombre_carrera', Lang::get('nombre_carrera'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('nombre_modulo',null,array('class'=>'form-control','id'=>'nombre_modulo','placeholder'=>Lang::get('Nombre del Modulo'))) }}
+                            {{ Form::text('NOMBRE_CARRERA',Lang::get(''.$carreraaeditar[0]->nombre_carrera),array('class'=>'form-control','id'=>'nombre_carrera','placeholder'=>Lang::get('nombre_carrera'))) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('idcarrera', Lang::get('Codigo de la Carrera'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('nro_modulos', Lang::get('nro_modulos'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('idcarrera',null,array('class'=>'form-control','id'=>'idcarrera','placeholder'=>Lang::get('Codigo de la Carrera'))) }}
+                            {{ Form::text('NRO_MODULOS',Lang::get(''.$carreraaeditar[0]->nro_modulos),array('class'=>'form-control','id'=>'nro_modulos','placeholder'=>Lang::get('nro_modulos'))) }}
                         </div>
-                    </div>
-                    
+                    </div>     
                 </div>
                 <div class="box-footer">
-
-                    {{ Form::submit(Lang::get('Crear modulo'), array('class' => 'btn btn-info pull-right')) }}
+                <!-- 
+                -->
+                    {{ Form::submit(Lang::get('Guardar cambios'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div>
             {{ Form::close() }}

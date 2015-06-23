@@ -38,9 +38,14 @@ return array(
 	"serie"=>"Serie",
 	"fecha_pago"=>"Fecha de pago",
 
-    "idmodulo"=> "Id Modulo",
-    "nombre_modulo" => "Nombre Modulo",
-    "idcarrera"=> "Id Carrera",
+    "modulo"=> "Modulo",
+    "listar_modulos"=>"Listar modulos",
+    "insertar_modulo"=>"Insertar modulo",
+
+    "idcarrera"=>"Carrera",
+    "nombre_carrera"=>"Nombre carrera",
+    "nro_modulos"=>"Nro. de modulos",
+
 	
 	"idasignatura"=>"Id Asignatura",
     "asignaturas"=>"Asignatura",

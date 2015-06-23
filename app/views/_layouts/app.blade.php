@@ -183,13 +183,22 @@
 
        
 
-			<li class="treeview">
+			<li class="{{ Request::is( 'carrera') ? 'active' : '' }} treeview">
               <a href="#">
-                <i class="fa fa-list"></i> <span>@lang('sistema.carrera')s</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-book"></i> <span>Carrera</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="carrera"><i class="fa fa-list"></i> @lang('sistema.listar_carreras')</a></li>
-                <li><a href="carrera/agregar"><i class="fa fa-plus"></i> @lang('sistema.agregar_carrera')</a></li>
+              <ul class="{{ Request::is( 'carrera') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/carrera/listar') }}"><i class="fa fa-list"></i> Listar carreras</a></li>
+                <li><a href="{{ URL::to( '/carrera/insertar') }}"><i class="fa fa-plus"></i> Agregar carreras</a></li>
+              </ul>
+            </li>
+      <li class="treeview">
+              <a href="#">
+                <i class="fa fa-book"></i> <span>@lang('Modulo')s</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="{{ Request::is( 'modulo') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/modulo/listar') }}"><i class="fa fa-list"></i> @lang('Listar Modulos')</a></li>
+                <li><a href="{{ URL::to( '/modulo/insertar') }}"><i class="fa fa-plus"></i> @lang('Insertar Modulo')</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -208,15 +217,6 @@
               <ul class="{{ Request::is( 'aula') ? 'active' : '' }} treeview-menu">
                 <li><a href="{{ URL::to( '/aula/listar') }}"><i class="fa fa-list"></i> @lang('sistema.listar_aulas')</a></li>
                 <li><a href="{{ URL::to( '/aula/agregar') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-list"></i> <span>@lang('Modulo')s</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="{{ Request::is( 'modulo') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/modulo/listar') }}"><i class="fa fa-list"></i> @lang('Listar Modulos')</a></li>
-                <li><a href="{{ URL::to( '/modulo/insertar') }}"><i class="fa fa-plus"></i> @lang('Insertar Modulo')</a></li>
               </ul>
             </li>
 			<li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
