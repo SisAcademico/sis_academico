@@ -40,37 +40,45 @@
                     <div class="form-group">
                         {{ Form::label('id_matricula', Lang::get('Codigo Matricula'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('id_matricula',null,array('class'=>'form-control','id'=>'id_matricula','placeholder'=>Lang::get('IdMatricula'))) }}
+                            <input id="id_matricula" type="text" class="form-control" name="id_matricula" readonly="readonly" onKeyPress="return validar(event)" maxlength="7" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         {{ Form::label('tipo', Lang::get('Tipo'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('tipo',null,array('class'=>'form-control','id'=>'tipo','placeholder'=>Lang::get('tipo'))) }}
+                            {{
+                                Form::select('idtipo',array('CP' => 'CARRERA PROFESIONAL', 'CL' => 'CURSO LIBRE') ,null,array('class'=>'form-control','id'=>'CP','id'=>'CL'))}}
                         </div>
                     </div>
+
                     <div class="form-group">
                         {{ Form::label('fecha_matricula', Lang::get('Fecha Matricula'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha" />
+                            <input name='fecha_matricula' type="text" id="theInput" placeholder="Seleccione Fecha" />
                         </div>
                     </div>
+
                     <div class="form-group">
-                        {{ Form::label('idpado', Lang::get('Codigo de Pago'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('idpado', Lang::get('Nro Boleta'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('idpago',null,array('class'=>'form-control','id'=>'idpago','placeholder'=>Lang::get('idPago'))) }}
+                        {{
+                            Form::select('idpago', array_pluck(Pago::all(),'nro_boleta','idpago'),null,array('class'=>'form-control','id'=>'idpago'))
+                        }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('idalumno', Lang::get('Codigo Alumno'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('idalumno',null,array('class'=>'form-control','id'=>'idalumno','placeholder'=>Lang::get('idAlumno'))) }}
+                        {{
+                            Form::select('idalumno', array_pluck(Alumno::all(),'nombres','idalumno'),null,array('class'=>'form-control','id'=>'idalumno'))
+                        }}
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     {{ Form::submit(Lang::get('Guardar'), array('class' => 'btn btn-info pull-right')) }}
+
                     <a class="btn btn-primary pull-right" href="{{ URL::to( '/detalleMatricula/agregar') }}"><i class="fa fa-plus"></i> @lang('Detalles Matricula')</a>
                 </div>
             </div>
@@ -78,8 +86,28 @@
         </div>
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
-    @section ('scrips_n')
-        <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
-    @stop
+@section ('scrips_n')
+    <script src="{{asset('/js/ja1.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+        function validar(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true;
+            if (tecla==44) return true;
+            if (tecla==48) return true;
+            if (tecla==49) return true;
+            if (tecla==50) return true;
+            if (tecla==51) return true;
+            if (tecla==52) return true;
+            if (tecla==53) return true;
+            if (tecla==54) return true;
+            if (tecla==55) return true;
+            if (tecla==56) return true;
+            patron = /1/; //ver nota
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+    </script>
+@stop
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
 @endsection

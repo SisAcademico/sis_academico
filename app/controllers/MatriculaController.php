@@ -21,8 +21,8 @@ class MatriculaController extends BaseController{
         $alumnos=Alumno::all();
         $auxiliar=DB::table('tmatricula')
             ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
-            ->join('tpago', 'tmatricula.idpago', '=', 'tpago.idpago')
-            ->select('tmatricula.idmatricula','tmatricula.tipo' ,'talumno.idalumno', 'talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula','tpago.nro_boleta')
+            //->join('tpago', 'tmatricula.idpago', '=', 'tpago.idpago')
+            ->select('tmatricula.idmatricula','tmatricula.tipo' ,'talumno.idalumno', 'talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula','tmatricula.idpago')
             ->get();
         return View::make('matricula.listar') -> With('matricula',$auxiliar);
     }

@@ -228,7 +228,7 @@
                 <li><a href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> Agregar pago</a></li>
               </ul>
             </li>
-        <li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
+         <li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>Matricula</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
