@@ -169,6 +169,18 @@
                 <li><a href="{{ URL::to( '/asignatura/create') }}"><i class="fa fa-plus"></i> Agregar Asignatura</a></li>
               </ul>
 			</li>
+
+        <li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
+              <a href="#">
+                <i class="fa fa-list"></i> <span>Asignaturas Libres</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="{{ Request::is( 'asignaturalibre') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/asignaturalibre') }}"><i class="fa fa-list"></i> Listar Asignaturas Libres</a></li>
+                <li><a href="{{ URL::to( '/asignaturalibre/create') }}"><i class="fa fa-plus"></i> Agregar Asignaturas Libres</a></li>
+              </ul>
+      </li>
+
+
         <li class="{{ Request::is( 'cursolibre') ? 'active' : '' }} treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>Cursos Libres</span> <i class="fa fa-angle-left pull-right"></i>

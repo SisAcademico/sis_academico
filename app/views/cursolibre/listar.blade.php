@@ -37,7 +37,7 @@
                                               <td>{{ $cursolibre->idasignatura_cl}}</td>
                                               <td>{{ $cursolibre->nombre_asig_cl }}</td>
                                               <td>{{ $cursolibre->horas_totales }}</td>
-                                              <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/{{ $cursolibre->idasignatura_cl }}/edit"><i class="fa fa-eye"></i> </a></td>
+                                              <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/cursolibre/{{ $cursolibre->idasignatura_cl }}/edit"><i class="fa fa-eye"></i> </a></td>
                                           </tr>
                                       @endforeach
                                       </tbody>
