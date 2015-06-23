@@ -40,12 +40,23 @@ class AsignaturaLibreController extends \BaseController{
     public function store()
     {
         //
-            $asignaturalibre = new AsignaturaLibres;
-                $asignaturalibre->idasignatura_cl = Input::get('idasignatura_cl');
-                $asignaturalibre->nombre_asig_cl = Input::get('nombre_asig_cl');
-                $asignaturalibre->horas_totales = Input::get('horas_totales');
-                $asignaturalibre->save();
-                return Redirect::to('asignaturalibre');
+                $asignaturalibre = new AsignaturaLibres;
+                $rules= array
+                (
+                    'horas_totales'=>'required|integer|min:0',
+                );
+                $validator=Validator::make(Input::All(),$rules);
+                if ($validator->passes()) {
+                        $asignaturalibre->idasignatura_cl = Input::get('idasignatura_cl');
+                        $asignaturalibre->nombre_asig_cl = Input::get('nombre_asig_cl');
+                        $asignaturalibre->horas_totales = Input::get('horas_totales');
+                        $asignaturalibre->save();
+                        return Redirect::to('asignaturalibre');
+                }
+                else
+                {
+                    return Redirect::back()->withInput()->withErrors($validator);
+                }
 
     }
 
@@ -91,15 +102,27 @@ class AsignaturaLibreController extends \BaseController{
     public function update($id)
     {
         //
-        $entra = Input::all();
-        $asignatura = DB::table('tasignatura_cl')
-            ->where('idasignatura_cl', $id)
-            ->update(array(
-                'idasignatura_cl' => $entra['idasignatura_cl'],
-                'nombre_asig_cl' => $entra['nombre_asig_cl'],
-                'horas_totales' => $entra['horas_totales'],
-            ));
-        return Redirect::to('asignaturalibre');
+          $rules= array
+                (
+                    'horas_totales'=>'required|integer|min:0',
+                );
+                $validator=Validator::make(Input::All(),$rules);
+                if ($validator->passes()) {
+                            $entra = Input::all();
+                            $asignatura = DB::table('tasignatura_cl')
+                                ->where('idasignatura_cl', $id)
+                                ->update(array(
+                                    'idasignatura_cl' => $entra['idasignatura_cl'],
+                                    'nombre_asig_cl' => $entra['nombre_asig_cl'],
+                                    'horas_totales' => $entra['horas_totales'],
+                                ));
+                            return Redirect::to('asignaturalibre');
+                 }
+                else
+                {
+                    return Redirect::back()->withInput()->withErrors($validator);
+                }
+
     }
 
 
