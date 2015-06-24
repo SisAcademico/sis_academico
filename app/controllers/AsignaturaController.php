@@ -44,15 +44,15 @@ class AsignaturaController extends \BaseController{
             $asignaturas = new Asignatura;
              $rules= array
                 (
-                    'horas_semanales'=>'required|integer|min:0',
-                    'horas_totales'=>'required|integer|min:0',
+                    'horas_semanales'=>'required|integer|min:0|max:20',
+                    'horas_totales'=>'required|integer|min:0|max:350',
                     'idmodulo'=>'required|integer|min:0',
                 );
                 $validator=Validator::make(Input::All(),$rules);
                 if ($validator->passes()) {
                         $idmodulo = DB::table('tmodulo')->where('idmodulo', Input::get('idmodulo'))->pluck('idmodulo');
                         $vprerequisito=DB::table('tasignatura')->where('idasignatura',Input::get('pre_requisito'))->pluck('idasignatura');
-                        if(($idmodulo != NULL) || ($vprerequisito != NULL)) {
+                        if($idmodulo != NULL) {
 
                             $asignaturas->idasignatura = Input::get('idasignatura');
                             $asignaturas->nombre_asignatura = Input::get('nombre_asignatura');
@@ -118,8 +118,8 @@ class AsignaturaController extends \BaseController{
         //
         $rules= array
                 (
-                    'horas_semanales'=>'required|integer|min:0',
-                    'horas_totales'=>'required|integer|min:0',
+                    'horas_semanales'=>'required|integer|min:0|max:20',
+                    'horas_totales'=>'required|integer|min:0|max:350',
                     'idmodulo'=>'required|integer|min:0',
                 );
                 $validator=Validator::make(Input::All(),$rules);

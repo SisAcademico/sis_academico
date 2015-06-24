@@ -12,6 +12,13 @@
 */
 Route::resource('docente/asistencia', 'AsistenciaDocenteController');
 
+Route::group(array('prefix' => 'alumno'), function()
+{
+	Route::get('asistencia/listar', 'AsistenciaAlumnoController@listar');
+	Route::get('asistencia/registrar/{codAsignatura}', 'AsistenciaAlumnoController@registrar');
+
+});
+
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');

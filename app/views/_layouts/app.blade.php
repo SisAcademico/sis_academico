@@ -159,7 +159,8 @@
                 <i class="fa fa-users"></i> <span>Alumnos</span>
               </a>
               
-            </li>
+      </li>
+      <li><a href="{{ URL::to( '/alumno/asistencia/listar') }}"><i class="fa fa-list"></i> <span>Asistencia Alumno</span></a></li>
 			<li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>Asignaturas</span> <i class="fa fa-angle-left pull-right"></i>

@@ -26,7 +26,7 @@
                             <th >Nombre Asignatura</th>
                             <th >Horas Semanales</th>
                             <th >Horas Totales </th>
-                            <th >Id Modulo</th>
+                            <th >Modulo</th>
                             <th >Pre Requisito</th>
                         </tr>
 
