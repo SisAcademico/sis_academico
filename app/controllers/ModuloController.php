@@ -2,63 +2,42 @@
 
 class ModuloController extends BaseController {
 
-	public function insertarModulo()
-    {
-        return View::make('modulo.insertar');
-
-    }
 
 
-	public function listarModulo()
+
+	public function index()
 	{
-		$modulostodo=Modulo::all();
-        return View::make('modulo.listar')->with('modulostodo',$modulostodo);
-	}
-	public function modificarModulo($id)
-    {
-
-    }
-	
-	/**
-	* Muestra la pantalla  de acceso al sistema
-	*/
-	public function mostrarPanel()
-	{
-		//return View::make('login.login');
-		return View::make('modulo.formulario');
+		$modulo = Modulo::all();
+		return View::make('modulo.listar')->with('modulos',$modulo);
 	}
 
+
 	/**
-	 * Display a listing of the resource.
+	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function create()
 	{
-		//
+		//return View::make('alumno.insertar');
 	}
 
-public function create()
-	{
-		//
-	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @return Respons
+	 * @return Response
 	 */
 	public function store()
 	{
-		//
-		$modulo = new Modulo;
+		$modulos = new Modulo;
 
-		$modulo->idmodulo=Input::get('idmodulo');
-		$modulo->nombre_modulo=Input::get('nombre_modulo');
-		$modulo->idcarrera=Input::get('idcarrera');
-		$modulo->save();
+		$modulos->idmodulo=Input::get('idmodulo');
+		$modulos->nombre_modulo=Input::get('nombre_modulo');
+		$modulos->idcarrera=Input::get('idcarrera');
+		$modulos->save();
 
-		return Redirect::to('modulo/listar');
+		return Redirect::to('modulo');
 	}
 
 
@@ -68,12 +47,11 @@ public function create()
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($ids)
 	{
-		//
-			$moduloeditar = Modulo::where('idmodulo', '=', $id)->get();
-    	//$docenteaeditar = Docente::where('iddocente','=',$id)->get();
-		return View::make('modulo.modificar')->with('moduloeditar',$moduloeditar);
+		//$alumno = Alumno::where('idalumno', '=', $ids)->get();
+		//return View::make('alumno.listar')->with('alumnos',$alumno);
+
 	}
 
 
@@ -85,9 +63,10 @@ public function create()
 	 */
 	public function edit($id)
 	{
-		//
-	}
+		$modulo = Modulo::where('idmodulo', '=', $id)->get();
+		return View::make('modulo.editar')->with('modulos',$modulo);
 
+	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -97,19 +76,15 @@ public function create()
 	 */
 	public function update($id)
 	{
-		//
-		$recuperado = Input::all();
-		//print_r($recuperado) ;
-		$modulo = DB::table('tmodulo')
-			->where('idmodulo',$id)
-			->update(array(
-				//'iddocente'=>$recuperado['IDDOCENTE'],
-				'idmodulo'=>$recuperado['idmodulo'],
-				'nombre_modulo'=>$recuperado['nombre_modulo'],
-				'idcarrera'=>$recuperado['idcarrera'],
-				 ));
-				return Redirect::to('modulo/modificar');
-
+		$entra = Input::all();
+		$carrera = DB::table('tmodulo')
+            ->where('idmodulo', $id)
+            ->update(array(
+            'idmodulo' => $entra['idmodulo'],
+            'nombre_modulo' => $entra['nombre_modulo'],
+            'idcarrera' => $entra['idcarrera'],
+            ));
+		return Redirect::to('modulo');
 	}
 
 
@@ -122,13 +97,20 @@ public function create()
 	public function destroy($id)
 	{
 		//
-		echo "esto es una prueba de eliminar";
-		$test = Modulo::where('idmodulo','=',$id)->delete($id);
-		//print_r($test);
-		echo "elimiado";
-		//return $this->showUsers();
-		return Redirect::to('modulo/listar');
 	}
 
-
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
