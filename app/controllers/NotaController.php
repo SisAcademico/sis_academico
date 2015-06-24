@@ -77,18 +77,7 @@ class NotaController extends \BaseController {
             }
 			if($nroExamenes==0)
 				$nroExamenes=1;
-			
-			$data = DB::table('tdetalle_matricula')
-			->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
-			->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
-			->join('talumno', 'talumno.idalumno','=','tmatricula.idalumno')
-			->select
-			(
-				'tdetalle_matricula.iddetalle_matricula'
-			)
-			->where('tdetalle_matricula.idasignatura_cl','=',$isasig)
-			->orderBy('talumno.idalumno','ASC')
-			->get();
+			$data = Nota::getDataNotaLibre($isasig);
 
 			foreach($data as $dato)
 			{
@@ -138,18 +127,7 @@ class NotaController extends \BaseController {
             }
 			if($nroExamenes==0)
 				$nroExamenes=1;
-			
-			$data = DB::table('tdetalle_matricula')
-			->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
-			->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
-			->join('talumno', 'talumno.idalumno','=','tmatricula.idalumno')
-			->select
-			(
-				'tdetalle_matricula.iddetalle_matricula'
-			)
-			->where('tdetalle_matricula.idasignatura','=',$isasig)
-			->orderBy('talumno.idalumno','ASC')
-			->get();
+			$data = Nota::getDataNotaCarrera($isasig);
 
 			foreach($data as $dato)
 			{
@@ -253,24 +231,7 @@ class NotaController extends \BaseController {
                  }
 				if($nroExamenes==0)
 					$nroExamenes=1;
-				$data = DB::table('tdetalle_matricula')
-					->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
-					->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
-					->join('talumno', 'talumno.idalumno','=','tmatricula.idalumno')
-
-					->select
-					(
-						'talumno.idalumno',
-						'talumno.nombres',
-						'talumno.apellidos',
-						'tnotas.idnota',
-						'tnotas.nota',
-						'tdetalle_matricula.iddetalle_matricula'
-					)
-					->where('tdetalle_matricula.idasignatura_cl','=',$isasig)
-					->orderBy('talumno.idalumno','ASC')
-					->orderBy('tnotas.nro_parcial','ASC')
-					->get();
+				$data = Nota::getDataNotaLibre($isasig);
 				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
 			else if($tipo=="A")
@@ -283,23 +244,7 @@ class NotaController extends \BaseController {
                  }
 				if($nroExamenes==0)
 					$nroExamenes=1;
-				$data = DB::table('tdetalle_matricula')
-					->leftJoin('tnotas', 'tdetalle_matricula.iddetalle_matricula', '=', 'tnotas.iddetalle_matricula')
-					->join('tmatricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
-					->join('talumno', 'talumno.idalumno','=','tmatricula.idalumno')
-					->select
-					(
-						'talumno.idalumno',
-						'talumno.nombres',
-						'talumno.apellidos',
-						'tnotas.idnota',
-						'tnotas.nota',
-						'tdetalle_matricula.iddetalle_matricula'
-					)
-					->where('tdetalle_matricula.idasignatura','=',$isasig)
-					->orderBy('talumno.idalumno','ASC')
-					->orderBy('tnotas.nro_parcial','ASC')
-					->get();
+					$data = Nota::getDataNotaCarrera($isasig);
 				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
 			else
