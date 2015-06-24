@@ -123,8 +123,7 @@ public function create()
 		$administrador = DB::table('tadministrador')
 			->where('idadministrador',$id)
 			->update(array(
-				//'iddocente'=>$recuperado['IDDOCENTE'],
-				'idusuario'=>1,
+				'idadministrador'=>$recuperado['id_administrador'],
 				'dni'=>$recuperado['DNI'],
 				'nombres'=>$recuperado['NOMBRES'],
 				'apellidos'=>$recuperado['APELLIDOS'],

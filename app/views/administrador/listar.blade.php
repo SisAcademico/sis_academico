@@ -1,11 +1,15 @@
 @extends('_layouts.app')
 
 @section('titulo')
-    @lang('sistema.administrador')<!--titulo de la ventana-->
+    @lang('Lista Administrador')<!--titulo de la ventana-->
+@stop
+@section ('estilos')
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/btn.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
 @stop
 
 @section('titulo_cabecera')
-    @lang('sistema.listar_administrador')<small>@lang('sistema.listar_administrador')</small><!--titulo-subtitulos-->
+    @lang('Administradores')<!--titulo-subtitulos-->
 @stop
 
 @section('ruta_navegacion')
@@ -19,7 +23,7 @@
 				<!-- INICIO: BOX PANEL -->
 					<div class="col-md-12 col-sm-8">
 						 <div class="box box-success">
-								<div class="box-header with-border">
+								<div class="box-header with-border" align="center">
 								  <h3 class="box-title">Lista de administradores</h3><!--titulo del frame-->
 								</div><!-- /.box-header -->
 								<div class="box-body">
@@ -30,14 +34,12 @@
 										?>
 										<table class="table table-bordered">
 										<tr>
-										<th>Nombres</th>
-									  		<th>idadministrador</th>
+									  		<th>ID Admin</th>
+											<th>Nombres</th>
 											<th>Apellidos</th>
-											<th>Direccion</th>
 											<th>Telefono</th>
 											<th>Correo</th>											
 											<th>Estado</th>
-											<th>IdFoto</th>
 											<th>Accion</th>
 											</tr>
 										@foreach($administradorestodo as $Adm)
@@ -51,11 +53,9 @@
 											<td>{{$Adm->idadministrador}}</td>
 									 		<td>{{$Adm->nombres}}</td>
 											<td>{{$Adm->apellidos}}</td>
-											<td>{{$Adm->direccion}}</td>
 											<td>{{$Adm->telefono}}</td>
 											<td>{{$Adm->correo}}</td>
 											<td>{{$Adm->estado}}</td>
-											<td>{{$Adm->idfoto}}</td>
 											 <td>
 										<a class="btn btn-xs btn-primary" href="{{ URL::to( '/administrador/modificar');}}/{{$Adm->idadministrador}}"><i class="fa fa-edit"></i></a>
 										<a class="btn btn-xs btn-danger" href="{{ URL::to( '/administrador/Eliminar');}}/{{$Adm->idadministrador}}"><i class="fa fa-trash"></i></a>

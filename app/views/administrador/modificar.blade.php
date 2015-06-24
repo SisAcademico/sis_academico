@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
 @stop
 @section('titulo_cabecera')
-    @lang('docentes')<small>@lang('')</small>
+    @lang('Administradores')<small>@lang('')</small>
 @stop
 @section('ruta_navegacion')
     <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.administrador')</a></li>
@@ -20,8 +20,8 @@
         <div class="col-md-12 col-sm-8">
             {{ Form::open(array('url' => 'formulario/'.$administradoraeditar[0]->idadministrador,'autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
             <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">modificar administrador</h3>
+                <div class="box-header with-border" align="center">
+                    <h3 class="box-title">Modificar Administrador</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     @if (count($errors) > 0)
@@ -37,58 +37,58 @@
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                    <div class="form-group">
-                        {{ Form::label('id_administrador', Lang::get('idadministrador'),array('class'=>'col-sm-2 control-label')) }}
+                   <div class="form-group">
+                        {{ Form::label('id_administrador', Lang::get('ID Admin: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('IDADMINISTRADOR',Lang::get(''.$administradoraeditar[0]->idadministrador),array('class'=>'form-control','id'=>'id_administrador','placeholder'=>Lang::get('Idadministrador'))) }}
+                            <input id="id_administrador" type="text" placeholder="ID Admin"  value="{{$administradoraeditar[0]->idadministrador}}" class="form-control" name="id_administrador" onKeyPress="return validar(event)" maxlength="10" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('dni', Lang::get('dni'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('dni', Lang::get('Dni: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('DNI',Lang::get(''.$administradoraeditar[0]->dni),array('class'=>'form-control','id'=>'dni','placeholder'=>Lang::get('Iddocente'))) }}
+                               <input id="DNI" type="text" placeholder="DNI" value="{{$administradoraeditar[0]->dni}}" class="form-control" name="DNI" onKeyPress="return validar(event)" maxlength="8" required>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        {{ Form::label('nombres', Lang::get('Nombres: '),array('class'=>'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                            <input id="NOMBRES" type="text" placeholder="Nombres" value="{{$administradoraeditar[0]->nombres}}" class="form-control" name="NOMBRES"  maxlength="50" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('nombres', Lang::get('nombres'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('apellidos', Lang::get('Apellidos: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('NOMBRES',Lang::get(''.$administradoraeditar[0]->nombres),array('class'=>'form-control','id'=>'nombres','placeholder'=>Lang::get('nombres'))) }}
+                             <input id="APELLIDOS" type="text" placeholder="Apellidos" value="{{$administradoraeditar[0]->apellidos}}" class="form-control" name="APELLIDOS"  maxlength="60" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('apellidos', Lang::get('apellidos'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('direccion', Lang::get('Direccion: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('APELLIDOS',Lang::get(''.$administradoraeditar[0]->apellidos),array('class'=>'form-control','id'=>'apellidos','placeholder'=>Lang::get('apellidos'))) }}
+                            <input id="DIRECCION" type="text" placeholder="Dirección" value="{{$administradoraeditar[0]->direccion}}" class="form-control" name="DIRECCION"  maxlength="60" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('direccion', Lang::get('direccion'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('telefono', Lang::get('Telefono: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('DIRECCION',Lang::get(''.$administradoraeditar[0]->direccion),array('class'=>'form-control','id'=>'direccion','placeholder'=>Lang::get('direccion'))) }}
+                                <input id="TELEFONO" type="text" placeholder="Teléfono"  value="{{$administradoraeditar[0]->telefono}}" class="form-control" name="TELEFONO" onKeyPress="return validar(event)" maxlength="9" minlength="6" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('telefono', Lang::get('telefono'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('correo', Lang::get('Correo: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('TELEFONO',Lang::get(''.$administradoraeditar[0]->telefono),array('class'=>'form-control','id'=>'telefono','placeholder'=>Lang::get('telefono'))) }}
+                            <input id="CORREO" type="email" placeholder="Correo" value="{{$administradoraeditar[0]->correo}}" class="form-control" name="CORREO"  required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('correo', Lang::get('correo'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('CORREO',Lang::get(''.$administradoraeditar[0]->correo),array('class'=>'form-control','id'=>'correo','placeholder'=>Lang::get('correo'))) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('foto', Lang::get('foto'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('foto', Lang::get('Foto: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">                         
-                            <input type="file" id="foto" value="c:/HOLA.jpg">
+                            {{ Form::file('photo') }} 
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('estado', Lang::get('estado'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('ESTADO',Lang::get(''.$administradoraeditar[0]->estado),array('class'=>'form-control','id'=>'estado','placeholder'=>Lang::get('estado'))) }}
+                        {{ Form::label('estado', Lang::get('Estado: '),array('class'=>'col-sm-2 control-label')) }}
+                        <div class="col-sm-10"> 
+                            <input id="ESTADO" type="text" placeholder="Estado" value="{{$administradoraeditar[0]->estado}}" class="form-control" name="ESTADO"  maxlength="20" required>
                         </div>
                     </div>
 
@@ -106,6 +106,28 @@
     </div><!-- /.box -->
     @section ('scrips_n')
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            function validar(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true; 
+                if (tecla==44) return true; 
+                if (tecla==48) return true;
+                if (tecla==49) return true;
+                if (tecla==50) return true;
+                if (tecla==51) return true;
+                if (tecla==52) return true;
+                if (tecla==53) return true;
+                if (tecla==54) return true;
+                if (tecla==55) return true;
+                if (tecla==56) return true;
+                if (tecla==57) return true;
+                patron = /1/; //ver nota
+                te = String.fromCharCode(tecla);
+                return patron.test(te); 
+            } 
+        </script>
+
     @stop
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
 @endsection
