@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
 @stop
 @section('titulo_cabecera')
-    @lang('Administradores')<small>@lang('')</small>
+    @lang('Administrador')<small>@lang('')</small>
 @stop
 @section('ruta_navegacion')
     <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.administrador')</a></li>

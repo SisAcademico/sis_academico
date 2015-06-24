@@ -9,7 +9,7 @@
 @stop
 
 @section('titulo_cabecera')
-    @lang('Administradores')<!--titulo-subtitulos-->
+    @lang('Administrador')<!--titulo-subtitulos-->
 @stop
 
 @section('ruta_navegacion')
