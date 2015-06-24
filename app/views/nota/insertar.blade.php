@@ -70,7 +70,7 @@
                                             @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\">"; 
-                                                    $Promedio+=$notas[$i];
+                                                    
                                                 ?>
                                             
                                             @else
@@ -132,7 +132,7 @@
                                             @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\" >";
-                                                    $Promedio+=$notas[$i];
+                                                    
                                                 ?>
                                             
                                             @else
@@ -203,6 +203,7 @@
                 {
                     str1 = ":".concat(String(i));
                     str2 = targ.concat(str1);
+                    if(document.getElementById(str2).value != "NSP" && document.getElementById(str2).value != "")
                     promedio+= parseFloat(document.getElementById(str2).value);
                 }
                 document.getElementById("promedio".concat(targ)).value  = promedio/parseFloat(nroExamenes);
