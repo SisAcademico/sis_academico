@@ -28,19 +28,14 @@ Route::resource('nota', 'NotaController');
 Route::get('/', 'PanelController@mostrarPanel');
 Route::get('/panel', 'PanelController@mostrarPanel');
 
-Route::get('carrera/listar', 'CarreraController@listarCarreras');
-Route::get('carrera/insertar', 'CarreraController@insertarCarrera');
-Route::get('carrera/Eliminar/{id}','CarreraController@destroy');
-Route::get('carrera/modificar/{id}','CarreraController@show');
+//------------- Carrera Profesiona ----------------
+Route::resource('carrera', 'CarreraController');
+
+//------------- Modulo -------------------------
+Route::resource('modulo', 'ModuloController');
 
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
-
-//----------------------modulo------------------------
-Route::get('modulo/listar', 'ModuloController@listarModulo');
-Route::get('modulo/insertar', 'ModuloController@insertarModulo');
-Route::get('modulo/Eliminar/{id}','ModuloController@destroy');
-Route::get('modulo/modificar/{id}','ModuloController@show');
 
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
