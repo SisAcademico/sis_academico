@@ -91,70 +91,44 @@ class AsistenciaDocenteController extends \BaseController {
 	public function listarCursosDocente()
 	{
 		$iddocente = Input::get('id_docente');
-		$cursos1 = DB::table('tcarga_academica')
-				->join('tasignatura', 'tcarga_academica.idasignatura', '=', 'tcarga_academica.idasignatura')
-				->join('tdocente', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
-				->join('tcarga_horario', 'tcarga_horario.idcarga_academica', '=', 'tcarga_horario.idcarga_academica') 
-				->join('thorario', 'thorario.idhorario', '=', 'tcarga_horario.idhorario')
-				->select 
-				(
-					'tcarga_academica.idcarga_academica',
-					'tasignatura.idasignatura',
-					'tasignatura.nombre_asignatura',
-					'thorario.hora_inicio',
-					'thorario.hora_fin'
-				)
-				->where('tdocente.iddocente', '=', $iddocente)
-				->get();
-		$cursos2 = DB::table('tcarga_academica')
-				->join('tasignatura_cl', 'tcarga_academica.idasignatura_cl', '=', 'tcarga_academica.idasignatura_cl')
-				->join('tdocente', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
-				->join('tcarga_horario', 'tcarga_horario.idcarga_academica', '=', 'tcarga_horario.idcarga_academica') 
-				->join('thorario', 'thorario.idhorario', '=', 'tcarga_horario.idhorario')
-				->select 
-				(
-					'tcarga_academica.idcarga_academica',
-					'tasignatura_cl.idasignatura_cl',
-					'tasignatura_cl.nombre_asig_cl',
-					'thorario.hora_inicio',
-					'thorario.hora_fin'
-				)
-				->where('tdocente.iddocente', '=', $iddocente)
-				->get();
+		$cursos1 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteCarrera($iddocente);
+		$cursos2 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteLibre($iddocente);
 		//sacaremos el id asignatura del curso que le toca ahora
 		//en el modeo de BD solo se considera hora de inicio y hora de fin.
 		//evitaremos el uso de dia para la comparacion, se considerar que un
 		// curso es $idasignaturaNow si esta en el rango de +- 15 min de la hora de inicio de la asignatura		
-		$dt = Carbon\Carbon::now();		
-		$timeNow = Carbon\Carbon::createFromTime($dt->hour,$dt->minute ,$dt->second , $dt->micro); //hora actual
-		echo $timeNow;
+		//echo sizeof($cursos1)." * ".sizeof($cursos2);
+		$timeNow = Carbon\Carbon::now(); //hora actual
+		$timeNow->addHours(2);
 		$idasignatura = "";
 		foreach ($cursos1 as $curso) {
-			$dif = $timeNow->diffInMinutes($curso['hora_inicio']);
-			if($dif<=15 || $dif>=-15)
-				$idasignatura = $curso['idasignatura'];
+			$date = Carbon\Carbon::now(); 
+			$date->addHours(2);
+			$hora_ini = (string)($curso->hora_inicio);
+			$date->hour = substr($hora_ini, 0, 2);
+			$date->minute = substr($hora_ini, 3, 2);
+			$date->second = substr($hora_ini, 6, 2);
+			
+			$tmp = $timeNow->diffInMinutes($date);
+			if(abs($tmp<=15 ))
+			{
+				$idasignatura = $curso->idasignatura;
+				$dif = $date->copy();
+			}
 		}
 		foreach ($cursos2 as $curso) {
-			$dif = $timeNow->diffInMinutes($curso['hora_inicio']);
-			if($dif<=15|| $dif>=-15)
-				$idasignatura = $curso['idasignatura_cl'];
-		}
-		/*no hay cursos cercanos a la hora, se verifica todos los cursos con hora menor a la actual
-		  en caso exista algun curso que no tenga asistencia insertada, se le pone como FALTA
-		*/
-		if($idasignatura=="") 
-		{
-
-		}
-		else
-		{ //verificar si es temprano o tarde : signo de $dif
-			if($dif>=0) //temprano
+			$date = $timeNow;
+			$hora_ini = (string)($curso->hora_inicio);
+			$date->hour = substr($hora_ini, 0, 2);
+			$date->minute = substr($hora_ini, 3, 2);
+			$date->second = substr($hora_ini, 6, 2);
+			//echo $timeNow. "    :::   ".$date;
+			//echo "<br>";
+			$tmp = $timeNow->diffInMinutes($date);
+			if(abs($tmp<=15 ))
 			{
-
-			}
-			else
-			{
-
+				$idasignatura = $curso->idasignatura;
+				$dif = $date->copy();
 			}
 		}
 		return View::make('docente.mostrarCursosDocente',['cursos1'=> $cursos1, 'cursos2'=> $cursos2, 'cursoCercano'=>$idasignatura]);
