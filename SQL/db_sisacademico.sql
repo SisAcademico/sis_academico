@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generaciÃ³n: 21-06-2015 a las 21:00:39
--- VersiÃ³n del servidor: 5.6.17
--- VersiÃ³n de PHP: 5.5.12
+-- Tiempo de generación: 24-06-2015 a las 15:08:52
+-- Versión del servidor: 5.6.17
+-- Versión de PHP: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -70,6 +70,8 @@ CREATE TABLE IF NOT EXISTS `talumno` (
 --
 
 INSERT INTO `talumno` (`idalumno`, `idusuario`, `dni`, `nombres`, `apellidos`, `direccion`, `telefono`, `correo`, `fecha_ingreso`, `idfoto`, `estado`) VALUES
+('123112', 14, '98182313', 'juan', 'apa', 'kasd', '977123123', 'kaiqw@gmail.com.pq', '2015-06-04 00:00:00', 10, 'Activo'),
+('128728', 13, '98712313', 'Juan', 'Apaza', 'Av. Tupac Amaru l-12', '98123123', 'juan@gmail.com', '2015-06-22 00:00:00', 3, 'Activo'),
 ('141231', 11, '74309743', 'Walter', 'Zarate Quispe', 'Cll. Los Nogales E-12', '98123123', 'walter@gmail.com', '1990-06-13 00:00:00', 1, 'activo'),
 ('152354', 2, '71344859', 'Juan', 'Diaz Cassa', 'San Judas T-4', '987235472', 'cl@gmail.com', '2015-03-24 00:00:00', NULL, 'Activo'),
 ('152358', 3, '72624859', 'Karen', 'Quispe Arana', 'San Sebastian H-4', '986235476', 'clsss@gmail.com', '2015-03-24 00:00:00', NULL, 'Activo'),
@@ -79,7 +81,9 @@ INSERT INTO `talumno` (`idalumno`, `idusuario`, `dni`, `nombres`, `apellidos`, `
 ('153840', 5, '71024109', 'Ernesto', 'Guzman Pari', 'Unidos T-4', '98723576', 'cldd@gmail.com', '2015-03-24 00:00:00', NULL, 'Activo'),
 ('153855', 6, '23624859', 'Lucia', 'Rosas Quintanilla', 'Almirante T-4', '987435476', 'clsff@gmail.com', '2015-03-24 00:00:00', NULL, 'Activo'),
 ('153866', 7, '24624559', 'Paula', 'Farfan Hermoza', 'Independencia T-4', '927235476', 'clarF@gmail.com', '2015-03-24 00:00:00', NULL, 'Activo'),
-('153877', 8, '72622259', 'Jorge', 'Condori Gonzales', 'Sta Monica', '985235476', 'TlsrF@gmail.com', '2015-03-24 00:00:00', NULL, 'Activo');
+('153877', 8, '72622259', 'Jorge', 'Condori Gonzales', 'Sta Monica', '985235476', 'TlsrF@gmail.com', '2015-03-24 00:00:00', NULL, 'Activo'),
+('159087', 12, '98761232', 'Karen', 'Alvarez', 'Av. Tupac Amaru l-12', '987313212', 'karenAlvarez@gmail.com', '1990-06-21 00:00:00', 2, 'activo'),
+('19213', 15, '09813182', 'jjasd', 'kasda', 'kasdasd', '91923123', 'aksdasd@gmail.com', '1995-06-10 00:00:00', 5, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -185,6 +189,21 @@ CREATE TABLE IF NOT EXISTS `taula` (
   PRIMARY KEY (`idaula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `taula`
+--
+
+INSERT INTO `taula` (`idaula`, `estado`, `capacidad`, `tipo`) VALUES
+('AUL001', 'DISPONIBLE', 30, 'LAB'),
+('AUL002', 'DISPONIBLE', 35, 'LAB'),
+('AUL003', 'DISPONIBLE', 20, 'TEORIA'),
+('AUL004', 'DISPONIBLE', 40, 'LAB'),
+('AUL005', 'NO DISPONIBLE', 30, 'TEORIA'),
+('AUL006', 'DISPONIBLE', 25, 'TEORIA'),
+('AUL007', 'NO DISPONIBLE', 20, 'LAB'),
+('AUL008', 'DISPONIBLE', 20, 'LAB'),
+('AUL009', 'DISPONIBLE', 30, 'TEORIA');
+
 -- --------------------------------------------------------
 
 --
@@ -216,7 +235,8 @@ CREATE TABLE IF NOT EXISTS `tcarga_academica` (
   PRIMARY KEY (`idcarga_academica`),
   KEY `idsemestre` (`idsemestre`),
   KEY `tcarga_academica_ibfk_2` (`idasignatura`),
-  KEY `tcarga_academica_ibfk_3` (`idasignatura_cl`)
+  KEY `tcarga_academica_ibfk_3` (`idasignatura_cl`),
+  KEY `tcarga_academica_ibfk_4` (`iddocente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -245,6 +265,13 @@ CREATE TABLE IF NOT EXISTS `tcarrera` (
   `nro_modulos` int(11) DEFAULT NULL,
   PRIMARY KEY (`idcarrera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tcarrera`
+--
+
+INSERT INTO `tcarrera` (`idcarrera`, `nombre_carrera`, `nro_modulos`) VALUES
+('info', 'informatica', 3);
 
 -- --------------------------------------------------------
 
@@ -333,6 +360,21 @@ CREATE TABLE IF NOT EXISTS `tdocente` (
   KEY `idfoto` (`idfoto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tdocente`
+--
+
+INSERT INTO `tdocente` (`iddocente`, `idusuario`, `dni`, `nombres`, `apellidos`, `direccion`, `telefono`, `correo`, `cargo`, `estado`, `fecha_inicio`, `idfoto`) VALUES
+('d0001', 19, '71344859', 'Juan', 'Diaz Cassa', 'San Judas T-4', '987235472', 'cl@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0002', 20, '72624859', 'Karen', 'Quispe Arana', 'San Sebastian H-4', '986235476', 'clsss@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0003', 21, '45633859', 'Luis', 'Quispe Titto', 'Miraflores G-3', '944235476', 'aasrF@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0004', 22, '75624339', 'Julio', 'Mamani Arias', 'El bosque T-4', '987238476', 'clsddd@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0005', 23, '71024109', 'Ernesto', 'Guzman Pari', 'Unidos T-4', '98723576', 'cldd@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0006', 24, '23624859', 'Lucia', 'Rosas Quintanilla', 'Almirante T-4', '987435476', 'clsff@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0007', 25, '24624559', 'Paula', 'Farfan Hermoza', 'Independencia T-4', '927235476', 'clarF@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0008', 26, '72622259', 'Jorge', 'Condori Gonzales', 'Sta Monica', '985235476', 'TlsrF@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL),
+('d0009', 27, '71624859', 'Carlos', 'Fernandez Toro', 'Jr.Choque T-4', '987335476', 'clsrF@gmail.com', NULL, 'Activo', '2015-03-24 00:00:00', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -343,14 +385,25 @@ CREATE TABLE IF NOT EXISTS `tfoto` (
   `idfoto` int(11) NOT NULL AUTO_INCREMENT,
   `imagen` longblob,
   PRIMARY KEY (`idfoto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `tfoto`
 --
 
 INSERT INTO `tfoto` (`idfoto`, `imagen`) VALUES
-(1, NULL);
+(1, NULL),
+(2, 0x433a5c77616d705c746d705c706870454634442e746d70),
+(3, NULL),
+(4, 0x433a5c77616d705c746d705c706870464132372e746d70),
+(5, 0x433a5c77616d705c746d705c706870383732312e746d70),
+(6, NULL),
+(7, NULL),
+(8, NULL),
+(9, NULL),
+(10, NULL),
+(11, NULL),
+(12, NULL);
 
 -- --------------------------------------------------------
 
@@ -363,7 +416,19 @@ CREATE TABLE IF NOT EXISTS `thorario` (
   `hora_inicio` time DEFAULT NULL,
   `hora_fin` time DEFAULT NULL,
   PRIMARY KEY (`idhorario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `thorario`
+--
+
+INSERT INTO `thorario` (`idhorario`, `hora_inicio`, `hora_fin`) VALUES
+(1, '07:00:00', '09:00:00'),
+(2, '09:00:00', '11:00:00'),
+(3, '11:00:00', '13:00:00'),
+(4, '13:00:00', '15:00:00'),
+(5, '15:00:00', '17:00:00'),
+(6, '17:00:00', '19:00:00');
 
 -- --------------------------------------------------------
 
@@ -433,9 +498,9 @@ CREATE TABLE IF NOT EXISTS `tnotas` (
 --
 
 INSERT INTO `tnotas` (`idnota`, `fecha_nota`, `nota`, `iddetalle_matricula`, `nro_parcial`) VALUES
-(1, '2015-06-18 21:59:00', '20.00', 4, 0),
-(2, '2015-06-18 22:01:38', '11.00', 4, 1),
-(3, '2015-06-18 22:07:04', '10.12', 7, 0),
+(1, '2015-06-18 21:59:00', '17.00', 4, 0),
+(2, '2015-06-18 22:01:38', '15.00', 4, 1),
+(3, '2015-06-18 22:07:04', '14.00', 7, 0),
 (4, '2015-06-18 22:07:04', '15.12', 7, 1),
 (5, '2015-06-18 22:07:04', '18.00', 11, 0),
 (6, '2015-06-18 22:07:04', '13.50', 11, 1);
@@ -467,6 +532,37 @@ CREATE TABLE IF NOT EXISTS `tsemestre` (
   PRIMARY KEY (`idsemestre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tsemestre`
+--
+
+INSERT INTO `tsemestre` (`idsemestre`, `fecha_inicio`, `fecha_fin`) VALUES
+('2001-I', '2010-01-01 00:00:00', '2010-03-01 00:00:00'),
+('2010-I', '2010-01-01 00:00:00', '2010-03-01 00:00:00'),
+('2010-II', '2010-03-02 00:00:00', '2010-06-01 00:00:00'),
+('2010-III', '2010-06-02 00:00:00', '2010-09-01 00:00:00'),
+('2010-VI', '2010-09-02 00:00:00', '2010-12-31 00:00:00'),
+('2011-I', '2011-01-01 00:00:00', '2011-03-01 00:00:00'),
+('2011-II', '2011-03-02 00:00:00', '2011-06-01 00:00:00'),
+('2011-III', '2011-06-02 00:00:00', '2011-09-01 00:00:00'),
+('2011-VI', '2011-09-02 00:00:00', '2011-12-31 00:00:00'),
+('2012-I', '2012-01-01 00:00:00', '2012-03-01 00:00:00'),
+('2012-II', '2012-03-02 00:00:00', '2012-06-01 00:00:00'),
+('2012-III', '2012-06-02 00:00:00', '2012-09-01 00:00:00'),
+('2012-VI', '2012-09-02 00:00:00', '2012-12-31 00:00:00'),
+('2013-I', '2013-01-01 00:00:00', '2013-03-01 00:00:00'),
+('2013-II', '2013-03-02 00:00:00', '2013-06-01 00:00:00'),
+('2013-III', '2013-06-02 00:00:00', '2013-09-01 00:00:00'),
+('2013-VI', '2013-09-02 00:00:00', '2013-12-31 00:00:00'),
+('2014-I', '2014-01-01 00:00:00', '2014-03-01 00:00:00'),
+('2014-II', '2014-03-02 00:00:00', '2014-06-01 00:00:00'),
+('2014-III', '2014-06-02 00:00:00', '2014-09-01 00:00:00'),
+('2014-VI', '2014-09-02 00:00:00', '2014-12-31 00:00:00'),
+('2015-I', '2015-01-01 00:00:00', '2015-03-01 00:00:00'),
+('2015-II', '2015-03-02 00:00:00', '2015-06-01 00:00:00'),
+('2015-III', '2015-06-02 00:00:00', '2015-09-01 00:00:00'),
+('2015-VI', '2015-09-02 00:00:00', '2015-12-31 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -479,7 +575,7 @@ CREATE TABLE IF NOT EXISTS `tusuario` (
   `password` varchar(20) NOT NULL,
   `tipo_usuario` varchar(20) NOT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Volcado de datos para la tabla `tusuario`
@@ -496,7 +592,31 @@ INSERT INTO `tusuario` (`idusuario`, `login`, `password`, `tipo_usuario`) VALUES
 (8, 'us1', 'us2', 'Alumno'),
 (9, 'us1', 'us2', 'Alumno'),
 (10, 'us1', 'us2', 'Alumno'),
-(11, '', '141231i', 'alumno');
+(11, '', '141231i', 'alumno'),
+(12, '', '159087i', 'alumno'),
+(13, '', '128728i', 'alumno'),
+(14, '', '123112i', 'alumno'),
+(15, '', '19213i', 'alumno'),
+(16, '', 'i', 'administrador'),
+(17, '', 'i', 'administrador'),
+(18, '', 'i', 'administrador'),
+(19, 'us1', 'us1', 'docente'),
+(20, 'us1', 'us1', 'docente'),
+(21, 'us1', 'us1', 'docente'),
+(22, 'us1', 'us1', 'docente'),
+(23, 'us1', 'us1', 'docente'),
+(24, 'us1', 'us1', 'docente'),
+(25, 'us1', 'us1', 'docente'),
+(26, 'us1', 'us1', 'docente'),
+(27, 'us1', 'us1', 'docente'),
+(28, 'us1', 'us1', 'docente'),
+(29, 'us1', 'us1', 'docente'),
+(30, 'us1', 'us1', 'docente'),
+(31, 'us1', 'us1', 'docente'),
+(32, 'us1', 'us1', 'docente'),
+(33, 'us1', 'us1', 'docente'),
+(34, '', 'i', 'administrador'),
+(35, '', 'i', 'administrador');
 
 --
 -- Restricciones para tablas volcadas
@@ -547,7 +667,8 @@ ALTER TABLE `taula_carga`
 ALTER TABLE `tcarga_academica`
   ADD CONSTRAINT `tcarga_academica_ibfk_1` FOREIGN KEY (`idsemestre`) REFERENCES `tsemestre` (`idsemestre`),
   ADD CONSTRAINT `tcarga_academica_ibfk_2` FOREIGN KEY (`idasignatura`) REFERENCES `tasignatura` (`idasignatura`),
-  ADD CONSTRAINT `tcarga_academica_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`);
+  ADD CONSTRAINT `tcarga_academica_ibfk_3` FOREIGN KEY (`idasignatura_cl`) REFERENCES `tasignatura_cl` (`idasignatura_cl`),
+  ADD CONSTRAINT `tcarga_academica_ibfk_4` FOREIGN KEY (`iddocente`) REFERENCES `tdocente` (`iddocente`);
 
 --
 -- Filtros para la tabla `tcarga_horario`
