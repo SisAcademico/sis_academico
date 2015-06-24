@@ -36,20 +36,19 @@
                     @endif
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                            
                     <div class="form-group">
-                        {{ Form::label('idasignatura_cl', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('idasignatura_cl',null,array('class'=>'form-control','id'=>'idasignatura_cl','placeholder'=>Lang::get('Codigo de Asignatura'))) }}
-                        </div>
-                    </div>
+                            {{ Form::label('idasignatura_cl', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                            <div class="col-sm-10">
+                                <input id="idasignatura_cl" type="text" placeholder="Codigo" class="form-control" name="idasignatura_cl"  maxlength="20" required>
+                            </div>
+                     </div>
                     <div class="form-group">
-                        {{ Form::label('nombre_asig_cl', Lang::get('Nombre de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('nombre_asig_cl',null,array('class'=>'form-control','id'=>'nombre_asig_cl','placeholder'=>Lang::get('nombre asignatura'))) }}
-                        </div>
-                    </div>
-                    
+                            {{ Form::label('nombre_asig_cl', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                            <div class="col-sm-10">
+                                <input id="nombre_asig_cl" type="text" placeholder="Asignatura" class="form-control" name="nombre_asig_cl"  maxlength="20" required>
+                            </div>
+                     </div>    
                     <div class="form-group">
                         {{ Form::label('horas_totales', Lang::get('Horas Totales'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">

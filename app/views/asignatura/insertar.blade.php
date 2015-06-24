@@ -36,25 +36,18 @@
                     @endif
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                     <div class="form-group">
-                        {{ Form::label('idasignatura', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('idasignatura',null,array('class'=>'form-control','id'=>'idasignatura','placeholder'=>Lang::get('id Asignatura'))) }}
-                        </div>
-                    </div>
+                            {{ Form::label('idasignatura', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                            <div class="col-sm-10">
+                                <input id="idasignatura" type="text" placeholder="Codigo" class="form-control" name="idasignatura"  maxlength="20" required>
+                            </div>
+                     </div>
                     <div class="form-group">
-                        {{ Form::label('nombre_asignatura', Lang::get('sistema.nombre_asignatura'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('nombre_asignatura',null,array('class'=>'form-control','id'=>'nombre_asignatura','placeholder'=>Lang::get('nombre asignatura'))) }}
-                        </div>
-                    </div>
-                   <!-- <div class="form-group">
-                        {{ Form::label('horas_semanales', Lang::get('sistema.horas_semanales'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('horas_semanales',Input::old('horas_semales'),array('class'=>'form-control','id'=>'horas_semanales','placeholder'=>Lang::get('horas semanales'))) }}
-                        </div>
-                    </div>-->
+                            {{ Form::label('nombre_asignatura', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                            <div class="col-sm-10">
+                                <input id="nombre_asignatura" type="text" placeholder="Asignatura" class="form-control" name="nombre_asignatura"  maxlength="20" required>
+                            </div>
+                     </div>
 
                     <div class="form-group">
                             {{ Form::label('horas_semanales', Lang::get('horas_semanales'),array('class'=>'col-sm-2 control-label')) }}
@@ -63,28 +56,12 @@
                             </div>
                         </div>
 
-                  <!--  <div class="form-group">
-                        {{ Form::label('horas_totales', Lang::get('sistema.horas_totales'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('horas_totales',Input::old('horas_totales'),array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('horas totales'))) }}
-                        </div>
-                    </div>-->
-
                        <div class="form-group">
                             {{ Form::label('horas_totales', Lang::get('horas_totales'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 <input id="horas_totales" type="text" placeholder="Horas Totales" class="form-control" name="horas_totales" onKeyPress="return validar(event)" maxlength="3" required>
                             </div>
                         </div>
-
-
-
-<!--                    <div class="form-group">
-                        {{ Form::label('idmodulo', Lang::get('Modulo'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('idmodulo',null,array('class'=>'form-control','id'=>'idmodulo','placeholder'=>Lang::get('id modulo'))) }}
-                        </div>
-                    </div>-->
 
                      <div class="form-group">
                         {{ Form::label('idmodulo', Lang::get('Modulo'),array('class'=>'col-sm-2 control-label')) }}

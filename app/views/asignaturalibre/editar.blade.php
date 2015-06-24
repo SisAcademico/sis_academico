@@ -36,25 +36,21 @@
                         @endif
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                         <div class="form-group">
                             {{ Form::label('idasignatura_cl', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('idasignatura_cl',$asig->idasignatura_cl,array('class'=>'form-control','id'=>'idasignatura_cl','placeholder'=>Lang::get('Codigo de Asignatura'))) }}
+                                <input id="idasignatura_cl" type="text" value="{{$asig->idasignatura_cl}}" class="form-control" name="idasignatura_cl" maxlength="20" required>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            {{ Form::label('nombre_asig_cl', Lang::get('Nombre de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                           <div class="form-group">
+                            {{ Form::label('nombre_asig_cl', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('nombre_asig_cl',$asig->nombre_asig_cl,array('class'=>'form-control','id'=>'nombre_asig_cl','placeholder'=>Lang::get('sistema.nombre_asignatura'))) }}
+                                <input id="nombre_asig_cl" type="text" value="{{$asig->nombre_asig_cl}}" class="form-control" name="nombre_asig_cl" maxlength="20" required>
                             </div>
                         </div>
-                       <!-- <div class="form-group">
-                            {{ Form::label('horas_totales', Lang::get('Horas Totales'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-10">
-                                {{ Form::text('horas_totales',$asig->horas_totales,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('sistema.horas_totales'))) }}
-                            </div>
-                        </div>-->
+
                           <div class="form-group">
                             {{ Form::label('horas_totales', Lang::get('horas_totales'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">

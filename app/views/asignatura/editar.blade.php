@@ -35,26 +35,20 @@
                             </div>
                         @endif
 
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             {{ Form::label('id_asignatura', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('id_asignatura',$asig->idasignatura,array('class'=>'form-control','id'=>'id_asignatura','placeholder'=>Lang::get('id Asignatura'))) }}
+                                <input id="id_asignatura" type="text" value="{{$asig->idasignatura}}" class="form-control" name="id_asignatura" maxlength="20" required>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            {{ Form::label('nombre_asignatura', Lang::get('sistema.nombre_asignatura'),array('class'=>'col-sm-2 control-label')) }}
+                           <div class="form-group">
+                            {{ Form::label('nombre_asignatura', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('nombre_asignatura',$asig->nombre_asignatura,array('class'=>'form-control','id'=>'nombre_asignatura','placeholder'=>Lang::get('sistema.nombre_asignatura'))) }}
+                                <input id="nombre_asignatura" type="text" value="{{$asig->nombre_asignatura}}" class="form-control" name="nombre_asignatura" maxlength="20" required>
                             </div>
                         </div>
-                        <!--<div class="form-group">
-                            {{ Form::label('horas_semanales', Lang::get('sistema.horas_semanales'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-10">
-                                {{ Form::text('horas_semanales',$asig->horas_semanales,array('class'=>'form-control','id'=>'horas_semanales','placeholder'=>Lang::get('sistema.horas_semanales'))) }}
-                            </div>
-                        </div>-->
+
                          <div class="form-group">
                             {{ Form::label('horas_semanales', Lang::get('horas_semanales'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
@@ -62,13 +56,6 @@
                             </div>
                         </div>
 
-                        <!--
-                        <div class="form-group">
-                            {{ Form::label('horas_totales', Lang::get('sistema.horas_totales'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-10">
-                                {{ Form::text('horas_totales',$asig->horas_totales,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('sistema.horas_totales'))) }}
-                            </div>
-                        </div>-->
                          <div class="form-group">
                             {{ Form::label('horas_totales', Lang::get('horas_totales'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
