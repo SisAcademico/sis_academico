@@ -35,8 +35,9 @@ class AsistenciaDocenteController extends \BaseController {
 	{
 		$iddocente = Input::get('id_docente');
 		$timeNow = Carbon\Carbon::now();
+		echo $iddocente." : ".$timeNow;
 		//consulta a DB para saber que curso tiene el docente a esta hora
-		//$data = DB::table('tcarga_academica');
+		
 		//return Redirect::to('docente/asistencia');
 	}
 

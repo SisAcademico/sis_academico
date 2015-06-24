@@ -1,67 +1,39 @@
 <?php
 
-class CarreraController extends BaseController {
-
-	public function insertarCarrera()
-    {
-        return View::make('carrera.insertar');
-
-    }
+class CarreraController extends \BaseController {
 
 
-	public function listarCarreras()
+	public function index()
 	{
-		$carrerastodo=Carrera::all();
-        return View::make('carrera.listar')->with('carrerastodo',$carrerastodo);
-	}
-	public function modificarcarrera($id)
-    {
-
-    }
-	
-	/**
-	* Muestra la pantalla  de acceso al sistema
-	*/
-	public function mostrarPanel()
-	{
-		//return View::make('login.login');
-		return View::make('Carrera.formulario');
+		$carrera = Carrera::all();
+		return View::make('carrera.listar')->with('carreras',$carrera);
 	}
 
+
 	/**
-	 * Display a listing of the resource.
+	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function create()
 	{
-		//
+		//return View::make('alumno.insertar');
 	}
 
-
-	
-
-public function create()
-	{
-		//
-	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @return Respons
+	 * @return Response
 	 */
 	public function store()
 	{
-		//
-		$carrera = new Carrera;
-
-		$carrera->idcarrera=Input::get('idcarrera');
-		$carrera->nombre_carrera=Input::get('nombre_carrera');
-		$carrera->dni=Input::get('nro_modulos');
-		$carrera->save();
-
-		return Redirect::to('carrera/listar');
+		$carreras = new Carrera;
+		$carreras->idcarrera = Input::get('idcarrera');
+		$carreras->nombre_carrera = Input::get('nombre_carrera');
+		$carreras->nro_modulos = Input::get('nro_modulos');
+		$carreras->save();
+		return Redirect::to('carrera');
 	}
 
 
@@ -71,12 +43,11 @@ public function create()
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($ids)
 	{
-		//
-			$carreraaeditar = Carrera::where('idcarrera', '=', $id)->get();
-    	//$docenteaeditar = Docente::where('iddocente','=',$id)->get();
-		return View::make('carrera.modificar')->with('carreraaeditar',$carreraaeditar);
+		//$alumno = Alumno::where('idalumno', '=', $ids)->get();
+		//return View::make('alumno.listar')->with('alumnos',$alumno);
+
 	}
 
 
@@ -88,9 +59,10 @@ public function create()
 	 */
 	public function edit($id)
 	{
-		//
-	}
+		$carrera = Carrera::where('idcarrera', '=', $id)->get();
+		return View::make('carrera.editar')->with('carreras',$carrera);
 
+	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -100,19 +72,15 @@ public function create()
 	 */
 	public function update($id)
 	{
-		//
-		$recuperado = Input::all();
-		//print_r($recuperado) ;
+		$entra = Input::all();
 		$carrera = DB::table('tcarrera')
-			->where('idcarrera',$id)
-			->update(array(
-				//'iddocente'=>$recuperado['IDDOCENTE'],
-				'idcarrera'=>$recuperado['IDCARRERA'],
-				'nombre_carrera'=>$recuperado['NOMBRE_CARRERA'],
-				'Nro_modulos'=>$recuperado['NRO_MODULOS'],
-				 ));
-				return Redirect::to('carrera/listar');
-
+            ->where('idcarrera', $id)
+            ->update(array(
+            'idcarrera' => $entra['idcarrera'],
+            'nombre_carrera' => $entra['nombre_carrera'],
+            'nro_modulos' => $entra['nro_modulos'],
+            ));
+		return Redirect::to('carrera');
 	}
 
 
@@ -125,15 +93,7 @@ public function create()
 	public function destroy($id)
 	{
 		//
-		echo "esto es una prueba de eliminar";
-		//DB::delete('delete from tdocente where id = '.$id);
-		//$test = DB::table('tdocente')->where('iddocente',$id);
-		$test = Carrera::where('idcarrera','=',$id)->delete($id);
-		//print_r($test);
-		echo "elimiado";
-		//return $this->showUsers();
-		return Redirect::to('carrera/listar');
 	}
 
-
+	
 }

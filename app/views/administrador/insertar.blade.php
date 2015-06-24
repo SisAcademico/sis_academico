@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
 @stop
 @section('titulo_cabecera')
-    @lang('Adinistradores')<small>@lang('')</small>
+    @lang('Administrador')<small>@lang('')</small>
 @stop
 @section('ruta_navegacion')
     <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.administrador')</a></li>
@@ -20,8 +20,8 @@
         <div class="col-md-12 col-sm-8">
         {{ Form::open(array('url' => 'formulario','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
             <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Insertar administrador</h3>
+                <div class="box-header with-border " align="center" >
+                    <h3 class="box-title">AGREGAR ADMINISTRADOR</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     @if (count($errors) > 0)
@@ -38,59 +38,60 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                        {{ Form::label('id_administrador', Lang::get('idadministrador'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('id_administrador', Lang::get('ID Administrador: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('id_administrador',null,array('class'=>'form-control','id'=>'id_administrador','placeholder'=>Lang::get('Idadministrador'))) }}
+                            <input id="id_administrador"  type="text" placeholder="Código del Admin" class="form-control" name="id_administrador" onKeyPress="return validar(event)" maxlength="10" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('dni', Lang::get('dni'),array('class'=>'col-sm-2 control-label')) }}
+                            {{ Form::label('dni', Lang::get('Dni: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('dni',null,array('class'=>'form-control','id'=>'dni','placeholder'=>Lang::get('dni'))) }}
+                            <input id="dni" type="text" placeholder="DNI" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="8" required>
+
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('nombres', Lang::get('nombres'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('nombres', Lang::get('Nombres: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('nombres',null,array('class'=>'form-control','id'=>'nombres','placeholder'=>Lang::get('nombres'))) }}
+                            <input id="nombres" type="text" placeholder="Nombres"  class="form-control" name="nombres"  maxlength="50" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('apellidos', Lang::get('apellidos'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('apellidos', Lang::get('Apellidos: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('apellidos',null,array('class'=>'form-control','id'=>'apellidos','placeholder'=>Lang::get('apellidos'))) }}
+                                <input id="apellidos" type="text" placeholder="Apellidos"  class="form-control" name="apellidos"  maxlength="60" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('direccion', Lang::get('direccion'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('direccion', Lang::get('Direccion: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('direccion',null,array('class'=>'form-control','id'=>'direccion','placeholder'=>Lang::get('direccion'))) }}
+                                <input id="direccion" type="text" placeholder="Dirección" class="form-control" name="direccion"  maxlength="60" required>
+                       </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('telefono', Lang::get('Telefono: '),array('class'=>'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                                <input id="telefono" type="text" placeholder="Teléfono" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('telefono', Lang::get('telefono'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('correo', Lang::get('Correo: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('telefono',null,array('class'=>'form-control','id'=>'telefono','placeholder'=>Lang::get('telefono'))) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('correo', Lang::get('correo'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('correo',null,array('class'=>'form-control','id'=>'correo','placeholder'=>Lang::get('correo'))) }}
-                        </div>
+                             <input id="correo" type="email" placeholder="Correo" class="form-control" name="correo"  required>
+                         </div>
                     </div>
                     
                     <div class="form-group">
-                        {{ Form::label('foto', Lang::get('foto'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('foto', Lang::get('Foto: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input type="file" id="foto">
+                             {{ Form::file('photo') }}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('estado', Lang::get('estado'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('estado', Lang::get('Estado: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('estado',null,array('class'=>'form-control','id'=>'estado','placeholder'=>Lang::get('estado'))) }}
+                            <input id="estado" type="text" placeholder="estado"  class="form-control" name="estado"  maxlength="20" required>
                         </div>
                     </div>
                     
@@ -112,6 +113,27 @@
     </div><!-- /.box -->
     @section ('scrips_n')
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+                <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            function validar(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true; 
+                if (tecla==44) return true; 
+                if (tecla==48) return true;
+                if (tecla==49) return true;
+                if (tecla==50) return true;
+                if (tecla==51) return true;
+                if (tecla==52) return true;
+                if (tecla==53) return true;
+                if (tecla==54) return true;
+                if (tecla==55) return true;
+                if (tecla==56) return true;
+                if (tecla==57) return true;
+                patron = /1/; //ver nota
+                te = String.fromCharCode(tecla);
+                return patron.test(te); 
+            } 
+        </script>
     @stop
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
 @endsection

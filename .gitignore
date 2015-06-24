@@ -11,3 +11,8 @@ Thumbs.db
 .idea/misc.xml
 app/config/database.php
 composer.json
+.idea/workspace.xml
+*.zip
+_ide_helper.php
+.idea/workspace.xml
+_ide_helper.php

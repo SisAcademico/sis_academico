@@ -3,7 +3,7 @@
     @lang('Registrar Asistencia')
 @stop
 @section('titulo_cabecera')
-    @lang('Docentes')<small>@lang('')</small>
+    @lang('Docentes')<small>@lang('sistema.registrar_asistencia')</small>
 @stop
 @section('ruta_navegacion')
     <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.docente')</a></li>
@@ -18,7 +18,7 @@
             {{ Form::open(array( 'files' => true, 'class' => 'form-horizontal' )) }}
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Registrar Notas</h3>
+                    <h3 class="box-title">Registrar Asistencia</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     @if (count($errors) > 0)
@@ -35,19 +35,14 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   
                     <div class="form-group">
-                        {{ Form::label('id_docente', Lang::get('Docente'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('id_docente', Lang::get('Codigo de Docente'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <select class="form-control input-sm" name="id_docente">
-                            <option value="" ></option>
-                            @foreach($docentes as $docente)
-                                <option value="{{$docente->iddocente}}" >{{$docente->nombres }} {{" "}}{{$docente->apellidos}}</option>
-                            @endforeach
-                            </select>
+                            <input type = "text" name = "id_docente" size = "20" placeholder= "Ejem: d0001">
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
-                    {{ Form::submit(Lang::get('Ingresar Notas'), array('class' => 'btn btn-info pull-right', 'action' => 'NotaController@getCourseData')) }}
+                    {{ Form::submit(Lang::get('Registrar Asistencia'), array('class' => 'btn btn-info pull-right', 'action' => 'NotaController@getCourseData')) }}
                 </div>
             </div>
             {{ Form::close() }}

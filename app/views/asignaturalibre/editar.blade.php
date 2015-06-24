@@ -49,13 +49,18 @@
                                 {{ Form::text('nombre_asig_cl',$asig->nombre_asig_cl,array('class'=>'form-control','id'=>'nombre_asig_cl','placeholder'=>Lang::get('sistema.nombre_asignatura'))) }}
                             </div>
                         </div>
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             {{ Form::label('horas_totales', Lang::get('Horas Totales'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::text('horas_totales',$asig->horas_totales,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('sistema.horas_totales'))) }}
                             </div>
+                        </div>-->
+                          <div class="form-group">
+                            {{ Form::label('horas_totales', Lang::get('horas_totales'),array('class'=>'col-sm-2 control-label')) }}
+                            <div class="col-sm-10">
+                                <input id="horas_totales" type="text" value="{{$asig->horas_totales}}" class="form-control" name="horas_totales" onKeyPress="return validar(event)" maxlength="3" required>
+                            </div>
                         </div>
-
                        
 
                     </div>
@@ -71,6 +76,32 @@
     </div><!-- /.box -->
 @section ('scrips_n')
     <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+     <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+     <script src="{{asset('/js/ja1.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/adminlte/plugins/datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/adminlte/plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/sis_academico.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            function validar(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true; 
+                if (tecla==44) return true; 
+                if (tecla==48) return true;
+                if (tecla==49) return true;
+                if (tecla==50) return true;
+                if (tecla==51) return true;
+                if (tecla==52) return true;
+                if (tecla==53) return true;
+                if (tecla==54) return true;
+                if (tecla==55) return true;
+                if (tecla==56) return true;
+                if (tecla==57) return true;
+                patron = /1/; //ver nota
+                te = String.fromCharCode(tecla);
+                return patron.test(te); 
+            } 
+        </script>
 @stop
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
 @endsection
