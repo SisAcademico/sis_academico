@@ -40,12 +40,7 @@
                     <input type="hidden" id="hora_inicio_antigua" value="{{ $horario->hora_inicio}}">
                     <input type="hidden" id="hora_fin_antigua" value="{{ $horario->hora_fin}}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    	<div class="form-group">
-                            {{ Form::label('Id', Lang::get('Id'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-10">
-                                {{ Form::text('id',$horario->idhorario,array('class'=>'form-control','id'=>'Hora Inicio','placeholder'=>Lang::get('Inicio'), 'readonly' => 'true')) }}
-                            </div>
-                        </div>
+                    	
                    		<div class="form-group">
                             {{ Form::label('hora_inicio', Lang::get('Hora  de Inicio'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">

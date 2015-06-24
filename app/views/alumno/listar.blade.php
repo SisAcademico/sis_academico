@@ -5,6 +5,7 @@
 @section ('estilos')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/btn.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/adminlte/plugins/datepicker/css/bootstrap-datepicker3.standalone.css')}}">
 @stop
 @section('titulo_cabecera')
     @lang('Alumnos')<small>@lang('')</small>
@@ -88,12 +89,19 @@
                                 <input id="correo" type="email" placeholder="Correo" class="form-control" name="correo"  required>
                             </div>
                         </div>
+                        
                         <div class="form-group">
-                            {{ Form::label('fecha_ingreso', Lang::get('Fecha'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-10">
-                                <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha de Ingreso" value="2015/06/22" required/>
+                            {{ Form::label('fecha', Lang::get('Fecha'),array('class'=>'col-sm-2 control-label')) }}
+                            <div class="col-sm-3">
+                                <div class="input-group input-group-sm">
+                                    {{ Form::text('fecha',null,array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly', 'size' =>'20')) }}
+                                    <span class="input-group-btn">
+                                      <button class="btn bg-purple btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             {{ Form::label('foto', Lang::get('Foto'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
@@ -162,6 +170,9 @@
     @section ('scrips_n')
         <script src="{{asset('/js/ja1.js')}}" type="text/javascript"></script>
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/adminlte/plugins/datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/adminlte/plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/sis_academico.js')}}" type="text/javascript"></script>
         <script type="text/javascript">
             function validar(e) {
                 tecla = (document.all) ? e.keyCode : e.which;
