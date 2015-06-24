@@ -10,6 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::resource('docente/asistencia', 'AsistenciaDocenteController');
+
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');
@@ -90,13 +92,5 @@ Route::post('wilson/{id}','CargaAcademicaController@modificar');
 //-------------------------AULA CARGA------------------------------
 Route::get('aula_carga/listar', 'AulaCargaController@listarAulaCarga');
 Route::get('aula_carga/insertar', 'AulaCargaController@insertar');
-
-
-Route::get('docente/insertarasistencia', 'AsistenciaDocenteController@insertarAsistenciaDocente');
-Route::post('formulario2', 'AsistenciaDocenteController@store');
-Route::get('docente/listarasistencia', 'AsistenciaDocenteController@listar');
-Route::get('docente/Eliminarasistencia/{id}','AsistenciaDocenteController@destroy');
-Route::get('docente/modificarasistencia/{id}','AsistenciaDocenteController@show');
-Route::post('formulario2/{id}','AsistenciaDocenteController@update');
 
 Route::any('storeCarga_Horario/','HorarioCargaController@store');

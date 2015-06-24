@@ -63,26 +63,28 @@
                                             <td><?php echo $apellido ?></td>
                                             <?php for ($i=0; $i <$nroExamenes ; $i++) { 
                                                 # code...
-                                                $var = $iddetalle_matricula.":".$i;
+                                                $var = $iddetalle_matricula;
                                             ?>
                                             <td>
                                             
                                             @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" >"; 
+                                                    echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\">"; 
                                                     $Promedio+=$notas[$i];
                                                 ?>
                                             
                                             @else
                                                 <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\" maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" >";
+                                                    echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"".$notas[$i]."\" size=\"5\" maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\">";
                                                     $Promedio+=$notas[$i];
                                                 ?>
                                             @endif    
 
                                             </td><?php $notas[$i]=""; } ?>
                                             <td>
-                                                <?php echo $Promedio/$nroExamenes ?>
+                                                <?php 
+                                                    echo "<input type=\"text\"  id = \"promedio".$var."\" value = \"".$Promedio/$nroExamenes."\" readonly size = '5'>";
+                                                 ?>
                                             </td>
                                             
 
@@ -123,26 +125,28 @@
                                             <td><?php echo $apellido ?></td>
                                             <?php for ($i=0; $i <$nroExamenes ; $i++) { 
                                                 # code...
-                                                $var = $iddetalle_matricula.":".$i;
+                                                $var = $iddetalle_matricula;
                                             ?>
                                             <td>
                                             
                                             @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" >";
+                                                    echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\" >";
                                                     $Promedio+=$notas[$i];
                                                 ?>
                                             
                                             @else
                                                 <?php 
-                                                    echo "<input type=\"text\" name=\"".$var."\" value = \"".$notas[$i]."\" size=\"5\" maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" >";
+                                                    echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"".$notas[$i]."\" size=\"5\" maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\" >";
                                                     $Promedio+=$notas[$i];
                                                 ?>
                                             @endif   
 
                                             </td><?php $notas[$i]=""; } ?>
                                             <td>
-                                                <?php echo $Promedio/$nroExamenes ?>
+                                                <?php 
+                                                    echo "<input type=\"text\"  id = \"promedio".$var."\" value = \"".$Promedio/$nroExamenes."\" readonly size = '5'>";
+                                                 ?>
                                             </td>
                                             
 
@@ -158,6 +162,9 @@
                             </ul> 
                         @endif
                     </table>
+                <?php 
+                        echo "<input type=\"hidden\"  id = \"nroparciales\" value = \"".$nroExamenes."\">";
+                ?>    
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix text-center">
                     <ul class="pagination pagination-sm no-margin">
@@ -177,4 +184,30 @@
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
 @endsection
+ @section ('scrips_n')
+        <script type="text/javascript">
+            function validar(e) {
+                var targ;
+                if (e.target)
+                {
+                    targ = e.target.name; 
+                }
+                else if (e.srcElement)
+                {
+                    targ = e.srcElement.name;
+                }
+                targ = targ.substring(0, targ.length-2);
+                nroExamenes =  document.getElementById("nroparciales").value;
+                promedio = 0;
+                for(i=0;i<nroExamenes;i++)
+                {
+                    str1 = ":".concat(String(i));
+                    str2 = targ.concat(str1);
+                    promedio+= parseFloat(document.getElementById(str2).value);
+                }
+                document.getElementById("promedio".concat(targ)).value  = promedio/parseFloat(nroExamenes);
+                return true;
+            }
+        </script>   
+    @stop
 @endsection
