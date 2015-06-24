@@ -61,12 +61,22 @@
                             {{ Form::text('horas_totales',null,array('class'=>'form-control','id'=>'horas_totales','placeholder'=>Lang::get('horas totales'))) }}
                         </div>
                     </div>
-                    <div class="form-group">
-                        {{ Form::label('idmodulo', Lang::get('Id Modulo'),array('class'=>'col-sm-2 control-label')) }}
+<!--                    <div class="form-group">
+                        {{ Form::label('idmodulo', Lang::get('Modulo'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('idmodulo',null,array('class'=>'form-control','id'=>'idmodulo','placeholder'=>Lang::get('id modulo'))) }}
                         </div>
+                    </div>-->
+
+                     <div class="form-group">
+                        {{ Form::label('idmodulo', Lang::get('Modulo'),array('class'=>'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                            {{
+                                Form::select('idmodulo', array_pluck(Modulo::all(),'nombre_modulo','idmodulo'),null,array('class'=>'form-control','id'=>'idmodulo'))
+                            }}
+                        </div>
                     </div>
+
                     <div class="form-group">
                         {{ Form::label('pre_requisito', Lang::get('sistema.pre_requisito'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
