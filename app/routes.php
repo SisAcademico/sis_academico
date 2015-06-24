@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::any('docente/asistencia/listarCursos', 'AsistenciaDocenteController@listarCursosDocente');
 Route::resource('docente/asistencia', 'AsistenciaDocenteController');
 
 Route::group(array('prefix' => 'alumno'), function()

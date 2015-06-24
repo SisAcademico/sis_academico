@@ -15,7 +15,7 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-            {{ Form::open(array( 'files' => true, 'class' => 'form-horizontal' )) }}
+            {{ Form::open(array( 'files' => true, 'class' => 'form-horizontal' , 'action' => array('AsistenciaDocenteController@listarCursosDocente'))) }}
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Registrar Asistencia</h3>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    {{ Form::submit(Lang::get('Registrar Asistencia'), array('class' => 'btn btn-info pull-right', 'action' => 'NotaController@getCourseData')) }}
+                    {{ Form::submit(Lang::get('Registrar Asistencia'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div>
             {{ Form::close() }}
