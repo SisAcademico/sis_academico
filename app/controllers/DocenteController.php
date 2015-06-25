@@ -1,38 +1,16 @@
 <?php
-use Illuminate\Support\Facades\Session;
+
 class DocenteController extends \BaseController {
 
     /**
-     * Mostrar el formulario de inserción de alumnos
+     * Mostrar el formulario de inserción de Docentes
      */
-    public function insertarDocente()
-    {
-        //return View::make('docente.insertar');
-        $tdocente=docente::all();
-		
-        return View::make('docente.insertar')->with('tdocente',$tdocente);
-    }
 
-    /**
-     * Listar alumnos
-     */
-    public function listarDocente()
-    {
-    	//return View::make('docente.listar');
-        $Docentestodo=docente::all();
-        return View::make('docente.listar')->with('Docentestodo',$Docentestodo);
-    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
-	{  
-		//
-		/*$posts=Post::all();
-		return View::make('docente.listar')->with('docentes',$posts)*/
+	{
+		$docente = Docente::all();
+		return View::make('docente.listar')->with('docentes',$docente);
 	}
 
 
@@ -43,7 +21,7 @@ class DocenteController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		//return View::make('Docente.insertar');
 	}
 
 
@@ -54,20 +32,29 @@ class DocenteController extends \BaseController {
 	 */
 	public function store()
 	{
-		$docente=new docente;
-		$docente->iddocente=Input::post('iddocente');
-		$docente->dni=Input::post('dni');
-		$docente->nombres=Input::post('nombres');
-		$docente->apellidos=Input::post('apellidos');
-		$docente->direccion=Input::post('direccion');
-		$docente->telefono=Input::post('telefono');
-		$docente->correo=Input::post('correo');
-		$docente->cargo=Input::post('cargo');
-		$docente->estado=Input::post('estado');
-		$docente->fecha_inicio=Input::post('fecha_inicio');
-		$docente->idfoto=Input::post('idfoto');
-		$docente->save();
-		return Redirect::to('docente.listar');
+		$docentes = new Docente;
+		$foto = new Foto;
+		$id = DB::table('tusuario')->insertGetId(
+    	['password' => Input::get('id_docente').'i', 'tipo_usuario' => 'docente']
+		);
+		$id2 = DB::table('tfoto')->insertGetId(
+    	['imagen' => Input::file("photo")]
+		);
+		$docentes->iddocente = Input::get('id_docente');
+		$docentes->idusuario = $id;
+		$docentes->dni = Input::get('dni');
+		$docentes->nombres = Input::get('nombres');
+		$docentes->apellidos = Input::get('apellidos');
+		$docentes->direccion = Input::get('direccion');
+		$docentes->telefono = Input::get('telefono');
+		$docentes->correo = Input::get('correo');
+		$docentes->cargo = Input::get('cargo');
+		$docentes->telefono = Input::get('telefono');
+		$docentes->fecha_inicio = Input::get('fecha');
+		$docentes->idfoto = $id2;
+		$docentes->estado = 'Activo';
+		$docentes->save();
+		return Redirect::to('docente');
 	}
 
 
@@ -77,9 +64,11 @@ class DocenteController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($ids)
 	{
-		
+		//$Docente = Docente::where('idDocente', '=', $ids)->get();
+		//return View::make('Docente.listar')->with('Docentes',$Docente);
+
 	}
 
 
@@ -91,7 +80,9 @@ class DocenteController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$docente = Docente::where('iddocente', '=', $id)->get();
+		return View::make('docente.editar')->with('docentes',$docente);
+
 	}
 
 	/**
@@ -102,7 +93,27 @@ class DocenteController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$entra = Input::all();
+		$foto = new Foto;
+		$id2 = DB::table('tfoto')->insertGetId(
+    	['imagen' => Input::file("photo")]
+		);
+		$docente = DB::table('tDocente')
+            ->where('iddocente', $id)
+            ->update(array(
+            'iddocente' => $entra['id_docente'],
+            'dni' => $entra['dni'],
+            'nombres' => $entra['nombres'],
+            'apellidos' => $entra['apellidos'],
+            'direccion' => $entra['direccion'],
+            'telefono' => $entra['telefono'],
+            'correo' => $entra['correo'],
+            'cargo' => $entra['cargo'],
+            'fecha_inicio' => $entra['fecha'],
+            'estado' => 'Activo',
+            'idfoto' => $id2
+            ));
+		return Redirect::to('docente');
 	}
 
 
@@ -114,11 +125,7 @@ class DocenteController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$docente= Docente::find($id);
-		$docente-> delete();
-		Session::flash('message',$docente->nombres.'fue eliminado de la base de datos');
-		return Redirect::to('docente.listar');
-		//dd("Id Eliminado".$id);
+		//
 	}
 
 

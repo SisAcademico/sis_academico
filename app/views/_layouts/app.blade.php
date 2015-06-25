@@ -144,15 +144,9 @@
             </li>
             
 			<li class="treeview">
-              <a href="#">
-                <i class="fa fa-users"></i> <span>Docentes</span> <i class="fa fa-angle-left pull-right"></i>
+              <a href="{{ URL::to( '/docente') }}">
+                <i class="fa fa-users"></i> <span>Docentes</span> 
               </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ URL::to( '/docente/listar') }}"><i class="fa fa-list"></i> Listar  Docente</a></li>
-                <li><a href="{{ URL::to( '/docente/insertar') }}"><i class="fa fa-plus"></i> Agregar  Docente</a></li>
-                <li><a href="{{ URL::to( '/docente/asistencia') }}"><i class="fa fa-list"></i> Registrar Asistencia </a></li>
-                
-              </ul>
             </li>
 			<li class="treeview">
               <a href="{{ URL::to( '/alumno') }}">

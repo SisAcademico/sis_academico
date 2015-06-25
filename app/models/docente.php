@@ -1,6 +1,6 @@
 <?php
 
-class docente extends Eloquent {
+class Docente extends Eloquent {
 
 		protected $table = 'tdocente';
 		public $timestamps= false;
