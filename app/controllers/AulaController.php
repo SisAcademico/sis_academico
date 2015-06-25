@@ -2,24 +2,6 @@
 
 class AulaController extends \BaseController {
 
-
-    /**
-     * Mostrar el formulario para agregar un aula
-     */
-    public function agregarAula()
-    {
-        return View::make('aula.agregar');
-    }
-
-    /**
-     * Listar las aulas
-     */
-    public function listarAulas()
-    {
-        $aulas = Aula::all();
-        return View::make('aula.listar', array('aulas' => $aulas));
-    }
-
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -27,7 +9,8 @@ class AulaController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$aulas = Aula::all();
+        return View::make('aula.listar', array('aulas' => $aulas));
 	}
 
 
@@ -38,7 +21,7 @@ class AulaController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('aula.agregar');
 	}
 
 
@@ -49,7 +32,27 @@ class AulaController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$aula = new Aula();
+        $rules = array
+            (
+            'idaula' => 'required|unique:taula',
+            'capacidad' => 'required|numeric|min:15',
+            'estado' => 'required',
+            'capacidad' => 'required',
+        );
+        $validator = Validator::make(Input::All(), $rules);
+        if ($validator->passes()) {
+                $aula->idaula = Input::get('idaula');
+                $estado = Input::get('estado');
+				$aula->estado=$estado[0];
+                $aula->capacidad = Input::get('capacidad');
+                $aula->tipo = Input::get('tipo');
+                $aula->save();
+                return Redirect::to('aula');
+            
+        } else {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
 	}
 
 
@@ -73,7 +76,8 @@ class AulaController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$aula = Aula::where('idaula', '=', $id)->get();
+        return View::make('aula.editar')->with('aula',$aula);
 	}
 
 
@@ -85,7 +89,30 @@ class AulaController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules= array
+                (
+                    'idaula' => 'required',
+					'capacidad' => 'required|numeric|min:15',
+					'estado' => 'required',
+					'capacidad' => 'required',
+                );
+                $validator=Validator::make(Input::All(),$rules);
+                if ($validator->passes()) {
+                        $inputs = Input::all();
+				
+                        $aula = DB::table('taula')
+                            ->where('idaula', $id)
+                            ->update(array(
+                                'estado' => $inputs['estado'][0],
+                                'capacidad' => $inputs['capacidad'],
+                                'tipo' => $inputs['tipo'],
+                            ));
+                        return Redirect::to('aula');
+                 }
+                else
+                {
+                    return Redirect::back()->withInput()->withErrors($validator);
+                }
 	}
 
 

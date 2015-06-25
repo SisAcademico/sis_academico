@@ -13,7 +13,7 @@ class AsistenciaAlumnoController extends BaseController {
 public function listar()
 	{
 	// Invocando a Lista de asignaturas segun semestre y carga academica
-	$listaAsignaturasCargo=AsistenciaAlumno::getAsignaturasCargo('2015-I');
+	$listaAsignaturasCargo=AsistenciaAlumno::getAsignaturasCargo('d0001');
     return View::make('alumno.asistencia.listar_asistencia',array('listaAsignaturasCargo' => $listaAsignaturasCargo));
 }
 

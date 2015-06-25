@@ -18,7 +18,8 @@
 	<div class="row">
 		<!-- INICIO: BOX PANEL -->
 		<div class="col-md-12 col-sm-8">
-            {{ Form::open(array('url' => 'semestre','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+		@foreach($semestre as $sem)
+            {{ Form::open(array('url' => 'semestre/'.$sem->idsemestre,'autocomplete' => 'off','method' => 'put','class' => 'form-horizontal', 'role' => 'form')) }}
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Agregar semestre</h3>
@@ -40,14 +41,14 @@
             <div class="form-group">
                 {{ Form::label('idsemestre', Lang::get('sistema.semestre'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-3">
-                     {{ Form::text('idsemestre',null,array('class'=>'form-control','id'=>'idsemestre','placeholder'=>Lang::get('sistema.ejemplo').': 2015-I')) }}
+                     {{ Form::text('idsemestre',$sem->idsemestre,array('class'=>'form-control','id'=>'idsemestre','placeholder'=>Lang::get('sistema.ejemplo').': 2015-I')) }}
                 </div>
             </div>
             <div class="form-group">
                 {{ Form::label('fecha_inicio', Lang::get('sistema.fecha_inicio'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-3">
                     <div class="input-group input-group-sm">
-                        {{ Form::text('fecha_inicio',null,array('class'=>'form-control fecha_cal required','id'=>'fecha_inicio','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly')) }}
+                        {{ Form::text('fecha_inicio',$sem->fecha_inicio,array('class'=>'form-control fecha_cal required','id'=>'fecha_inicio','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly')) }}
                         <span class="input-group-btn">
                           <button class="btn bg-purple btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
                         </span>
@@ -58,7 +59,7 @@
                 {{ Form::label('fecha_fin', Lang::get('sistema.fecha_fin'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-3">
                     <div class="input-group input-group-sm">
-                        {{ Form::text('fecha_fin',null,array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly')) }}
+                        {{ Form::text('fecha_fin',$sem->fecha_fin,array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly')) }}
                         <span class="input-group-btn">
                           <button class="btn bg-purple btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
                         </span>
@@ -68,10 +69,11 @@
 
                 </div>
                 <div class="box-footer">
-                    {{ Form::submit(Lang::get('sistema.agregar_semestre'), array('class' => 'btn btn-info pull-right')) }}
+                    {{ Form::submit(Lang::get('sistema.actualizar_semestre'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div>
             {{ Form::close() }}
+			@endforeach
 		</div>
 	  <!-- INICIO: BOX PANEL -->
 	</div><!-- /.box -->

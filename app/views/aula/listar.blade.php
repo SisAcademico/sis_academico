@@ -6,7 +6,7 @@
     @lang('sistema.listar_aulas')<small>@lang('sistema.listar_aulas')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="{{ URL::to( '/aula/listar') }}"><i class="fa fa-list"></i> @lang('sistema.aula')s</a></li>
+    <li><a href="{{ URL::to( '/aula') }}"><i class="fa fa-list"></i> @lang('sistema.aula')s</a></li>
     <li class="active">@lang('sistema.aula')s</li>
 @stop
 
@@ -18,7 +18,7 @@
 						 <div class="box box-success">
 								<div class="box-header with-border">
 								  <h3 class="box-title">@lang('sistema.listar_aulas')</h3>
-                                  <a class="btn btn-primary pull-right" href="{{ URL::to( '/aula/agregar') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a>
+                                  <a class="btn btn-primary pull-right" href="{{ URL::to( '/aula/create') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a>
 								</div><!-- /.box-header -->
 								<div class="box-body">
 								  <table class="table table-bordered">
@@ -38,7 +38,7 @@
                                               <td>{{ $aula->capacidad }}</td>
                                               <td>{{ $aula->tipo }}</td>
                                               <td>{{ $aula->estado }}</td>
-                                              <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/aula/{{ $aula->idaula }}"><i class="fa fa-edit"></i> </a></td>
+                                              <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/aula/{{ $aula->idaula }}/edit"><i class="fa fa-edit"></i> </a></td>
                                           </tr>
                                       @endforeach
                                       </tbody>

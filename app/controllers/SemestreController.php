@@ -2,103 +2,111 @@
 
 class SemestreController extends \BaseController {
 
-
     /**
-     * Mostrar el formulario para agregar un semestre
+     * Display a listing of the resource.
+     *
+     * @return Response
      */
-    public function agregarSemestre()
-    {
-        return View::make('semestre.agregar');
-    }
-
-    /**
-     * Listar los semestres
-     */
-    public function listarSemestres()
-    {
+    public function index() {
         $semestres = Semestre::all();
         return View::make('semestre.listar', array('semestres' => $semestres));
     }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create() {
+        return View::make('semestre.agregar');
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store() {
+        $semestre = new Semestre();
+        $rules = array
+            (
+            'idsemestre' => 'required|unique:tsemestre',
+            'fecha_inicio' => 'required',
+            'fecha_fin' => 'required',
+        );
+        $validator = Validator::make(Input::All(), $rules);
+        if ($validator->passes()) {
+            //$idsemestre = DB::table('tsemestre')->where('idsemestre', Input::get('idsemestre'))->pluck('idsemestre');
+                $semestre->idsemestre = Input::get('idsemestre');
+                $semestre->fecha_inicio = Input::get('fecha_inicio');
+                $semestre->fecha_fin = Input::get('fecha_fin');
+                $semestre->save();
+                return Redirect::to('semestre');
+            
+        } else {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id) {
+        //
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id) {
+        $semestre = Semestre::where('idsemestre', '=', $id)->get();
+        return View::make('semestre.editar')->with('semestre',$semestre);
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id) {
+        $rules= array
+                (
+                    'idsemestre' => 'required',
+					'fecha_inicio' => 'required',
+					'fecha_fin' => 'required',
+                );
+                $validator=Validator::make(Input::All(),$rules);
+                if ($validator->passes()) {
+                        $inputs = Input::all();
+                        $semestre = DB::table('tsemestre')
+                            ->where('idsemestre', $id)
+                            ->update(array(
+                                'fecha_inicio' => $inputs['fecha_inicio'],
+                                'fecha_fin' => $inputs['fecha_fin'],
+                            ));
+                        return Redirect::to('semestre');
+                 }
+                else
+                {
+                    return Redirect::back()->withInput()->withErrors($validator);
+                }
+    }
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id) {
+        //
+    }
 
 }

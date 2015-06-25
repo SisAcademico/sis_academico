@@ -4,13 +4,20 @@ class AsistenciaAlumno extends Eloquent
 	protected $table='tasistencia_alumno';
 	public $timestamps=false;
 	
-	public static function getAsignaturasCargo($semestre){
-		//----
-		$resultadoCursos=DB::table('tcarga_academica')
-            ->join('tasignatura', 'tcarga_academica.idasignatura', '=', 'tasignatura.idasignatura')
-            ->join('tmodulo', 'tmodulo.idmodulo', '=', 'tasignatura.idmodulo')
-			->select('tcarga_academica.*','tasignatura.nombre_asignatura','tmodulo.nombre_modulo')
-			->where('tcarga_academica.idsemestre', '=', "$semestre")
+	public static function getAsignaturasCargo($iddocente){
+
+		$resultadoCursos=DB::table('tdocente')
+
+            ->join('tcarga_academica', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
+            ->leftJoin('tasignatura', 'tasignatura.idasignatura', '=', 'tcarga_academica.idasignatura')
+            ->leftJoin('tasignatura_cl', 'tasignatura_cl.idasignatura_cl', '=', 'tcarga_academica.idasignatura_cl')
+            ->leftJoin('tmodulo', 'tmodulo.idmodulo', '=', 'tasignatura.idmodulo')
+            ->leftJoin('tcarrera', 'tcarrera.idcarrera', '=', 'tmodulo.idcarrera')
+            ->leftJoin('tsemestre', 'tsemestre.idsemestre', '=', 'tcarga_academica.idsemestre')
+			->select('tcarga_academica.*','tasignatura.nombre_asignatura','tasignatura_cl.nombre_asig_cl','tasignatura.idmodulo',
+			'tmodulo.nombre_modulo','tcarrera.nombre_carrera','tsemestre.fecha_inicio','tsemestre.fecha_inicio')
+			->where('tdocente.iddocente', '=', "$iddocente")
+			->orderBy('idsemestre', 'DESC')
             ->get();
         return $resultadoCursos;
 	}

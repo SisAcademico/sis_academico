@@ -8,6 +8,6 @@ class Aula extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'taula';
-
+	public $timestamps = false;
 	
 }

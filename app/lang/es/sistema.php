@@ -25,6 +25,7 @@ return array(
     "agregar_semestre"=>"Agregar semestre",
     "fecha_inicio"=>"Fecha de inicio",
     "fecha_fin"=>"Fecha de fin",
+    "actualizar_semestre"=>"Actualizar semestre",
 
     "aula"=>"Aula",
     "listar_aulas"=>"Listar aulas",
@@ -32,6 +33,7 @@ return array(
     "capacidad"=>"Capacidad",
     "ingrese_capacidad"=>"Ingrese la capacidad del ambiente",
     "codigo_aula"=>"Código de aula",
+    "actualizar_aula"=>"Actualizar aula",
 
     "asistencia_alumnos"=>"Asistencia de alumnos",
     "listar_asistencia"=>"Listar asistencia de alumnos",

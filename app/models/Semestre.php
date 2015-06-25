@@ -8,6 +8,7 @@ class Semestre extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'tsemestre';
+	public $timestamps = false;
 
 	
 }

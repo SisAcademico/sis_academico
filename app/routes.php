@@ -52,11 +52,8 @@ Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
 */
-Route::get('semestre/listar', 'SemestreController@listarSemestres');
-Route::get('semestre/agregar', 'SemestreController@agregarSemestre');
-
-Route::get('aula/listar', 'AulaController@listarAulas');
-Route::get('aula/agregar', 'AulaController@agregarAula');
+Route::resource('semestre', 'SemestreController');
+Route::resource('aula', 'AulaController');
 /*
 
 Route::get('alumno/listar', 'AlumnoController@listarAlumnos');
