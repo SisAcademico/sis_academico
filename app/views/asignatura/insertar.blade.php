@@ -45,7 +45,7 @@
                     <div class="form-group">
                             {{ Form::label('nombre_asignatura', Lang::get('Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="nombre_asignatura" type="text" placeholder="Asignatura" class="form-control" name="nombre_asignatura"  maxlength="20" required>
+                                <input id="nombre_asignatura" type="text" placeholder="Asignatura" class="form-control" name="nombre_asignatura"  maxlength="60" required>
                             </div>
                      </div>
 
