@@ -87,14 +87,6 @@
                              {{ Form::file('photo') }}
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        {{ Form::label('estado', Lang::get('Estado: '),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <input id="estado" type="text" placeholder="estado"  class="form-control" name="estado"  maxlength="20" required>
-                        </div>
-                    </div>
-                    
                     
                 </div>
                 <div class="box-footer">

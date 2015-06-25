@@ -72,7 +72,7 @@ public function create()
 		$administrador->telefono=Input::get('telefono');
 		$administrador->correo=Input::get('correo');
 		
-		$administrador->estado=Input::get('estado');
+		$administrador->estado='Activo';
 		
 		$administrador->idfoto=$id1;
 
