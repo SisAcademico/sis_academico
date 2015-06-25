@@ -39,13 +39,14 @@
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-
+<!--
                     <div class="form-group">
                         {{ Form::label('idmodulo', Lang::get('ID Modulo: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             <input id="idmodulo" type="text" placeholder="ID Modulo" value="{{$mod->idmodulo}}" class="form-control" name="idmodulo" maxlength="11" onKeyPress="return validar(event)" required>
                         </div>
                     </div>
+-->
                     <div class="form-group">
                         {{ Form::label('nombre_modulo', Lang::get('Nombre del Modulo: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
@@ -55,7 +56,9 @@
                      <div class="form-group">
                         {{ Form::label('idcarrera', Lang::get('Carrera Profesional: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="idcarrera" type="text" placeholder="Carrera Profesional" value="{{$mod->idcarrera}}" class="form-control" name="idcarrera" maxlength="5" required>
+                            {{
+                                Form::select('idcarrera', array_pluck(Carrera::all(),'nombre_carrera','idcarrera'),null,array('class'=>'form-control','$mod'=>'idcarrera'))
+                            }}
                        </div>
                     </div>
                 <div class="box-footer">

@@ -7,8 +7,10 @@ class ModuloController extends BaseController {
 
 	public function index()
 	{
+
 		$modulo = Modulo::all();
 		return View::make('modulo.listar')->with('modulos',$modulo);
+
 	}
 
 
@@ -30,9 +32,10 @@ class ModuloController extends BaseController {
 	 */
 	public function store()
 	{
+
 		$modulos = new Modulo;
 
-		$modulos->idmodulo=Input::get('idmodulo');
+	//	$modulos->idmodulo=Input::get('idmodulo');
 		$modulos->nombre_modulo=Input::get('nombre_modulo');
 		$modulos->idcarrera=Input::get('idcarrera');
 		$modulos->save();
@@ -80,7 +83,7 @@ class ModuloController extends BaseController {
 		$carrera = DB::table('tmodulo')
             ->where('idmodulo', $id)
             ->update(array(
-            'idmodulo' => $entra['idmodulo'],
+       //     'idmodulo' => $entra['idmodulo'],
             'nombre_modulo' => $entra['nombre_modulo'],
             'idcarrera' => $entra['idcarrera'],
             ));
@@ -98,6 +101,7 @@ class ModuloController extends BaseController {
 	{
 		//
 	}
+
 
 	
 }
