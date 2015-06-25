@@ -22,23 +22,17 @@
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th >Id</th>
-                            <th >Nombre Asignatura</th>
-                            <th >Horas Semanales</th>
-                            <th >Horas Totales </th>
-                            <th >Modulo</th>
-                            <th >Pre Requisito</th>
+                            <th style="width: 10px">#</th>
+                            <th>Nombre Asignatura</th>
+                            <th style="width: 80px">Accion</th>
                         </tr>
 
 
                         @foreach($asignatura as $asig)
                             <tr>
-                                <td>{{ $asig->idasignatura }}</td>
+                                <td>1.</td>
                                 <td>{{ $asig->nombre_asignatura }}</td>
-                                <td>{{ $asig->horas_semanales }}</td>
-                                <td>{{ $asig->horas_totales }}</td>
-                                <td>{{ $asig->idmodulo }}</td>
-                                <td>{{ $asig->pre_requisito }}</td>
+                                <!--<form action="actualizar.blade.php" method="post">-->
                                 <td>
                                     <a href="/sis_academico/public/asignatura/{{ $asig->idasignatura}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
