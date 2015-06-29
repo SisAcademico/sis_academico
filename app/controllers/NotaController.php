@@ -40,9 +40,8 @@ class NotaController extends \BaseController {
 	public function index()
 	{
 		
-		$asigna=Asignatura::all();
-		$asigna2=AsignaturaLibres::all();
-		return View::make('nota.escojer_curso')->with(['asig'=> $asigna,'asig2'=> $asigna2]);
+		$docente = docente::all();
+		return View::make('docente.notaInicio')->with('docentes',$docente);
 	}
 
 
@@ -255,5 +254,12 @@ class NotaController extends \BaseController {
 		{
 		}*/
 	}
+	public function listarCursosDocente()
+	{
+		$iddocente = Input::get('id_docente');
+		$cursos1 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteCarrera($iddocente);
+		$cursos2 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteLibre($iddocente);
+		return View::make('nota.escojer_curso')->with(['asig'=> $cursos1,'asig2'=> $cursos2]);
 
+	}
 }
