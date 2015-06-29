@@ -232,14 +232,7 @@
                 <li><a href="{{ URL::to( '/matricula/create') }}"><i class="fa fa-plus"></i> Realizar Matricula</a></li>
               </ul>
       </li>
-      <li class="{{ Request::is( 'nota') ? 'active' : '' }}  treeview">
-              <a href="#">
-                <i class="fa fa-list"></i> <span>Nota</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="{{ Request::is( 'nota') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/nota') }}"><i class="fa fa-list"></i> Registrar Notas</a></li>
-              </ul>
-      </li>
+      
       <li class="{{ Request::is( 'horario') ? 'active' : '' }}  treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>Horario</span> <i class="fa fa-angle-left pull-right"></i>
