@@ -92,11 +92,11 @@
                         
                         <div class="form-group">
                             {{ Form::label('fecha', Lang::get('Fecha'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-3">
+                            <div class="col-sm-5">
                                 <div class="input-group input-group-sm">
                                     {{ Form::text('fecha',null,array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly', 'size' =>'20')) }}
                                     <span class="input-group-btn">
-                                      <button class="btn bg-purple btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
+                                      <button class="btn bg-blue btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
                                     </span>
                                 </div>
                             </div>
