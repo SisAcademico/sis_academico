@@ -11,7 +11,9 @@
 |
 */
 Route::any('docente/asistencia/listarCursos', 'AsistenciaDocenteController@listarCursosDocente');
+Route::any('docente/nota/listarCursos', 'NotaController@listarCursosDocente');
 Route::resource('docente/asistencia', 'AsistenciaDocenteController');
+Route::resource('docente/nota', 'NotaController');
 
 Route::group(array('prefix' => 'alumno'), function()
 {
@@ -24,7 +26,6 @@ Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');
 Route::resource('asignaturalibre','AsignaturaLibreController');
-Route::resource('docente', 'DocenteController');
 
 Route::any('horario/PDFA','HorarioController@getPDF');
 Route::resource('horario','HorarioController');
@@ -53,8 +54,11 @@ Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
 */
-Route::resource('semestre', 'SemestreController');
-Route::resource('aula', 'AulaController');
+Route::get('semestre/listar', 'SemestreController@listarSemestres');
+Route::get('semestre/agregar', 'SemestreController@agregarSemestre');
+
+Route::get('aula/listar', 'AulaController@listarAulas');
+Route::get('aula/agregar', 'AulaController@agregarAula');
 /*
 
 Route::get('alumno/listar', 'AlumnoController@listarAlumnos');
@@ -63,7 +67,8 @@ Route::get('nota/listar', 'AlumnoController@listarAlumnos');
 Route::get('nota/insertar', 'NotaController@create');
 */
 
-
+Route::get('docente/listar', 'DocenteController@listarDocente');
+Route::get('docente/insertar', 'DocenteController@insertarDocente');
 //*** administrador
 Route::get('administrador/listar', 'AdministradorController@listarAdministrador');
 Route::get('administrador/insertar', 'AdministradorController@insertarAdministrador');
