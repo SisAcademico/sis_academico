@@ -46,7 +46,7 @@
                         @endif
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                       
                         <div class="form-group">
                             {{ Form::label('id_alumno', Lang::get('Código'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">

@@ -10,7 +10,8 @@ class AlumnoController extends \BaseController {
 	public function index()
 	{
 		$alumno = Alumno::all();
-		return View::make('alumno.listar')->with('alumnos',$alumno);
+		$error = "";
+		return View::make('alumno.listar')->with('alumnos', $alumno);
 	}
 
 
@@ -32,6 +33,13 @@ class AlumnoController extends \BaseController {
 	 */
 	public function store()
 	{
+		$error = "Código de Alumno Repertido";
+		if(!empty(DB::table('talumno')->where('id_alumno', '=',Input::get('id_alumno'))))
+		{
+			echo "Alumno ya exite";
+			return Redirect::to('alumno');
+		}
+		$error = "";
 		$alumnos = new Alumno;
 		$foto = new Foto;
 		$id = DB::table('tusuario')->insertGetId(
@@ -40,6 +48,7 @@ class AlumnoController extends \BaseController {
 		$id2 = DB::table('tfoto')->insertGetId(
     	['imagen' => Input::file("photo")]
 		);
+
 		$alumnos->idalumno = Input::get('id_alumno');
 		$alumnos->idusuario = $id;
 		$alumnos->dni = Input::get('dni');
@@ -91,6 +100,7 @@ class AlumnoController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$error = "";
 		$entra = Input::all();
 		$foto = new Foto;
 		$id2 = DB::table('tfoto')->insertGetId(
