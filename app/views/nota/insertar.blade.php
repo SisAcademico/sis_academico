@@ -186,7 +186,7 @@
 @endsection
  @section ('scrips_n')
         <script type="text/javascript">
-            function validar(e) {
+             function validar(e) {
                 var targ;
                 if (e.target)
                 {
@@ -196,6 +196,9 @@
                 {
                     targ = e.srcElement.name;
                 }
+                var nota=document.getElementById(targ).value;
+                var n=parseFloat(nota);
+                if(n>=0 && n<=20){
                 targ = targ.substring(0, targ.length-2);
                 nroExamenes =  document.getElementById("nroparciales").value;
                 promedio = 0;
@@ -206,7 +209,11 @@
                     if(document.getElementById(str2).value != "NSP" && document.getElementById(str2).value != "")
                     promedio+= parseFloat(document.getElementById(str2).value);
                 }
-                document.getElementById("promedio".concat(targ)).value  = promedio/parseFloat(nroExamenes);
+                document.getElementById("promedio".concat(targ)).value  = promedio/parseFloat(nroExamenes);}
+                else
+                {alert("Nota debe ser entre 0 y 20");
+                document.getElementById(targ).value="";
+                document.getElementById(targ).focus();}
                 return true;
             }
         </script>   
