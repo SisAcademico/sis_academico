@@ -213,6 +213,12 @@
                 <li><a href="{{ URL::to( '/aula/create') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a></li>
               </ul>
             </li>
+                  <li class="treeview">
+              <a href="{{ URL::to( '/concepto') }}">
+                <i class="fa fa-money"></i> <span>Concepto Pago</span>
+              </a>
+              
+            </li>
 			<li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
               <a href="#">
                 <i class="fa fa-money"></i> <span>Pagos</span> <i class="fa fa-angle-left pull-right"></i>

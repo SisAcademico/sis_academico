@@ -52,6 +52,8 @@ Route::resource('modulo', 'ModuloController');
 Route::resource('semestre', 'SemestreController');
 //------------- Aula -------------------------
 Route::resource('aula', 'AulaController');
+//------------- Concepto -------------------------
+Route::resource('concepto', 'ConceptoController');
 
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
