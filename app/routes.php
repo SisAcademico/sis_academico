@@ -14,14 +14,6 @@ Route::any('docente/asistencia/listarCursos', 'AsistenciaDocenteController@lista
 Route::any('docente/nota/listarCursos', 'NotaController@listarCursosDocente');
 Route::resource('docente/asistencia', 'AsistenciaDocenteController');
 Route::resource('docente/nota', 'NotaController');
-
-Route::group(array('prefix' => 'alumno'), function()
-{
-	Route::get('asistencia/listar', 'AsistenciaAlumnoController@listar');
-	Route::get('asistencia/registrar/{codAsignatura}', 'AsistenciaAlumnoController@registrar');
-
-});
-
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');
@@ -34,11 +26,21 @@ Route::resource('horarioCarga','HorarioCargaController');
 Route::any('nota/getCourseData', 'NotaController@getCourseData');
 Route::any('nota/PDFA', 'NotaController@getPDF');
 Route::resource('nota', 'NotaController');
-
+//------------- Panel de inicio ----------------
 Route::get('/', 'PanelController@mostrarPanel');
 Route::get('/panel', 'PanelController@mostrarPanel');
+//------------- Asistencia Alumno ----------------
+Route::group(array('prefix' => 'alumno'), function()
+{
+	Route::get('asistencia/listar', 'AsistenciaAlumnoController@listar');
+	Route::get('asistencia/asignatura/{codAsigGrupo}', 'AsistenciaAlumnoController@listar_asistencia');
+	Route::post('/asistencia/agregar_registro', 'AsistenciaAlumnoController@agregar_registro');
+	Route::get('/asistencia/{dataAsistencia}', 'AsistenciaAlumnoController@actualizar_registro_asistencia');
+	Route::any('/asistencia/registrar/{codAlumno}', 'AsistenciaAlumnoController@registrar');
+});
+Route::resource('asistenciaalumno', 'AsistenciaAlumnoController');
 
-//------------- Carrera Profesiona ----------------
+//------------- Carrera Profesional ----------------
 Route::resource('carrera', 'CarreraController');
 
 //------------- Docente ---------------------------
@@ -46,6 +48,10 @@ Route::resource('docente', 'DocenteController');
 
 //------------- Modulo -------------------------
 Route::resource('modulo', 'ModuloController');
+//------------- Semestre -------------------------
+Route::resource('semestre', 'SemestreController');
+//------------- Aula -------------------------
+Route::resource('aula', 'AulaController');
 
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
@@ -57,11 +63,7 @@ Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
 */
-Route::get('semestre/listar', 'SemestreController@listarSemestres');
-Route::get('semestre/agregar', 'SemestreController@agregarSemestre');
 
-Route::get('aula/listar', 'AulaController@listarAulas');
-Route::get('aula/agregar', 'AulaController@agregarAula');
 /*
 
 Route::get('alumno/listar', 'AlumnoController@listarAlumnos');

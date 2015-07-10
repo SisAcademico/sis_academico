@@ -7,7 +7,7 @@
     <link href="{{asset('/adminlte/plugins/iCheck/square/yellow.css')}}" rel="stylesheet" type="text/css">
 @stop
 @section('titulo_cabecera')
-    @lang('sistema.registrar_asistencia_alumno')<small>@lang('')</small>
+    @lang('sistema.registrar_asistencia_alumno')<small>Nuevo registro de asistencia</small>
 @stop
 @section('ruta_navegacion')
     <li><a href="{{ URL::to( '/alumno/asistencia/listar') }}"><i class="fa fa-list"></i> @lang('sistema.registrar_asistencia')</a></li>
@@ -19,10 +19,9 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-        {{ Form::open(array('url' => '/alumno/asistencia/listar','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{Lang::get('sistema.relacion_alumnos')}}</h3>
+                    <h3 class="box-title">{{Lang::get('sistema.relacion_alumnos').': '.$objAsig->idasignatura,' - '.$objAsig->nombre_asignatura.'<br><b>Semestre:</b>'.$objSemestre->idsemestre.' <b>Fecha:</b> '.$fechaHoraRegistro}}</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     @if (count($errors) > 0)
@@ -56,10 +55,10 @@
                                         <td>{{ $alumno->idalumno }}</td>
                                         <td>{{ $alumno->dni }}</td>
                                         <td>{{ $alumno->apellidos.', '.$alumno->nombres }}</td>
-                                        <td>{{ $alumno->idfoto }}</td>
-                                        <td>{{ Form::radio('obsAsis'.$alumno->idalumno.'[]', 'asistio',false, array('id'=>'asistio_'.$alumno->idalumno,'class' => 'field')) }}</td>
-                                        <td>{{ Form::radio('obsAsis'.$alumno->idalumno.'[]', 'tarde',false, array('id'=>'tarde_'.$alumno->idalumno,'class' => 'field yellow_radio')) }}</td>
-                                        <td>{{ Form::radio('obsAsis'.$alumno->idalumno.'[]', 'falto',false, array('id'=>'falto_'.$alumno->idalumno,'class' => 'field red_radio')) }}</td>
+                                        <td></td>
+                                        <td>{{ Form::radio('asis_'.$alumno->idalumno.'[]', 'asistio',false, array('id'=>'asistio_'.$alumno->idalumno,'class' => 'field')) }}</td>
+                                        <td>{{ Form::radio('asis_'.$alumno->idalumno.'[]', 'tarde',false, array('id'=>'tarde_'.$alumno->idalumno,'class' => 'field yellow_radio')) }}</td>
+                                        <td>{{ Form::radio('asis_'.$alumno->idalumno.'[]', 'falto',false, array('id'=>'falto_'.$alumno->idalumno,'class' => 'field red_radio')) }}</td>
                                     </tr>
                                 @endforeach
                         @endif  
@@ -75,10 +74,8 @@
                 </div>
                 <div class="box-footer">
 					<a class="btn btn-info" href="{{ URL::to( '/alumno/asistencia/listar');}}"><i class="fa fa-chevron-left"></i> Retornar</a>
-                    {{ Form::submit(Lang::get('Procesar Asistencia'), array('class' => 'btn btn-primary pull-right')) }}
                 </div>
             </div>
-            {{ Form::close() }}
         </div>
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->

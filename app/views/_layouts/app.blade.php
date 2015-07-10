@@ -200,8 +200,8 @@
                 <i class="fa fa-list"></i> <span>@lang('sistema.semestre')s</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="{{ Request::is( 'semestre') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/semestre/listar') }}"><i class="fa fa-list"></i> @lang('sistema.listar_semestre')</a></li>
-                <li><a href="{{ URL::to( '/semestre/agregar') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_semestre')</a></li>
+                <li><a href="{{ URL::to( '/semestre') }}"><i class="fa fa-list"></i> @lang('sistema.listar_semestre')</a></li>
+                <li><a href="{{ URL::to( '/semestre/create') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_semestre')</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -209,8 +209,8 @@
                 <i class="fa fa-list"></i> <span>@lang('sistema.aula')s</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="{{ Request::is( 'aula') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/aula/listar') }}"><i class="fa fa-list"></i> @lang('sistema.listar_aulas')</a></li>
-                <li><a href="{{ URL::to( '/aula/agregar') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a></li>
+                <li><a href="{{ URL::to( '/aula') }}"><i class="fa fa-list"></i> @lang('sistema.listar_aulas')</a></li>
+                <li><a href="{{ URL::to( '/aula/create') }}"><i class="fa fa-plus"></i> @lang('sistema.agregar_aula')</a></li>
               </ul>
             </li>
 			<li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
