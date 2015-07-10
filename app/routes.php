@@ -41,6 +41,9 @@ Route::get('/panel', 'PanelController@mostrarPanel');
 //------------- Carrera Profesiona ----------------
 Route::resource('carrera', 'CarreraController');
 
+//------------- Docente ---------------------------
+Route::resource('docente', 'DocenteController');
+
 //------------- Modulo -------------------------
 Route::resource('modulo', 'ModuloController');
 
@@ -67,8 +70,6 @@ Route::get('nota/listar', 'AlumnoController@listarAlumnos');
 Route::get('nota/insertar', 'NotaController@create');
 */
 
-Route::get('docente/listar', 'DocenteController@listarDocente');
-Route::get('docente/insertar', 'DocenteController@insertarDocente');
 //*** administrador
 Route::get('administrador/listar', 'AdministradorController@listarAdministrador');
 Route::get('administrador/insertar', 'AdministradorController@insertarAdministrador');
