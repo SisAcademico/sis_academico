@@ -40,7 +40,7 @@ class NotaController extends \BaseController {
 	public function index()
 	{
 		
-		$docente = docente::all();
+		$docente = Docente::all();
 		return View::make('docente.notaInicio')->with('docentes',$docente);
 	}
 
