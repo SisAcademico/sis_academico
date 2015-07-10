@@ -65,8 +65,8 @@ class NotaController extends \BaseController {
 	{
 		$input = Input::all();
 		$isasig =  $input['idasig'];
-		$tipo = substr($isasig, 0, 1);
-		if($tipo=="C")//curso libre
+		$tipo = substr($isasig, 0, 2);
+		if($tipo=="AL")//curso libre
 		{
 			$horas=DB::table('tasignatura_cl')
 			->select('horas_totales')->where('tasignatura_cl.idasignatura_cl','=',$isasig)->get();
@@ -116,7 +116,7 @@ class NotaController extends \BaseController {
 			}
 			return Redirect::to('nota');
 		}
-		else if($tipo=="A")
+		else if($tipo=="AC")
 		{
 			$horas=DB::table('tasignatura')
 			->select('horas_totales')->where('tasignatura.idasignatura','=',$isasig)->get();
