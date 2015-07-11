@@ -93,7 +93,9 @@ class ConceptoController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		
+		$modulo=DB::table('tconcepto')->where('idconcepto','=',$id)->delete();
+		return Redirect::to('concepto');
 	}
 
 	

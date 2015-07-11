@@ -109,7 +109,7 @@
                       <td>{{$Concep->importe}}</td>
                        <td>
                       <a href="/sis_academico/public/concepto/{{ $Concep->idconcepto }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-                    
+                      <a href="/sis_academico/public/concepto/{{ $Concep->idconcepto}}/destroy" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                       </tr>
                     @endforeach

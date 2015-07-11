@@ -54,7 +54,9 @@ Route::resource('semestre', 'SemestreController');
 Route::resource('aula', 'AulaController');
 //------------- Concepto -------------------------
 Route::resource('concepto', 'ConceptoController');
+Route::any('concepto/{id}/destroy','ConceptoController@destroy');
 
+//------------- Pago -------------------------
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
 
