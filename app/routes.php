@@ -56,10 +56,12 @@ Route::resource('aula', 'AulaController');
 Route::resource('concepto', 'ConceptoController');
 Route::any('concepto/{id}/destroy','ConceptoController@destroy');
 
-//------------- Pago -------------------------
+//------------- Pagos -------------------------
+Route::resource('pago', 'PagoController');
+/*
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
-
+*/
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 

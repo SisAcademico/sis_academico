@@ -3,31 +3,10 @@
 class PagoController extends \BaseController {
 
 
-    /**
-     * Mostrar el formulario de inserción de pagos
-     */
-    public function insertarPago()
-    {
-        return View::make('pago.insertar');
-    }
-
-    /**
-     * Listar los pagos
-     */
-    public function listarPagos()
-    {
-        $pagos = Pago::all();
-        return View::make('pago.listar', array('pagos' => $pagos));
-    }
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+		$pago = Pago::all();
+		return View::make('pago.listar')->with('pagos',$pago);
 	}
 
 
@@ -38,7 +17,7 @@ class PagoController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		//return View::make('alumno.insertar');
 	}
 
 
@@ -49,7 +28,7 @@ class PagoController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+	//
 	}
 
 
@@ -59,9 +38,9 @@ class PagoController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($ids)
 	{
-		//
+
 	}
 
 
@@ -73,9 +52,8 @@ class PagoController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
-	}
 
+	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -85,7 +63,7 @@ class PagoController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+
 	}
 
 
@@ -97,8 +75,9 @@ class PagoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		
+
 	}
 
-
+	
 }

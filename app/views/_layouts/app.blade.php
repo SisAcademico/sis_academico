@@ -219,15 +219,17 @@
               </a>
               
             </li>
-			<li class="{{ Request::is( 'pago') ? 'active' : '' }} treeview">
-              <a href="#">
-                <i class="fa fa-money"></i> <span>Pagos</span> <i class="fa fa-angle-left pull-right"></i>
+
+                  <li class="treeview">
+              <a href="{{ URL::to( '/pago') }}">
+                <i class="fa fa-money"></i> <span>Pagos</span>
               </a>
-              <ul class="{{ Request::is( 'pago') ? 'active' : '' }} treeview-menu">
-                <li><a href="{{ URL::to( '/pago/listar') }}"><i class="fa fa-list"></i> Listar pagos</a></li>
-                <li><a href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> Agregar pago</a></li>
-              </ul>
+              
             </li>
+
+
+
+
          <li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>Matricula</span> <i class="fa fa-angle-left pull-right"></i>
