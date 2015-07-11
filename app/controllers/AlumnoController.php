@@ -10,8 +10,14 @@ class AlumnoController extends \BaseController {
 	public function index()
 	{
 		$alumno = Alumno::all();
-		$error = "";
-		return View::make('alumno.listar')->with('alumnos', $alumno);
+		$cuan = sizeof(Alumno::all());
+		$cod = "";
+		$lo = strlen(strval($cuan));
+		for ($i=0; $i < 7 - $lo ; $i++) { 
+			$cod=$cod."0";
+		}
+		$cod="ISC".$cod.$cuan;
+		return View::make('alumno.listar',['alumnos'=> $alumno,'cuan'=>$cod]);
 	}
 
 
@@ -37,7 +43,7 @@ class AlumnoController extends \BaseController {
 		if(!empty(DB::table('talumno')->where('id_alumno', '=',Input::get('id_alumno'))))
 		{
 			echo "Alumno ya exite";
-			return Redirect::to('alumno');
+			
 		}
 		$error = "";
 		$alumnos = new Alumno;
@@ -48,7 +54,6 @@ class AlumnoController extends \BaseController {
 		$id2 = DB::table('tfoto')->insertGetId(
     	['imagen' => Input::file("photo")]
 		);
-
 		$alumnos->idalumno = Input::get('id_alumno');
 		$alumnos->idusuario = $id;
 		$alumnos->dni = Input::get('dni');

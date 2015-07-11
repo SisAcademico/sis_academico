@@ -50,7 +50,7 @@
                         <div class="form-group">
                             {{ Form::label('id_alumno', Lang::get('Código'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="id_alumno"  type="text" placeholder="Código del Alumno" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="7" required>
+                                <input id="id_alumno"  type="text" value="{{$cuan}}" class="form-control" name="id_alumno" disabled="disable" maxlength="11" required>
                             </div>
                         </div>
                         <div class="form-group">
