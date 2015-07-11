@@ -153,11 +153,12 @@
                 <div class="box-header with-border" align="center">
                   <h3 class="box-title">Lista de Conceptos de Pagos </h3><!--titulo del frame-->
                 </div><!-- /.box-header -->
-                <div class="box-body">
+                <div class="box-header with-border" align="center">
+                  <h4 class="box-header" align="left" ><b>Consultas: </b></h4>
                   <div class="form-group">
                           {{ Form::label('Codigo', Lang::get('Codigo: '),array('class'=>'col-sm-2 control-label')) }}
-                          <div class="col-xs-4">
-                               <input id="id_alumno"  type="text" placeholder="Ingrese Codigo" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="7" required>
+                          <div class="col-xs-6">
+                               <input id="id_alumno"  type="text" placeholder="Ingrese Codigo para realizar busqueda" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="7" required>
                           </div>
                           <button type="submit" class="btn btn-info ">
                               <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
@@ -165,13 +166,41 @@
                   </div>    
                   <div class="form-group">
                           {{ Form::label('NroBoleta', Lang::get('Nro. de Boleta: '),array('class'=>'col-sm-2 control-label')) }}
-                          <div class="col-xs-4">
-                               <input id="nroboleta"  type="text" placeholder="Ingresar nro de boleta" class="form-control" name="nroboleta" onKeyPress="return validar(event)" maxlength="7" required>
+                          <div class="col-xs-6">
+                               <input id="nroboleta"  type="text" placeholder="Ingresar nro de boleta para realizar busqueda" class="form-control" name="nroboleta" onKeyPress="return validar(event)" maxlength="7" required>
                           </div>
                           <button type="submit" class="btn btn-info ">
                               <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
                           </button>                    
-                  </div>                                  
+                  </div>    
+                  <div class="form-group">
+                    <div class="col-sm-13">
+                           <h5 class="box-header" align="left" ><b>Fecha de Pago: </b></h5>
+                   </div> 
+                            {{ Form::label('fechainicio', Lang::get('Desde: '),array('class'=>'col-sm-1 control-label')) }}
+                            <div class="col-sm-3">
+                                <div class="input-group input-group-sm">
+                                    {{ Form::text('fecha',null,array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly', 'size' =>'20')) }}
+                                    <span class="input-group-btn">
+                                      <button class="btn bg-blue btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            {{ Form::label('fechafin', Lang::get('Hasta: '),array('class'=>'col-sm-1 control-label')) }}
+                            <div class="col-sm-3">
+                                <div class="input-group input-group-sm">
+                                    {{ Form::text('fechafin',null,array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly', 'size' =>'20')) }}
+                                    <span class="input-group-btn">
+                                      <button class="btn bg-blue btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                          <button type="submit" class="btn btn-info ">
+                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                          </button> 
+                        </div>
+                </div>
+                <div class="box-body">
                   <table class="table table-bordered">
                                       <thead>
                                         <tr>
