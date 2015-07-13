@@ -32,14 +32,45 @@ class DocenteController extends \BaseController {
 	 */
 	public function store()
 	{
+		$iddocenteaverificar = Input::get('id_docente');
+		$dniaverificar = Input::get('dni');
+
+		
+
+			//antes de insertar los datos en la base de datos 
+            //verificamos que los datos basicos para este  docente no se repitan como  Id,DNI
+            
+            
+            $ListaDoc = Docente::all();
+            $existedoc= false;
+            $docntalqestaasignado = '';
+            foreach ($ListaDoc as $doc)
+            {
+                $idl = $doc->iddocente;
+                $dnil = $doc->dni;
+               
+                if(($idl==$iddocenteaverificar)||($dnil==$dniaverificar))
+                {
+                    $existedoc = true;
+                }
+            }
+
+
+		if($existedoc)
+            {
+            		 $error = ['wilson'=>'Este Docente ya Existe'];
+                    return Redirect::back()->withInput()->withErrors($error);
+
+			}
+		else{
+
+		/*$id2 = DB::table('tfoto')->insertGetId(
+    	['imagen' => Input::file("photo")]
+		);*/
 		$docentes = new Docente;
 		$foto = new Foto;
 		$id = DB::table('tusuario')->insertGetId(
-    	['password' => Input::get('id_docente').'i', 'tipo_usuario' => 'docente']
-		);
-		$id2 = DB::table('tfoto')->insertGetId(
-    	['imagen' => Input::file("photo")]
-		);
+    	['password' => Input::get('id_docente').'i', 'tipo_usuario' => 'docente']);
 		$docentes->iddocente = Input::get('id_docente');
 		$docentes->idusuario = $id;
 		$docentes->dni = Input::get('dni');
@@ -51,10 +82,11 @@ class DocenteController extends \BaseController {
 		$docentes->cargo = Input::get('cargo');
 		$docentes->telefono = Input::get('telefono');
 		$docentes->fecha_inicio = Input::get('fecha');
-		$docentes->idfoto = $id2;
-		$docentes->estado = 'Activo';
+		/*$docentes->idfoto = $id2;
+		$docentes->estado = 'Activo';*/
 		$docentes->save();
 		return Redirect::to('docente');
+	}
 	}
 
 
@@ -94,10 +126,10 @@ class DocenteController extends \BaseController {
 	public function update($id)
 	{
 		$entra = Input::all();
-		$foto = new Foto;
+		/*$foto = new Foto;
 		$id2 = DB::table('tfoto')->insertGetId(
     	['imagen' => Input::file("photo")]
-		);
+		);*/
 		$docente = DB::table('tDocente')
             ->where('iddocente', $id)
             ->update(array(
@@ -109,9 +141,9 @@ class DocenteController extends \BaseController {
             'telefono' => $entra['telefono'],
             'correo' => $entra['correo'],
             'cargo' => $entra['cargo'],
-            'fecha_inicio' => $entra['fecha'],
-            'estado' => 'Activo',
-            'idfoto' => $id2
+            'fecha_inicio' => $entra['fecha']
+             /*'estado' => 'Activo'
+           'idfoto' => 'null'*/
             ));
 		return Redirect::to('docente');
 	}

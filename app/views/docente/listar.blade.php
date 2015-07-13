@@ -93,7 +93,7 @@
                             {{ Form::label('cargo', Lang::get('Cargo'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 <SELECT id="cargo" name="cargo" SIZE=1 > 
-                                    <OPTION VALUE=" "> </OPTION>
+                                    <OPTION VALUE=""> </OPTION>
                                     <OPTION value="Director">Director</OPTION>
                                     <OPTION value="Cordinador">Cordinador</OPTION>
                                 </SELECT> 
@@ -111,12 +111,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             {{ Form::label('foto', Lang::get('Foto'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
                                 {{ Form::file('photo') }}
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="box-footer">
                         <input class="btn btn-info pull-right" type="submit" value="Crear Docente">

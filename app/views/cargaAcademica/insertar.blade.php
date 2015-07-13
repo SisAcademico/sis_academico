@@ -6,125 +6,145 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
 @stop
 @section('titulo_cabecera')
-    @lang('Carga Academica')<small>@lang('')</small>
+    @lang('Carga Academica')<small>@lang('Asignar una carga academica')</small>
+    <br><br>
+    <center>
+        <?php
+        
+        if(empty($SemestreActual)==1){
+            $semestre = '';
+        }
+        else{
+            $semestre = $SemestreActual[0]->idsemestre;
+            echo 'Carga Academica del Semestre '.$semestre;
+        }
+        ?>
+    </center>
 @stop
 @section('ruta_navegacion')
     <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.carga_academica')</a></li>
-    <li class="active">@lang('sistema.insertar_carga_academica')s</li>
+    <li class="active">@lang('sistema.asignar_carga_academica')</li>
 @stop
-
 @section('contenido')
     <!-- Main row -->
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-            {{ Form::open(array('url' => 'wilson','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+            {{ Form::open(array('url' => 'carga_academica/guardar','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ingrese Datos De Carga Academica</h3>
+                    <h4>Ingrese Datos De Carga Academica</h4>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <ul class="error_list">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    <div class="form-group">
-                        {{ Form::label('idcarga_academica', Lang::get('idcarga_academica:'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('idcarga_academica',null,array('class'=>'form-control','id'=>'idcarga_academica','placeholder'=>Lang::get('idcarga_academica'))) }}
-                        </div>
+                    @if ($errors->first('wilson') != '')
+                    <div class="alert alert-danger"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <ul class="error_list"><li>{{ $errors->first('wilson') }}</li></ul>
                     </div>
+                    @endif
+                    @if ($semestre == '')
+                    <div class="alert alert-danger"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <ul class="error_list"><li>ERROR! no tienes ningun semestre agregado en la base de datos</li></ul>
+                    </div>
+                    @endif
+                    <?php $docente = empty($Docentetodo);?>
+                    @if ($docente == 1)
+                    <div class="alert alert-danger"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <ul class="error_list"><li>ERROR! no tienes ningun Docente agregado en la base de datos</li></ul>
+                    </div>
+                    @endif
+                    <div class="form-group"> 
+                        {{ Form::hidden('semestre',Lang::get($semestre))}}
+                        {{ Form::label('iddocente', Lang::get('Docente:'),array('class'=>'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                            <?php 
+                            $arregloDocente = array();
+                            foreach ($Docentetodo as $docente){
+                                $nombre = $docente->nombres;
+                                $apellidos = $docente->apellidos;
+                                $valor = $docente->iddocente;
+                                $aux = ["w".$valor=>$nombre." ".$apellidos];
+                                $arregloDocente = array_merge($aux,$arregloDocente);
+                            }
+                            ?>
+                            {{Form::select('docente',$arregloDocente)}}
+                            <p></p>
+                            @if($errors->first('docente') != '')
+                                <div class="alert alert-danger"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                    <ul class="error_list"><li>{{ $errors->first('docente') }}</li></ul>
+                                </div>
+                            @endif
+                            @if($docente == '')
+                                <div class="alert alert-danger"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                    <ul class="error_list"><li>ERROR! no tienes ningun Docente agregado en la base de datos</li></ul>
+                                </div>
+                            @endif
+                        </div>
+        </div>
+
                     <div class="form-group">
                         {{ Form::label('grupo', Lang::get('Grupo:'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{ Form::text('grupo',null,array('class'=>'form-control','id'=>'grupo','placeholder'=>Lang::get('grupo'))) }}
+                            <p></p>
+                            @if ($errors->first('grupo') != '')
+                                <div class="alert alert-danger"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                    <ul class="error_list"><li>{{ $errors->first('grupo') }}</li></ul>
+                                </div>
+                            @endif
                         </div>
                     </div>
+
                     <div class="form-group">
                         {{ Form::label('turno', Lang::get('Turno:'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('turno',null,array('class'=>'form-control','id'=>'turno','placeholder'=>Lang::get('turno'))) }}
+                             {{Form::select('turno',['Maniana'=>'Maniana','Tarde'=>'Tarde','Noche'=>'Noche'])}}
                         </div>
                     </div>
+                   
                     <div class="form-group">
-                        {{ Form::label('idsemestre', Lang::get('IdSemestre:'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <?php 
-                            $arregloSemestre = [];
-                            foreach ($Semestretodo as $semestre){
-                                $token = $semestre->idsemestre; 
-                                $aux = [$token=>$token];
-                                $arregloSemestre = array_merge($aux,$arregloSemestre);
-                            }
-                            ?>
-                            {{Form::select('idsemestre',$arregloSemestre)}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('idasignatura', Lang::get('idasignatura:'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('asignatura', Lang::get('Asignatura:'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             <?php 
                             $arregloAsignatura = array();                            
                             foreach ($Asignaturatodo as $asignatura){
-                                $token = $asignatura->idasignatura; 
-                                $aux = [$token=>$token];
+                                $nombre = $asignatura->nombre_asignatura;
+                                $valor = $asignatura->idasignatura;
+                                $aux = ['1'.$valor=>$nombre];
                                 $arregloAsignatura = array_merge($aux,$arregloAsignatura);
                             }
-                            ?>
-                            {{Form::select('idasignatura',$arregloAsignatura)}}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('idasignatura_cl', Lang::get('idasignatura_cl:'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <?php 
+                            
                             $arregloSemestrecl = [];
-                            foreach ($Semestrecltodo as $semestrecl){
-                                $token = $semestrecl->idasignatura_cl; 
-                                $aux = [$token=>$token];
+                            foreach ($Asignaturacltodo as $asignaturacl){
+                                $nombre = $asignaturacl->nombre_asig_cl;
+                                $valor = $asignaturacl->idasignatura_cl;
+                                $aux = ['0'.$valor=>$nombre];
                                 $arregloSemestrecl = array_merge($aux,$arregloSemestrecl);
                             }
-                            ?>
-                            {{Form::select('idasignatura_cl',$arregloSemestrecl)}}
+                            
+                            $asig1 = empty($arregloAsignatura);
+                            $asig2 = empty($arregloSemestrecl);
+                            ?> 
+                            {{ Form::select('asignatura', array(
+                            'Cursos de Carrera' => $arregloAsignatura,
+                            'Cursos Libres' => $arregloSemestrecl))}}
+                            <p></p>
+                            @if(( $asig1== '1')&&($asig2 == '1'))
+                                <div class="alert alert-danger"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                    <ul class="error_list"><li>ERROR! no tienes ninguna Asignatura agregado en la base de datos</li></ul>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('idaula', Lang::get('idaula:'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <?php 
-                            $arregloAula = [];
-                            foreach ($Aulatodo as $aula){
-                                $token = $aula->idaula; 
-                                $aux = [$token=>$token];
-                                $arregloAula = array_merge($aux,$arregloAula);
-                            }
-                             //print_r($arregloAula);
-                            ?>
-                            {{Form::select('idaula',$arregloAula)}}
+                        <div class="col-sm-10" style="margin-left:170px">
+                            <br><br>
+                            {{ Form::submit(Lang::get('Crear Carga_Academica'), array('class' => 'btn btn-info pull-left')) }}
+                            
                         </div>
                     </div>
-                    
-                </div>
-                <div class="box-footer">
-                <!-- 
-                    Se debe insertar en talumno,
-                    tfoto(auto_increment, fotoElegida),
-                    en tusuario: idusuario = DNI, passwors =DNI //valores por defecto
-                    el alumno y usuario tiene por defecto el estado "activo"
-                -->
-                    {{ Form::submit(Lang::get('Crear Carga_Academica'), array('class' => 'btn btn-info pull-right')) }}
                 </div>
             </div>
-            {{ Form::close() }}
+            {{ Form::close()}}
         </div>
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
