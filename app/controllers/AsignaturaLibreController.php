@@ -25,7 +25,35 @@ class AsignaturaLibreController extends \BaseController{
     public function create()
     {
         //
-        return View::make('asignaturalibre.insertar');
+        $idasigcl = DB::table('tasignatura_cl')->max('idasignatura_cl');
+        $idasigcl2 = substr($idasigcl, 2, 6);
+        $idasigcl3 = (int)$idasigcl2;
+        $idasigcl4 = $idasigcl3+1;
+        $idasigcl5 = strlen($idasigcl4);
+        $idasigcl6 = (int)$idasigcl5;
+        if($idasigcl6==1)
+        {
+            $idasigcl11 = "AL000".$idasigcl4;
+            return View::make('asignaturalibre.insertar')->with('idasignacl',$idasigcl11);
+        }
+        
+        if($idasigcl6==2)
+        {
+            $idasigcl12 = "AL00".$idasigcl4;
+            return View::make('asignaturalibre.insertar')->with('idasignacl',$idasigcl12);
+        }
+
+        if($idasigcl6==3)
+        {
+            $idasigcl13 = "AL0".$idasigcl4;
+            return View::make('asignaturalibre.insertar')->with('idasignacl',$idasigcl13);
+        }
+
+        if($idasigcl6==4)
+        {
+            $idasigcl14 = "AL".$idasigcl4;
+            return View::make('asignaturalibre.insertar')->with('idasignacl',$idasigcl14);
+        } 
     }
 
     /**

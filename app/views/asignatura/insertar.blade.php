@@ -39,7 +39,7 @@
                     <div class="form-group">
                             {{ Form::label('idasignatura', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="idasignatura" type="text" placeholder="Codigo" class="form-control" name="idasignatura"  maxlength="20" required>
+                                <input id="idasignatura" type="text" placeholder="Codigo" readonly="readonly" class="form-control" name="idasignatura" value="{{$idasigna}}" maxlength="6" required>
                             </div>
                      </div>
                     <div class="form-group">
@@ -75,7 +75,11 @@
                     <div class="form-group">
                         {{ Form::label('pre_requisito', Lang::get('sistema.pre_requisito'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::text('pre_requisito',null,array('class'=>'form-control','id'=>'pre_requisito','placeholder'=>Lang::get('pre requisito'))) }}
+                            <!--{{ Form::text('pre_requisito',null,array('class'=>'form-control','id'=>'pre_requisito','placeholder'=>Lang::get('pre requisito'))) }}-->
+                            {{
+                                Form::select('pre_requisito', array_pluck(Asignatura::all(),'nombre_asignatura','idasignatura'),null,array('class'=>'form-control','id'=>'pre_requisito'))
+                            }}
+
                         </div>
                     </div>
 
@@ -114,6 +118,11 @@
                 te = String.fromCharCode(tecla);
                 return patron.test(te); 
             } 
+
+            
+            $('#pre_requisito').ready(function(){
+                document.getElementById("pre_requisito").selectedIndex = "-1";
+            });
         </script>
 @stop
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>

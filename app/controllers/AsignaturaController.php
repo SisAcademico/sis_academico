@@ -9,8 +9,15 @@ class AsignaturaController extends \BaseController{
     public function index()
     {
         //
-        $asignaturas=Asignatura::all();
-        return View::make('asignatura.listar') ->with('asignatura',$asignaturas);
+        //$asignaturas=Asignatura::all();
+        //$modulo =Modulo::all();
+
+        $auxiliar=DB::table('tasignatura')
+            ->join('tmodulo', 'tasignatura.idmodulo', '=', 'tmodulo.idmodulo')
+            ->join('tcarrera','tcarrera.idcarrera','=','tmodulo.idcarrera')
+            ->select('tasignatura.idasignatura','tasignatura.nombre_asignatura' ,'tasignatura.horas_semanales', 'tasignatura.horas_totales','tmodulo.nombre_modulo','tcarrera.nombre_carrera','tasignatura.pre_requisito')
+            ->get();
+        return View::make('asignatura.listar') ->with('asignatura',$auxiliar);
     }
 
 
@@ -25,7 +32,35 @@ class AsignaturaController extends \BaseController{
     public function create()
     {
         //
-        return View::make('asignatura.insertar');
+        $idasig = DB::table('tasignatura')->max('idasignatura');
+        $idasig2 = substr($idasig, 2, 6);
+        $idasig3 = (int)$idasig2;
+        $idasig4 = $idasig3+1;
+        $idasig5 = strlen($idasig4);
+        $idasig6 = (int)$idasig5;
+        if($idasig6==1)
+        {
+            $idasig11 = "AC000".$idasig4;
+            return View::make('asignatura.insertar')->with('idasigna',$idasig11);
+        }
+        
+        if($idasig6==2)
+        {
+            $idasig12 = "AC00".$idasig4;
+            return View::make('asignatura.insertar')->with('idasigna',$idasig12);
+        }
+
+        if($idasig6==3)
+        {
+            $idasig13 = "AC0".$idasig4;
+            return View::make('asignatura.insertar')->with('idasigna',$idasig13);
+        }
+
+        if($idasig6==4)
+        {
+            $idasig14 = "AC".$idasig4;
+            return View::make('asignatura.insertar')->with('idasigna',$idasig14);
+        }   
     }
 
     /**
@@ -74,6 +109,10 @@ class AsignaturaController extends \BaseController{
 
     }
 
+    public function getIdAsignatura()
+    {
+
+    }
 
     /**
      * Display the specified resource.
