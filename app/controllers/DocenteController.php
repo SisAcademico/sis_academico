@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class DocenteController extends \BaseController {
 
@@ -147,6 +147,25 @@ class DocenteController extends \BaseController {
             ));
 		return Redirect::to('docente');
 	}
+ public function listarDocente()
+    {
+    	//return View::make('docente.listar');
+        $Docentestodo=docente::all();
+
+
+        if(isset($_GET["buscar"]))
+        {
+
+        	$buscar = htmlspecialchars(Input::get("buscar"));
+        	$fila = docente::select(DB::raw('*'))->where('nombres', 'like', '%'.$buscar.'%')->orwhere('apellidos', 'like', '%'.$buscar.'%')->get();
+        	return View::make('docente.listar')->with('Busqueda',$fila);
+		
+        }
+
+        return View::make('docente.listar')->with('Docentestodo',$Docentestodo);
+    }
+
+
 
 
 	/**

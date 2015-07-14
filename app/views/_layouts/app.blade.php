@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -150,6 +150,8 @@
               <ul class="treeview-menu">
                 <li><a href="{{ URL::to( '/docente') }}"><i class="fa fa-list"></i> Listar  Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/asistencia') }}"><i class="fa fa-list"></i> Registrar Asistencia </a></li>
+		<li><a href="{{ URL::to( '/docente/listarasistencia') }}"><i class="fa fa-list"></i> Listar Asistencia Docente</a></li>
+                <li><a href="{{ URL::to( '/docente/insertarasistencia') }}"><i class="fa fa-plus"></i> Agregar Asistencia  Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/nota') }}"><i class="fa fa-list"></i> Agregar Notas </a></li>
               </ul>
             </li>
