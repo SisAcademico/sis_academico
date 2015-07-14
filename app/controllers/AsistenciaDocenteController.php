@@ -4,8 +4,8 @@ class AsistenciaDocenteController extends BaseController {
 
 	public function insertarAsistenciaDocente(){
         //return View::make('docente.insertar');
-        //return View::make('docente.insertarasistencia');
-				return "Hola";
+        return View::make('docente.insertarasistencia');
+				//return "Hola";
     }
 
 
