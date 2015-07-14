@@ -49,16 +49,22 @@ class DocenteController extends \BaseController {
                 $idl = $doc->iddocente;
                 $dnil = $doc->dni;
                
-                if(($idl==$iddocenteaverificar)||($dnil==$dniaverificar))
+                if($idl==$iddocenteaverificar)
                 {
                     $existedoc = true;
+                    $error = ['wilson'=>'Este Id ya Existe'];
+                }
+                if($dnil==$dniaverificar)
+                {
+                    $existedoc = true;
+                    $error = ['wilson'=>'Este DNI ya Existe'];
                 }
             }
 
 
 		if($existedoc)
             {
-            		 $error = ['wilson'=>'Este Docente ya Existe'];
+            		 
                     return Redirect::back()->withInput()->withErrors($error);
 
 			}
@@ -125,6 +131,49 @@ class DocenteController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$iddocenteaverificar = Input::get('id_docente');
+		$dniaverificar = Input::get('dni');
+
+		
+
+			//antes de insertar los datos en la base de datos 
+            //verificamos que los datos basicos para este  docente no se repitan como  Id,DNI
+            
+            
+            //$ListaDoc = Docente::all();
+            /*$ListaDoc = DB::table('tdocente')
+            ->where('iddocente','>', $iddocenteaverificar);*/
+            $ListaDoc = Docente::where('iddocente', '<>', $iddocenteaverificar)->get();
+
+            $existedoc= false;
+            $docntalqestaasignado = '';
+            foreach ($ListaDoc as $doc)
+            {
+                $dnil = $doc->dni;
+               
+
+                if($dnil==$dniaverificar)
+                {
+                    $existedoc = true;
+                    $error = ['wilson'=>'Este DNI ya Existe'];
+                }
+            }
+
+
+		if($existedoc)
+            {
+            		 
+                    return Redirect::back()->withInput()->withErrors($error);
+
+			}
+		else{
+
+
+
+
+
+
+
 		$entra = Input::all();
 		/*$foto = new Foto;
 		$id2 = DB::table('tfoto')->insertGetId(
@@ -166,6 +215,8 @@ class DocenteController extends \BaseController {
     }
 
 
+
+	}
 
 
 	/**

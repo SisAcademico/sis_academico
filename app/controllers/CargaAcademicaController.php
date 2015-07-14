@@ -153,10 +153,10 @@ class CargaAcademicaController extends \BaseController {
             
             //de igual manera verificamos si esta carga academica no este asignada
             //a otro docente
-            $todocarga = CargaAcademica::all();
+            $todocargaNoeste = CargaAcademica::where('iddocente', '<>', $iddocente)->get();
             $cargaasignadaaotro = false;
             $docntalqestaasignado = '';
-            foreach ($todocarga as $doc)
+            foreach ($todocargaNoeste as $doc)
             {
                 $grup = $doc->grupo;
                 $turn = $doc->turno;
@@ -290,10 +290,12 @@ class CargaAcademicaController extends \BaseController {
             
             //de igual manera verificamos si esta carga academica no este asignada
             //a otro docente
-            $todocarga = CargaAcademica::all();
+            $cargaactual = CargaAcademica::where('idcarga_academica', '=', $id)->get();
+
+            $todocargaNoeste = CargaAcademica::where('iddocente', '<>', $cargaactual[0]->iddocente)->get();
             $cargaasignadaaotro = false;
             $docntalqestaasignado = '';
-            foreach ($todocarga as $doc)
+            foreach ($todocargaNoeste as $doc)
             {
                 $grup = $doc->grupo;
                 $turn = $doc->turno;
@@ -311,36 +313,12 @@ class CargaAcademicaController extends \BaseController {
                     }
                 }
             }
-            $todocargadocente = CargaAcademica::where('iddocente', '=', $iddocente)->get();
-            $docenteconcargaasignada = false;
-            foreach ($todocargadocente as $doc)
+            if($cargaasignadaaotro)
             {
-                $grup = $doc->grupo;
-                $turn = $doc->turno;
-                $asign = $doc->idasignatura;
-                $asigl = $doc->idasignatura_cl;
-                $semes = $doc->idsemestre;
-                if(((($asignatura=='0'.$asigl)&&($asign==''))||(($asignatura=='1'.$asign)&&($asigl=='')))&&
-                        ($GRUPO==$grup)&&($turno==$turn)&&($semestre==$semes))
-                {
-                    $docenteconcargaasignada = true;
-                }
-            }
-            /*if(($docenteconcargaasignada)||($cargaasignadaaotro))
-            {
-                if($cargaasignadaaotro)
-                {
-                    $error = ['wilson'=>'La Carga Academica Ingresada ya está Asignado a:'.$docntalqestaasignado];
-                    return Redirect::back()->withInput()->withErrors($error);
-                }
-                else
-                {
-                    $error = ['wilson'=>'Este Docente ya tiene esta Carga Academica '];
-                    return Redirect::back()->withInput()->withErrors($error);
-                }
-            }
+                $error = ['wilson'=>'La Carga Academica Ingresada ya está Asignado a:'.$docntalqestaasignado];
+                    return Redirect::back()->withInput()->withErrors($error);            }
             else
-            {*/
+            {
                 if(substr($asignatura,0,1) == 1)
                 {
                     $idcl=null;
@@ -361,7 +339,7 @@ class CargaAcademicaController extends \BaseController {
                             'idasignatura_cl'=>$idcl,
                             'iddocente'=>$iddocente]);
                 return Redirect::to('carga_academica/vermas/'.$iddocente.'/'.$semestre);
-            /*}*/
+            }
         }
         else
         {
