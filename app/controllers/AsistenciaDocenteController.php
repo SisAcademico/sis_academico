@@ -1,139 +1,233 @@
 <?php
 
-class AsistenciaDocenteController extends \BaseController {
+class AsistenciaDocenteController extends BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+	public function insertarAsistenciaDocente(){
+        //return View::make('docente.insertar');	
+        return View::make('docente.insertarasistencia');
+    }
+
+
+	public function show($id){
 		//
-		$docente = docente::all();
-		return View::make('docente.asistenciaInicio')->with('docentes',$docente);
+			$asistenciaaeditar = AsistenciaDocente::where('idasistencia_docente', '=', $id)->get();
+    	//$docenteaeditar = Docente::where('iddocente','=',$id)->get();
+		return View::make('docente.modificarasistencia')->with('asistenciaaeditar',$asistenciaaeditar);
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+	public function filtrodocente($id){
+		//	
+		$filafiltro = CargaAcademica::where('iddocente', '=', $id)->get();
+		if(count($filafiltro)==0)
+		{
+				return Redirect::back()->withErrors("Error: docente no tiene carga academica");
+		}elseif (count($filafiltro)>0){
+			$filaAsis = AsistenciaDocente::where('idcarga_academica','=',$filafiltro[0]->idcarga_academica)->get();
+			if(count($filaAsis)==0){
+				return Redirect::back()->withErrors("Error: docente no tiene carga academica");
+			}elseif (count($filaAsis)>0) {
+				return View::make('docente.filtroAsistencia')->with('FilaFiltroRecuperada',$filafiltro);
+			}		
+		}
 	}
 
+	public function listar(){
+		$asistencia=AsistenciaDocente::all();
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$iddocente = Input::get('id_docente');
-		$timeNow = Carbon\Carbon::now();
-		echo $iddocente." : ".$timeNow;
-		//consulta a DB para saber que curso tiene el docente a esta hora
+        return View::make('docente.listarasistencia')->with('AsistenciaDocentetodo',$asistencia);
+	}
+
+	public function mostrarPanel(){
+		//return View::make('login.login');
+		return View::make('docente.formulario2');
+		//return 'karennnnnnnn';
+	}
+
+	public function store(){
+		$inputs = Input::all();
+		$reglas = array(			
+			'tema' => 'required|min:2|max:50');
+		$mensajes= array('required' => 'Campo obligatorio');		
 		
-		//return Redirect::to('docente/asistencia');
-	}
+		$validar = Validator::make($inputs,$reglas,$mensajes);
+
+		if ($validar -> fails()){
+			return Redirect::back()->withErrors($validar);
+		}
+		else{
+			$grupo =Input::get('Grupo') ;
+            $turno=Input::get('Turno') ;
+            $semestre=Input::get('Semestre');
+            $asignatura=Input::get('Asignatura');
+            $asignaturaL=Input::get('AsignaturaL');
+            $docente = Input::get('Docente') ;
+
+            $recuperar2 = CargaAcademica::where('iddocente', '=', $docente)->get();
+
+            if(count($recuperar2)==0 || $recuperar2 == NULL){
+            	return Redirect::back()->withErrors("Escoger una Asignatura"); 
+            }else{
+            	$RAsignatura = $recuperar2[0]->idasignatura;
+            	$RAsignatura_cl = $recuperar2[0]->idasignatura_cl;
+
+            	if (($asignaturaL=="0") && ($asignatura== "0")) {
+                return Redirect::back()->withErrors("Escoger una Asignatura");
+            	}
+            	else{
+            		if (($asignaturaL!="0") && ($asignatura!= "0")){
+            			return Redirect::back()->withErrors("No puede escoger dos asignaturas.");           		
+            		}
+            		else{
+            			if($asignatura!="0") {
+
+            				$recup = CargaAcademica::where('grupo', '=', $grupo)
+	               			->where('turno', '=', $turno)
+	               			->where('idsemestre', '=', $semestre)
+	               			->where('idasignatura', '=', $asignatura)	               			
+	               			->where('iddocente', '=', $docente)
+	               			->get();                    			 
+                    		if (count($recup)==0 || $recup == NULL ){
+         						return Redirect::back()->withErrors("Datos no correspondientes al docente"); 
+         					}
+            			}
+            			else{
+            				if($asignaturaL!="0") {
+			               		$recup = CargaAcademica::where('grupo', '=', $grupo)
+			               			->where('turno', '=', $turno)
+			               			->where('idsemestre', '=', $semestre)
+			               			->where('idasignatura_cl', '=', $asignaturaL)	               			
+			               			->where('iddocente', '=', $docente)
+			               			->get();                   
+			               				
+		                    	if (count($recup)==0 || $recup == NULL )
+		                    	{
+		         					return Redirect::back()->withErrors("Datos no correspondientes al docente");           		
+		         					
+		                    	} 
+			               	}
+            			}
+
+             		}
+            	}
+            }
+
+            if((count($recup)!=0)){
+	        	$idCarga = $recup[0]->idcarga_academica; 
+	      	}else {
+	      		return Redirect::back()->withErrors("carga acdemica no existe"); 
+	      	}
+
+	      	$idhorario=CargaHorario::where('idcarga_academica','=',$idCarga)->get();
+
+			if ( (count($idhorario)==0) ||($idhorario==null) ){
+				return Redirect::back()->withErrors("el curso seleccionado no tiene un horario establecido");           		
+			}
+
+			$hora=Horario::Where('idhorario','=',$idhorario[0]->idhorario)->get();
+
+			if ((count($hora)==0) || ($hora==null)) {
+				return Redirect::back()->withErrors("el curso seleccionado no tiene un horario establecido");           		
+			}
+
+			$aux1= date('Y-m-d')." ".($hora[0]->hora_inicio);
+	        $aux1 = strtotime($aux1);
+
+	        $aux1 = date('Y-m-d H:i:s',$aux1);
+
+			$aux2= date('Y-m-d')." ".($hora[0]->hora_fin);
+			$aux2 = strtotime($aux2);
+			$aux2 = date('Y-m-d H:i:s',$aux2);
+
+			$asist = AsistenciaDocente::where('idcarga_academica', '=', $idCarga)
+				->where('fecha_asist_doc', '>=', $aux1)
+				->where('fecha_asist_doc', '<=', $aux2)->get();
+
+			if (count($asist)!=0) {
+	        	return Redirect::back()->withErrors("El docente ya se registro");  
+	        }
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+	        $Hora = date("H:i:s");                     
+            $id = $idCarga;
+            $recup = CargaHorario::where('idcarga_academica', '=', $id)->get();
+            $Vhorario= $recup[0]->idhorario;                        
+            $recup2 = Horario::where('idhorario', '=', $Vhorario)->get();
+            $VInicio = $recup2[0]->hora_inicio;
+            $VFin = $recup2[0]->hora_fin;   
+            $VInicio1 = date ( "H:i:s",strtotime ( '+5 minute' , strtotime ( $VInicio ) ));
+            if ($Hora<  $VInicio1 ){   
+               $MensajeObservacion ="Temprano";
+            }
+            if ($Hora> $VInicio1){   
+                $MensajeObservacion ="Tarde";
+            }
+            
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
 
+	        $idasistencia_docente = DB::table('tasistencia_docente')->insertGetId(
+			array(				
+				'fecha_asist_doc'=>Input::get('fecha'),
+				'observacion'=>$MensajeObservacion,
+				'tema'=>Input::get('tema'),
+				'idcarga_academica'=>$idCarga,
+				));
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+	        return Redirect::to('docente/insertarasistencia');
+		}
+	}	
 
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-	public function listarCursosDocente()
-	{
-		$iddocente = Input::get('id_docente');
-		$cursos1 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteCarrera($iddocente);
-		$cursos2 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteLibre($iddocente);
-		//sacaremos el id asignatura del curso que le toca ahora
-		//en el modeo de BD solo se considera hora de inicio y hora de fin.
-		//evitaremos el uso de dia para la comparacion, se considerar que un
-		// curso es $idasignaturaNow si esta en el rango de +- 15 min de la hora de inicio de la asignatura		
-		//echo sizeof($cursos1)." * ".sizeof($cursos2);
-		$timeNow = Carbon\Carbon::now(); //hora actual
-		$timeNow->addHours(2);
-		$idasignatura = "";
-		foreach ($cursos1 as $curso) {
-			$date = Carbon\Carbon::now(); 
-			$date->addHours(2);
-			$hora_ini = (string)($curso->hora_inicio);
-			$date->hour = substr($hora_ini, 0, 2);
-			$date->minute = substr($hora_ini, 3, 2);
-			$date->second = substr($hora_ini, 6, 2);
+	public function update($id)	{
 			
-			$tmp = $timeNow->diffInMinutes($date);
-			if(abs($tmp<=15 ))
-			{
-				$idasignatura = $curso->idasignatura;
-				$dif = $date->copy();
-			}
-		}
-		foreach ($cursos2 as $curso) {
-			$date = $timeNow;
-			$hora_ini = (string)($curso->hora_inicio);
-			$date->hour = substr($hora_ini, 0, 2);
-			$date->minute = substr($hora_ini, 3, 2);
-			$date->second = substr($hora_ini, 6, 2);
-			//echo $timeNow. "    :::   ".$date;
-			//echo "<br>";
-			$tmp = $timeNow->diffInMinutes($date);
-			if(abs($tmp<=15 ))
-			{
-				$idasignatura = $curso->idasignatura;
-				$dif = $date->copy();
-			}
-		}
-		return View::make('docente.mostrarCursosDocente',['cursos1'=> $cursos1, 'cursos2'=> $cursos2, 'cursoCercano'=>$idasignatura]);
+		$inputs = Input::all();
+		$reglas = array(
 
+				
+		'observacion' => 'required|min:2|max:10',
+		'tema' => 'required|min:2|max:10' 	,
+		//'idcarga_academica' => 'required|min:2|max:10'
+
+		);
+		$mensajes= array('required' => 'Campo obligatorio');
+
+		$validar = Validator::make($inputs,$reglas,$mensajes);
+
+		if ($validar -> fails())
+		{
+			return Redirect::back()->withErrors($validar);
+		}
+		else{
+			//
+			$recuperado = Input::all();
+			//print_r($recuperado) ;
+			$asistencia = DB::table('tasistencia_docente')
+				->where('idasistencia_docente',$id)
+				->update(array(
+				
+					'observacion'=>$recuperado['observacion'],
+					'tema'=>$recuperado['tema'],
+					
+				));
+
+			return Redirect::to('docente/listarasistencia');
+		}
 	}
 
+	public function destroy($id){
+		
+		echo "esto es una prueba de eliminar";
+		//DB::delete('delete from tdocente where id = '.$id);
+		//$test = DB::table('tdocente')->where('iddocente',$id);
+		$test = AsistenciaDocente::where('idasistencia_docente','=',$id)->delete($id);
+		//print_r($test);
+		echo "elimiado";
+		//return $this->showUsers();
+		return Redirect::to('docente/listarasistencia');
+	}
+
+	public function listardocentes(){
+		$Docentes=docente::all();
+	    return View::make('docente.insertarasistencia')->with('listadocentes',$Docentes);
+	}
 
 }

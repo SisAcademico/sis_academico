@@ -41,13 +41,13 @@
                     <div class="form-group">
                         {{ Form::label('id_docente', Lang::get('Código Docente'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="id_docente" type="text" placeholder="Código del Docente"  value="{{$doc->iddocente}}" class="form-control" name="id_docente" maxlength="7" required>
+                            <input id="id_docente" type="text" placeholder="Código del Docente" readonly="readonly"   value="{{$doc->iddocente}}" class="form-control" name="id_docente" maxlength="5" required>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="dni" type="text" placeholder="DNI" value="{{$doc->dni}}" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9" required>
+                            <input id="dni" type="text" placeholder="DNI" value="{{$doc->dni}}" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="8" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -65,7 +65,7 @@
                     <div class="form-group">
                         {{ Form::label('direccion', Lang::get('Dirección'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="direccion" type="text" placeholder="Dirección" value="{{$doc->direccion}}" class="form-control" name="direccion"  maxlength="60" required>
+                            <input id="direccion" type="text" placeholder="Dirección" value="{{$doc->direccion}}" class="form-control" name="direccion"  maxlength="90" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -85,7 +85,7 @@
                         <div class="col-sm-10">
                             <SELECT id="cargo" name="cargo" SIZE=1 > 
                                 <option>{{$doc->cargo}}</option>
-                                <OPTION VALUE=" " > </OPTION>
+                                <OPTION VALUE="Docente" >Docente</OPTION>
                                 <OPTION value="Director">Director</OPTION>
                                 <OPTION value="Cordinador">Cordinador</OPTION>
                             </SELECT> 

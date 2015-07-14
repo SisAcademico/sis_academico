@@ -94,14 +94,17 @@ Route::get('/matricula/agregar', 'MatriculaController@create');
 Route::get('/detalleMatricula/agregar', 'DetalleMatriculaController@create');
 
 //-----------------------CARGA ACADEMICA-------------------
-//listar
+//listar por defecto
 Route::get('carga_academica/listar', 'CargaAcademicaController@listarCargaAcademica');
+//listra con busqueda por semestre
+Route::post('carga_academica/listar', 'CargaAcademicaController@listarCargaAcademica');
 //insertar
 Route::get('carga_academica/insertar', 'CargaAcademicaController@insertar');
-Route::post('wilson', 'CargaAcademicaController@store');
+Route::post('carga_academica/guardar', 'CargaAcademicaController@guardarcarga');
 //modificar
-Route::get('carga_academica/modificar/{id}','CargaAcademicaController@recuperarparamodificar');
-Route::post('wilson/{id}','CargaAcademicaController@modificar');
+Route::get('carga_academica/editar/{id}','CargaAcademicaController@recuperarparamodificar');
+Route::post('carga_academica/modificar/{id}','CargaAcademicaController@modificar');
+Route::get('carga_academica/vermas/{id}/{sem}','CargaAcademicaController@vermas');
 
 //-------------------------AULA CARGA------------------------------
 Route::get('aula_carga/listar', 'AulaCargaController@listarAulaCarga');

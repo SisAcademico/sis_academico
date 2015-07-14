@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class DocenteController extends \BaseController {
 
@@ -49,16 +49,22 @@ class DocenteController extends \BaseController {
                 $idl = $doc->iddocente;
                 $dnil = $doc->dni;
                
-                if(($idl==$iddocenteaverificar)||($dnil==$dniaverificar))
+                if($idl==$iddocenteaverificar)
                 {
                     $existedoc = true;
+                    $error = ['wilson'=>'Este Id ya Existe'];
+                }
+                if($dnil==$dniaverificar)
+                {
+                    $existedoc = true;
+                    $error = ['wilson'=>'Este DNI ya Existe'];
                 }
             }
 
 
 		if($existedoc)
             {
-            		 $error = ['wilson'=>'Este Docente ya Existe'];
+            		 
                     return Redirect::back()->withInput()->withErrors($error);
 
 			}
@@ -86,7 +92,7 @@ class DocenteController extends \BaseController {
 		$docentes->estado = 'Activo';*/
 		$docentes->save();
 		return Redirect::to('docente');
-	}
+			}
 	}
 
 
@@ -125,11 +131,35 @@ class DocenteController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$iddocenteaverificar = Input::get('id_docente');
+		$dniaverificar = Input::get('dni');
+
+            $ListaDoc = Docente::where('iddocente', '<>', $iddocenteaverificar)->get();
+
+            $existedoc= false;
+            $docntalqestaasignado = '';
+            foreach ($ListaDoc as $doc)
+            {
+                $dnil = $doc->dni;
+               
+
+                if($dnil==$dniaverificar)
+                {
+                    $existedoc = true;
+                    $error = ['wilson'=>'Este DNI ya Existe'];
+                }
+            }
+
+
+		if($existedoc)
+            {
+            		 
+                    return Redirect::back()->withInput()->withErrors($error);
+
+			}
+		else{
 		$entra = Input::all();
-		/*$foto = new Foto;
-		$id2 = DB::table('tfoto')->insertGetId(
-    	['imagen' => Input::file("photo")]
-		);*/
+
 		$docente = DB::table('tDocente')
             ->where('iddocente', $id)
             ->update(array(
@@ -142,11 +172,33 @@ class DocenteController extends \BaseController {
             'correo' => $entra['correo'],
             'cargo' => $entra['cargo'],
             'fecha_inicio' => $entra['fecha']
-             /*'estado' => 'Activo'
-           'idfoto' => 'null'*/
+
             ));
 		return Redirect::to('docente');
 	}
+	}
+
+ public function listarDocente()
+    {
+    	//return View::make('docente.listar');
+        $Docentestodo=docente::all();
+
+
+        if(isset($_GET["buscar"]))
+        {
+
+        	$buscar = htmlspecialchars(Input::get("buscar"));
+        	$fila = docente::select(DB::raw('*'))->where('nombres', 'like', '%'.$buscar.'%')->orwhere('apellidos', 'like', '%'.$buscar.'%')->get();
+        	return View::make('docente.listar')->with('Busqueda',$fila);
+		
+        }
+
+        return View::make('docente.listar')->with('Docentestodo',$Docentestodo);
+    }
+
+
+
+	
 
 
 	/**
