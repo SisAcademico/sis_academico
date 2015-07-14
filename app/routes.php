@@ -1,5 +1,20 @@
 <?php
+//--------------asistencia docente---------------------------------
+Route::get('docente/insertarasistencia', 'AsistenciaDocenteController@insertarAsistenciaDocente');
+Route::post('formulario2', 'AsistenciaDocenteController@store');
+Route::get('docente/listarasistencia', 'AsistenciaDocenteController@listar');
 
+
+Route::get('docente/Eliminarasistencia/{id}','AsistenciaDocenteController@destroy');
+Route::get('docente/modificarasistencia/{id}','AsistenciaDocenteController@show');
+
+Route::post('formulario2/{id}','AsistenciaDocenteController@update');
+Route::get('docente/insertarasistencia', 'AsistenciaDocenteController@listardocentes');
+
+//creando el filtro
+Route::get('docente/filtroAsistencia/{id}','AsistenciaDocenteController@filtrodocente');
+Route::get('docente.listarasistencia', 'DocenteController@listarDocente');
+//-----------------------------------------------------------------
 /*
 |--------------------------------------------------------------------------
 | Application Routes

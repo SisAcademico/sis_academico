@@ -3,8 +3,9 @@
 class AsistenciaDocenteController extends BaseController {
 
 	public function insertarAsistenciaDocente(){
-        //return View::make('docente.insertar');	
-        return View::make('docente.insertarasistencia');
+        //return View::make('docente.insertar');
+        //return View::make('docente.insertarasistencia');
+				return "Hola";
     }
 
 
@@ -16,7 +17,7 @@ class AsistenciaDocenteController extends BaseController {
 	}
 
 	public function filtrodocente($id){
-		//	
+		//
 		$filafiltro = CargaAcademica::where('iddocente', '=', $id)->get();
 		if(count($filafiltro)==0)
 		{
@@ -27,7 +28,7 @@ class AsistenciaDocenteController extends BaseController {
 				return Redirect::back()->withErrors("Error: docente no tiene carga academica");
 			}elseif (count($filaAsis)>0) {
 				return View::make('docente.filtroAsistencia')->with('FilaFiltroRecuperada',$filafiltro);
-			}		
+			}
 		}
 	}
 
@@ -45,10 +46,10 @@ class AsistenciaDocenteController extends BaseController {
 
 	public function store(){
 		$inputs = Input::all();
-		$reglas = array(			
+		$reglas = array(
 			'tema' => 'required|min:2|max:50');
-		$mensajes= array('required' => 'Campo obligatorio');		
-		
+		$mensajes= array('required' => 'Campo obligatorio');
+
 		$validar = Validator::make($inputs,$reglas,$mensajes);
 
 		if ($validar -> fails()){
@@ -65,7 +66,7 @@ class AsistenciaDocenteController extends BaseController {
             $recuperar2 = CargaAcademica::where('iddocente', '=', $docente)->get();
 
             if(count($recuperar2)==0 || $recuperar2 == NULL){
-            	return Redirect::back()->withErrors("Escoger una Asignatura"); 
+            	return Redirect::back()->withErrors("Escoger una Asignatura");
             }else{
             	$RAsignatura = $recuperar2[0]->idasignatura;
             	$RAsignatura_cl = $recuperar2[0]->idasignatura_cl;
@@ -75,7 +76,7 @@ class AsistenciaDocenteController extends BaseController {
             	}
             	else{
             		if (($asignaturaL!="0") && ($asignatura!= "0")){
-            			return Redirect::back()->withErrors("No puede escoger dos asignaturas.");           		
+            			return Redirect::back()->withErrors("No puede escoger dos asignaturas.");
             		}
             		else{
             			if($asignatura!="0") {
@@ -83,11 +84,11 @@ class AsistenciaDocenteController extends BaseController {
             				$recup = CargaAcademica::where('grupo', '=', $grupo)
 	               			->where('turno', '=', $turno)
 	               			->where('idsemestre', '=', $semestre)
-	               			->where('idasignatura', '=', $asignatura)	               			
+	               			->where('idasignatura', '=', $asignatura)
 	               			->where('iddocente', '=', $docente)
-	               			->get();                    			 
+	               			->get();
                     		if (count($recup)==0 || $recup == NULL ){
-         						return Redirect::back()->withErrors("Datos no correspondientes al docente"); 
+         						return Redirect::back()->withErrors("Datos no correspondientes al docente");
          					}
             			}
             			else{
@@ -95,15 +96,15 @@ class AsistenciaDocenteController extends BaseController {
 			               		$recup = CargaAcademica::where('grupo', '=', $grupo)
 			               			->where('turno', '=', $turno)
 			               			->where('idsemestre', '=', $semestre)
-			               			->where('idasignatura_cl', '=', $asignaturaL)	               			
+			               			->where('idasignatura_cl', '=', $asignaturaL)
 			               			->where('iddocente', '=', $docente)
-			               			->get();                   
-			               				
+			               			->get();
+
 		                    	if (count($recup)==0 || $recup == NULL )
 		                    	{
-		         					return Redirect::back()->withErrors("Datos no correspondientes al docente");           		
-		         					
-		                    	} 
+		         					return Redirect::back()->withErrors("Datos no correspondientes al docente");
+
+		                    	}
 			               	}
             			}
 
@@ -112,21 +113,21 @@ class AsistenciaDocenteController extends BaseController {
             }
 
             if((count($recup)!=0)){
-	        	$idCarga = $recup[0]->idcarga_academica; 
+	        	$idCarga = $recup[0]->idcarga_academica;
 	      	}else {
-	      		return Redirect::back()->withErrors("carga acdemica no existe"); 
+	      		return Redirect::back()->withErrors("carga acdemica no existe");
 	      	}
 
 	      	$idhorario=CargaHorario::where('idcarga_academica','=',$idCarga)->get();
 
 			if ( (count($idhorario)==0) ||($idhorario==null) ){
-				return Redirect::back()->withErrors("el curso seleccionado no tiene un horario establecido");           		
+				return Redirect::back()->withErrors("el curso seleccionado no tiene un horario establecido");
 			}
 
 			$hora=Horario::Where('idhorario','=',$idhorario[0]->idhorario)->get();
 
 			if ((count($hora)==0) || ($hora==null)) {
-				return Redirect::back()->withErrors("el curso seleccionado no tiene un horario establecido");           		
+				return Redirect::back()->withErrors("el curso seleccionado no tiene un horario establecido");
 			}
 
 			$aux1= date('Y-m-d')." ".($hora[0]->hora_inicio);
@@ -143,30 +144,30 @@ class AsistenciaDocenteController extends BaseController {
 				->where('fecha_asist_doc', '<=', $aux2)->get();
 
 			if (count($asist)!=0) {
-	        	return Redirect::back()->withErrors("El docente ya se registro");  
+	        	return Redirect::back()->withErrors("El docente ya se registro");
 	        }
 
 
-	        $Hora = date("H:i:s");                     
+	        $Hora = date("H:i:s");
             $id = $idCarga;
             $recup = CargaHorario::where('idcarga_academica', '=', $id)->get();
-            $Vhorario= $recup[0]->idhorario;                        
+            $Vhorario= $recup[0]->idhorario;
             $recup2 = Horario::where('idhorario', '=', $Vhorario)->get();
             $VInicio = $recup2[0]->hora_inicio;
-            $VFin = $recup2[0]->hora_fin;   
+            $VFin = $recup2[0]->hora_fin;
             $VInicio1 = date ( "H:i:s",strtotime ( '+5 minute' , strtotime ( $VInicio ) ));
-            if ($Hora<  $VInicio1 ){   
+            if ($Hora<  $VInicio1 ){
                $MensajeObservacion ="Temprano";
             }
-            if ($Hora> $VInicio1){   
+            if ($Hora> $VInicio1){
                 $MensajeObservacion ="Tarde";
             }
-            
+
 
 
 
 	        $idasistencia_docente = DB::table('tasistencia_docente')->insertGetId(
-			array(				
+			array(
 				'fecha_asist_doc'=>Input::get('fecha'),
 				'observacion'=>$MensajeObservacion,
 				'tema'=>Input::get('tema'),
@@ -175,14 +176,15 @@ class AsistenciaDocenteController extends BaseController {
 
 	        return Redirect::to('docente/insertarasistencia');
 		}
-	}	
+	}
+
 
 	public function update($id)	{
-			
+
 		$inputs = Input::all();
 		$reglas = array(
 
-				
+
 		'observacion' => 'required|min:2|max:10',
 		'tema' => 'required|min:2|max:10' 	,
 		//'idcarga_academica' => 'required|min:2|max:10'
@@ -203,10 +205,10 @@ class AsistenciaDocenteController extends BaseController {
 			$asistencia = DB::table('tasistencia_docente')
 				->where('idasistencia_docente',$id)
 				->update(array(
-				
+
 					'observacion'=>$recuperado['observacion'],
 					'tema'=>$recuperado['tema'],
-					
+
 				));
 
 			return Redirect::to('docente/listarasistencia');
@@ -214,7 +216,7 @@ class AsistenciaDocenteController extends BaseController {
 	}
 
 	public function destroy($id){
-		
+
 		echo "esto es una prueba de eliminar";
 		//DB::delete('delete from tdocente where id = '.$id);
 		//$test = DB::table('tdocente')->where('iddocente',$id);

@@ -79,35 +79,27 @@
                             </select>
                         </div>
 
+                        <div class="col-sm-4">
+                            <a href="" class="btn btn-success">Seleccione la asignatura</a>
+                        </div>
 
                     </div>
 
 
 
-                     <div class="form-group">
+                    <div class="form-group">
                         {{ Form::label('Asignatura', 'Asigantura',array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-4">
-                    <?php
- 
-                            // $resultado = DB::select('SELECT * FROM tasignatura where idasignatura in
-                            // (SELECT idasignatura FROM tcarga_academica WHERE iddocente=? AND idsemestre=?)',array($iddeldocente,$iddelsemestre));
-                            //
-                            // $resultado2 = DB::select('SELECT * FROM tasignatura_cl where idasignatura_cl in
-                            // (SELECT idasignatura_cl FROM tcarga_academica WHERE iddocente=? AND idsemestre=?)',array('d0001','2015-VI'));
-                            //
-                            $resultado = Asignatura::all();
-
+                            <?php
+                                $resultado = Asignatura::all();
                             ?>
                             <select class="form-control" data-style="btn-success" name="Asignatura">
                               <option  selected value="0">Selecciona un curso</option>
                                 @foreach($resultado as $key)
                                   <option value = "<?php echo $key->idasignatura;?>" >{{$key->idasignatura}} - {{$key->nombre_asignatura}}</option>
-                                @endforeach            
+                                @endforeach
                             </select>
                         </div>
-
-
-
                     </div>
 
                     <div class="form-group">
@@ -121,7 +113,7 @@
                             // (SELECT idasignatura_cl FROM tcarga_academica WHERE iddocente=? AND idsemestre=?)',array('d0001','2015-VI'));
                             //
                             //$resultado = Asignatura::all();
- 
+
                             $resultado2 = AsignaturaLibres::all();
 
 
@@ -141,11 +133,11 @@
                     </div>
 
                     <?php
-                    
+
                     $Gru=CargaAcademica::select('grupo')->distinct()->get();
                     $Gru1=CargaAcademica::select('turno')->distinct()->get();
 
-                    
+
                     ?>
                     <div class="form-group">
                         {{ Form::label('Grupo', Lang::get('Grupo'),array('class'=>'col-sm-2 control-label')) }}
@@ -182,7 +174,7 @@
 
 
 
-                    
+
                     <div class="form-group">
                         {{ Form::label('Tema', Lang::get('Tema'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">

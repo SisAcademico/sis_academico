@@ -18,9 +18,9 @@
 	<link href="{{asset('/adminlte/plugins/iCheck/square/blue.css')}}" rel="stylesheet" type="text/css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins -->
 	<link href="{{asset('/adminlte/dist/css/skins/_all-skins.min.css')}}" rel="stylesheet" type="text/css">
-  
+
   @yield('estilos')
-		
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="{{asset('/js/html5shiv.js')}}"></script>
@@ -142,7 +142,7 @@
                 <li><a href="{{ URL::to( '/administrador/insertar') }}"><i class="fa fa-plus"></i> Agregar  Administrador</a></li>
               </ul>
             </li>
-            
+
 		<li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i> <span>Docentes</span> <i class="fa fa-angle-left pull-right"></i>
@@ -165,12 +165,12 @@
                 <li><a href="{{ URL::to( '/carga_academica/insertar') }}"><i class="fa fa-plus"></i> Agregar  Carga Academica</a></li>
               </ul>
               </li>
-                 
+
 			<li class="treeview">
               <a href="{{ URL::to( '/alumno') }}">
                 <i class="fa fa-users"></i> <span>Alumnos</span>
               </a>
-              
+
       </li>
       <li><a href="{{ URL::to( '/alumno/asistencia/listar') }}"><i class="fa fa-list"></i> <span>Asistencia Alumno</span></a></li>
 			<li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
@@ -198,14 +198,14 @@
               <a href="{{ URL::to( '/carrera') }}">
                 <i class="fa fa-book"></i> <span>Carreras</span>
               </a>
-              
+
             </li>
-       
+
       <li class="treeview">
               <a href="{{ URL::to( '/modulo') }}">
                 <i class="fa fa-book"></i> <span>Modulos</span>
               </a>
-              
+
             </li>
 
             <li class="treeview">
@@ -230,14 +230,14 @@
               <a href="{{ URL::to( '/concepto') }}">
                 <i class="fa fa-money"></i> <span>Concepto Pago</span>
               </a>
-              
+
             </li>
 
                   <li class="treeview">
               <a href="{{ URL::to( '/pago') }}">
                 <i class="fa fa-money"></i> <span>Pagos</span>
               </a>
-              
+
             </li>
 
 
@@ -252,7 +252,7 @@
                 <li><a href="{{ URL::to( '/matricula/create') }}"><i class="fa fa-plus"></i> Realizar Matricula</a></li>
               </ul>
       </li>
-      
+
       <li class="{{ Request::is( 'horario') ? 'active' : '' }}  treeview">
               <a href="#">
                 <i class="fa fa-list"></i> <span>Horario</span> <i class="fa fa-angle-left pull-right"></i>
@@ -275,13 +275,13 @@
 			@section('ruta_navegacion')@show
           </ol>
         </section>
-		
+
 		<!-- Main content -->
         <section class="content">
 			<!--INICIO: Contenido principal -->
 			@section('contenido')
 			@show
-			<!--FIN: Contenido principal -->              
+			<!--FIN: Contenido principal -->
         </section><!-- /.content -->
     </div>
 	<!-- FIN: Contenido principal -->
