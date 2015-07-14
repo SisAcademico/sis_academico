@@ -18,7 +18,27 @@
 
 @section('contenido')
     <!-- Main row -->
+        <div class="row">
+        <!-- INICIO: BOX PANEL -->
+   
+
+        <div class="col-md-6 col-sm-8">
+
+     {{ Form::open(array('url' => 'docente.listarasistencia',
+                                'method' => 'GET',
+
+                                'class' =>'form-inline',
+
+                                'role' => 'form')) }}
+
+                                {{Form::input('text','buscar',Input::get('buscar'),array('class'=>'form-control')) }}
+                                {{Form::input('submit',null,'Buscar',array('class'=> 'btn btn-primary'))}}
+
+                                {{Form::close()}}
+</div>
+  <div class="col-md-6 col-sm-8">
     <div class="negro">
+
     </div>
     <div class="google-expando--wrap">
       <div class="google-expando">
@@ -127,21 +147,72 @@
 
       </div>
     </div>
-
+</div>
     <div class="row">
         <!-- INICIO: BOX PANEL -->
+   
+
         <div class="col-md-12 col-sm-8">
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Listado de Docentes</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                <?php 
+
+
+        if(isset($_GET["buscar"]))
+        {
+
+            $cont=0;
+            
+
+
+        ?>
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 30px">Código</th>
                             <th >Nombres</th>
                             <th >Correo</th>
                             <th >DNI</th>
+                            
+                        </tr>
+                        <!-- LISTAR DocenteS-->
+                        @foreach($Busqueda as $doc)
+                        <tr>
+                            <td>{{$doc->iddocente}}</td>
+                            <td>{{$doc->nombres}} {{$doc->apellidos}}</td>
+                            <td>{{$doc->correo}}</td>
+                            <td>{{$doc->dni}}</td>
+                            <td>
+                                <!--<a href="/sis_academico/public/Docente/{{ $doc->iddocente }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                -->
+                                <a href="/sis_academico/public/docente/{{ $doc->iddocente }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                 <a class="btn btn-xs btn-primary;background-color:yellow" href="{{ URL::to( '/docente/filtroAsistencia');}}/{{$doc->iddocente}}">Ver asistencia</a>
+                                
+                            </td>
+                        </tr>
+                        @endforeach
+                        
+                    </table>
+                    <?php
+            
+        }else{
+                                            //echo $Docentestodo;
+                                            /*foreach ($Docentestodo as $Doc) 
+                                            {
+                                                echo $Doc->nombres;
+                                            }*/
+
+                                        $cont=0;
+                                        ?>
+                                           <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 30px">Código</th>
+                            <th >Nombres</th>
+                            <th >Correo</th>
+                            <th >DNI</th>
+                                
                             
                         </tr>
                         <!-- LISTAR DocenteS-->
@@ -154,12 +225,16 @@
                             <td>
                                 <!--<a href="/sis_academico/public/Docente/{{ $doc->iddocente }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 -->
+                               
                                 <a href="/sis_academico/public/docente/{{ $doc->iddocente }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                 <a class="btn btn-xs btn-primary;background-color:yellow" href="{{ URL::to( '/docente/filtroAsistencia');}}/{{$doc->iddocente}}">Ver asistencia</a>
+                                
                             </td>
                         </tr>
                         @endforeach
                         
                     </table>
+            <?php } ?>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix text-center">
                     <ul class="pagination pagination-sm no-margin">

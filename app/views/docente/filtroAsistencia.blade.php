@@ -1,5 +1,5 @@
-@extends('_layouts.app')
 
+@extends('_layouts.app')
 @section('titulo')
     @lang('Listar Asistencia Docente')<!--titulo de la ventana-->
 @stop
