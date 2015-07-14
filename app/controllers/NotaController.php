@@ -86,11 +86,11 @@ class NotaController extends \BaseController {
 					$valor = $input[$idTextBox];
 					if(empty($valor) || $valor == "NSP")
 						$valor = 0;
-					if(empty(DB::table('tnotas')
+					$temp=DB::table('tnotas')
 					-> where('iddetalle_matricula', '=', $dato->iddetalle_matricula)
 					-> where('nro_parcial', '=', $i)
-					-> get()
-					))
+					-> get();
+					if(empty($temp))
 					{
 						$notas = new Nota();
 						$notas -> fecha_nota = Carbon\Carbon::now();
@@ -136,11 +136,11 @@ class NotaController extends \BaseController {
 					$valor = $input[$idTextBox];
 					if(empty($valor) || $valor == "NSP")
 						$valor = 0;
-					if(empty(DB::table('tnotas')
+					$temp2=DB::table('tnotas')
 					-> where('iddetalle_matricula', '=', $dato->iddetalle_matricula)
 					-> where('nro_parcial', '=', $i)
-					-> get()
-					))
+					-> get();
+					if(empty($temp2))
 					{
 						$notas = new Nota();	
 						$notas -> fecha_nota = Carbon\Carbon::now();
