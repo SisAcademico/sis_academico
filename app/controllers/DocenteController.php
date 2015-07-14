@@ -92,7 +92,7 @@ class DocenteController extends \BaseController {
 		$docentes->estado = 'Activo';*/
 		$docentes->save();
 		return Redirect::to('docente');
-	}
+			}
 	}
 
 
@@ -134,15 +134,6 @@ class DocenteController extends \BaseController {
 		$iddocenteaverificar = Input::get('id_docente');
 		$dniaverificar = Input::get('dni');
 
-		
-
-			//antes de insertar los datos en la base de datos 
-            //verificamos que los datos basicos para este  docente no se repitan como  Id,DNI
-            
-            
-            //$ListaDoc = Docente::all();
-            /*$ListaDoc = DB::table('tdocente')
-            ->where('iddocente','>', $iddocenteaverificar);*/
             $ListaDoc = Docente::where('iddocente', '<>', $iddocenteaverificar)->get();
 
             $existedoc= false;
@@ -167,18 +158,8 @@ class DocenteController extends \BaseController {
 
 			}
 		else{
-
-
-
-
-
-
-
 		$entra = Input::all();
-		/*$foto = new Foto;
-		$id2 = DB::table('tfoto')->insertGetId(
-    	['imagen' => Input::file("photo")]
-		);*/
+
 		$docente = DB::table('tDocente')
             ->where('iddocente', $id)
             ->update(array(
@@ -191,11 +172,12 @@ class DocenteController extends \BaseController {
             'correo' => $entra['correo'],
             'cargo' => $entra['cargo'],
             'fecha_inicio' => $entra['fecha']
-             /*'estado' => 'Activo'
-           'idfoto' => 'null'*/
+
             ));
 		return Redirect::to('docente');
 	}
+	}
+
  public function listarDocente()
     {
     	//return View::make('docente.listar');
@@ -216,7 +198,7 @@ class DocenteController extends \BaseController {
 
 
 
-	}
+	
 
 
 	/**
