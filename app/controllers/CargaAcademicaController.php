@@ -118,7 +118,7 @@ class CargaAcademicaController extends \BaseController {
     {
         $FechaActual=date("Y-m-d");
         $Semestretodo = Semestre::all();        
-        $Asignaturacltodo = Asignaturacl::all();
+        $Asignaturacltodo = AsignaturaLibres::all();
         $Asignaturatodo = Asignatura::all(); 
         $Docentetodo = Docente::all();
         $Aulatodo = Aula::all();
@@ -248,7 +248,7 @@ class CargaAcademicaController extends \BaseController {
              ->get();
         $Semestretodo = Semestre::all();
         $Asignaturatodo = Asignatura::all();
-        $Asignaturacltodo = Asignaturacl::all();
+        $Asignaturacltodo = AsignaturaLibres::all();
         $Docentetodo = Docente::all();
         $cargaacademicaasignatura = DB::table('tcarga_academica')
             ->join('tasignatura', 'tcarga_academica.idasignatura', '=', 'tasignatura.idasignatura')
