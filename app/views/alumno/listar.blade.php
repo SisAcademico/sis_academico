@@ -56,7 +56,7 @@
                         <div class="form-group">
                             {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="dni" type="text" placeholder="DNI" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9" required>
+                                <input id="dni" type="text" placeholder="DNI" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9">
                             </div>
                         </div>
                         <div class="form-group">
