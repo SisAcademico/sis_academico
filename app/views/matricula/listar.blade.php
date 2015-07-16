@@ -45,10 +45,10 @@
                                 <td>{{$matri->fecha_matricula}}</td>
                                 <td>{{$matri->nro_boleta}}</td>
                                 <td>
-                                    <a href="/sis/sis_academico/public/matricula/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                    <a href="/sis_academico/public/matricula/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
                                 <td>
-                                    <a href="/sis/sis_academico/public/detalleMatricula/{{ $matri->idmatricula }}/detail" class="btn btn-xs btn-primary"><i class="fa fa-asterisk"></i></a>
+                                    <a href="/sis_academico/public/detalleMatricula/{{ $matri->idmatricula }}/detail" class="btn btn-xs btn-primary"><i class="fa fa-asterisk"></i></a>
                                 </td>
                             </tr>
                         @endforeach

@@ -4,6 +4,8 @@
 @stop
 @section ('estilos')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/btn.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/adminlte/plugins/datepicker/css/bootstrap-datepicker3.standalone.css')}}">
 @stop
 @section('titulo_cabecera')
     @lang('Matricula')<small>@lang('')</small>
@@ -14,6 +16,9 @@
 @stop
 
 @section('contenido')
+
+
+
     <!-- Main row -->
     <div class="row">
         <!-- INICIO: BOX PANEL -->
@@ -38,9 +43,9 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                        {{ Form::label('id_matricula', Lang::get('Codigo Matricula'),array('class'=>'col-sm-2 control-label')) }}
+                        {{ Form::label('idalumno', Lang::get('Codigo Alumno'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="id_matricula" type="text" class="form-control" name="id_matricula" readonly="readonly" onKeyPress="return validar(event)" maxlength="7" required>
+                            <input id="idalumno" type="text" class="form-control" name="idalumno" readonly="readonly" value="{{$alu}}">
                         </div>
                     </div>
 
@@ -48,38 +53,26 @@
                         {{ Form::label('tipo', Lang::get('Tipo'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             {{
-                                Form::select('idtipo',array('CP' => 'CARRERA PROFESIONAL', 'CL' => 'CURSO LIBRE') ,null,array('class'=>'form-control','id'=>'CP','id'=>'CL'))}}
+                                Form::select('idtipo',array('Curso_carrera' => 'CARRERA PROFESIONAL', 'Curso_libre' => 'CURSO LIBRE') ,null,array('class'=>'form-control','id'=>'idtipo'))
+                                }}
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        {{ Form::label('fecha_matricula', Lang::get('Fecha Matricula'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <input name='fecha_matricula' type="text" id="theInput" placeholder="Seleccione Fecha" />
+                        <div class="form-group">
+                            {{ Form::label('fecha_matricula', Lang::get('Fecha de Ingreso'),array('class'=>'col-sm-2 control-label')) }}
+                            <div class="col-sm-3">
+                                <div class="input-group input-group-sm">
+                                    {{ Form::text('fecha_matricula','',array('class'=>'form-control fecha_cal','id'=>'fecha_fin','placeholder'=>Lang::get('sistema.formato_fecha'),'readonly'=>'readonly')) }}
+                                    <span class="input-group-btn">
+                                  <button class="btn bg-purple btn-flat btn_calen" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        {{ Form::label('idpado', Lang::get('Nro Boleta'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                        {{
-                            Form::select('idpago', array_pluck(Pago::all(),'nro_boleta','idpago'),null,array('class'=>'form-control','id'=>'idpago'))
-                        }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('idalumno', Lang::get('Codigo Alumno'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                        {{
-                            Form::select('idalumno', array_pluck(Alumno::all(),'nombres','idalumno'),null,array('class'=>'form-control','id'=>'idalumno'))
-                        }}
-                        </div>
-                    </div>
                 </div>
                 <div class="box-footer">
                     {{ Form::submit(Lang::get('Guardar'), array('class' => 'btn btn-info pull-right')) }}
-
-                    <a class="btn btn-primary pull-right" href="{{ URL::to( '/detalleMatricula/agregar') }}"><i class="fa fa-plus"></i> @lang('Detalles Matricula')</a>
                 </div>
             </div>
             {{ Form::close() }}
@@ -87,8 +80,32 @@
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
 @section ('scrips_n')
+    <script>
+        $(document).ready(function(){
+            $('#btn2').click(function(e){
+                e.preventDefault();
+                $.ajax({
+                        url: '{{url()}}/pago/agregar',
+                          type: 'POST',
+                            cache: false,
+                            data: $('form#add').serialize(),
+                            dataType: 'json',
+                            beforeSend: function(){
+                                $("#nro_boleta").val('');
+                            },
+                            sucess: function(data)
+                            {
+                                $('#idboleta').val($('#nro_boleta').val());
+                            }
+                        });
+            });
+        });
+    </script>
     <script src="{{asset('/js/ja1.js')}}" type="text/javascript"></script>
     <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/adminlte/plugins/datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/adminlte/plugins/datepicker/locales/bootstrap-datepicker.es.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/js/sis_academico.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         function validar(e) {
             tecla = (document.all) ? e.keyCode : e.which;

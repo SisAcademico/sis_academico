@@ -18,7 +18,7 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
-            {{ Form::open(array('url' => 'matricula', 'files' => true, 'class' => 'form-horizontal')) }}
+            {{ Form::open(array('url' => 'detalle_matricula', 'files' => true, 'class' => 'form-horizontal')) }}
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Detalle Matricula</h3>
@@ -26,85 +26,58 @@
                 <div class="box-header with-border">
                     <center><h3 class="box-title">Elegir Cursos</h3></center>
                 </div>
+                  <input   type='text'   value="{{$id_matricula}}" name="codigomatri" style="display:none" >
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 20px">Codigo</th>
                             <th >Nombre Asignatura</th>
                             <th >Horas Semanales</th>
-                            <th ></th>
+                            <th >Estado</th>
                         </tr>
                         <!-- LISTAR Matriculas-->
 
-                        @foreach($detalleMatricula as $matri)
-                            <tr>
-                                <td>{{$matri->idasignatura}}</td>
-                                <td>{{$matri->nombre_asignatura}} </td>
-                                <td>{{$matri->horas_semanales}}</td>
-                                <td><input type='radio' ></td>
-                            </tr>
-                        @endforeach
+                    @foreach($detalleMatricula as $matri)
+                    <tr>
+                        <td>{{$matri->idasignatura}}</td>
+                        <td>{{$matri->nombre_asignatura}} </td>
+                        <td>{{$matri->horas_semanales}}</td>
+                        <!--<td><input type='checkbox' ></td>-->
+                        <td><input id="nombre_asignatura" type='checkbox'   value="{{$matri->idasignatura}}" class="form-control" name="nombre"></td>
+                    </tr>
+                    @endforeach
+
 
                     </table>
                 </div><!-- /.box-body -->
-
-                <!--<div class="box-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <ul class="error_list">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    <div class="form-group">
-                        {{ Form::label('id_matricula', Lang::get('idmatricula'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('id_matricula',null,array('class'=>'form-control','id'=>'id_matricula','placeholder'=>Lang::get('IdMatricula'))) }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::label('tipo', Lang::get('tipo'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('tipo',null,array('class'=>'form-control','id'=>'tipo','placeholder'=>Lang::get('tipo'))) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('fecha_matricula', Lang::get('fecha de matricula'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('idpado', Lang::get('id pago'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('idpago',null,array('class'=>'form-control','id'=>'idpago','placeholder'=>Lang::get('idPago'))) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('idalumno', Lang::get('id Alumno'),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            {{ Form::text('idalumno',null,array('class'=>'form-control','id'=>'idalumno','placeholder'=>Lang::get('idAlumno'))) }}
-                        </div>
-                    </div>
-                </div>-->
                 <div class="box-footer">
-                    <a class="btn btn-primary pull-right" href="{{ URL::to( '/detalleMatricula/agregar') }}"><i class="fa fa-plus"></i> @lang('Guardar')</a>
-                    {{ Form::submit(Lang::get('Guardar'), array('class' => 'btn btn-info pull-right')) }}
+                    {{ Form::submit(Lang::get('Guardar'), array('class' => 'btn btn-info pull-right','id' => 'jajaja')) }}
                 </div>
             </div>
+            <input id="cacche"  type='text'   value="poder"  name="nombre" style="display:none">
+            <input type='text'   value="ca"  name="diferenciar" style="display:none">
             {{ Form::close() }}
+
         </div>
         <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
     @section ('scrips_n')
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/sis_academico.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#jajaja').click(function() {
+                    var values = $('input:checkbox[name=nombre]:checked').map(function () {
+                        return this.value;
+                    }).get();
+                    $('#cacche').val(values);
+                    if (values.length > 5) {
+                        alert("No se puede elegir mas de 5 cursos")
+                    }
+                });
+
+            });
+        </script>
     @stop
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
 @endsection

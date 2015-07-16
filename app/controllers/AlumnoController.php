@@ -43,7 +43,7 @@ class AlumnoController extends \BaseController {
 		if(!empty(DB::table('talumno')->where('id_alumno', '=',Input::get('id_alumno'))))
 		{
 			echo "Alumno ya exite";
-			
+			return Redirect::to('alumno');
 		}
 		$error = "";
 		$alumnos = new Alumno;

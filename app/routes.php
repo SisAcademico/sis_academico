@@ -33,6 +33,7 @@ Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
 Route::resource('matricula','MatriculaController');
 Route::resource('asignaturalibre','AsignaturaLibreController');
+Route::resource('detalle_matricula','DetalleMatriculaController');
 
 Route::any('horario/PDFA','HorarioController@getPDF');
 Route::resource('horario','HorarioController');
@@ -70,6 +71,17 @@ Route::resource('aula', 'AulaController');
 //------------- Concepto -------------------------
 Route::resource('concepto', 'ConceptoController');
 Route::any('concepto/{id}/destroy','ConceptoController@destroy');
+Route::get('pago/listar', 'PagoController@listarPagos');
+Route::get('pago/insertar', 'PagoController@insertarPago');
+Route::post('pago/agregar','PagoController@ajaxc');
+Route::any('matricula/create2', 'MatriculaController@create2');
+Route::get('/matricula', 'MatriculaController@index');
+Route::get('/matricula/agregar', 'MatriculaController@create');
+Route::get('detalle_matricula/guardar/{id}','DetalleMatriculaController');
+Route::get('/detalleMatricula/agregar/{id}', 'DetalleMatriculaController@create');
+Route::get('/detalleMatricula/agregarcl/{id}', 'DetalleMatriculaController@createcl');
+
+
 
 //------------- Pagos -------------------------
 Route::resource('pago', 'PagoController');

@@ -17,8 +17,8 @@ class MatriculaController extends BaseController{
         $alumnos=Alumno::all();
         $auxiliar=DB::table('tmatricula')
             ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
-            //->join('tpago', 'tmatricula.idpago', '=', 'tpago.idpago')
-            ->select('tmatricula.idmatricula','tmatricula.tipo' ,'talumno.idalumno', 'talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula','tmatricula.idpago')
+            ->join('tpago', 'tmatricula.idpago', '=', 'tpago.idpago')
+            ->select('tmatricula.idmatricula','tmatricula.tipo' ,'talumno.idalumno', 'talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula','tpago.nro_boleta')
             ->get();
         return View::make('matricula.listar') -> With('matricula',$auxiliar);
     }
@@ -65,26 +65,27 @@ class MatriculaController extends BaseController{
     {
         //
             $matricula = new Matricula;
-            $idpago = DB::table('tpago')->where('nro_boleta', Input::get('idboleta'))->pluck('idpago');
+            //$idpago = DB::table('tpago')->where('nro_boleta', Input::get('idboleta'))->pluck('idpago');
 
-            if(($idpago != NULL)) {
+            //if(($idpago != NULL)) {
                 $matricula->tipo = Input::get('idtipo');
                 $matricula->fecha_matricula = Input::get('fecha_matricula');
-                $matricula->idpago = $idpago;
+                //$matricula->idpago = $idpago;
                 $matricula->idalumno = Input::get('idalumno');
                 $matricula->save();
-                if(Input::get('idtipo')=='CARRERA PROFESIONAL'){
-                      $idmatr = db::table('tmatricula')->max('idmatricula');
+                if(Input::get('idtipo')=='Curso_carrera'){
+                    $idmatr = DB::table('tmatricula')->max('idmatricula');
                     return Redirect::to('/detalleMatricula/agregar/'.$idmatr);
 
                 }
-                else
-                    $idmatr = db::table('tmatricula')->max('idmatricula');
+                else{
+                    $idmatr = DB::table('tmatricula')->max('idmatricula');
                     return Redirect::to('/detalleMatricula/agregarcl/'.$idmatr);
-            }
+                }
+            /*}
             else {
                 echo "pago no es valido";
-            }
+            }*/
 
     }
 

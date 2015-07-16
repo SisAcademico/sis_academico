@@ -38,7 +38,7 @@
                         {{ Form::label('idalumno', Lang::get('Codigo Alumno'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             <div class="col-sm-10">
-                                <input class="form-control" id="idalumno" placeholder="Codigo Alumno" name="idalumno" type="text" maxlength="6" required>
+                                <input class="form-control" id="idalumno" placeholder="Codigo Alumno" name="idalumno" type="text" maxlength="10" required>
                             </div>
                         </div>
                     </div>

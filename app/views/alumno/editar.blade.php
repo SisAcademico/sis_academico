@@ -47,7 +47,7 @@
                     <div class="form-group">
                         {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="dni" type="text" placeholder="DNI" value="{{$alu->dni}}" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9" required>
+                            <input id="dni" type="text" placeholder="DNI" value="{{$alu->dni}}" class="form-control" name="dni" onKeyPress="return validar2(event)" maxlength="9" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -131,6 +131,24 @@
                 if (tecla==56) return true;
                 if (tecla==57) return true;
                 patron = /1/; //ver nota
+                te = String.fromCharCode(tecla);
+                return patron.test(te); 
+            }
+            function validar2(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true; 
+                if (tecla==44) return true; 
+                if (tecla==48) return true;
+                if (tecla==49) return true;
+                if (tecla==50) return true;
+                if (tecla==51) return true;
+                if (tecla==52) return true;
+                if (tecla==53) return true;
+                if (tecla==54) return true;
+                if (tecla==55) return true;
+                if (tecla==56) return true;
+                if (tecla==57) return true;
+                patron = /0/; //ver nota
                 te = String.fromCharCode(tecla);
                 return patron.test(te); 
             } 
