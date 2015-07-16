@@ -39,17 +39,15 @@ class AlumnoController extends \BaseController {
 	 */
 	public function store()
 	{
-		$error = "Código de Alumno Repertido";
+		/*$error = "Código de Alumno Repertido";
 		if(!empty(DB::table('talumno')->where('id_alumno', '=',Input::get('id_alumno'))))
 		{
 			echo "Alumno ya exite";
 			return Redirect::to('alumno');
-		}
-		$error = "";
+		}*/
 		$alumnos = new Alumno;
-		$foto = new Foto;
 		$id = DB::table('tusuario')->insertGetId(
-    	['password' => Input::get('id_alumno'), 'tipo_usuario' => 'alumno' , 'estado' => 'activo']
+    	['usuario' => Input::get('id_alumno') , 'password' => Input::get('id_alumno'), 'tipo_usuario' => 'alumno' , 'estado' => 'activo']
 		);
 		$alumnos->idalumno = Input::get('id_alumno');
 		$alumnos->idusuario = $id;
