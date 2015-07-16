@@ -50,7 +50,7 @@
                         <div class="form-group">
                             {{ Form::label('id_alumno', Lang::get('Código'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="id_alumno"  type="text" value="{{$cuan}}" class="form-control" name="id_alumno" disabled="disable" maxlength="11" required>
+                                <input id="id_alumno"  type="text" value="{{$cuan}}" class="form-control" name="id_alumno"  maxlength="11" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,19 +74,19 @@
                         <div class="form-group">
                             {{ Form::label('direccion', Lang::get('Dirección'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="direccion" type="text" placeholder="Dirección" class="form-control" name="direccion"  maxlength="60" required>
+                                <input id="direccion" type="text" placeholder="Dirección" class="form-control" name="direccion"  maxlength="60">
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('telefono', Lang::get('Teléfono'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="telefono" type="text" placeholder="Teléfono" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9" required>
+                                <input id="telefono" type="text" placeholder="Teléfono" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9">
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('correo', Lang::get('Correo'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="correo" type="email" placeholder="Correo" class="form-control" name="correo"  required>
+                                <input id="correo" type="email" placeholder="Correo" class="form-control" name="correo">
                             </div>
                         </div>
                         
