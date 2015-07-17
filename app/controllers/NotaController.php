@@ -11,13 +11,13 @@ class NotaController extends \BaseController {
 	    $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
 	    $data=Alumno::all();
         //$fpdf->Image("unsaac.png",10,6,30);
-        $fpdf->SetFont('Arial','',13);
+        $fpdf->SetFont('Arial','B',13);
 		$fpdf->AddPage();
 		$fpdf->Cell(80);
 		$fpdf->Cell(30,5,'Lista de Alumnos', 0, 1, 'C');
 		$fpdf->SetFont('Arial','B',9);
-		$fpdf->Cell(10,5,'Asignatura:', 0, 1, 'L');
-		$fpdf->Cell(10,5,'Docente:', 0, 1, 'L');
+		/*$fpdf->Cell(10,5,'Asignatura:', 0, 1, 'L');
+		$fpdf->Cell(10,5,'Docente:', 0, 1, 'L');*/
 		$fpdf->Ln(2);
 
 		$fpdf->SetFont('Arial','B',10);

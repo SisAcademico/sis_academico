@@ -23,7 +23,11 @@
     <div class="google-expando--wrap">
       <div class="google-expando">
 
-        <div class="google-expando__icon">    
+        <div class="google-expando__icon" style="
+    position: fixed;
+    right: 31px;
+    top: 81%;
+">    
           <a href="#"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
 
         </div>
@@ -123,7 +127,7 @@
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         @if (count($errors) > 0)
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger fade in">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <ul class="error_list">
                                     @foreach ($errors->all() as $error)
@@ -131,7 +135,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+        @endif
         <div class="col-md-12 col-sm-8">
             <div class="box box-success">
                 <div class="box-header with-border">

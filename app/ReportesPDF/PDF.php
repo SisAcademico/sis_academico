@@ -30,7 +30,7 @@ class PDF extends baseFpdf
         $this->SetLineWidth(.3);
         $this->SetFont('','B');
 
-        $w = array(13, 18, 162);
+        $w = array(13, 23, 162);
         for($i=0;$i<count($header);$i++)
             $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
         $this->Ln();
@@ -40,7 +40,7 @@ class PDF extends baseFpdf
         $this->SetFont('');
 
         $fill = false;
-        $gg=0;
+        $gg=1;
         foreach($data as $row)
         {
             $this->Cell($w[0],6,$gg++,'LR',0,'L',$fill);

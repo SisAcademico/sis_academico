@@ -103,6 +103,7 @@ class AlumnoController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$error = "";
 		$entra = Input::all();
 		$alumno = DB::table('talumno')
             ->where('idalumno', $id)
