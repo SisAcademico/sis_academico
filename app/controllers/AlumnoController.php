@@ -41,28 +41,30 @@ class AlumnoController extends \BaseController {
 	 */
 	public function store()
 	{
-		/*$error = "Código de Alumno Repertido";
-		if(!empty(DB::table('talumno')->where('id_alumno', '=',Input::get('id_alumno'))))
-		{
-			echo "Alumno ya exite";
+		$codi=Input::get('id_alumno');
+		$cuan=sizeof(DB::table('talumno')->where('idalumno', '=',Input::get('id_alumno'))->get());
+		if($cuan!=0){
+			$error = [''=>'El código '.$codi.' ya existe.'];
+			return Redirect::back()->withInput()->withErrors($error);
+		}
+		else{
+			$alumnos = new Alumno;
+			$id = DB::table('tusuario')->insertGetId(
+	    	['usuario' => Input::get('id_alumno') , 'password' => Input::get('id_alumno'), 'tipo_usuario' => 'alumno' , 'estado' => 'activo']
+			);
+			$alumnos->idalumno = Input::get('id_alumno');
+			$alumnos->idusuario = $id;
+			$alumnos->dni = Input::get('dni');
+			$alumnos->nombres = Input::get('nombres');
+			$alumnos->apellidos = Input::get('apellidos');
+			$alumnos->direccion = Input::get('direccion');
+			$alumnos->telefono = Input::get('telefono');
+			$alumnos->correo = Input::get('correo');
+			$alumnos->fecha_ingreso = Input::get('fecha');
+			$alumnos->foto = "";
+			$alumnos->save();
 			return Redirect::to('alumno');
-		}*/
-		$alumnos = new Alumno;
-		$id = DB::table('tusuario')->insertGetId(
-    	['usuario' => Input::get('id_alumno') , 'password' => Input::get('id_alumno'), 'tipo_usuario' => 'alumno' , 'estado' => 'activo']
-		);
-		$alumnos->idalumno = Input::get('id_alumno');
-		$alumnos->idusuario = $id;
-		$alumnos->dni = Input::get('dni');
-		$alumnos->nombres = Input::get('nombres');
-		$alumnos->apellidos = Input::get('apellidos');
-		$alumnos->direccion = Input::get('direccion');
-		$alumnos->telefono = Input::get('telefono');
-		$alumnos->correo = Input::get('correo');
-		$alumnos->fecha_ingreso = Input::get('fecha');
-		$alumnos->foto = "";
-		$alumnos->save();
-		return Redirect::to('alumno');
+		}
 	}
 
 
@@ -101,12 +103,10 @@ class AlumnoController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$error = "";
 		$entra = Input::all();
 		$alumno = DB::table('talumno')
             ->where('idalumno', $id)
             ->update(array(
-            'idalumno' => $entra['id_alumno'],
             'dni' => $entra['dni'],
             'nombres' => $entra['nombres'],
             'apellidos' => $entra['apellidos'],

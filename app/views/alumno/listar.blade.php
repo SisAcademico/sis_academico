@@ -50,13 +50,13 @@
                         <div class="form-group">
                             {{ Form::label('id_alumno', Lang::get('Código'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="id_alumno"  type="text" value="{{$cuan}}" class="form-control" name="id_alumno"  maxlength="11" required>
+                                <input id="id_alumno"  type="text" value="{{$cuan}}" class="form-control" name="id_alumno"  maxlength="10" required>
                             </div>
                         </div>
                         <div class="form-group">
                             {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="dni" type="text" placeholder="DNI" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="9">
+                                <input id="dni" type="text" placeholder="DNI" class="form-control" name="dni" onKeyPress="return validar(event)" maxlength="8">
                             </div>
                         </div>
                         <div class="form-group">
@@ -122,6 +122,16 @@
 
     <div class="row">
         <!-- INICIO: BOX PANEL -->
+        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <ul class="error_list">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
         <div class="col-md-12 col-sm-8">
             <div class="box box-success">
                 <div class="box-header with-border">

@@ -41,13 +41,13 @@
                     <div class="form-group">
                         {{ Form::label('id_alumno', Lang::get('Código Alumno'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="id_alumno" type="text" placeholder="Código del Alumno"  value="{{$alu->idalumno}}" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="7" required>
+                            <input id="id_alumno" type="text" placeholder="Código del Alumno"  value="{{$alu->idalumno}}" disabled="disable" class="form-control" name="id_alumno" onKeyPress="return validar(event)" maxlength="10" required>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('nombres', Lang::get('DNI'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="dni" type="text" placeholder="DNI" value="{{$alu->dni}}" class="form-control" name="dni" onKeyPress="return validar2(event)" maxlength="9" required>
+                            <input id="dni" type="text" placeholder="DNI" value="{{$alu->dni}}" class="form-control" name="dni" onKeyPress="return validar2(event)" maxlength="8" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -65,19 +65,19 @@
                     <div class="form-group">
                         {{ Form::label('direccion', Lang::get('Dirección'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="direccion" type="text" placeholder="Dirección" value="{{$alu->direccion}}" class="form-control" name="direccion"  maxlength="60" required>
+                            <input id="direccion" type="text" placeholder="Dirección" value="{{$alu->direccion}}" class="form-control" name="direccion"  maxlength="60" >
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('telefono', Lang::get('Teléfono'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                                <input id="telefono" type="text" placeholder="Teléfono"  value="{{$alu->telefono}}" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9" minlength="6" required>
+                                <input id="telefono" type="text" placeholder="Teléfono"  value="{{$alu->telefono}}" class="form-control" name="telefono" onKeyPress="return validar(event)" maxlength="9" minlength="6" >
                             </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('correo', Lang::get('Correo'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            <input id="correo" type="email" placeholder="Correo" value="{{$alu->correo}}" class="form-control" name="correo"  required>
+                            <input id="correo" type="email" placeholder="Correo" value="{{$alu->correo}}" class="form-control" name="correo">
                         </div>
                     </div>
 
