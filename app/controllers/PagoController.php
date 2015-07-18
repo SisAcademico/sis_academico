@@ -3,16 +3,39 @@
 class PagoController extends \BaseController {
 
 
-	    /**
+	// llamada ajax
+	public function recuperarAlumno()
+    {
+        $codigo = Input::get('codigoAlumno');
+        $alumno = Alumno::where('idalumno','=',$codigo)->get();
+        if(sizeof($alumno)==0)
+        	$mensaje = 'No existe';
+        else
+        	$mensaje = 'Existe';
+       	return Response::json(
+       		array(
+       			'alumno'=>$alumno,
+       			'mensaje' => $mensaje
+       			));
+    }
+    
+    public function recuperarImporte()
+    {
+    	$idconcepto= Input::get('idconcepto');
+    	$concepto = Concepto::where('idconcepto','=',$idconcepto)->get();
+        return Response::json(array('concepto'=>$concepto));
+    }
+    
+    /**
      * Mostrar el formulario de inserción de pagos
      */
     public function insertarPago()
     {
-        return View::make('pago.insertar');
+    	$concepto= Concepto::all()->lists('concepto','idconcepto');
+        return View::make('pago.insertar', array('concepto' => $concepto )); 
     }
 
-	
-	    /**
+    /**
      * Listar los pagos
      */
     public function listarPagos()
@@ -22,42 +45,34 @@ class PagoController extends \BaseController {
     }
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	
-	public function index()
-	{
-		$pago = Pago::all();
-		return View::make('pago.listar')->with('pagos',$pago);
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function insert()
 	{
-		//
-        return View::make('pago.insertar');
+		$pago = new Pago;
+		$pago->nro_boleta = Input::get('nro_boleta');
+		$pago->serie = Input::get('serie');
+		$pago->fecha_pago = Input::get('fecha');
+		$pago->idalumno = Input::get('idalumno');
+		$pago->monto_total = Input::get('Total');
+		if($pago->save())
+		{
+			$id = Pago::all()->last()->idpago;
+			$i=1;
+			while (Input::has($i)) {
+				$detalle = new DetallePago;
+				$detalle->idpago = $id;
+				$detalle->concepto = Input::get($i);
+				$concepto = Concepto::find($detalle->concepto);
+				$detalle->monto = $concepto->importe;
+				$detalle->save();
+				$i++;
+			}
+		}
+		return Redirect::to('pago/listar');
 	}
-
-	public function ajaxc()
-    {
-        //
-        $pagos = new Pago;
-        $pagos->nro_boleta = Input::get('nro_boleta');
-        $pagos->serie = Input::get('serie');
-        $pagos->fecha_pago = Input::get('fecha_pago');
-        $pagos->idalumno = Input::get('idalumno');
-        $pagos->monto_total = Input::get('monto');
-        $pagos->save();
-
-        return response::json(Input::get('nro_boleta'));
-    }
-
 
 
 	/**
@@ -67,7 +82,7 @@ class PagoController extends \BaseController {
 	 */
 	public function store()
 	{
-	//
+		//
 	}
 
 
@@ -77,9 +92,9 @@ class PagoController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($ids)
+	public function show($id)
 	{
-
+		//
 	}
 
 
@@ -91,8 +106,9 @@ class PagoController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-
+		//
 	}
+
 
 	/**
 	 * Update the specified resource in storage.
@@ -102,7 +118,7 @@ class PagoController extends \BaseController {
 	 */
 	public function update($id)
 	{
-
+		//
 	}
 
 
@@ -114,9 +130,8 @@ class PagoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		
-
+		//
 	}
 
-	
+
 }

@@ -84,11 +84,14 @@ Route::get('/detalleMatricula/agregarcl/{id}', 'DetalleMatriculaController@creat
 
 
 //------------- Pagos -------------------------
-Route::resource('pago', 'PagoController');
-/*
+Route::post('pago', 'PagoController@insert');
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
-*/
+Route::get('pago/recuperarAlumno', array('uses'=>'PagoController@recuperarAlumno'));
+Route::get('pago/recuperarImporte', array('uses'=>'PagoController@recuperarImporte'));
+
+
+
 Route::get('cursolibre/listar', 'CursoLibreController@listarCursoLibre');
 Route::get('cursolibre/insertar', 'CursoLibreController@insertarCursoLibre');
 

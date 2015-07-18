@@ -99,13 +99,12 @@
                         <tr>
                         <th>Nro</th>
                       <th>Concepto</th>
-                      <th>importe</th>
+                      <th>Importe</th>
                          </tr>
                     @foreach($conceptos as $Concep)
                   <tr>
                      <td>{{$Concep->idconcepto}}<?php ?></td>
                       <td>{{$Concep->concepto}}</td>
-                      <td>{{$Concep->observacion}}</td>
                       <td>{{$Concep->importe}}</td>
                        <td>
                       <a href="/sis_academico/public/concepto/{{ $Concep->idconcepto }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>

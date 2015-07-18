@@ -1,13 +1,13 @@
 <?php
 
-class Pago extends Eloquent {
+class DetallePago extends Eloquent {
 
 	/**
 	 * Tabla de la base de datos usada por el modelo
 	 *
 	 * @var string
 	 */
-	protected $table = 'tpago';
+	protected $table = 'tdetalle_pago';
 
 	
 }
