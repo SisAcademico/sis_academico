@@ -12,32 +12,57 @@
 
 @section('contenido')
 			<!-- Main row -->
-			<div class="row">
-				<!-- INICIO: BOX PANEL -->
-					<div class="col-md-12 col-sm-8">
-						 <div class="box box-success">
-								<div class="box-header with-border">
-								  <h3 class="box-title">@lang('sistema.listado_de_pagos')</h3>
-                                  <a class="btn btn-primary pull-right" href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> @lang('sistema.registrar_pago')</a>
-								</div><!-- /.box-header -->
-								<div class="box-body">
+        <div class="col-md-12 col-sm-8">
+            {{ Form::open(array('url' => 'pago','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+            <div class="box box-success">
+                <div class="box-header with-border" align="center">
+                    <h3 class="box-title">Lista Pagos</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <ul class="error_list">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            <div class="form-group">
+                <div class="form-inline">
+                    {{ Form::label('Codigo', Lang::get('Codigo: '),array('class'=>'col-sm-2 control-label')) }}
+                    <div class="col-xs-2">
+                         <input id="idalumno" type="text" placeholder="Ingrese Codigo" class="form-control" name="idalumno" maxlength="10" required>
+                    </div>
+                           <button type="button"  id='codigo' class="btn btn-info ">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                           </button>                    
+                </div>
+            </div>
+
+
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 								  <table class="table table-bordered">
                                       <thead>
                                         <tr>
-                                          <th style="width: 10px">@lang('sistema.id')</th>
-                                          <th>@lang('sistema.nro_boleta')</th>
-                                          <th>@lang('sistema.serie')</th>
-                                          <th>@lang('sistema.fecha_pago')</th>
-                                          <th style="width: 80px">@lang('sistema.accion')</th>
+                                          <th>@lang('Serie')</th>
+                                          <th>@lang('Nro. Boleta')</th>
+                                          <th>@lang('Cod Alumno')</th>                                                                                    
+                                          <th>@lang('Fecha Pago')</th>
+                                          <th>@lang('Monto')</th>
+                                          <th style="width: 80px">@lang('Accion')</th>
                                         </tr>
                                       </thead>
                                       <tbody>
                                       @foreach($pagos as $pago)
                                           <tr>
-                                              <td>{{ $pago->idpago }}</td>
-                                              <td>{{ $pago->nro_boleta }}</td>
                                               <td>{{ $pago->serie }}</td>
+                                              <td>{{ $pago->nro_boleta }}</td>
+                                              <td>{{ $pago->idalumno }}</td>
                                               <td>{{ $pago->fecha_pago }}</td>
+                                              <td>{{ $pago->monto_total }}</td>
                                               <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/pago/{{ $pago->idpago }}"><i class="fa fa-eye"></i> </a></td>
                                           </tr>
                                       @endforeach
@@ -53,8 +78,9 @@
 									<li><a href="#">&raquo;</a></li>
 								  </ul>
 								</div>
-						 </div><!-- /.box -->
-					</div>
-				  <!-- INICIO: BOX PANEL -->
-			</div><!-- /.box -->
+            {{ Form::close() }}
+        </div>
+      <!-- INICIO: BOX PANEL -->
+    </div><!-- /.box -->
+</div>
 @endsection
