@@ -14,24 +14,7 @@
 App::before(function($request)
 {
 	// INICIO: Implementacion extra
-	// $myApp Singleton object
-    App::singleton('myApp', function(){
-        $app = new stdClass;
-        $app->title = "APD | datos de usuario";
-        if (Auth::check()) {
-            $app->user = Auth::Usuario();
-            $app->isLogedin = TRUE;
-        }
-        else
-        {
-            $app->isLogedin = FALSE;
-            $app->user = FALSE;
-        }
-        return $app;
-    });
-    $app = App::make('myApp');
-    View::share('myApp', $app);
-	// FIN
+		// FIN
 });
 
 

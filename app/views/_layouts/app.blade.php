@@ -96,7 +96,7 @@
                       <a href="#" class="btn btn-default btn-flat">@lang('sistema.perfil')</a>
                     </div>
                     <div class="pull-right">
-                      <a href="{{ url('/auth/logout') }}" class="btn btn-default btn-flat">@lang('sistema.cerrar_sesion')</a>
+                      <a href="{{ action('AuthController@logOut') }}" class="btn btn-default btn-flat">@lang('sistema.cerrar_sesion')</a>
                     </div>
                   </li>
                 </ul>

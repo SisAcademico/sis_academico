@@ -1,15 +1,16 @@
 <?php
 // INICIO: LOGIN de usuario
-/* This route is used to show the login page, when there is no session created.*/
-
-Route::group(array('before' => 'login'), function()
-{
-    Route::get('login', 'UsuarioController@create');
-});
-
-/* This below route is used when user is clicked on the login button in the log in page. */
-
-Route::post('/user/store','UsuarioController@store');
+/*Llamadas al controlador Auth*/
+Route::get('/', 'AuthController@mostrarLogin');
+Route::get('login', 'AuthController@mostrarLogin'); // Mostrar login
+Route::post('login', 'AuthController@postLogin'); // Verificar datos
+Route::get('logout', 'AuthController@logOut'); // Finalizar sesión
+Route::group(array('before' => 'auth'), function()
+{	
+    Route::get('/panel', 'PanelController@mostrarPanel'); // vista de panel
+//------------- Panel de inicio ----------------
+//Route::get('/', 'PanelController@mostrarPanel');
+//Route::get('/panel', 'PanelController@mostrarPanel');
 // FIN: LOGIN
 //--------------asistencia docente---------------------------------
 Route::get('docente/insertarasistencia', 'AsistenciaDocenteController@insertarAsistenciaDocente');
@@ -56,9 +57,6 @@ Route::resource('horarioCarga','HorarioCargaController');
 Route::any('nota/getCourseData', 'NotaController@getCourseData');
 Route::any('nota/PDFA', 'NotaController@getPDF');
 Route::resource('nota', 'NotaController');
-//------------- Panel de inicio ----------------
-Route::get('/', 'PanelController@mostrarPanel');
-Route::get('/panel', 'PanelController@mostrarPanel');
 //------------- Asistencia Alumno ----------------
 Route::group(array('prefix' => 'alumno'), function()
 {
@@ -155,3 +153,4 @@ Route::get('aula_carga/listar', 'AulaCargaController@listarAulaCarga');
 Route::get('aula_carga/insertar', 'AulaCargaController@insertar');
 
 Route::any('storeCarga_Horario/','HorarioCargaController@store');
+});
