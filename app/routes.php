@@ -43,7 +43,7 @@ Route::resource('docente/asistencia', 'AsistenciaDocenteController');
 Route::resource('docente/nota', 'NotaController');
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
-oute::any('matricula/detalle/{id}','MatriculaController@detalle');
+Route::any('matricula/detalle/{id}','MatriculaController@detalle');
 Route::any('matricula/detalle/PDFA/{id}','MatriculaController@getPDF');
 Route::resource('matricula','MatriculaController');
 Route::resource('asignaturalibre','AsignaturaLibreController');
