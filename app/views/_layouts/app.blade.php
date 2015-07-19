@@ -81,7 +81,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   {{ HTML::image('adminlte/dist/img/user2-160x160.jpg','Imagen de usuario', array('class' => 'user-image')) }}
-                  <span class="hidden-xs">Nombre de usuario</span>
+                  <span class="hidden-xs">{{Auth::user()->usuario}}</span> <i class="fa fa-sort-down"></i>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -115,8 +115,8 @@
                 {{ HTML::image('adminlte/dist/img/user2-160x160.jpg','Imagen de usuario', array('class' => 'img-circle')) }}
             </div>
             <div class="pull-left info">
-              <p>Nombre Usuario</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Activado</a>
+              <p>{{Auth::user()->usuario}}</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> {{Auth::user()->estado}}</a>
             </div>
           </div>
           <!-- search form -->
