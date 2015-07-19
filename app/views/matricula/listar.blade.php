@@ -29,29 +29,30 @@
                             <th >Codigo del Alumno</th>
                             <th >Alumno</th>
                             <th >Fecha Matricula </th>
-                            <th >Nro Boleta</th>
+
                             <th >Editar</th>
                             <th >Detalle</th>
 
                         </tr>
                         <!-- LISTAR Matriculas-->
 
-                        @foreach($matricula as $matri)
+                        <!-- @foreach($matricula as $matri)-->
                             <tr>
                                 <td>{{$matri->idmatricula}}</td>
                                 <td>{{$matri->tipo}} </td>
                                 <td>{{$matri->idalumno}}</td>
                                 <td>{{$matri->nombres}} {{$matri->apellidos}}</td>
                                 <td>{{$matri->fecha_matricula}}</td>
-                                <td>{{$matri->nro_boleta}}</td>
+
+
                                 <td>
-                                    <a href="/sis_academico/public/matricula/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                     <a href="/sis_academico/public/matricula/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
                                 <td>
-                                    <a href="/sis_academico/public/detalleMatricula/{{ $matri->idmatricula }}/detail" class="btn btn-xs btn-primary"><i class="fa fa-asterisk"></i></a>
+                                    <a href="/sis_academico/public/matricula/detalle/{{ $matri->idalumno }}" class="btn btn-xs btn-primary"><i class="fa fa-list"></i></a>
                                 </td>
                             </tr>
-                        @endforeach
+                        <!--@endforeach-->
 
                     </table>
                 </div><!-- /.box-body -->
