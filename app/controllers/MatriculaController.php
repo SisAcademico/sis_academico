@@ -220,6 +220,60 @@ class MatriculaController extends BaseController{
     {
         //
     }
+    public function detalle($id)
+    {
+       // echo "Hola mundo";
+        $detallematricula = DetalleMatricula::all();
+        $asignaturas=Asignatura::all();
+        $alumnos=Alumno::all();
+        $matriculas=Matricula::all();
+        $nombrealumno=DB::table('talumno')->where('idalumno',$id)->pluck('nombres');
+        $aux2=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->select('talumno.idalumno','talumno.nombres','tmatricula.idmatricula','tasignatura.idasignatura','tasignatura.nombre_asignatura','tasignatura.horas_semanales','tasignatura.horas_totales')
+            ->where('talumno.idalumno','=',$id)
+            ->get();
+
+        //$aux3=DB::table($aux2)->where('idalumno','=',$id)->get();
+      // echo $aux2;
+        //$aux3=DB::statement('SELECT nombres from talumno where idalumno=120278')->get();
+        //echo $aux3;
+        //return View::make('matricula.listardetalles')->with('matricula_detalles',$aux2,$nombrealumno);
+        return View::make('matricula.listardetalles',['matricula_detalles'=> $aux2,'nombrealumno'=>$nombrealumno,'idalumno'=>$id]);
+
+    }
+     public function getPDF($id)
+    {
+        $detallematricula = DetalleMatricula::all();
+        $asignaturas=Asignatura::all();
+        $alumnos=Alumno::all();
+        $matriculas=Matricula::all();
+        //$nombrealumno=DB::table('talumno')->where('idalumno',$id)->pluck('nombres');
+        $aux2=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->select('tasignatura.idasignatura','tasignatura.nombre_asignatura','tasignatura.horas_semanales','tasignatura.horas_totales')
+            ->where('talumno.idalumno','=',$id)
+            ->get();
+        $fpdf = new PDF();
+        $colu = array('NRO','ID Asignatura','Asignatura','Horas Semanales','Horas Totales');
+        //$fpdf->Image("unsaac.png",10,6,30);
+        $fpdf->SetFont('Arial','',13);
+        $fpdf->AddPage();
+        $fpdf->Cell(80);
+        $fpdf->Cell(30,5,'Lista de cursos matriculados', 0, 1, 'C');
+        $fpdf->SetFont('Arial','B',9);
+        $fpdf->Ln(2);
+        $fpdf->SetFont('Arial','B',10);
+        $fpdf->FancyTableMatricula($colu,$aux2);
+
+        $cabe=['Content-Type' => 'application/pdf'];
+        return  Response::make($fpdf->Output(),200,$cabe);
+
+    }
 }
 
 ?>
