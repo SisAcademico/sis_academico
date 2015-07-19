@@ -161,7 +161,7 @@
                             <td>
                                 <!--<a href="/sis_academico/public/alumno/{{ $alu->idalumno }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 -->
-                                <a href="/sis_academico/public/alumno/{{ $alu->idalumno }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                <a href="{{URL::to( '/alumno') }}/{{ $alu->idalumno }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                         @endforeach
