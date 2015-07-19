@@ -46,10 +46,10 @@
 
 
                                 <td>
-                                     <a href="/sis_academico/public/matricula/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                     <a href="{{URL::to('/matricula') }}/{{ $matri->idmatricula }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
                                 <td>
-                                    <a href="/sis_academico/public/matricula/detalle/{{ $matri->idalumno }}" class="btn btn-xs btn-primary"><i class="fa fa-list"></i></a>
+                                    <a href="{{URL::to('/matricula') }}/detalle/{{ $matri->idalumno }}" class="btn btn-xs btn-primary"><i class="fa fa-list"></i></a>
                                 </td>
                             </tr>
                         <!--@endforeach-->
