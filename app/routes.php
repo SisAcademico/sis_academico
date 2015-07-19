@@ -1,4 +1,16 @@
 <?php
+// INICIO: LOGIN de usuario
+/* This route is used to show the login page, when there is no session created.*/
+
+Route::group(array('before' => 'login'), function()
+{
+    Route::get('login', 'UsuarioController@create');
+});
+
+/* This below route is used when user is clicked on the login button in the log in page. */
+
+Route::post('/user/store','UsuarioController@store');
+// FIN: LOGIN
 //--------------asistencia docente---------------------------------
 Route::get('docente/insertarasistencia', 'AsistenciaDocenteController@insertarAsistenciaDocente');
 Route::post('formulario2', 'AsistenciaDocenteController@store');

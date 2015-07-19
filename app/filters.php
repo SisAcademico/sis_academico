@@ -13,13 +13,37 @@
 
 App::before(function($request)
 {
-	//
+	// INICIO: Implementacion extra
+	// $myApp Singleton object
+    App::singleton('myApp', function(){
+        $app = new stdClass;
+        $app->title = "APD | datos de usuario";
+        if (Auth::check()) {
+            $app->user = Auth::Usuario();
+            $app->isLogedin = TRUE;
+        }
+        else
+        {
+            $app->isLogedin = FALSE;
+            $app->user = FALSE;
+        }
+        return $app;
+    });
+    $app = App::make('myApp');
+    View::share('myApp', $app);
+	// FIN
 });
 
 
 App::after(function($request, $response)
 {
-	//
+	// INICIO:
+	/* The below headers are used to restrict the browser to cache the pages.           
+    */
+    $response->headers->set("Cache-Control","no-cache,no-store, must-revalidate");
+    $response->headers->set("Pragma", "no-cache"); //HTTP 1.0
+    $response->headers->set("Expires"," Sat, 26 Jul 1986 05:00:00 GMT");
+	// FIN:
 });
 
 /*
