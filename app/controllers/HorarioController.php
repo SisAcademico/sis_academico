@@ -57,10 +57,10 @@ class HorarioController extends \BaseController {
 		$horario->hora_fin = Input::get('hora_fin');
 		if(sizeof($horario->hora_inicio)== 0 || sizeof($horario->hora_fin)== 0)
 			return Redirect::to('horario');
-		if(!empty(DB::table('thorario') -> where('hora_inicio', '=', $horario->hora_inicio)
+		$temp=DB::table('thorario') -> where('hora_inicio', '=', $horario->hora_inicio)
 									   -> where('hora_fin', '=', $horario->hora_fin)
-									   ->get()
-			))
+									   ->get();
+		if(!empty($temp))
 			return Redirect::to('horario');
 		$horario->save();
 		return Redirect::to('horario');

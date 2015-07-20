@@ -8,7 +8,7 @@ class ModuloController extends BaseController {
 	public function index()
 	{
 
-		$modulo = Modulo::all();
+		$modulo = Modulo::paginate(20);
 		return View::make('modulo.listar')->with('modulos',$modulo);
 
 	}
