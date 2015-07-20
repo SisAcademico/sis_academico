@@ -15,7 +15,9 @@
 	<!-- Font Awesome Icons -->
     <link href="{{asset('/adminlte/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <!-- iCheck -->
-	<link href="{{asset('/adminlte/plugins/iCheck/square/blue.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('/adminlte/plugins/iCheck/square/blue.css')}}" rel="stylesheet" type="text/css">
+
+	<link href="{{asset('/css/login_style.css')}}" rel="stylesheet" type="text/css">
 		
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -23,7 +25,7 @@
         <script src="{{asset('js/respond.min.js')}}"></script>
     <![endif]-->
 </head>
-<body class="login-page">
+<body class="login-page login bg1">
 	<section>
           @section('contenido')
 		  @show

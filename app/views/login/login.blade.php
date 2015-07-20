@@ -6,7 +6,7 @@
 
 @section('contenido')
     <div class="login-box">
-        <div class="login-box-body">
+        <div class="login-box-body loginform">
             <h4 class="text-center"> {{mb_strtoupper(Lang::get('sistema.administracion')) }}</h4>
             <div id="login_form" class="login_form">
         {{ Form::open(array('url' => 'login','autocomplete' => 'off','class' => 'form-signin', 'role' => 'form')) }}
