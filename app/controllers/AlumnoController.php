@@ -9,8 +9,6 @@ class AlumnoController extends \BaseController {
 
 	public function index()
 	{
-		
-		$alumno = Alumno::all();
 		$alumno = Alumno::paginate(20);
 		$cuan = sizeof(Alumno::all());
 		$cod = "";

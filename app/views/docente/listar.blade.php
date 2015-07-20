@@ -1,50 +1,40 @@
 @extends('_layouts.app')
+
 @section('titulo')
     @lang('Crear Docente')
+@stop
+
+@section('titulo_cabecera')
+    @lang('Docentes')<small>@lang('listar docentes')</small>
 @stop
 @section ('estilos')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/btn.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/pru.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/adminlte/plugins/datepicker/css/bootstrap-datepicker3.standalone.css')}}">
 @stop
-@section('titulo_cabecera')
-    @lang('Docentes')<small>@lang('')</small>
-@stop
+
 @section('ruta_navegacion')
     <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.docente')</a></li>
     <li class="active">@lang('sistema.listar_docente')</li>
 @stop
-
-
 @section('contenido')
-    <!-- Main row -->
-        <div class="row">
         <!-- INICIO: BOX PANEL -->
-   
-
-        <div class="col-md-6 col-sm-8">
-
+    <div class="col-md-6 col-sm-8">
      {{ Form::open(array('url' => 'docente.listarasistencia',
                                 'method' => 'GET',
-
                                 'class' =>'form-inline',
-
                                 'role' => 'form')) }}
-
-                                {{Form::input('text','buscar',Input::get('buscar'),array('class'=>'form-control')) }}
-                                {{Form::input('submit',null,'Buscar',array('class'=> 'btn btn-primary'))}}
-
-                                {{Form::close()}}
-</div>
-  <div class="col-md-6 col-sm-8">
-    <div class="negro">
-
+            {{Form::input('text','buscar',Input::get('buscar'),array('class'=>'form-control')) }}
+            {{Form::input('submit',null,'Buscar',array('class'=> 'btn btn-primary'))}}
+     {{Form::close()}}
     </div>
+  <div class="col-md-6 col-sm-8">
+    <div class="negro"></div>
     <div class="google-expando--wrap">
       <div class="google-expando">
 
-        <div class="google-expando__icon">    
-          <a href="#"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
+        <div class="google-expando__icon">
+          <a href="#"><span class="dada" style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
 
         </div>
         <div class="google-expando__card" aria-hidden="true" >
@@ -70,7 +60,7 @@
                         <div class="form-group">
                             {{ Form::label('id_docente', Lang::get('Código'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="id_docente"  type="text" placeholder="Código del Docente" class="form-control" name="id_docente" o maxlength="5" required>
+                                <input id="id_docente"  type="text" placeholder="Código del Docente" class="form-control" name="id_docente" maxlength="5" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -111,12 +101,12 @@
                         </div>
                         <div class="form-group">
                             {{ Form::label('cargo', Lang::get('Cargo'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-10">
-                                <SELECT id="cargo" name="cargo" SIZE=1 > 
-                                    <OPTION VALUE="Docente">Docente</OPTION>
-                                    <OPTION value="Director">Director</OPTION>
-                                    <OPTION value="Cordinador">Cordinador</OPTION>
-                                </SELECT> 
+                            <div class="col-sm-5">
+                                {{ Form::select('cargo', [
+                                    'Docente' => 'Docente',
+                                    'Director' => 'Director',
+                                    'Cordinador' => 'Cordinador'],null,array('class'=>'form-control','id'=>'cargo'))
+                                }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -131,51 +121,32 @@
                             </div>
                         </div>
 
-                        <!--<div class="form-group">
-                            {{ Form::label('foto', Lang::get('Foto'),array('class'=>'col-sm-2 control-label')) }}
-                            <div class="col-sm-10">
-                                {{ Form::file('photo') }}
-                            </div>
-                        </div>-->
                     </div>
                     <div class="box-footer">
                         <input class="btn btn-info pull-right" type="submit" value="Crear Docente">
                     </div>
                 </div>
-                {{ Form::close() }}
+              {{ Form::close() }}
         </div>
-
       </div>
     </div>
-</div>
+  </div>
     <div class="row">
         <!-- INICIO: BOX PANEL -->
-   
-
         <div class="col-md-12 col-sm-8">
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">Listado de Docentes</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                <?php 
-
-
-        if(isset($_GET["buscar"]))
-        {
-
-            $cont=0;
-            
-
-
-        ?>
+                <?php  if(isset($_GET["buscar"])) { $cont=0;  ?>
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 30px">Código</th>
                             <th >Nombres</th>
                             <th >Correo</th>
                             <th >DNI</th>
-                            
+
                         </tr>
                         <!-- LISTAR DocenteS-->
                         @foreach($Busqueda as $doc)
@@ -185,35 +156,20 @@
                             <td>{{$doc->correo}}</td>
                             <td>{{$doc->dni}}</td>
                             <td>
-                                <!--<a href="/sis_academico/public/Docente/{{ $doc->iddocente }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-                                -->
                                 <a href="/sis_academico/public/docente/{{ $doc->iddocente }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                  <a class="btn btn-xs btn-primary;background-color:yellow" href="{{ URL::to( '/docente/filtroAsistencia');}}/{{$doc->iddocente}}">Ver asistencia</a>
-                                
                             </td>
                         </tr>
                         @endforeach
-                        
                     </table>
-                    <?php
-            
-        }else{
-                                            //echo $Docentestodo;
-                                            /*foreach ($Docentestodo as $Doc) 
-                                            {
-                                                echo $Doc->nombres;
-                                            }*/
-
-                                        $cont=0;
-                                        ?>
-                                           <table class="table table-bordered">
+                    <?php }else{ $cont=0;?>
+                    <table class="table table-bordered">
                         <tr>
                             <th style="width: 30px">Código</th>
                             <th >Nombres</th>
                             <th >Correo</th>
                             <th >DNI</th>
-                                
-                            
+
                         </tr>
                         <!-- LISTAR DocenteS-->
                         @foreach($docentes as $doc)
@@ -223,16 +179,11 @@
                             <td>{{$doc->correo}}</td>
                             <td>{{$doc->dni}}</td>
                             <td>
-                                <!--<a href="/sis_academico/public/Docente/{{ $doc->iddocente }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-                                -->
-                               
                                 <a href="/sis_academico/public/docente/{{ $doc->iddocente }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                  <a class="btn btn-xs btn-primary;background-color:yellow" href="{{ URL::to( '/docente/filtroAsistencia');}}/{{$doc->iddocente}}">Ver asistencia</a>
-                                
                             </td>
                         </tr>
                         @endforeach
-                        
                     </table>
             <?php } ?>
                 </div><!-- /.box-body -->
@@ -258,8 +209,8 @@
         <script type="text/javascript">
             function validar(e) {
                 tecla = (document.all) ? e.keyCode : e.which;
-                if (tecla==8) return true; 
-                if (tecla==44) return true; 
+                if (tecla==8) return true;
+                if (tecla==44) return true;
                 if (tecla==48) return true;
                 if (tecla==49) return true;
                 if (tecla==50) return true;
@@ -272,8 +223,9 @@
                 if (tecla==57) return true;
                 patron = /1/; //ver nota
                 te = String.fromCharCode(tecla);
-                return patron.test(te); 
-            } 
+                return patron.test(te);
+            }
         </script>
     @stop
+
 @endsection

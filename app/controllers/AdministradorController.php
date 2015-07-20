@@ -11,7 +11,7 @@ class AdministradorController extends BaseController {
 
 	public function listarAdministrador()
 	{
-		$administradorestodo=Administrador::all();
+		$administradorestodo=Administrador::paginate(20);
         return View::make('administrador.listar')->with('administradorestodo',$administradorestodo);
 	}
 	public function modificarAdministrador($id)

@@ -38,7 +38,7 @@
             <div class="form-group">
                 {{ Form::label('idaula', Lang::get('sistema.codigo_aula'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-3">
-                     {{ Form::text('idaula',$au->idaula,array('class'=>'form-control','id'=>'idaula','placeholder'=>Lang::get('sistema.codigo_aula'))) }}
+                     {{ Form::text('idaula',$au->idaula,array('class'=>'form-control','disabled'=>'disabled','readonly'=>'readonly','id'=>'idaula','placeholder'=>Lang::get('sistema.codigo_aula'))) }}
                 </div>
             </div>
             <div class="form-group">
@@ -52,21 +52,19 @@
                 <div class="col-sm-3">					
 					{{ Form::select('tipo', [
 						'' => '-- Seleccione un tipo --',
-						'LAB' => 'Laboratorio',
-						'TEORIA' => 'Teoría',
-						'GENERICO' => 'Genérico'], array($au->tipo), array('class'=>'form-control','id' => 'tipo')) }}
+						'Laboratorio' => 'Laboratorio',
+						'Teoria' => 'Teoría',
+						'Otros' => 'Otros'], array($au->tipo), array('class'=>'form-control','id' => 'tipo')) }}
 					
                 </div>
             </div>
             <div class="form-group">
                 {{ Form::label('estado', Lang::get('sistema.estado'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-10">
-                    {{ Form::label('disponible', 'Disponible') }}
-                    {{ Form::radio('estado[]', 'DISPONIBLE','', array('id'=>'disponible','class' => 'field',($au->estado=='DISPONIBLE')?'checked':'')) }}
-                    {{ Form::label('ocupado', 'Ocupado') }}
-                    {{ Form::radio('estado[]', 'OCUPADO','', array('id'=>'ocupado','class' => 'field',($au->estado=='OCUPADO')?'checked':'')) }}
-                    {{ Form::label('mantenimiento', 'Mantenimiento') }}
-                    {{ Form::radio('estado[]','MANTENIMIENTO','', array('id'=>'mantenimiento','class' => 'field',($au->estado=='MANTENIMIENTO')?'checked':'')) }}
+                    {{ Form::label('Disponible', 'Disponible') }}
+                    {{ Form::radio('estado[]', 'Disponible','', array('id'=>'Disponible','class' => 'field',($au->estado=='Disponible')?'checked':'')) }}
+                    {{ Form::label('No_disponible', 'No disponible') }}
+                    {{ Form::radio('estado[]', 'No_disponible','', array('id'=>'No_disponible','class' => 'field',($au->estado=='No_disponible')?'checked':'')) }}
                 </div>
             </div>
 

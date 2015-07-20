@@ -51,21 +51,19 @@
                 <div class="col-sm-3">
 					{{ Form::select('tipo', [
 						'' => '-- Seleccione un tipo --',
-						'LAB' => 'Laboratorio',
-						'TEORIA' => 'Teoría',
-						'GENERICO' => 'Genérico'],null,array('class'=>'form-control','id'=>'tipo'))
+						'Laboratorio' => 'Laboratorio',
+						'Teoria' => 'Teoría',
+						'Otros' => 'Otros'],null,array('class'=>'form-control','id'=>'tipo'))
 					}}
                 </div>
             </div>
             <div class="form-group">
                 {{ Form::label('estado', Lang::get('sistema.estado'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-10">
-                    {{ Form::label('disponible', 'Disponible') }}
-                    {{ Form::radio('estado[]', 'DISPONIBLE',true, array('id'=>'disponible','class' => 'field')) }}
-                    {{ Form::label('ocupado', 'Ocupado') }}
-                    {{ Form::radio('estado[]', 'OCUPADO','', array('id'=>'ocupado','class' => 'field')) }}
-                    {{ Form::label('mantenimiento', 'Mantenimiento') }}
-                    {{ Form::radio('estado[]', 'MANTENIMIENTO','', array('id'=>'mantenimiento','class' => 'field')) }}
+                    {{ Form::label('Disponible', 'Disponible') }}
+                    {{ Form::radio('estado[]', 'DISPONIBLE',true, array('id'=>'Disponible','class' => 'field')) }}
+                    {{ Form::label('No_disponible', 'No Disponible') }}
+                    {{ Form::radio('estado[]', 'No_disponible','', array('id'=>'No_disponible','class' => 'field')) }}
                 </div>
             </div>
 

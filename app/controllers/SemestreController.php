@@ -8,7 +8,7 @@ class SemestreController extends \BaseController {
      * @return Response
      */
     public function index() {
-        $semestres = Semestre::all();
+        $semestres = Semestre::paginate(20);
         return View::make('semestre.listar', array('semestres' => $semestres));
     }
 
@@ -78,7 +78,6 @@ class SemestreController extends \BaseController {
     public function update($id) {
         $rules= array
                 (
-                    'idsemestre' => 'required',
 					'fecha_inicio' => 'required',
 					'fecha_fin' => 'required',
                 );

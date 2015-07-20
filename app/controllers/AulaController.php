@@ -9,7 +9,8 @@ class AulaController extends \BaseController {
 	 */
 	public function index()
 	{
-		$aulas = Aula::all();
+        $aulas = Aula::paginate(20);
+
         return View::make('aula.listar', array('aulas' => $aulas));
 	}
 
@@ -91,7 +92,6 @@ class AulaController extends \BaseController {
 	{
 		$rules= array
                 (
-                    'idaula' => 'required',
 					'capacidad' => 'required|numeric|min:15',
 					'estado' => 'required',
 					'capacidad' => 'required',

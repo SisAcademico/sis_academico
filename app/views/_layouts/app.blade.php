@@ -147,16 +147,15 @@
               <a href="#">
                 <i class="fa fa-users"></i> <span>Docentes</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
+              <ul class="{{ Request::is( 'docente') ? 'active' : '' }} treeview-menu">
                 <li><a href="{{ URL::to( '/docente') }}"><i class="fa fa-list"></i> Listar  Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/asistencia') }}"><i class="fa fa-list"></i> Registrar Asistencia </a></li>
-		<li><a href="{{ URL::to( '/docente/listarasistencia') }}"><i class="fa fa-list"></i> Listar Asistencia Docente</a></li>
+		        <li><a href="{{ URL::to( '/docente/listarasistencia') }}"><i class="fa fa-list"></i> Listar Asistencia Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/insertarasistencia') }}"><i class="fa fa-plus"></i> Agregar Asistencia  Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/nota') }}"><i class="fa fa-list"></i> Agregar Notas </a></li>
               </ul>
-            </li>
-
-          <li class="treeview">
+        </li>
+        <li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i> <span>Carga Academica</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -164,14 +163,11 @@
                 <li><a href="{{ URL::to( '/carga_academica/listar') }}"><i class="fa fa-list"></i> Listar  Carga Academica</a></li>
                 <li><a href="{{ URL::to( '/carga_academica/insertar') }}"><i class="fa fa-plus"></i> Agregar  Carga Academica</a></li>
               </ul>
-              </li>
+        </li>
 
-			<li class="treeview">
-              <a href="{{ URL::to( '/alumno') }}">
-                <i class="fa fa-users"></i> <span>Alumnos</span>
-              </a>
-
-      </li>
+		<li class="treeview">
+              <a href="{{ URL::to( '/alumno') }}"><i class="fa fa-users"></i> <span>Alumnos</span></a>
+        </li>
       <li><a href="{{ URL::to( '/alumno/asistencia/listar') }}"><i class="fa fa-list"></i> <span>Asistencia Alumno</span></a></li>
 			<li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
               <a href="#">
@@ -181,7 +177,7 @@
                 <li><a href="{{ URL::to( '/asignatura') }}"><i class="fa fa-list"></i> Listar Asignaturas</a></li>
                 <li><a href="{{ URL::to( '/asignatura/create') }}"><i class="fa fa-plus"></i> Agregar Asignatura</a></li>
               </ul>
-			</li>
+	        </li>
 
         <li class="{{ Request::is( 'asignatura') ? 'active' : '' }}  treeview">
               <a href="#">

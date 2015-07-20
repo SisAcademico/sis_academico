@@ -37,7 +37,7 @@
                                               <td>{{ $aula->idaula }}</td>
                                               <td>{{ $aula->capacidad }}</td>
                                               <td>{{ $aula->tipo }}</td>
-                                              <td>{{ $aula->estado }}</td>
+                                              <td>{{ ($aula->estado!="Disponible")?"No Disponible":$aula->estado }}</td>
                                               <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/aula/{{ $aula->idaula }}/edit"><i class="fa fa-edit"></i> </a></td>
                                           </tr>
                                       @endforeach
@@ -45,13 +45,7 @@
 								  </table>
 								</div><!-- /.box-body -->
 								<div class="box-footer clearfix text-center">
-								  <ul class="pagination pagination-sm no-margin">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">&raquo;</a></li>
-								  </ul>
+                                    {{$aulas-> links();}}
 								</div>
 						 </div><!-- /.box -->
 					</div>

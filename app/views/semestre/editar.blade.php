@@ -41,7 +41,7 @@
             <div class="form-group">
                 {{ Form::label('idsemestre', Lang::get('sistema.semestre'),array('class'=>'col-sm-2 control-label')) }}
                 <div class="col-sm-3">
-                     {{ Form::text('idsemestre',$sem->idsemestre,array('class'=>'form-control','id'=>'idsemestre','placeholder'=>Lang::get('sistema.ejemplo').': 2015-I')) }}
+                     {{ Form::text('idsemestre',$sem->idsemestre,array('class'=>'form-control','disabled'=>'disabled','id'=>'idsemestre','placeholder'=>Lang::get('sistema.ejemplo').': 2015-I')) }}
                 </div>
             </div>
             <div class="form-group">
