@@ -34,7 +34,7 @@
                                 <td>{{ $asig->nombre_asig_cl }}</td>
                                 <td>{{ $asig->horas_totales }}</td>
                                 <td>
-                                    <a href="/sis_academico/public/asignaturalibre/{{ $asig->idasignatura_cl}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                    <a href="/asignaturalibre/{{ $asig->idasignatura_cl}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach
