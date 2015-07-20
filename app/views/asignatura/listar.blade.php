@@ -44,7 +44,7 @@
                                 <td>{{ $asig->pre_requisito }}</td>
                                 <!--<form action="actualizar.blade.php" method="post">-->
                                 <td>
-                                    <a href="/asignatura/{{ $asig->idasignatura}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                                    <a href="{{URL::to('/asignatura') }}/{{ $asig->idasignatura}}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach
