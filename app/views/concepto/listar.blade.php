@@ -27,7 +27,7 @@
       <div class="google-expando">
 
         <div class="google-expando__icon">    
-          <a href="#"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
+          <a href="javascript: void(0)"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
 
         </div>
                 <div class="google-expando__card" aria-hidden="true" >
@@ -107,21 +107,15 @@
                       <td>{{$Concep->concepto}}</td>
                       <td>{{$Concep->importe}}</td>
                        <td>
-                      <a href="/sis_academico/public/concepto/{{ $Concep->idconcepto }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-                      <a href="/sis_academico/public/concepto/{{ $Concep->idconcepto}}/destroy" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                      <a href="{{URL::to( '/concepto') }}/{{ $Concep->idconcepto }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                      <a href="{{URL::to( '/concepto') }}/{{ $Concep->idconcepto}}/destroy" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                       </tr>
                     @endforeach
                     </table>                    
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix text-center">
-                  <ul class="pagination pagination-sm no-margin">
-                  <li><a href="#">&laquo;</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">&raquo;</a></li>
-                  </ul>
+                  {{$conceptos->links();}}
                 </div>
              </div><!-- /.box -->
           </div>

@@ -4,7 +4,7 @@ class ConceptoController extends BaseController {
 
 	public function index()
 	{
-		$concepto = Concepto::all();
+		$concepto = Concepto::paginate(20);
 		return View::make('concepto.listar')->with('conceptos',$concepto);
 	}
 
