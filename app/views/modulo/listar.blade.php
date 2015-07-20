@@ -27,7 +27,7 @@
       <div class="google-expando">
 
         <div class="google-expando__icon">    
-          <a href="#"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
+          <a href="javascript: void(0)"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
 
         </div>
                 <div class="google-expando__card" aria-hidden="true" >
@@ -95,7 +95,7 @@
                       <td>{{$mod->nombre_modulo}}</td>
                       <td>{{$mod->idcarrera}}</td>
                        <td>
-                      <a href="/sis_academico/public/modulo/{{ $mod->idmodulo }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                      <a href="{{URL::to('/modulo')}}/{{ $mod->idmodulo }}/edit" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                     
                     </td>
                       </tr>
