@@ -228,7 +228,7 @@ class AsistenciaDocenteController extends BaseController {
 	}
 
 	public function listardocentes(){
-		$Docentes=docente::all();
+		$Docentes=Docente::all();
 	    return View::make('docente.insertarasistencia')->with('listadocentes',$Docentes);
 	}
 

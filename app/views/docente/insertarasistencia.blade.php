@@ -40,7 +40,7 @@
                     <?php
                         $fecha=date("Y-m-d H:i:s");
 
-                        $semestre = semestre::where('fecha_inicio', '<=',$fecha)->where('fecha_fin', '>=',$fecha)->get();
+                        $semestre = Semestre::where('fecha_inicio', '<=',$fecha)->where('fecha_fin', '>=',$fecha)->get();
                        // echo "<br>"."<br>"."<br>". $semestre."<br>";
 
                         $idsemestre = $semestre[0]->idsemestre;
