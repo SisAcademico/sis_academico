@@ -25,7 +25,7 @@
 
         <div class="google-expando__icon" style="
     position: fixed;
-    right: 31px;
+    right: 1px;
     top: 81%;
 ">    
           <a href="#"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
@@ -109,9 +109,11 @@
                         <div class="form-group">
                             {{ Form::label('foto', Lang::get('Foto'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::file('photo') }}
+                                <input name="fphoto" type="file" id="imgInp" class="btn btn-info" >
                             </div>
                         </div>
+                        <img id="blah" src="{{asset('/images/default.png')}}" alt="Imagen Por Defecto" style="display: block;margin: 0px auto;
+" />
                     </div>
                     <div class="box-footer">
                         <input class="btn btn-info pull-right" type="submit" value="Crear Alumno">
@@ -200,6 +202,23 @@
                 te = String.fromCharCode(tecla);
                 return patron.test(te); 
             } 
+        </script>
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+                    
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+    
+            $("#imgInp").change(function(){
+                readURL(this);
+            });
         </script>
     @stop
 @endsection

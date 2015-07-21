@@ -96,9 +96,11 @@
                     <div class="form-group">
                         {{ Form::label('foto', Lang::get('Foto'),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
-                            {{ Form::file('photo') }} 
+                            <input name="fphoto" type="file" id="imgInp" class="btn btn-info" >
                         </div> 
                     </div>
+                    <img id="blah" src="{{asset('/images/'.$alu->foto )}}" alt="Imagen Por Defecto" style="display: block;margin: 0px auto;max-height:381px;
+" />
                 </div>
                 <div class="box-footer">
                     {{ Form::submit(Lang::get('Editar Alumno'), array('class' => 'btn btn-info pull-right')) }}
@@ -152,6 +154,23 @@
                 te = String.fromCharCode(tecla);
                 return patron.test(te); 
             } 
+        </script>
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+                    
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+    
+            $("#imgInp").change(function(){
+                readURL(this);
+            });
         </script>
     @stop
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>

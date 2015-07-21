@@ -46,22 +46,50 @@ class AlumnoController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($error);
 		}
 		else{
-			$alumnos = new Alumno;
-			$id = DB::table('tusuario')->insertGetId(
-	    	['usuario' => Input::get('id_alumno') , 'password' => Input::get('id_alumno'), 'tipo_usuario' => 'alumno' , 'estado' => 'activo']
-			);
-			$alumnos->idalumno = Input::get('id_alumno');
-			$alumnos->idusuario = $id;
-			$alumnos->dni = Input::get('dni');
-			$alumnos->nombres = Input::get('nombres');
-			$alumnos->apellidos = Input::get('apellidos');
-			$alumnos->direccion = Input::get('direccion');
-			$alumnos->telefono = Input::get('telefono');
-			$alumnos->correo = Input::get('correo');
-			$alumnos->fecha_ingreso = Input::get('fecha');
-			$alumnos->foto = "";
-			$alumnos->save();
-			return Redirect::to('alumno');
+			if (Input::hasFile('fphoto')){
+				$alumnos = new Alumno;
+				$id = DB::table('tusuario')->insertGetId(
+		    	['usuario' => Input::get('id_alumno') , 'password' => Input::get('id_alumno'), 'tipo_usuario' => 'alumno' , 'estado' => 'activo']
+				);
+
+			    $file = Input::file('fphoto');
+			    $file->move('images', $id.$file->getClientOriginalName());
+			    $image = Image::make(sprintf('images/%s', $id.$file->getClientOriginalName()))->resize(350, null, function ($constraint) {
+				    $constraint->aspectRatio();
+				})->save();
+			    
+				$alumnos->idalumno = Input::get('id_alumno');
+				$alumnos->idusuario = $id;
+				$alumnos->dni = Input::get('dni');
+				$alumnos->nombres = Input::get('nombres');
+				$alumnos->apellidos = Input::get('apellidos');
+				$alumnos->direccion = Input::get('direccion');
+				$alumnos->telefono = Input::get('telefono');
+				$alumnos->correo = Input::get('correo');
+				$alumnos->fecha_ingreso = Input::get('fecha');
+				$alumnos->foto = $id.$file->getClientOriginalName();
+				$alumnos->save();
+				return Redirect::to('alumno');
+			}
+			else{
+				$alumnos = new Alumno;
+				$id = DB::table('tusuario')->insertGetId(
+		    	['usuario' => Input::get('id_alumno') , 'password' => Input::get('id_alumno'), 'tipo_usuario' => 'alumno' , 'estado' => 'activo']
+				);
+				$alumnos->idalumno = Input::get('id_alumno');
+				$alumnos->idusuario = $id;
+				$alumnos->dni = Input::get('dni');
+				$alumnos->nombres = Input::get('nombres');
+				$alumnos->apellidos = Input::get('apellidos');
+				$alumnos->direccion = Input::get('direccion');
+				$alumnos->telefono = Input::get('telefono');
+				$alumnos->correo = Input::get('correo');
+				$alumnos->fecha_ingreso = Input::get('fecha');
+				$alumnos->foto = "default.png";
+				$alumnos->save();
+				return Redirect::to('alumno');
+
+			}
 		}
 	}
 
