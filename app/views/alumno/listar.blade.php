@@ -124,7 +124,78 @@
 
       </div>
     </div>
-    <a href="nota/PDFA">Prueba PDF</a>
+    <!-- <a href="nota/PDFA">Listar Todos Los Alumnos</a> -->
+
+    <?php
+        $i=0;
+        $codi="";
+    ?>
+    <select name="number" class="form-control" style="width: 25%;border:none;" id="hola1">
+        @foreach ($curli as $curl)
+            <?php $i++;  ?>
+            <option value="{{$curl->idasignatura}}">{{$curl->nombre_asignatura}}</option>
+            <?php
+                if($i==1){
+                    $codi=$curl->idasignatura;
+                }
+            ?>
+        @endforeach
+    </select>
+    <a href="curso/PDFA/{{$codi}}" id="cu">Cursos</a>
+    <?php
+        $i=0;
+        $codi="";
+    ?>
+    <select name="curso_libre" class="form-control" style="width: 25%;border:none;" id="holas">
+        @foreach ($curli1 as $curl1)
+            <?php $i++;  ?>
+            <option value="{{$curl1->idasignatura_cl}}">{{$curl1->nombre_asig_cl}}</option>
+            <?php
+                if($i==1){
+                    $codi=$curl1->idasignatura_cl;
+                }
+            ?>
+        @endforeach
+    </select>
+    <a href="cursolibre/PDFA/{{$codi}}" id="cu_li">Curso Libre</a>
+
+
+
+    <?php
+        $i=0;
+        $codi="";
+    ?>
+    <select name="semestre" class="form-control" style="width: 25%;border:none;" id="holas_sem">
+        @foreach ($semest as $curl3)
+            <?php $i++;  ?>
+            <option value="{{$curl3->idsemestre}}">{{$curl3->idsemestre}}</option>
+            <?php
+                if($i==1){
+                    $codi=$curl3->idsemestre;
+                }
+            ?>
+        @endforeach
+    </select>
+    <a href="semestre/PDFA/{{$codi}}" id="smtr">Semestre</a>
+
+    <?php
+        $i=0;
+        $codi="";
+    ?>
+    <select name="modulo" class="form-control" style="width: 25%;border:none;" id="holas_modu">
+        @foreach ($modulo as $curl2)
+            <?php $i++;  ?>
+            <option value="{{$curl2->idmodulo}}">{{$curl2->nombre_modulo}}</option>
+            <?php
+                if($i==1){
+                    $codi=$curl2->idmodulo;
+                }
+            ?>
+        @endforeach
+    </select>
+    <a href="modulo/PDFA/{{$codi}}" id="modll">Módulo</a>
+    
+    
 
     <div class="row">
         <!-- INICIO: BOX PANEL -->
@@ -218,6 +289,22 @@
     
             $("#imgInp").change(function(){
                 readURL(this);
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("select").change(function(){
+                    var ho = $( "#holas option:selected" ).val();
+                    $("#cu_li").attr("href", "cursolibre/PDFA/"+ho);
+                    var ho1 = $( "#hola1 option:selected" ).val();
+                    $("#cu").attr("href", "curso/PDFA/"+ho1);
+
+                    var ho2 = $( "#holas_sem option:selected" ).val();
+                    $("#smtr").attr("href", "semestre/PDFA/"+ho2);
+                    var ho3 = $( "#holas_modu option:selected" ).val();
+                    $("#modll").attr("href", "modulo/PDFA/"+ho3);
+                });
+                
             });
         </script>
     @stop

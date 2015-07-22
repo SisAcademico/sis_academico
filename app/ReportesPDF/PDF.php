@@ -5,7 +5,7 @@ class PDF extends baseFpdf
     
     function Header()
     {
-        $this->Image("ISC.png",10,6,30);
+        $this->Image("images/ISC.png",10,6,30);
         $this->SetFont('Arial','B',16);
         $this->Cell(55);
         $this->Cell(30,10,'Instituto de Sistemas Cusco');
@@ -30,7 +30,7 @@ class PDF extends baseFpdf
         $this->SetLineWidth(.3);
         $this->SetFont('','B');
 
-        $w = array(13, 23, 162);
+        $w = array(13, 23, 158);
         for($i=0;$i<count($header);$i++)
             $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
         $this->Ln();

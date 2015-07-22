@@ -57,6 +57,10 @@ Route::resource('horarioCarga','HorarioCargaController');
 Route::any('nota/getCourseData', 'NotaController@getCourseData');
 Route::any('nota/PDFA', 'NotaController@getPDF');
 Route::resource('nota', 'NotaController');
+Route::any('cursolibre/PDFA/{id}','AlumnoController@getPDF');
+Route::any('curso/PDFA/{id}','AlumnoController@getPDF2');
+Route::any('modulo/PDFA/{id}','AlumnoController@getPDF3');
+Route::any('semestre/PDFA/{id}','AlumnoController@getPDF4');
 //------------- Asistencia Alumno ----------------
 Route::group(array('prefix' => 'alumno'), function()
 {
