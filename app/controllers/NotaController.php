@@ -5,8 +5,6 @@ class NotaController extends \BaseController {
 
 	public function getPDF()
 	{
-		$isasig = Input::get('id_asignatura');
-		echo $isasig;
 	    $fpdf = new PDF();
 	    $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
 	    $data=Alumno::all();

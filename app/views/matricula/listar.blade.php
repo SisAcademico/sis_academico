@@ -9,8 +9,6 @@
     <li><a href="#"><i class="fa fa-list"></i> @lang('Matricula')</a></li>
     <li class="active">@lang('Listar Matricula')</li>
 @stop
-
-
 @section('contenido')
     <!-- Main row -->
     <!--<a href="/sis/sis_academico/public/matricula/insertar">Crear</a>-->

@@ -5,7 +5,63 @@ class AlumnoController extends \BaseController {
     /**
      * Mostrar el formulario de inserción de alumnos
      */
+    public function getPDF($id){
+    	$fpdf = new PDF();
+	    $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+	    $data=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tasignatura_cl.idasignatura_cl','=',$id)
+            ->get();
+        if(sizeof($data)>0){
+         	$fpdf->SetFont('Arial','B',13);
+			$fpdf->AddPage();
+			$fpdf->Cell(80);
+			$fpdf->Cell(30,5,'Lista de Alumnos', 0, 1, 'C');
+			$fpdf->SetFont('Arial','B',9);
+			$fpdf->Ln(2);
 
+			$fpdf->SetFont('Arial','B',10);
+			$fpdf->FancyTable($colu,$data);
+
+	        $cabe=['Content-Type' => 'application/pdf'];
+	        return 	Response::make($fpdf->Output(),200,$cabe);
+         }
+         else{
+         	return View::make('alumno.error');
+         }
+    }
+
+    public function getPDF2($id){
+        $fpdf = new PDF();
+	    $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+	    $data=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tasignatura.idasignatura','=',$id)
+            ->get();
+         if(sizeof($data)>0){
+         	$fpdf->SetFont('Arial','B',13);
+			$fpdf->AddPage();
+			$fpdf->Cell(80);
+			$fpdf->Cell(30,5,'Lista de Alumnos', 0, 1, 'C');
+			$fpdf->SetFont('Arial','B',9);
+			$fpdf->Ln(2);
+
+			$fpdf->SetFont('Arial','B',10);
+			$fpdf->FancyTable($colu,$data);
+
+	        $cabe=['Content-Type' => 'application/pdf'];
+	        return 	Response::make($fpdf->Output(),200,$cabe);
+         }
+         else{
+         	return View::make('alumno.error');
+         }
+    }
 
 	public function index()
 	{
@@ -17,7 +73,12 @@ class AlumnoController extends \BaseController {
 			$cod=$cod."0";
 		}
 		$cod="ISC".$cod.$cuan;
-		return View::make('alumno.listar',['alumnos'=> $alumno,'cuan'=>$cod]);
+
+		$curss=Asignatura::all();
+		$curss1=AsignaturaLibres::all();
+		$modul=Modulo::all();
+		$semst=Semestre::all();
+		return View::make('alumno.listar',['alumnos'=> $alumno,'cuan'=>$cod, 'curli' => $curss, 'curli1' => $curss1, 'modulo' => $modul, 'semest' => $semst]);
 	}
 
 
@@ -157,6 +218,76 @@ class AlumnoController extends \BaseController {
 	{
 		//
 	}
+	public function getPDF3($id){
+        $fpdf = new PDF();
+	    $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+	    $data=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->join('tmodulo', 'tmodulo.idmodulo','=', 'tasignatura.idmodulo')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tmodulo.idmodulo','=',$id)
+            ->get();
+         if(sizeof($data)>0){
+         	$fpdf->SetFont('Arial','B',13);
+			$fpdf->AddPage();
+			$fpdf->Cell(80);
+			$fpdf->Cell(30,5,'Lista de Alumnos', 0, 1, 'C');
+			$fpdf->SetFont('Arial','B',9);
+			$fpdf->Ln(2);
+
+			$fpdf->SetFont('Arial','B',10);
+			$fpdf->FancyTable($colu,$data);
+
+	        $cabe=['Content-Type' => 'application/pdf'];
+	        return 	Response::make($fpdf->Output(),200,$cabe);
+         }
+         else{
+         	return View::make('alumno.error');
+         }
+    }
+
+    public function getPDF4($id){
+        $fpdf = new PDF();
+	    $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+	    $data1=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->join('tcarga_academica', 'tcarga_academica.idasignatura','=', 'tasignatura.idasignatura')
+            ->join('tsemestre', 'tsemestre.idsemestre','=', 'tcarga_academica.idsemestre')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tsemestre.idsemestre','=',$id);
+
+        $data=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->join('tcarga_academica', 'tcarga_academica.idasignatura','=', 'tasignatura.idasignatura')
+            ->join('tsemestre', 'tsemestre.idsemestre','=', 'tcarga_academica.idsemestre')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tsemestre.idsemestre','=',$id)
+            ->union($data1)
+            ->get();
+         if(sizeof($data)>0){
+         	$fpdf->SetFont('Arial','B',13);
+			$fpdf->AddPage();
+			$fpdf->Cell(80);
+			$fpdf->Cell(30,5,'Lista de Alumnos', 0, 1, 'C');
+			$fpdf->SetFont('Arial','B',9);
+			$fpdf->Ln(2);
+
+			$fpdf->SetFont('Arial','B',10);
+			$fpdf->FancyTable($colu,$data);
+
+	        $cabe=['Content-Type' => 'application/pdf'];
+	        return 	Response::make($fpdf->Output(),200,$cabe);
+         }
+         else{
+         	return View::make('alumno.error');
+         }
+    }
 
 
 }
