@@ -26,6 +26,30 @@ class NotaController extends \BaseController {
 
 	}
 	
+	public function rankingPorCurso($idCurso)
+	{
+		$isasig = Input::get('id_asignatura');
+		echo $isasig;
+	    $fpdf = new PDF();
+	    $colu = array('CODIGO', 'APELLIDOS Y NOMBRES', 'PROMEDIO');
+	    $data=Nota::rankingPorCurso();
+        //$fpdf->Image("unsaac.png",10,6,30);
+        $fpdf->SetFont('Arial','B',13);
+		$fpdf->AddPage();
+		$fpdf->Cell(80);
+		$fpdf->Cell(30,5,'Lista de Alumnos', 0, 1, 'C');
+		$fpdf->SetFont('Arial','B',9);
+		/*$fpdf->Cell(10,5,'Asignatura:', 0, 1, 'L');
+		$fpdf->Cell(10,5,'Docente:', 0, 1, 'L');*/
+		$fpdf->Ln(2);
+
+		$fpdf->SetFont('Arial','B',10);
+		$fpdf->FancyTableRankingPorCurso($colu,$data);
+
+        $cabe=['Content-Type' => 'application/pdf'];
+        return 	Response::make($fpdf->Output(),200,$cabe);
+	}
+
 	public function __construct()
 	{
 	    $this->datos = Input::has('team_id') ? Input::get('team_id') : "" ;
@@ -72,10 +96,10 @@ class NotaController extends \BaseController {
             {
                 $nroExamenes= $hora->horas_totales/20;
             }
-			if($nroExamenes==0)
+			if($nroExamenes<1)
 				$nroExamenes=1;
 			$data = Nota::getDataNotaLibre($isasig);
-
+			echo sizeof($data);
 			foreach($data as $dato)
 			{
 				for ($i=0; $i <$nroExamenes ; $i++)
@@ -120,12 +144,12 @@ class NotaController extends \BaseController {
 			->select('horas_totales')->where('tasignatura.idasignatura','=',$isasig)->get();
 			 foreach ($horas as $hora) {
                                    # code...
-                $nroExamenes= $hora->horas_totales/40;
+                $nroExamenes= $hora->horas_totales/5;
             }
-			if($nroExamenes==0)
+			if($nroExamenes<1)
 				$nroExamenes=1;
 			$data = Nota::getDataNotaCarrera($isasig);
-
+			echo sizeof($data);
 			foreach($data as $dato)
 			{
 				for ($i=0; $i <$nroExamenes ; $i++)
@@ -217,8 +241,8 @@ class NotaController extends \BaseController {
 		if(Request::isMethod('post'))
 		{
 			$isasig = Input::get('id_asignatura');
-			$tipo = substr($isasig, 0, 1);
-			if($tipo=="C")//curso libre
+			$tipo = substr($isasig, 0, 2);
+			if($tipo=="AL")//curso libre
 			{
 				$horas=DB::table('tasignatura_cl')
 				->select('horas_totales')->where('tasignatura_cl.idasignatura_cl','=',$isasig)->get();
@@ -226,22 +250,24 @@ class NotaController extends \BaseController {
                                     # code...
                       $nroExamenes= $hora->horas_totales/20;
                  }
-				if($nroExamenes==0)
+				if($nroExamenes<1)
 					$nroExamenes=1;
 				$data = Nota::getDataNotaLibre($isasig);
+				echo sizeof($data);
 				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
-			else if($tipo=="A")
+			else if($tipo=="AC")
 			{
 				$horas=DB::table('tasignatura')
 				->select('horas_totales')->where('tasignatura.idasignatura','=',$isasig)->get();
 				 foreach ($horas as $hora) {
                                     # code...
-                      $nroExamenes= $hora->horas_totales/40;
+                      $nroExamenes= $hora->horas_totales/5;
                  }
-				if($nroExamenes==0)
+				if($nroExamenes<1)
 					$nroExamenes=1;
-					$data = Nota::getDataNotaCarrera($isasig);
+				$data = Nota::getDataNotaCarrera($isasig);
+				echo sizeof($data);
 				return View::make('nota.insertar',['datos'=> $data,'nroExamenes'=>$nroExamenes,'idasig'=>$isasig]);
 			}
 			else
@@ -255,8 +281,19 @@ class NotaController extends \BaseController {
 	public function listarCursosDocente()
 	{
 		$iddocente = Input::get('id_docente');
-		$cursos1 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteCarrera($iddocente);
-		$cursos2 = AsistenciaDocente::getJoinCargaAcademicaAsistenciaDocenteLibre($iddocente);
+		//$cursos1 = docente::asignaturaCarreraPorDocente($iddocente);
+		//$cursos2 = docente::asignaturaLibrePorDocente($iddocente);
+		$cursos1 = DB::table('tcarga_academica')
+				->join('tdocente', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
+				->join('tasignatura', 'tcarga_academica.idasignatura', '=', 'tasignatura.idasignatura')
+				->where('tdocente.iddocente', '=', $iddocente)
+				->get();
+
+		$cursos2 = DB::table('tcarga_academica')
+				->join('tasignatura_cl', 'tcarga_academica.idasignatura_cl', '=', 'tasignatura_cl.idasignatura_cl')
+				->join('tdocente', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
+				->where('tdocente.iddocente', '=', $iddocente)
+				->get();
 		return View::make('nota.escojer_curso')->with(['asig'=> $cursos1,'asig2'=> $cursos2]);
 
 	}
