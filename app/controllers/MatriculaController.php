@@ -274,6 +274,35 @@ class MatriculaController extends BaseController{
         return  Response::make($fpdf->Output(),200,$cabe);
 
     }
+    public function getPDF2($asigna)
+    {
+        $detallematricula = DetalleMatricula::all();
+        $asignaturas=Asignatura::all();
+        $alumnos=Alumno::all();
+        $matriculas=Matricula::all();
+        //$nombrealumno=DB::table('talumno')->where('idalumno',$id)->pluck('nombres');
+        $aux2=DB::table('tmatricula')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->join('talumno','talumno.idalumno','=','tmatricula.idalumno')
+            ->select('talumno.nombres','talumno.apellidos')
+            ->where('tasignatura.idasignatura','=',$asigna)
+            ->get();
+        $fpdf = new PDF();
+        $colu = array('NRO','Nombres','Apellidos');
+        //$fpdf->Image("unsaac.png",10,6,30);
+        $fpdf->SetFont('Arial','',13);
+        $fpdf->AddPage();
+        $fpdf->Cell(80);
+        $fpdf->Cell(30,5,'Lista de alumnos matriculas', 0, 1, 'C');
+        $fpdf->SetFont('Arial','B',9);
+        $fpdf->Ln(2);
+        $fpdf->SetFont('Arial','B',10);
+        $fpdf->FancyTableMatriculaporCurso($colu,$aux2);
+
+        $cabe=['Content-Type' => 'application/pdf'];
+        return  Response::make($fpdf->Output(),200,$cabe);
+    }
 }
 
 ?>
