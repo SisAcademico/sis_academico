@@ -11,7 +11,28 @@
 @stop
 @section('contenido')
     <!-- Main row -->
-    <!--<a href="/sis/sis_academico/public/matricula/insertar">Crear</a>-->
+
+
+
+    <?php
+        $i=0;
+        $codi="";
+    ?>
+    <select name="semestre" class="form-control" style="width: 25%;border:none;" id="holas_sem">
+        @foreach ($semest as $curl3)
+            <?php $i++;  ?>
+            <option value="{{$curl3->idsemestre}}">{{$curl3->idsemestre}}</option>
+            <?php
+                if($i==1){
+                    $codi=$curl3->idsemestre;
+                }
+            ?>
+        @endforeach
+    </select>
+    <a href="semestreMatricula/PDFA/{{$codi}}" id="smtr">Semestre</a>
+
+
+
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">

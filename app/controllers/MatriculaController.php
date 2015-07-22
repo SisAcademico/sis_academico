@@ -11,16 +11,66 @@ class MatriculaController extends BaseController{
     /**
      * LISTAR ASIGNATURAS
      */
-        public function index()
+    public function index()
     {
         $matriculas=Matricula::all();
         $alumnos=Alumno::all();
+        $asig=Asignatura::all();
+        $asigcl=AsignaturaLibres::all();
+        $modul=Modulo::all();
+        $semst=Semestre::all();
         $auxiliar=DB::table('tmatricula')
             ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
             //->join('tpago', 'tmatricula.idpago', '=', 'tpago.idpago')
             ->select('tmatricula.idmatricula','tmatricula.tipo' ,'talumno.idalumno', 'talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula')
             ->get();
-        return View::make('matricula.listar') -> With('matricula',$auxiliar);
+        return View::make('matricula.listar',['alumnos'=> $alumnos,'matricula'=>$auxiliar, 'asig' => $asig, 'asigcl' => $asigcl, 'modulo' => $modul, 'semest' => $semst]);
+    }
+
+    public function getMatriculaCLSemestre($id){
+        $fpdf = new PDF();
+        $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+
+
+        $data1=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
+            ->join('tcarga_academica', 'tcarga_academica.idasignatura_cl','=', 'tasignatura_cl.idasignatura_cl')
+            ->join('tsemestre', 'tsemestre.idsemestre','=', 'tcarga_academica.idsemestre')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tsemestre.idsemestre','=',$id,'and','tmatricula.tipo','=','Curso_libre')
+            ->groupBy('talumno.idalumno');
+
+        $data=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
+            ->join('tcarga_academica', 'tcarga_academica.idasignatura_cl','=', 'tasignatura_cl.idasignatura_cl')
+            ->join('tsemestre', 'tsemestre.idsemestre','=', 'tcarga_academica.idsemestre')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tsemestre.idsemestre','=',$id,'and','tmatricula.tipo','=','Curso_libre')
+            ->groupBy('talumno.idalumno')
+            ->union($data1)
+            ->get();
+         if(sizeof($data)>0){
+            $fpdf->SetFont('Arial','B',13);
+            $fpdf->AddPage();
+            $fpdf->Cell(80);
+            $fpdf->Cell(30,15,'Matricula Curso Libre '.$id, 0, 1, 'C');
+            $fpdf->Cell(190,5,'Lista de Alumnos', 0, 1, 'C');
+            $fpdf->SetFont('Arial','B',9);
+            $fpdf->Ln(2);
+
+            $fpdf->SetFont('Arial','B',10);
+            $fpdf->FancyTable($colu,$data);
+
+            $cabe=['Content-Type' => 'application/pdf'];
+            return  Response::make($fpdf->Output(),200,$cabe);
+         }
+         else{
+            return View::make('alumno.error');
+         }
     }
 
 

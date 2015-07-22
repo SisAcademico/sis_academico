@@ -15,6 +15,7 @@
     <!-- Main row -->
     <!--<a href="/sis/sis_academico/public/matricula/insertar">Crear</a>-->
     <a href="/matricula/detalle/PDFA/{{$idalumno}}">Prueba PDF</a>
+    
     <div class="row">
         <!-- INICIO: BOX PANEL -->
         <div class="col-md-12 col-sm-8">
