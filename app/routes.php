@@ -63,6 +63,7 @@ Route::any('modulo/PDFA/{id}','AlumnoController@getPDF3');
 Route::any('semestre/PDFA/{id}','AlumnoController@getPDF4');
 
 Route::any('semestreMatricula/PDFA/{id}','MatriculaController@getMatriculaCLSemestre');
+Route::any('mesMatricula/PDFA/{id}','MatriculaController@getMatriculaCLMes');
 //------------- Asistencia Alumno ----------------
 Route::group(array('prefix' => 'alumno'), function()
 {

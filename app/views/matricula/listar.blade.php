@@ -31,6 +31,32 @@
     </select>
     <a href="semestreMatricula/PDFA/{{$codi}}" id="smtr">Semestre</a>
 
+    <?php
+        $i=0;
+        $codi="";
+    ?>
+    <select name="mes" class="form-control" style="width: 25%;border:none;" id="holas_mes">
+      <?php $i++;  ?>
+      <option value="1">Enero</option>
+      <option value="2">Febrero</option>
+      <option value="3">Marzo</option>
+      <option value="4">Abril</option>
+      <option value="5">Mayo</option>
+      <option value="6">Junio</option>
+      <option value="7">Julio</option>
+      <option value="8">Agosto</option>
+      <option value="9">Setiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
+       <?php
+            if($i==1){
+                $codi='1';
+            }
+        ?>
+    </select>
+    <a href="mesMatricula/PDFA/{{$codi}}" id="ms">Mes</a>
+
 
 
     <div class="row">
