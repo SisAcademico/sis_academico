@@ -25,7 +25,7 @@
                                 <div class="box-body">
                                         <?php 
                                         $iddocente=$FilaFiltroRecuperada[0]->iddocente;
-                                        $docente= docente::where('iddocente','=',$iddocente)->get();
+                                        $docente= Docente::where('iddocente','=',$iddocente)->get();
                                         echo '<h3>Asistencia de : '.$docente[0]->nombres.' '.$docente[0]->apellidos.' </h3> ' ;
                                         $cont=0;                                                   
                                         ?>

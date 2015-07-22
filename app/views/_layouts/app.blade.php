@@ -149,8 +149,7 @@
               </a>
               <ul class="{{ Request::is( 'docente') ? 'active' : '' }} treeview-menu">
                 <li><a href="{{ URL::to( '/docente') }}"><i class="fa fa-list"></i> Listar  Docente</a></li>
-                <li><a href="{{ URL::to( '/docente/asistencia') }}"><i class="fa fa-list"></i> Registrar Asistencia </a></li>
-		        <li><a href="{{ URL::to( '/docente/listarasistencia') }}"><i class="fa fa-list"></i> Listar Asistencia Docente</a></li>
+                <li><a href="{{ URL::to( '/docente/listarasistencia') }}"><i class="fa fa-list"></i> Listar Asistencia Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/insertarasistencia') }}"><i class="fa fa-plus"></i> Agregar Asistencia  Docente</a></li>
                 <li><a href="{{ URL::to( '/docente/nota') }}"><i class="fa fa-list"></i> Agregar Notas </a></li>
               </ul>

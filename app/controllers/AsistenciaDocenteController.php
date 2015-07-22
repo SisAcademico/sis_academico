@@ -184,10 +184,8 @@ class AsistenciaDocenteController extends BaseController {
 		$inputs = Input::all();
 		$reglas = array(
 
-
-		'observacion' => 'required|min:2|max:10',
-		'tema' => 'required|min:2|max:10' 	,
-		//'idcarga_academica' => 'required|min:2|max:10'
+		
+		'tema' => 'required|min:10|max:50' 	,
 
 		);
 		$mensajes= array('required' => 'Campo obligatorio');
@@ -205,10 +203,7 @@ class AsistenciaDocenteController extends BaseController {
 			$asistencia = DB::table('tasistencia_docente')
 				->where('idasistencia_docente',$id)
 				->update(array(
-
-					'observacion'=>$recuperado['observacion'],
 					'tema'=>$recuperado['tema'],
-
 				));
 
 			return Redirect::to('docente/listarasistencia');

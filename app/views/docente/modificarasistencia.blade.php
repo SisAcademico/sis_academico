@@ -58,7 +58,7 @@
                                 <?php
                                 $filacarga = CargaAcademica::where('idcarga_academica','=',$asistenciaaeditar[0]->idcarga_academica)-> get();
                                 $iddocente=$filacarga[0]->iddocente;                                  
-                                $docente = docente::where('iddocente','=',$iddocente)->get();
+                                $docente = Docente::where('iddocente','=',$iddocente)->get();
                                 ?>
                             {{ Form::text('lista_docente',Lang::get($iddocente.' - '.$docente[0]->nombres.' '.$docente[0]->apellidos.' - '.$docente[0]->dni),array('class'=>'form-control','id'=>'lista_docente','placeholder'=>Lang::get('lita_docente'))) }}
                          </fieldset>   

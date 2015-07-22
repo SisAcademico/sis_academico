@@ -62,7 +62,7 @@
 
 
 
-											$Rec = docente::where('iddocente', '=', $A)->get();
+											$Rec = Docente::where('iddocente', '=', $A)->get();
 											$nombre= $Rec[0]->nombres;
 											$apellidos= $Rec[0]->apellidos;
 											

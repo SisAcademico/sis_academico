@@ -78,11 +78,6 @@
                             @endforeach
                             </select>
                         </div>
-
-                        <div class="col-sm-4">
-                            <a href="" class="btn btn-success">Seleccione la asignatura</a>
-                        </div>
-
                     </div>
 
 
