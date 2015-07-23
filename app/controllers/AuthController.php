@@ -41,6 +41,6 @@ class AuthController extends \BaseController {
         // Cerramos la sesión
         Auth::logout();
         // Volvemos al login y mostramos un mensaje indicando que se cerró la sesión
-        return Redirect::to('login')->with('mensaje_error', 'Se cerro la sesión correctamente');
+        return Redirect::to('login')->with('mensaje_cerrar_sesion', 'Se cerro la sesión correctamente');
     }
 }

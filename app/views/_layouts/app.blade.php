@@ -74,12 +74,12 @@
                       </li>
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">@lang('sistema.adm_ver_todas_notificaciones')</a></li>
+                  <li class="footer"><a href="javascript:void(0)">@lang('sistema.adm_ver_todas_notificaciones')</a></li>
                 </ul>
               </li>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                   {{ HTML::image('adminlte/dist/img/user2-160x160.jpg','Imagen de usuario', array('class' => 'user-image')) }}
                   <span class="hidden-xs">{{Auth::user()->usuario}}</span> <i class="fa fa-sort-down"></i>
                 </a>

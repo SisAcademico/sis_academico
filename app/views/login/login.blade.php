@@ -7,14 +7,16 @@
 @section('contenido')
     <div class="login-box">
         <div class="login-box-body loginform">
+			<div class="text-center">{{ HTML::image('images/unsaac_small.jpg','Imagen de usuario', array('class' => 'user-image')) }}</div>
             <h4 class="text-center"> {{mb_strtoupper(Lang::get('sistema.administracion')) }}</h4>
             <div id="login_form" class="login_form">
         {{ Form::open(array('url' => 'login','autocomplete' => 'off','class' => 'form-signin', 'role' => 'form')) }}
-        @if(Session::has('mensaje_error'))
-            <div class="alert alert-danger">
+        @if(Session::has('mensaje_error')||Session::has('mensaje_cerrar_sesion'))
+            <div class="alert alert-{{(Session::has('mensaje_cerrar_sesion'))?'info':'danger'}}">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <ul class="error_list">
+                <ul class="error_list" style="padding-left: 15px;">
                         {{ Session::get('mensaje_error') }}
+						{{ Session::get('mensaje_cerrar_sesion') }}
                 </ul>
             </div>
         @endif
