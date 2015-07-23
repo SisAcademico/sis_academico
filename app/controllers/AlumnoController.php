@@ -30,7 +30,7 @@ class AlumnoController extends \BaseController {
 	        return 	Response::make($fpdf->Output(),200,$cabe);
          }
          else{
-         	return View::make('alumno.error');
+         	return View::make('alumno.listarer');
          }
     }
 
@@ -59,7 +59,7 @@ class AlumnoController extends \BaseController {
 	        return 	Response::make($fpdf->Output(),200,$cabe);
          }
          else{
-         	return View::make('alumno.error');
+         	return View::make('alumno.listarer');
          }
     }
 
@@ -244,7 +244,7 @@ class AlumnoController extends \BaseController {
 	        return 	Response::make($fpdf->Output(),200,$cabe);
          }
          else{
-         	return View::make('alumno.error');
+         	return View::make('alumno.listarer');
          }
     }
 
@@ -285,7 +285,7 @@ class AlumnoController extends \BaseController {
 	        return 	Response::make($fpdf->Output(),200,$cabe);
          }
          else{
-         	return View::make('alumno.error');
+         	return View::make('alumno.listarer');
          }
     }
 
