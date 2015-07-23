@@ -82,6 +82,7 @@ Route::resource('carrera', 'CarreraController');
 
 //------------- Docente ---------------------------
 Route::resource('docente', 'DocenteController');
+Route::any('docente/reporte', 'DocenteController@getPDF');
 
 //------------- Modulo -------------------------
 Route::resource('modulo', 'ModuloController');
@@ -156,6 +157,8 @@ Route::post('carga_academica/guardar', 'CargaAcademicaController@guardarcarga');
 Route::get('carga_academica/editar/{id}','CargaAcademicaController@recuperarparamodificar');
 Route::post('carga_academica/modificar/{id}','CargaAcademicaController@modificar');
 Route::get('carga_academica/vermas/{id}/{sem}','CargaAcademicaController@vermas');
+Route::any('carga_academica/reportepdf/','CargaAcademicaController@getDAPDF');
+Route::any('carga_academica/reportecatalogo/{id}/{carrera}','CargaAcademicaController@getcatalogoPDF');
 
 //-------------------------AULA CARGA------------------------------
 Route::get('aula_carga/listar', 'AulaCargaController@listarAulaCarga');

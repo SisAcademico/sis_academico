@@ -85,6 +85,14 @@
                             </tr>
                         @endforeach
                     </table>
+                    
+                    <p></p>
+                {{ Form::open(array('url' => '/carga_academica/reportepdf'))}}
+                        {{ Form::hidden('semestre',$sem)}}
+                        {{ Form::hidden('docente',$codigo)}}
+                        {{ Form::submit(Lang::get('Generar Reporte'), array('class' => 'btn btn-info pull-left')) }}
+                            
+                {{Form::close()}}
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div> <!-- INICIO: BOX PANEL -->

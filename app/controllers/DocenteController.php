@@ -9,8 +9,10 @@ class DocenteController extends \BaseController {
 
 	public function index()
 	{
-		$docente = Docente::all();
-		return View::make('docente.listar')->with('docentes',$docente);
+		$docente = Docente::all();   
+                $Semestretodo = Semestre::all();
+		return View::make('docente.listar')->with('docentes',$docente)
+                                                   ->with('Semestretodo',$Semestretodo);
 	}
 
 
@@ -183,7 +185,6 @@ class DocenteController extends \BaseController {
     	//return View::make('docente.listar');
         $Docentestodo=docente::all();
 
-
         if(isset($_GET["buscar"]))
         {
 
@@ -211,6 +212,30 @@ class DocenteController extends \BaseController {
 	{
 		//
 	}
-
+        
+        public function reportedocente(){
+            $test = Input::all();
+            echo 'hola este es el reporte<br>';
+            print_r($test);
+            echo '<br>';
+            print_r($test['semestre']);
+        }
+        public function getPDF()
+	{
+            //$semestreselect = Input::all();
+	    $fpdf = new PDF();
+	    $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+	    $data=  Docente::all();
+            $fpdf->SetFont('Arial','B',13);
+            $fpdf->AddPage();
+            $fpdf->Cell(80);
+            $fpdf->Cell(30,5,'Lista de Docentes', 0, 1, 'C');
+            $fpdf->SetFont('Arial','B',9);
+            $fpdf->Ln(2);
+            $fpdf->SetFont('Arial','B',10);
+            $fpdf->FancyTableDocente($colu,$data);
+            $cabe=['Content-Type' => 'application/pdf'];
+            return 	Response::make($fpdf->Output(),200,$cabe);
+	}
 
 }

@@ -40,6 +40,32 @@
                             {{Form::select('semestre',array_merge($valoractuald,$arregloSemestre))}}
                             {{ Form::submit(Lang::get('Hacer Consulta'), array('class' => 'btn btn-info pull-center')) }}
                             {{ Form::close()}}
+                            
+                            
+                            {{ Form::open(array('url' => 'catalogo','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+                            <?php 
+                            $arregloSemestre = array();                            
+                            foreach ($Semestretodo as $sem){
+                                $nombre = $sem->idsemestre;
+                                $valor = $sem->idsemestre;
+                                $aux = [$valor=>$nombre];
+                                $arregloSemestre = array_merge($aux,$arregloSemestre);
+                            }
+                            ?>
+                            {{Form::select('semestre',$arregloSemestre)}}
+
+                            <?php 
+                            $arregloCarrera = array();                            
+                            foreach ($Carreratodo as $sem){
+                                $nombre = $sem->nombre_carrera;
+                                $valor = $sem->idcarrera;
+                                $aux = [$valor=>$nombre];
+                                $arregloCarrera = array_merge($aux,$arregloCarrera);
+                            }
+                            ?>
+                            {{Form::select('carrera',$arregloCarrera)}}
+                            {{ Form::submit(Lang::get('Generar Catalogo'), array('class' => 'btn btn-info pull-center')) }}
+                            {{ Form::close()}}
 
                 </div><!-- /.box-header -->                
                 <div class="box-body">

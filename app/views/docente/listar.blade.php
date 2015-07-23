@@ -26,7 +26,7 @@
                                 'role' => 'form')) }}
             {{Form::input('text','buscar',Input::get('buscar'),array('class'=>'form-control')) }}
             {{Form::input('submit',null,'Buscar',array('class'=> 'btn btn-primary'))}}
-     {{Form::close()}}
+     {{Form::close()}} 
     </div>
   <div class="col-md-6 col-sm-8">
     <div class="negro"></div>
@@ -196,6 +196,10 @@
                         <li><a href="#">&raquo;</a></li>
                     </ul>
                 </div>
+                
+        {{ Form::open(array('url' => 'docente/reporte','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+        {{ Form::submit(Lang::get('Hacer Reporte'), array('class' => 'btn btn-info pull-center')) }}
+        {{ Form::close()}}
             </div><!-- /.box -->
         </div>
         <!-- INICIO: BOX PANEL -->

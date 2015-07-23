@@ -19,6 +19,7 @@ class CargaAcademicaController extends \BaseController {
         }
         $Nrotuplas = 10;
         $Semestretodo = Semestre::all(); 
+        $Carreratodo = Carrera::all(); 
         if($semestrea =="")//al momento de listar por primera vez
         {
             $CargaAcademicatodo=DB::table('tcarga_academica')          
@@ -48,6 +49,7 @@ class CargaAcademicaController extends \BaseController {
                             ->with('Semestretodo', $Semestretodo)
                             ->with('pagina',$pagina)
                             ->with('semestrea',$semestrea)
+                            ->with('Carreratodo',$Carreratodo)
                             ->with('Nrotuplas',$Nrotuplas);
     }
     
@@ -345,5 +347,74 @@ class CargaAcademicaController extends \BaseController {
         {
             return Redirect::back()->withInput()->withErrors($validador);
         }
+    }
+    //=======================================REPORTE DOCENTE POR ASIGNATURA======================
+    public function getDAPDF()
+    {        
+        $iddocente = Input::get('docente');;
+        $semestre = Input::get('semestre');
+        $fpdf = new PDF();
+        $colu = array('NRO', 'CODIGO', 'APELLIDOS Y NOMBRES','ASIGNATURA');
+        $cargaacademicaasignatura = DB::table('tcarga_academica')
+            ->join('tasignatura', 'tcarga_academica.idasignatura', '=', 'tasignatura.idasignatura')
+            ->join('tdocente', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
+            ->where('tcarga_academica.iddocente',$iddocente)
+            ->where('tcarga_academica.idsemestre',$semestre)
+            ->select('tdocente.iddocente','tdocente.nombres','tdocente.apellidos','tasignatura.nombre_asignatura as Asignatura');
+        
+        $data = DB::table('tcarga_academica')
+            ->join('tasignatura_cl', 'tcarga_academica.idasignatura_cl', '=', 'tasignatura_cl.idasignatura_cl')
+            ->join('tdocente', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
+            ->where('tcarga_academica.iddocente',$iddocente)
+            ->where('tcarga_academica.idsemestre',$semestre)
+            ->select('tdocente.iddocente','tdocente.nombres','tdocente.apellidos','tasignatura_cl.nombre_asig_cl as Asignatura')
+            ->union($cargaacademicaasignatura)
+            ->get();
+        $fpdf->SetFont('Arial','B',13);
+        $fpdf->AddPage();
+        $fpdf->Cell(80);
+        $fpdf->Cell(30,5,'Lista de cursos que dicta el docente ', 0, 1, 'C');
+        $fpdf->SetFont('Arial','B',9);
+        $fpdf->Ln(2);
+        $fpdf->SetFont('Arial','B',10);
+        $fpdf->FancyTableDocenteCurso($colu,$data);
+        $cabe=['Content-Type' => 'application/pdf'];
+        return  Response::make($fpdf->Output(),200,$cabe);
+    }
+    //=======================================REPORTE CATALOGO======================
+    public function getcatalogoPDF()
+    {
+        //$semestre = Input::get('semestre');
+        $semestre = '2015-II';
+        $carrera = 'AS';
+        
+        
+        
+        $fpdf = new PDF();
+        $colu = array('NRO', 'ASIGNATURA', 'DOCENTE', 'GRUPO','TURNO', 'HRS-SEM', 'MODULO');
+        //$data = Docente::all();
+       
+        $data = DB::table('tcarga_academica')
+            ->join('tasignatura', 'tcarga_academica.idasignatura', '=', 'tasignatura.idasignatura')
+            ->join('tdocente', 'tcarga_academica.iddocente', '=', 'tdocente.iddocente')
+            ->join('tmodulo', 'tmodulo.idmodulo', '=', 'tasignatura.idmodulo')
+            ->join('tcarrera', 'tmodulo.idcarrera', '=', 'tcarrera.idcarrera')
+            ->where('tmodulo.idcarrera',$carrera)
+            ->where('tcarga_academica.idsemestre',$semestre)
+              ->select('tasignatura.nombre_asignatura as Asignatura','tdocente.iddocente','tdocente.nombres','tdocente.apellidos'
+                    ,'tcarga_academica.grupo','tcarga_academica.turno', 'tasignatura.horas_semanales'
+                    ,'tmodulo.idmodulo')
+            ->get();
+        $fpdf->SetFont('Arial','B',13);
+        $fpdf->AddPage();
+        $fpdf->Cell(80);
+        $fpdf->Cell(30,5,'Catalogo de la carrera '.$carrera.'  en el semestre'.$semestre, 0, 1, 'C');
+        $fpdf->SetFont('Arial','B',9);
+        $fpdf->Ln(2);
+        $fpdf->SetFont('Arial','B',10);
+       // print_r($data);
+        $fpdf->FancyTableCatalogo($colu,$data);
+        $cabe=['Content-Type' => 'application/pdf'];
+        return  Response::make($fpdf->Output(),200,$cabe);
     }
 }
