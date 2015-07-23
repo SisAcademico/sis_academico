@@ -47,15 +47,20 @@
                                 $it = 0;
                                 $nroAlumnos=sizeof($datos);
                                 $itAlumn=0;
+                                //echo sizeof($datos);
+                                //echo "<br>";
                                 foreach($datos as $data){
                                     //echo $data->nombres;
                                     $itAlumn++;
-                                    //echo $itAlumn." : ".$nroAlumnos;
+                                    //echo $itAlumn." : ".$nroAlumnos." * ".$actual." - ".$data->idalumno;
+                                    //echo "<br>";
                                     if($data->idalumno!=$actual )
                                     {
                                         //ecribir datos
 
                                         $Promedio=0;
+                                        //echo $idalumno;
+                                        //cho "<br>";
                                         ?>    
                                         <tr>
                                             <td><?php echo $idalumno ?></td>
@@ -70,7 +75,7 @@
                                             @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\">"; 
-                                                    
+                                                    //echo $var.":".$i;
                                                 ?>
                                             
                                             @else
@@ -132,7 +137,7 @@
                                             @if(empty($notas[$i]) || $notas[$i]==0)
                                                 <?php 
                                                     echo "<input type=\"text\" name=\"".$var.":".$i."\" id=\"".$var.":".$i."\" value = \"NSP\" size=\"5\"maxlength=\"7\" max=\"20\" min=\"0\"onKeypress=\"if (event.keyCode < 45 || event.keyCode > 57 ) event.returnValue = false;\" onblur=\"return validar(event);\" >";
-                                                    
+                                                    //echo $var.":".$i;
                                                 ?>
                                             
                                             @else
