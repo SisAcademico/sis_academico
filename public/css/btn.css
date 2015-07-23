@@ -74,7 +74,31 @@ a:hover .dada{
   background: #224687;
   color: white;
 }
+.pdfss{
+  border-radius: 90%;
+  box-shadow: 0 1px 1.5px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
+  height: 40px;
+  width: 40px;
+  -webkit-transition: 0.2s all cubic-bezier(0.4, 0, 0.2, 1);
+          transition: 0.2s all cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9;
+  text-align: center;
+  background: #224687;
+  color: white;
+}
 .negro{
+  display: block;
+  background-color: red;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 8;
+}
+.negros{
   display: block;
   background-color: red;
   position: fixed;
@@ -92,6 +116,9 @@ a:hover .dada{
   vertical-align: text-bottom;
   width: 24px;
   fill: white;
+}
+.pdfss:hover{
+  cursor: pointer;
 }
 .google-expando__icon:hover {
   cursor: pointer;
@@ -121,6 +148,11 @@ a:hover .dada{
 
 .google-expando__icon.active {
   -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.pdfss.active {
+   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
 }

@@ -78,7 +78,6 @@ class AlumnoController extends \BaseController {
 		$curss1=AsignaturaLibres::all();
 		$modul=Modulo::all();
 		$semst=Semestre::all();
-		//return View::make('alumno.repor',['curli' => $curss, 'curli1' => $curss1, 'modulo' => $modul, 'semest' => $semst]);
 		return View::make('alumno.listar',['alumnos'=> $alumno,'cuan'=>$cod, 'curli' => $curss, 'curli1' => $curss1, 'modulo' => $modul, 'semest' => $semst]);
 	}
 

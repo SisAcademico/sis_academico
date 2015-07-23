@@ -23,14 +23,11 @@
     <div class="google-expando--wrap">
       <div class="google-expando">
 
-        <div class="google-expando__icon" style="
-    position: fixed;
-    right: 1px;
-    top: 81%;
-">    
+        <div class="google-expando__icon" style="position: fixed;right: 1px;top: 81%;">    
           <a href="#"><span class='dada' style="font-size: 29px;color: rgba(255, 255, 255, 0.8);"> + </span></a>
-
         </div>
+        
+
         <div class="google-expando__card" aria-hidden="true" >
               {{ Form::open(array('url' => 'alumno', 'files' => true, 'class' => 'form-horizontal')) }}
                 <div class="box box-success">
@@ -125,6 +122,108 @@
       </div>
     </div>
     <!-- <a href="nota/PDFA">Listar Todos Los Alumnos</a> -->
+    <div class="negros">
+    </div>
+    <div class="google-expando--wrap">
+      <div class="google-expando">
+
+        <div class="pdfss" style="position: fixed;right: 1px;">    
+          <a href="#"><img src="{{asset('/images/pdf.png')}}"></a>
+    </div>
+        
+
+        <div class="google-expando__card" aria-hidden="true" >
+              {{ Form::open(array('url' => 'alumno', 'files' => true, 'class' => 'form-horizontal')) }}
+                <div class="box box-success" style="border-top-color: rgba(0, 0, 0, 0.44);border-width: 4px;">
+                    <div class="box-header with-border">
+                        <h3 class="text-center" style="font-size: 21px;font-weight: bold;color: rgba(0, 0, 0, 0.59);margin: 0px;">Tipo de Reportes</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <ul class="error_list">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <?php
+                        $i=0;
+                        $codi="";
+                    ?>
+                    <select name="number" class="form-control"  id="hola1" style="width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                        @foreach ($curli as $curl)
+                            <?php $i++;  ?>
+                            <option value="{{$curl->idasignatura}}">{{$curl->nombre_asignatura}}</option>
+                            <?php
+                                if($i==1){
+                                    $codi=$curl->idasignatura;
+                                }
+                            ?>
+                        @endforeach
+                    </select>
+                    <a href="curso/PDFA/{{$codi}}" id="cu" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Cursos</a>
+                    <?php
+                        $i=0;
+                        $codi="";
+                    ?>
+                    <select name="curso_libre" class="form-control"  id="holas" style="  width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                        @foreach ($curli1 as $curl1)
+                            <?php $i++;  ?>
+                            <option value="{{$curl1->idasignatura_cl}}">{{$curl1->nombre_asig_cl}}</option>
+                            <?php
+                                if($i==1){
+                                    $codi=$curl1->idasignatura_cl;
+                                }
+                            ?>
+                        @endforeach
+                    </select>
+                    <a href="cursolibre/PDFA/{{$codi}}" id="cu_li" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Curso Libre</a>
+
+
+
+                    <?php
+                        $i=0;
+                        $codi="";
+                    ?>
+                    <select name="semestre" class="form-control"  id="holas_sem" style=" width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                        @foreach ($semest as $curl3)
+                            <?php $i++;  ?>
+                            <option value="{{$curl3->idsemestre}}">{{$curl3->idsemestre}}</option>
+                            <?php
+                                if($i==1){
+                                    $codi=$curl3->idsemestre;
+                                }
+                            ?>
+                        @endforeach
+                    </select>
+                    <a href="semestre/PDFA/{{$codi}}" id="smtr" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Semestre</a>
+
+                    <?php
+                        $i=0;
+                        $codi="";
+                    ?>
+                    <select name="modulo" class="form-control"  id="holas_modu" style=" width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                        @foreach ($modulo as $curl2)
+                            <?php $i++;  ?>
+                            <option value="{{$curl2->idmodulo}}">{{$curl2->nombre_modulo}}</option>
+                            <?php
+                                if($i==1){
+                                    $codi=$curl2->idmodulo;
+                                }
+                            ?>
+                        @endforeach
+                    </select>
+                    <a href="modulo/PDFA/{{$codi}}" id="modll" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Módulo</a>
+                </div>
+                {{ Form::close() }}
+        </div>
+
+      </div>
+    </div>
 
     <div class="row">
         <!-- INICIO: BOX PANEL -->
