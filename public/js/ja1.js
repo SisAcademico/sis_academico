@@ -4,7 +4,7 @@ function googleExpandoToggle() {
 }
 $('.google-expando__icon').on('click', function() {
   googleExpandoToggle.call(this);
-  $('.negro').fadeIn(500);
+  $('.negro').fadeToggle(500);
 });
 $('.negro').click(function(){
   $('.google-expando__icon').toggleClass('active');
