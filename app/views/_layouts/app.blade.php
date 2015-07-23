@@ -257,9 +257,19 @@
                 <li><a href="{{ URL::to( '/horario') }}"><i class="fa fa-list"></i> Listar Horario</a></li>
               </ul>
       </li>
-            <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Ayuda</span></a></li>
-          </ul>
-        </section>
+      <!-- INICIO REPORTES -->
+      <li class="{{ Request::is( 'resporte') ? 'active' : '' }}  treeview">
+              <a href="#">
+                <i class="fa fa-list"></i> <span>Reportes</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="{{ Request::is( 'reporte') ? 'active' : '' }} treeview-menu">
+                <li><a href="{{ URL::to( '/reporte') }}"><i class="fa fa-list"></i> Lista de reportes</a></li>
+              </ul>
+      </li>
+      <!-- FIN REPORTES -->
+      <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Ayuda</span></a></li>
+      </ul>
+      </section>
         <!-- /.sidebar -->
     </aside>
 	<!-- INICIO: Contenido principal -->
