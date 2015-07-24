@@ -99,6 +99,9 @@ Route::post('pago/agregar','PagoController@ajaxc');
 //matriculas y detalles matriculas
 Route::any('semestreMatricula/PDFA/{id}','MatriculaController@getMatriculaCLSemestre');
 Route::any('mesMatricula/PDFA/{id}','MatriculaController@getMatriculaCLMes');
+Route::any('asignaturaMatricula/PDFA/{id}','MatriculaController@getMatriculaAsig');
+Route::any('asignaturalibreMatricula/PDFA/{id}','MatriculaController@getMatriculaAsigLibre');
+
 
 Route::get('/matricula/listar', 'MatriculaController@index');
 Route::get('/matricula/agregar', 'MatriculaController@create');

@@ -119,8 +119,63 @@ class MatriculaController extends BaseController{
          }
     }
 
+    public function getMatriculaAsig($id){
+        $fpdf = new PDF();
+        $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+        $data=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tasignatura.idasignatura','=',$id)
+            ->get();
+         if(sizeof($data)>0){
+            $fpdf->SetFont('Arial','B',13);
+            $fpdf->AddPage();
+            $fpdf->Cell(80);
+            $fpdf->Cell(30,5,'Lista de Alumnos Matriculados', 0, 1, 'C');
+            $fpdf->SetFont('Arial','B',9);
+            $fpdf->Ln(2);
 
+            $fpdf->SetFont('Arial','B',10);
+            $fpdf->FancyTable($colu,$data);
 
+            $cabe=['Content-Type' => 'application/pdf'];
+            return  Response::make($fpdf->Output(),200,$cabe);
+         }
+         else{
+            return View::make('matricula.listarer');
+         }
+    }
+
+ public function getMatriculaAsigLibre($id){
+        $fpdf = new PDF();
+        $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
+        $data=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
+            ->where('tasignatura_cl.idasignatura_cl','=',$id)
+            ->get();
+        if(sizeof($data)>0){
+            $fpdf->SetFont('Arial','B',13);
+            $fpdf->AddPage();
+            $fpdf->Cell(80);
+            $fpdf->Cell(30,5,'Lista de Alumnos Matriculados', 0, 1, 'C');
+            $fpdf->SetFont('Arial','B',9);
+            $fpdf->Ln(2);
+
+            $fpdf->SetFont('Arial','B',10);
+            $fpdf->FancyTable($colu,$data);
+
+            $cabe=['Content-Type' => 'application/pdf'];
+            return  Response::make($fpdf->Output(),200,$cabe);
+         }
+         else{
+            return View::make('alumno.listarer');
+         }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -430,6 +485,8 @@ class MatriculaController extends BaseController{
         return  Response::make($fpdf->Output(),200,$cabe);
 
     }
+
+    
 }
 
 ?>

@@ -104,6 +104,46 @@
                                 $i=0;
                                 $codi="";
                             ?>
+
+                               <select name="asignatura" class="form-control"  id="holas_cur" style="width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                                  @foreach ($asig as $curl)
+                                      <?php $i++;  ?>
+                                      <option value="{{$curl->idasignatura}}">{{$curl->nombre_asignatura}}</option>
+                                      <?php
+                                          if($i==1){
+                                              $codi=$curl->idasignatura;
+                                          }
+                                      ?>
+                                  @endforeach
+                            </select>
+
+                              <a href="asignaturaMatricula/PDFA/{{$codi}}" id="smtrc" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Asignatura</a>
+
+
+                                <?php
+                                $i=0;
+                                $codi="";
+                            ?>
+
+                               <select name="asignatura_cl" class="form-control"  id="holas_cur" style="width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                                   @foreach ($asigcl as $curl1)
+                                        <?php $i++;  ?>
+                                        <option value="{{$curl1->idasignatura_cl}}">{{$curl1->nombre_asig_cl}}</option>
+                                        <?php
+                                            if($i==1){
+                                                $codi=$curl1->idasignatura_cl;
+                                            }
+                                        ?>
+                                    @endforeach
+                            </select>
+
+                              <a href="asignaturalibreMatricula/PDFA/{{$codi}}" id="smtrc" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Asignatura Libre</a>
+
+                            <?php
+                                $i=0;
+                                $codi="";
+                            ?>
+
                             <select name="semestre" class="form-control"  id="holas_sem" style="width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
                                 @foreach ($semest as $curl3)
                                     <?php $i++;  ?>
