@@ -115,7 +115,7 @@
                                     ?>
                                 @endforeach
                             </select>
-                            <a href="semestreMatricula/PDFA/{{$codi}}" id="smtr">Semestre</a>
+                            <a href="semestreMatricula/PDFA/{{$codi}}" id="smtr" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Semestre</a>
 
                             <?php
                                 $i=0;
@@ -141,7 +141,7 @@
                                     }
                                 ?>
                             </select>
-                            <a href="mesMatricula/PDFA/{{$codi}}" id="ms">Mes</a>
+                            <a href="mesMatricula/PDFA/{{$codi}}" id="ms" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Mes</a>
                       </div>
                         {{ Form::close() }}
                       </div>

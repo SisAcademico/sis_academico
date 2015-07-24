@@ -44,9 +44,7 @@ Route::resource('docente/asistencia', 'AsistenciaDocenteController');
 Route::resource('docente/nota', 'NotaController');
 Route::resource('asignatura', 'AsignaturaController');
 Route::resource('alumno', 'AlumnoController');
-Route::any('matricula/detalle/{id}','MatriculaController@detalle');
-Route::any('matricula/detalle/PDFA/{id}','MatriculaController@getPDF');
-Route::resource('matricula','MatriculaController');
+
 Route::resource('asignaturalibre','AsignaturaLibreController');
 Route::resource('detalle_matricula','DetalleMatriculaController');
 
@@ -62,8 +60,9 @@ Route::any('curso/PDFA/{id}','AlumnoController@getPDF2');
 Route::any('modulo/PDFA/{id}','AlumnoController@getPDF3');
 Route::any('semestre/PDFA/{id}','AlumnoController@getPDF4');
 
-Route::any('semestreMatricula/PDFA/{id}','MatriculaController@getMatriculaCLSemestre');
-Route::any('mesMatricula/PDFA/{id}','MatriculaController@getMatriculaCLMes');
+
+//Route::any('detalle/PDFA/{id}','MatriculaController@getPDF');
+
 //------------- Reporte ----------------
 Route::resource('reporte','ReporteController');
 //------------- Asistencia Alumno ----------------
@@ -96,13 +95,28 @@ Route::any('concepto/{id}/destroy','ConceptoController@destroy');
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
 Route::post('pago/agregar','PagoController@ajaxc');
+
+//matriculas y detalles matriculas
+Route::any('semestreMatricula/PDFA/{id}','MatriculaController@getMatriculaCLSemestre');
+Route::any('mesMatricula/PDFA/{id}','MatriculaController@getMatriculaCLMes');
+
+Route::get('/matricula/listar', 'MatriculaController@index');
+Route::get('/matricula/agregar', 'MatriculaController@create');
+
+Route::get('/detalleMatricula/agregar', 'DetalleMatriculaController@create');
+
+Route::any('matricula/detalle/{id}','MatriculaController@detalle');
+Route::any('matricula/detalle/PDFA/{id}','MatriculaController@getPDF');
+Route::any('matriculacl/detalle/PDFA/{id}','MatriculaController@getPDF3');
+Route::resource('matricula','MatriculaController');
+
 Route::any('matricula/create2', 'MatriculaController@create2');
 Route::get('/matricula', 'MatriculaController@index');
 Route::get('/matricula/agregar', 'MatriculaController@create');
 Route::get('detalle_matricula/guardar/{id}','DetalleMatriculaController');
 Route::get('/detalleMatricula/agregar/{id}', 'DetalleMatriculaController@create');
 Route::get('/detalleMatricula/agregarcl/{id}', 'DetalleMatriculaController@createcl');
-
+//matriculas y detalles matriculas
 
 
 //------------- Pagos -------------------------
@@ -140,10 +154,6 @@ Route::post('formulario/{id}','AdministradorController@update');
 
 Route::post('formulario', 'AdministradorController@store');
 
-Route::get('/matricula/listar', 'MatriculaController@index');
-Route::get('/matricula/agregar', 'MatriculaController@create');
-
-Route::get('/detalleMatricula/agregar', 'DetalleMatriculaController@create');
 
 //-----------------------CARGA ACADEMICA-------------------
 //listar por defecto

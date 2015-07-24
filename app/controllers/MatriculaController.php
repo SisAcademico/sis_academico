@@ -399,6 +399,37 @@ class MatriculaController extends BaseController{
         $cabe=['Content-Type' => 'application/pdf'];
         return  Response::make($fpdf->Output(),200,$cabe);
     }
+
+     public function getPDF3($id)
+    {
+        $detallematricula = DetalleMatricula::all();
+        $asignaturascl=AsignaturaLibres::all();
+        $alumnos=Alumno::all();
+        $matriculas=Matricula::all();
+        //$nombrealumno=DB::table('talumno')->where('idalumno',$id)->pluck('nombres');
+        $aux2=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
+            ->select('tasignatura_cl.idasignatura_cl','tasignatura_cl.nombre_asig_cl','tasignatura_cl.horas_totales')
+            ->where('talumno.idalumno','=',$id)
+            ->get();
+        $fpdf = new PDF();
+        $colu = array('NRO','ID Asignatura Curso Libre','Asignatura Curso Libre','Horas Totales');
+        //$fpdf->Image("unsaac.png",10,6,30);
+        $fpdf->SetFont('Arial','',13);
+        $fpdf->AddPage();
+        $fpdf->Cell(80);
+        $fpdf->Cell(30,5,'Lista de cursos Libres matriculados', 0, 1, 'C');
+        $fpdf->SetFont('Arial','B',9);
+        $fpdf->Ln(2);
+        $fpdf->SetFont('Arial','B',10);
+        $fpdf->FancyTableMatriculaCL($colu,$aux2);
+
+        $cabe=['Content-Type' => 'application/pdf'];
+        return  Response::make($fpdf->Output(),200,$cabe);
+
+    }
 }
 
 ?>
