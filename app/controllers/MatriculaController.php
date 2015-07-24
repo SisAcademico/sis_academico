@@ -69,7 +69,7 @@ class MatriculaController extends BaseController{
             return  Response::make($fpdf->Output(),200,$cabe);
          }
          else{
-            return View::make('alumno.error');
+            return View::make('matricula.listarer');
          }
     }
 
@@ -115,7 +115,7 @@ class MatriculaController extends BaseController{
             return  Response::make($fpdf->Output(),200,$cabe);
          }
          else{
-            return View::make('alumno.error');
+            return View::make('matricula.listarer');
          }
     }
 

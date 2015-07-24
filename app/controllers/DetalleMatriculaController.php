@@ -116,7 +116,7 @@ class DetalleMatriculaController extends BaseController{
                     $detallematri = DB::table('tdetalle_matricula')
                         ->insert(array('idmatricula' => $entra['codigomatri'], 'idasignatura' => $key));
                 }
-                return Redirect::to('/panel');
+                return Redirect::to('/matricula');
             }
             else
             {
@@ -130,7 +130,7 @@ class DetalleMatriculaController extends BaseController{
                 $detallematri = DB::table('tdetalle_matricula')
                     ->insert(array('idmatricula' => $entra['codigomatri'], 'idasignatura_cl' => $key));
             }
-            return Redirect::to('/panel');
+            return Redirect::to('/matricula');
         }
     }
 

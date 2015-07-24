@@ -65,6 +65,7 @@
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
         <script src="{{asset('/js/sis_academico.js')}}" type="text/javascript"></script>
         <script type="text/javascript">
+            var si = 0;
             $(document).ready(function(){
                 $('#jajaja').click(function() {
                     var values = $('input:checkbox[name=nombre]:checked').map(function () {
@@ -73,9 +74,15 @@
                     $('#cacche').val(values);
                     if (values.length > 5) {
                         alert("No se puede elegir mas de 5 cursos")
+                        si = 1;
                     }
                 });
 
+            });
+
+            $('#jajaja').click(function(){
+                if(si==0)
+                    alert("Cursos gurdados correctamente")
             });
         </script>
     @stop
