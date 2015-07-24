@@ -38,7 +38,7 @@
                         <div class="form-group">
                             {{ Form::label('id_asignatura', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="id_asignatura" type="text" value="{{$asig->idasignatura}}" class="form-control" name="id_asignatura" maxlength="20" required>
+                                <input id="id_asignatura" type="text" readonly="readonly" value="{{$asig->idasignatura}}" class="form-control" name="id_asignatura" maxlength="20" required>
                             </div>
                         </div>
 
@@ -67,15 +67,19 @@
                         <div class="form-group">
                             {{ Form::label('idmodulo', Lang::get('sistema.idmodulo'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('idmodulo',$asig->idmodulo,array('class'=>'form-control','id'=>'idmodulo','placeholder'=>Lang::get('sistema.idmodulo'))) }}
+                                {{
+                                Form::select('idmodulo', array_pluck(Modulo::all(),'nombre_modulo','idmodulo'),null,array('class'=>'form-control','id'=>'idmodulo'))
+                                }}
                             </div>
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('pre_requisito', Lang::get('sistema.pre_requisito'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                {{ Form::text('pre_requisito',$asig->pre_requisito,array('class'=>'form-control','id'=>'pre_requisito','placeholder'=>Lang::get('sistema.pre_requisito'))) }}
-                            </div>
+                                {{
+                                Form::select('pre_requisito', array_pluck(Asignatura::all(),'nombre_asignatura','idasignatura'),null,array('class'=>'form-control','id'=>'pre_requisito'))
+                                }}    
+                             </div>
                         </div>
 
                     </div>
@@ -115,6 +119,10 @@
                 te = String.fromCharCode(tecla);
                 return patron.test(te); 
             } 
+
+            $('#pre_requisito').ready(function(){
+                document.getElementById("pre_requisito").selectedIndex = "-1";
+            });
         </script>
 @stop
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>

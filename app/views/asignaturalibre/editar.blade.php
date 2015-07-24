@@ -40,7 +40,7 @@
                         <div class="form-group">
                             {{ Form::label('idasignatura_cl', Lang::get('Codigo de Asignatura'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
-                                <input id="idasignatura_cl" type="text" value="{{$asig->idasignatura_cl}}" class="form-control" name="idasignatura_cl" maxlength="20" required>
+                                <input id="idasignatura_cl" type="text" readonly="readonly" value="{{$asig->idasignatura_cl}}" class="form-control" name="idasignatura_cl" maxlength="20" required>
                             </div>
                         </div>
 

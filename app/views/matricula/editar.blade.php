@@ -1,13 +1,13 @@
 @extends('_layouts.app')
 @section('titulo')
-    @lang('sistema.matriculas')
+    @lang('Matricula')
 @stop
 @section('titulo_cabecera')
-    @lang('sistema.matriculas')<small>@lang('sistema.editar_matricula')</small>
+    @lang('Matricula')<small>@lang('Editar matricula')</small>
 @stop
 @section('ruta_navegacion')
-    <li><a href="#"><i class="fa fa-list"></i> @lang('sistema.matriculas')</a></li>
-    <li class="active">@lang('sistema.editar_matricula')s</li>
+    <li><a href="#"><i class="fa fa-list"></i> @lang('Matricula')</a></li>
+    <li class="active">@lang('Editar matricula')s</li>
 
 @stop
 @section ('estilos')
