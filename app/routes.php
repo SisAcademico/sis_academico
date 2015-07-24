@@ -64,6 +64,7 @@ Route::any('semestre/PDFA/{id}','AlumnoController@getPDF4');
 //Route::any('detalle/PDFA/{id}','MatriculaController@getPDF');
 
 //------------- Reporte ----------------
+Route::any('reporte/RankingPorAsignatura', 'ReporteController@RankingPorAsignatura');
 Route::resource('reporte','ReporteController');
 //------------- Asistencia Alumno ----------------
 Route::group(array('prefix' => 'alumno'), function()
@@ -179,3 +180,5 @@ Route::get('aula_carga/insertar', 'AulaCargaController@insertar');
 
 Route::any('storeCarga_Horario/','HorarioCargaController@store');
 });
+
+
