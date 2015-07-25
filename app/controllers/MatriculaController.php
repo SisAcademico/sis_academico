@@ -73,12 +73,12 @@ class MatriculaController extends BaseController{
          }
     }
 
-    public function getMatriculaCLMes($id){
+    public function getMatriculaCLMesAnio($id,$id2){
         $fpdf = new PDF();
         $colu = array('NRO', 'CODIGO', 'NOMBRES Y APELLIDOS');
 
 
-        $data1=DB::table('tmatricula')
+        /*$data1=DB::table('tmatricula')
             ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
             ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
             ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
@@ -86,7 +86,8 @@ class MatriculaController extends BaseController{
             ->join('tsemestre', 'tsemestre.idsemestre','=', 'tcarga_academica.idsemestre')
             ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
             ->where('tsemestre.idsemestre','=',$id,'and','tmatricula.tipo','=','Curso_libre')
-            ->groupBy('talumno.idalumno');
+            ->groupBy('talumno.idalumno');*/
+
 
         $data=DB::table('tmatricula')
             ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
@@ -94,16 +95,39 @@ class MatriculaController extends BaseController{
             ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
             ->join('tcarga_academica', 'tcarga_academica.idasignatura_cl','=', 'tasignatura_cl.idasignatura_cl')
             ->join('tsemestre', 'tsemestre.idsemestre','=', 'tcarga_academica.idsemestre')
-            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos')
-            ->where('tsemestre.idsemestre','=',$id,'and','tmatricula.tipo','=','Curso_libre')
+            ->select('talumno.idalumno','talumno.nombres','talumno.apellidos','tmatricula.fecha_matricula')
+            //->where('tsemestre.idsemestre','=',$id,'and','tmatricula.tipo','=','Curso_libre')
             ->groupBy('talumno.idalumno')
-            ->union($data1)
+            //->union($data1)
             ->get();
          if(sizeof($data)>0){
             $fpdf->SetFont('Arial','B',13);
             $fpdf->AddPage();
             $fpdf->Cell(80);
-            $fpdf->Cell(30,15,'Matricula Curso Libre '.$id, 0, 1, 'C');
+            if($id==1)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Enero del Anio '.$id2, 0, 1, 'C');
+            if($id==2)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Febrero del Annio '.$id2, 0, 1, 'C');
+            if($id==3)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Marzo del Anio '.$id2, 0, 1, 'C');
+            if($id==4)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Abril del Anio '.$id2, 0, 1, 'C');
+            if($id==5)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Mayo del Anio '.$id2, 0, 1, 'C');
+            if($id==6)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Junio del Anio '.$id2, 0, 1, 'C');
+            if($id==7)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Julio del Anio '.$id2, 0, 1, 'C');
+            if($id==8)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Agosto del Anio '.$id2, 0, 1, 'C');
+            if($id==9)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Setiembre del Anio '.$id2, 0, 1, 'C');
+            if($id==10)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Octubre del Anio '.$id2, 0, 1, 'C');
+            if($id==11)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Noviembre del Anio '.$id2, 0, 1, 'C');
+            if($id==12)
+                $fpdf->Cell(30,15,'Matricula Curso Libre Diciembre del Anio '.$id2, 0, 1, 'C');
             $fpdf->Cell(190,5,'Lista de Alumnos', 0, 1, 'C');
             $fpdf->SetFont('Arial','B',9);
             $fpdf->Ln(2);

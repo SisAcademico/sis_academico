@@ -160,8 +160,9 @@
                             <?php
                                 $i=0;
                                 $codi="";
+
                             ?>
-                            <select name="mes" class="form-control" id="holas_mes" style="width: 60%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                            <select name="mes" class="form-control" id="holas_mes" style="width: 30%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
                               <?php $i++;  ?>
                               <option value="1">Enero</option>
                               <option value="2">Febrero</option>
@@ -181,7 +182,37 @@
                                     }
                                 ?>
                             </select>
-                            <a href="mesMatricula/PDFA/{{$codi}}" id="ms" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Mes</a>
+
+
+                            <?php
+                                $i2=2000;
+                                $codi2="";
+
+                            ?>
+                            <select name="anio" class="form-control" id="holas_anio" style="width: 30%;display: inline-block;margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.25); font-size: 15px; font-weight: bold; font-family: monospace; color: rgba(0, 0, 0, 0.51);">
+                              <?php $i2++;  ?>
+                              <option value="2001">2001</option>
+                              <option value="2002">2002</option>
+                              <option value="2003">2003</option>
+                              <option value="2004">2004</option>
+                              <option value="2005">2005</option>
+                              <option value="2006">2006</option>
+                              <option value="2007">2007</option>
+                              <option value="2008">2008</option>
+                              <option value="2009">2009</option>
+                              <option value="2010">2010</option>
+                              <option value="2011">2011</option>
+                              <option value="2012">2012</option>
+                              <option value="2013">2013</option>
+                              <option value="2014">2014</option>
+                              <option value="2015">2015</option>
+                               <?php
+                                    if($i2==2001){
+                                        $codi2='2001';
+                                    }
+                                ?>
+                            </select>
+                            <a href="mesAnioMatricula/PDFA/{{$codi}}/{{$codi2}}" id="ms" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Mes y Año</a>
                       </div>
                         {{ Form::close() }}
                       </div>
@@ -259,7 +290,9 @@
                     $("#smtr").attr("href", "semestreMatricula/PDFA/"+ho2);
 
                     var ho3 = $( "#holas_mes option:selected" ).val();
-                    $("#ms").attr("href", "mesMatricula/PDFA/"+ho3);
+                    var ho1 = $( "#holas_anio option:selected" ).val();
+                    $("#ms").attr("href", "mesAnioMatricula/PDFA/"+ho3+"/"+ho1);
+
                 });
                 
             });
