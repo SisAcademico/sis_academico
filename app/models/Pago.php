@@ -8,6 +8,7 @@ class Pago extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'tpago';
+	public $timestamps = false;
 
 	
 }
