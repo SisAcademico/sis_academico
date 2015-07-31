@@ -50,10 +50,10 @@
                             @endif
 
 
-                            <a href="...matricula/detalle/PDFA/{{$idalumno}}" id="mc" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Curso</a>
+                            <a href="matricula/detalle/PDFA/{{$idalumno}}" id="mc" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Curso</a>
                             <br>
                             <br>
-                            <a href="...matricula/detalle/PDFA/{{$idalumno}}" id="mcl" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Curso Libre</a>
+                            <a href="matriculacl/detalle/PDFA/{{$idalumno}}" id="mcl" style="margin-left: 5px;display: inline-block;background-color: rgba(85, 59, 150, 0.87);padding: 7px;border-radius: 7%;font-weight: bold;font-size: 13px;color: white;">Por Curso Libre</a>
                       </div>
                         {{ Form::close() }}
                       </div>
@@ -84,6 +84,14 @@
                                 <td>{{$matri->idasignatura}}</td>
                                 <td>{{$matri->nombre_asignatura}}</td>
                                 <td>{{$matri->horas_semanales}} </td>
+                                <td>{{$matri->horas_totales}}</td>
+                            </tr>
+                        @endforeach
+                        @foreach($matriculacl_detalles as $matri)
+                            <tr>
+                                <td>{{$matri->idasignatura_cl}}</td>
+                                <td>{{$matri->nombre_asig_cl}}</td>
+                                <td>{{""}}</td>
                                 <td>{{$matri->horas_totales}}</td>
                             </tr>
                         @endforeach
