@@ -76,8 +76,10 @@
                         <div class="form-group">
                             {{ Form::label('pre_requisito', Lang::get('sistema.pre_requisito'),array('class'=>'col-sm-2 control-label')) }}
                             <div class="col-sm-10">
+                                <input id="pre_requisito" type="text" value="{{$asig->pre_requisito}}" class="form-control" name="pre_requisito"  readonly="readonly">
+                            
                                 {{
-                                Form::select('pre_requisito', array_pluck(Asignatura::all(),'nombre_asignatura','idasignatura'),null,array('class'=>'form-control','id'=>'pre_requisito'))
+                                    Form::select('pre_requisito2', array_pluck(Asignatura::all(),'nombre_asignatura','idasignatura'),null,array('class'=>'form-control','id'=>'pre_requisito2'))
                                 }}    
                              </div>
                         </div>
@@ -85,7 +87,7 @@
                     </div>
 
                     <div class="box-footer">
-                        {{ Form::submit(Lang::get('Editar Asignatura'), array('class' => 'btn btn-info pull-right')) }}
+                        <input class="btn btn-info pull-right" id="changeasig" name="changeasig" type="submit" value="Editar Asignatura">
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -120,9 +122,20 @@
                 return patron.test(te); 
             } 
 
-            $('#pre_requisito').ready(function(){
-                document.getElementById("pre_requisito").selectedIndex = "-1";
+            $('#pre_requisito2').ready(function(){
+                document.getElementById("pre_requisito2").selectedIndex = "-1";
+
             });
+
+            $('#pre_requisito2').click(function(){
+                var pre = $("#pre_requisito2").val();
+                
+                $("#pre_requisito").val(pre);
+            });
+
+
+
+            
         </script>
 @stop
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>

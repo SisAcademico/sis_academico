@@ -164,6 +164,8 @@ class AsignaturaController extends \BaseController{
                 $validator=Validator::make(Input::All(),$rules);
                 if ($validator->passes()) {
                         $entra = Input::all();
+                        $vprerequisito=DB::table('tasignatura')->where('idasignatura',Input::get('pre_requisito'))->pluck('nombre_asignatura');
+                        
                         $asignatura = DB::table('tasignatura')
                             ->where('idasignatura', $id)
                             ->update(array(
@@ -172,7 +174,7 @@ class AsignaturaController extends \BaseController{
                                 'horas_semanales' => $entra['horas_semanales'],
                                 'horas_totales' => $entra['horas_totales'],
                                 'idmodulo' => $entra['idmodulo'],
-                                'pre_requisito' => $entra['pre_requisito'],
+                                'pre_requisito' => $vprerequisito,
                             ));
                         return Redirect::to('asignatura');
                  }
