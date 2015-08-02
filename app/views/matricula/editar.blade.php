@@ -105,7 +105,12 @@
                      </table>
                   </div>
                </div>
-               <div class="col-xs-6">
+               <?php $carre12 = ""; ?>
+                @foreach($auxii as $aaa)
+                        <?php $carre12 = $carre12.$aaa->idasignatura_cl.','; ?>
+                @endforeach
+                <input  type="text" id="anterior" value = "<?php echo (isset($carre12))?$carre12:'';?>" class="form-control" name="anterior" style="display:none" >
+                <div class="col-xs-6">
                   <div class="table-responsive">
                      <table class="table table-bordered">
                         <thead>
@@ -116,6 +121,8 @@
                         <thead>
                         <tbody>
                            <tr>
+                                <?php $gt = 0; ?>
+                                <?php $tamaÃƒÂ±o = sizeof($auxii); ?>
                                 @foreach($curso_libre as $curlib)
                                 <tr>
                                     <?php $gh = '1'; ?>
