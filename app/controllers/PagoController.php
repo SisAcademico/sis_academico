@@ -51,10 +51,13 @@ class PagoController extends \BaseController {
 	 */
 	public function insert()
 	{
+    date_default_timezone_set('America/Lima');
 		$pago = new Pago;
 		$pago->nro_boleta = Input::get('nro_boleta');
 		$pago->serie = Input::get('serie');
-		$pago->fecha_pago = Input::get('fecha');
+    $hoy = date("H:i:s");
+		$pago->fecha_pago = Input::get('fecha')." ".$hoy;
+    echo $hoy;
 		$pago->idalumno = Input::get('idalumno');
 		$pago->monto_total = Input::get('Total');
 		if($pago->save())

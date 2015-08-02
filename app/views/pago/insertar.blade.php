@@ -11,11 +11,15 @@
 @stop
 
 @section('contenido')
-    <!-- Main row -->
+   <!-- Main row -->
+    <?php
+    date_default_timezone_set('America/Lima');
+   //date = date(DATE_RFC2822);
+    $date = date("Y-m-d");
 
+    //$date1 = date_create('2000-01-01');
+        //$date date_format('2000-01-01','Y-m-d H:i:s');
 
-            <?php
-        $date = date("d-m-Y");
     ?>
     <div class="row">
 
@@ -53,7 +57,7 @@
                         </div>
                     {{ Form::label('fecha', Lang::get('Fecha: '),array('class'=>'col-sm-1 control-label')) }}
                         <div class="col-xs-2">
-                            <input name='fecha' type="text" id="theInput" placeholder="Seleccione Fecha de Ingreso" class="form-control" placeholder="" value=<?php echo $date?> readonly>
+                            <input name='fecha' id="theInput" placeholder="Seleccione Fecha" class="form-control" placeholder="" value='<?php echo $date;?>' readonly>
                         </div>
                 </div>
             </div>
