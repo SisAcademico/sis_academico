@@ -400,6 +400,7 @@ class MatriculaController extends BaseController{
        // echo "Hola mundo";
         $detallematricula = DetalleMatricula::all();
         $asignaturas=Asignatura::all();
+        $asignaturacl=AsignaturaLibres::all();
         $alumnos=Alumno::all();
         $matriculas=Matricula::all();
         $nombrealumno=DB::table('talumno')->where('idalumno',$id)->pluck('nombres');
@@ -407,16 +408,23 @@ class MatriculaController extends BaseController{
             ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
             ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
             ->join('tasignatura', 'tasignatura.idasignatura','=', 'tdetalle_matricula.idasignatura')
+            //->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura')
             ->select('talumno.idalumno','talumno.nombres','tmatricula.idmatricula','tasignatura.idasignatura','tasignatura.nombre_asignatura','tasignatura.horas_semanales','tasignatura.horas_totales')
             ->where('talumno.idalumno','=',$id)
             ->get();
-
+        $aux3=DB::table('tmatricula')
+            ->join('talumno', 'tmatricula.idalumno', '=', 'talumno.idalumno')
+            ->join('tdetalle_matricula', 'tmatricula.idmatricula', '=', 'tdetalle_matricula.idmatricula')
+            ->join('tasignatura_cl', 'tasignatura_cl.idasignatura_cl','=', 'tdetalle_matricula.idasignatura_cl')
+            ->select('talumno.idalumno','talumno.nombres','tmatricula.idmatricula','tasignatura_cl.idasignatura_cl','tasignatura_cl.nombre_asig_cl','tasignatura_cl.horas_totales')
+            ->where('talumno.idalumno','=',$id)
+            ->get();
         //$aux3=DB::table($aux2)->where('idalumno','=',$id)->get();
       // echo $aux2;
         //$aux3=DB::statement('SELECT nombres from talumno where idalumno=120278')->get();
         //echo $aux3;
         //return View::make('matricula.listardetalles')->with('matricula_detalles',$aux2,$nombrealumno);
-        return View::make('matricula.listardetalles',['matricula_detalles'=> $aux2,'nombrealumno'=>$nombrealumno,'idalumno'=>$id]);
+        return View::make('matricula.listardetalles',['matricula_detalles'=> $aux2,'matriculacl_detalles'=>$aux3,'nombrealumno'=>$nombrealumno,'idalumno'=>$id]);
 
     }
      public function getPDF($id)

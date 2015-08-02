@@ -87,6 +87,14 @@
                                 <td>{{$matri->horas_totales}}</td>
                             </tr>
                         @endforeach
+                        @foreach($matriculacl_detalles as $matri)
+                            <tr>
+                                <td>{{$matri->idasignatura_cl}}</td>
+                                <td>{{$matri->nombre_asig_cl}}</td>
+                                <td>{{""}}</td>
+                                <td>{{$matri->horas_totales}}</td>
+                            </tr>
+                        @endforeach
 
 
                     </table>

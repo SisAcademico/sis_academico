@@ -190,7 +190,7 @@ class PDF extends baseFpdf
         $this->SetLineWidth(.3);
         $this->SetFont('','B');
 
-        $w = array(12, 30, 60, 30, 30);
+        $w = array(38, 80, 30);
         for($i=0;$i<count($header);$i++)
             $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
         $this->Ln();
@@ -203,10 +203,10 @@ class PDF extends baseFpdf
         $gg=0;
         foreach($data as $row)
         {
-            $this->Cell($w[0],6,++$gg,'LR',0,'L',$fill);
-            $this->Cell($w[1],6,$row->Codigo,'LR',0,'L',$fill);
-            $this->Cell($w[2],6,$row->Nombres,'LR',0,'L',$fill);
-            $this->Cell($w[3],6,$row->Promedio,'LR',0,'L',$fill);
+            //$this->Cell($w[0],6,++$gg,'LR',0,'L',$fill);
+            $this->Cell($w[0],6,$row->Codigo,'LR',0,'L',$fill);
+            $this->Cell($w[1],6,$row->Nombres,'LR',0,'L',$fill);
+            $this->Cell($w[2],6,$row->Promedio,'LR',0,'L',$fill);
             $this->Ln();
             $fill = !$fill;
         }
