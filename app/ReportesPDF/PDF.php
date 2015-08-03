@@ -302,9 +302,9 @@ class PDF extends baseFpdf
         {
             $this->Cell($w[0],6,$gg++,'LR',0,'L',$fill);
             $this->Cell($w[1],6,$row->Asignatura,'LR',0,'L',$fill);
-            $this->Cell($w[2],6,$row->apellidos.' - '.$row->nombres,'LR',0,'L',$fill);            
-            $this->Cell($w[3],6,$row->turno,'LR',0,'L',$fill);
-            $this->Cell($w[4],6,$row->grupo,'LR',0,'L',$fill);
+            $this->Cell($w[2],6,$row->apellidos.' - '.$row->nombres,'LR',0,'L',$fill);  
+            $this->Cell($w[4],6,$row->grupo,'LR',0,'L',$fill);          
+            $this->Cell($w[3],6,$row->turno,'LR',0,'L',$fill);            
             $this->Cell($w[5],6,$row->horas_semanales,'LR',0,'L',$fill);
             $this->Cell($w[6],6,$row->idmodulo,'LR',0,'L',$fill);
             $this->Ln();

@@ -42,7 +42,7 @@
                             {{ Form::close()}}
                             
                             
-                            {{ Form::open(array('url' => 'catalogo','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
+                            {{ Form::open(array('url' => 'carga_academica/reportecatalogo','autocomplete' => 'off','class' => 'form-horizontal', 'role' => 'form')) }}
                             <?php 
                             $arregloSemestre = array();                            
                             foreach ($Semestretodo as $sem){

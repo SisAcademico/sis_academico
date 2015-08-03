@@ -384,9 +384,10 @@ class CargaAcademicaController extends \BaseController {
     //=======================================REPORTE CATALOGO======================
     public function getcatalogoPDF()
     {
-        //$semestre = Input::get('semestre');
-        $semestre = '2015-II';
-        $carrera = 'AS';
+        $semestre = Input::get('semestre');
+        $carrera = Input::get('carrera');
+       // $semestre = '2015-II';
+        //$carrera = 'AS';
         
         
         
