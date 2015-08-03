@@ -172,7 +172,7 @@ Route::get('carga_academica/editar/{id}','CargaAcademicaController@recuperarpara
 Route::post('carga_academica/modificar/{id}','CargaAcademicaController@modificar');
 Route::get('carga_academica/vermas/{id}/{sem}','CargaAcademicaController@vermas');
 Route::any('carga_academica/reportepdf/','CargaAcademicaController@getDAPDF');
-Route::any('carga_academica/reportecatalogo/{id}/{carrera}','CargaAcademicaController@getcatalogoPDF');
+Route::any('carga_academica/reportecatalogo','CargaAcademicaController@getcatalogoPDF');
 
 //-------------------------AULA CARGA------------------------------
 Route::get('aula_carga/listar', 'AulaCargaController@listarAulaCarga');
