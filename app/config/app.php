@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'es',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +94,8 @@ return array(
 	*/
 
 	'providers' => array(
-
+         
+        'Anouar\Fpdf\FpdfServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
@@ -121,6 +122,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 
 	),
 
@@ -150,6 +154,7 @@ return array(
 
 	'aliases' => array(
 
+        'Fpdf'              => 'Anouar\Fpdf\Fpdf',
 		'App'               => 'Illuminate\Support\Facades\App',
 		'Artisan'           => 'Illuminate\Support\Facades\Artisan',
 		'Auth'              => 'Illuminate\Support\Facades\Auth',
@@ -188,6 +193,10 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		/*
+		* Vendor providers
+		*/
+		'Image' 			=> 'Intervention\Image\Facades\Image',
 
 	),
 

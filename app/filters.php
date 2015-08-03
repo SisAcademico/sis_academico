@@ -13,13 +13,20 @@
 
 App::before(function($request)
 {
-	//
+	// INICIO: Implementacion extra
+		// FIN
 });
 
 
 App::after(function($request, $response)
 {
-	//
+	// INICIO:
+	/* The below headers are used to restrict the browser to cache the pages.           
+    */
+    $response->headers->set("Cache-Control","no-cache,no-store, must-revalidate");
+    $response->headers->set("Pragma", "no-cache"); //HTTP 1.0
+    $response->headers->set("Expires"," Sat, 26 Jul 1986 05:00:00 GMT");
+	// FIN:
 });
 
 /*

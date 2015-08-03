@@ -1,6 +1,10 @@
 <?php
 
 return array(
+	"nombre_sistema" => "Sistema Académico - ISC",
+    "nombre_sistema_corto1" => "Sistema - ISC",
+    "menu_navegacion" => "Menu de navegación",
+    "nombre_sistema_corto" => "SIS-ISC",
 	"nombre_usuario" => "Nombre de usuario",
 	"olvidar_contrasena" => "¿Olvidaste tu contraseña?",
     "contrasena" => "Contraseña",
@@ -11,6 +15,79 @@ return array(
     "link_recuperar_contrasena"=>"Enlace para recuperar su contraseña",
     "link_msg_recuperar_contrasena"=>"Haga click aquí para recuperar su contraseña",
 	
+	"carrera"=>"Carrera",
+	"listar_carreras"=>"Listar carreras",
+	"agregar_carrera"=>"Agregar carrera",
+
+    "semestre"=>"Semestre",
+    "listar_semestre"=>"Listar semestre",
+    "listar_de_semestre"=>"Lista de semestres",
+    "agregar_semestre"=>"Agregar semestre",
+    "fecha_inicio"=>"Fecha de inicio",
+    "fecha_fin"=>"Fecha de fin",
+    "actualizar_semestre"=>"Actualizar semestre",
+
+    "aula"=>"Aula",
+    "listar_aulas"=>"Listar aulas",
+    "agregar_aula"=>"Agregar aula",
+    "capacidad"=>"Capacidad",
+    "ingrese_capacidad"=>"Ingrese la capacidad del ambiente",
+    "codigo_aula"=>"Código de aula",
+    "actualizar_aula"=>"Actualizar aula",
+
+    "asistencia_alumnos"=>"Asistencia de alumnos",
+    "listar_asistencia"=>"Listar asistencia de alumnos",
+    "relacion_alumnos"=>"Relación de alumnos",
+    "lista_asignaturas_docente"=>"Lista de asignaturas a cargo de un docente",
+    "registrar_asistencia_alumno"=>"Registrar asistencia de alumnos",
+    "registrar_asistencia"=>"Registrar asistencia",
+    "codigo_asignatura"=>"Codigo de asignatura",
+    "codigo_alumno"=>"Código de alumno",
+    "nombres"=>"Nombres",
+    "apellidos"=>"Apellidos",
+    "apellidos_nombres"=>"Apellidos y Nombres",
+    "asignatura"=>"Asignatura",
+    "turno"=>"Turno",
+    "turno"=>"Turno",
+    "observacion"=>"Observación",
+    "foto"=>"Foto",
+    "tarde"=>"Tarde",
+    "asistio"=>"Asistio",
+    "no_hay_datos"=>"No se encontraron items",
+    "falto"=>"Falto",
+    "grupo"=>"Grupo",
+
+    "pagos"=>"Pagos",
+	"listar_pagos"=>"Listar Pagos",
+    "listado_de_pagos"=>"Listado de pagos",
+	"registrar__nuevo_pago"=>"Registrar nuevo pago",
+    "registrar_pago"=>"Registrar pago",
+    "insertar_pago"=>"Insertar pago",
+	"nro_boleta"=>"Nro. de boleta",
+	"serie"=>"Serie",
+	"fecha_pago"=>"Fecha de pago",
+
+    "modulo"=> "Modulo",
+    "listar_modulos"=>"Listar modulos",
+    "insertar_modulo"=>"Insertar modulo",
+
+    "idcarrera"=>"Carrera",
+    "nombre_carrera"=>"Nombre carrera",
+    "nro_modulos"=>"Nro. de modulos",
+
+	
+	"idasignatura"=>"Id Asignatura",
+    "asignaturas"=>"Asignatura",
+    "listar_asignaturas"=>"Listar Asignaturas",
+    "agregar_asignaturas"=>"Agregar Asignatura",
+    "editar_asignatura"=>"Editar Asignatura",
+    "nombre_asignatura" => "Nombre Asignatura",
+    "horas_semanales" =>  "Horas Semanales",
+    "horas_totales" => "Horas Totales",
+    "idmodulo" => "Modulo",
+    "pre_requisito" => "Pre Requisito",
+    "actualizar" => "Actualizar",
+
 	"pantalla_acceso"=>"Pantalla de acceso",
     "administracion"=>"Administración",
     "notificacion"=>"Notificaciones",
@@ -21,6 +98,10 @@ return array(
 	
 	"config"=>"Configuración",
 	"menu"=>"Menú",
+	"estado"=>"Estado",
+    "tipo"=>"Tipo",
+    "ejemplo"=>"Ejemplo",
+    "formato_fecha"=>"YYYY-MM-DD",
 
 
     "error_login"=>"Nombre de usuario o contraseña incorrectos",
@@ -29,10 +110,13 @@ return array(
     "msg_warning_input"=>"Se produjo errores con los valores que ingreso",
 
     "edicion"=>"Edición",
+    "accion"=>"Acción",
     "editar"=>"Editar",
     "buscar"=>"Buscar",
-    "perfil"=>"Mi perfil",
-    "cerra_sesion"=>"Cerrar sesión",
+    "perfil"=>"Perfil",
+    "cerrar_sesion"=>"Cerrar sesión",
+
+    "id"=>"ID",
 	
     "emails"=>"Emails",
     "email"=>"Email",
@@ -42,6 +126,20 @@ return array(
 	
     "contactos"=>"Contactos",
 
-    "home"=>"Inicio",
+    "inicio"=>"Inicio",
+    //----------------
+    "patalla_aministracion"=>"Crear Administrador",
+    "administrador"=>"Administrador",
+    "dni" => "DNI",
+    "nombre" => "Nombre",
+    "apellido" =>"Apellido ",
+    "direccion" =>"Direccion",
+    "telefono" =>"Telefono",
+    "correo" =>"Email",    
+    "modificar_administrador"=>"Modificar",   
+    "agregar_admin"=>"Agregar",  
+    "crear_administrador" =>"Crear Alministrador",
+
+
 
 );

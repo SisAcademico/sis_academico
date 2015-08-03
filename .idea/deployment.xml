@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+        <serverdata>
+            <mapping local="$PROJECT_DIR$" web="http://localhost/sis_academico/public/" />
+          </mappings>
+        </serverdata>
+      </paths>
+  </component>
+  <component name="PublishConfigData" serverName="Sistema Academico" />
+</project>
