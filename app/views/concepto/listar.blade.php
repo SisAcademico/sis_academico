@@ -49,32 +49,25 @@
                     @endif
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    <div class="form-group">
-                        {{ Form::label('idconcepto', Lang::get('Codigo Concepto: '),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <input id="idconcepto" type="text" placeholder="Codigo Concepto" class="form-control" name="idconcepto" maxlength="5" onKeyPress="return validar(event)" required>
-                        </div>
-                    </div>
                      <div class="form-group">
                         {{ Form::label('concepto', Lang::get('Concepto: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             <input id="concepto" type="text" placeholder="Descripcion del Concepto de pago" class="form-control" name="concepto" minlength="10" maxlength="180" required>
                        </div>
                     </div>
-                     <div class="form-group">
-                        {{ Form::label('observacion', Lang::get('Observacion: '),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-10">
-                            <input id="observacion" type="text" placeholder="Observacion" class="form-control" name="observacion" minlength="10" maxlength="250" required>
-                       </div>
-                    </div>
-
+                     
                     <div class="form-group">
                         {{ Form::label('importe', Lang::get('Importe: '),array('class'=>'col-sm-2 control-label')) }}
                         <div class="col-sm-10">
                             <input id="importe" type="text" placeholder="Importe" class="form-control" name="importe" onKeyPress="return validar(event)" maxlength="10"  minlenght ="1" required>
                         </div>
-                    </div>               
+                    </div>   
+					<div class="form-group">
+                        {{ Form::label('observacion', Lang::get('Observacion: '),array('class'=>'col-sm-2 control-label')) }}
+                        <div class="col-sm-10">
+                            <input id="observacion" type="text" placeholder="Observacion" class="form-control" name="observacion" minlength="10" maxlength="250">
+                       </div>
+                    </div>					
                 </div>
                 <div class="box-footer">
                      {{ Form::submit(Lang::get('Agregar Concepto'), array('class' => 'btn btn-info pull-right')) }}

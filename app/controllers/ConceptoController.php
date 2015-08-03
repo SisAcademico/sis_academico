@@ -28,7 +28,6 @@ class ConceptoController extends BaseController {
 	public function store()
 	{
 		$conceptos = new Concepto;
-		$conceptos->idconcepto = Input::get('idconcepto');
 		$conceptos->concepto = Input::get('concepto');
 		$conceptos->observacion = Input::get('observacion');
 		$conceptos->importe = Input::get('importe');

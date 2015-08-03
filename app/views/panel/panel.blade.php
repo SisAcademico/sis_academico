@@ -16,11 +16,11 @@
 				<!-- Left col -->
 				<div class="col-md-12">
 				  <!-- BOX PANEL -->
-				  <div class="box box-success">
+				  <div class="box box-info">
 				  
 					<!-- INICIO: Cabecera -->
 					<div class="box-header with-border">
-					  <h3 class="box-title">Contenido de matenimientos</h3>
+					  <h3 class="box-title">Bienvenido usuario: {{Auth::user()->usuario}}</h3>
 					</div>
 					
 					<!-- FIN: Cabecera -->
@@ -28,7 +28,7 @@
 						<div class="row">
 							<div class="col-md-9 col-sm-8">
 							  <div class="">
-								<p> ejemplo del contenido que puede ir aqui</p>
+								<p> Sistema Académico - Instituto de Sistemas Cusco ISC</p>
 							  </div>
 							</div>
 						</div>
@@ -36,8 +36,7 @@
 					
 					<!-- INICIO: Pie de BOX -->
 					<div class="box-footer clearfix">
-					  <a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Boton 1</a>
-					  <a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">Boton 2</a>
+					  <a href="javascript::;" class="btn btn-sm btn-success btn-flat pull-right">Panel</a>
 					</div>
 					<!-- FIN: Pie de Box -->
 					
