@@ -8,6 +8,8 @@ class DetallePago extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'tdetalle_pago';
+	protected $primaryKey  = 'iddetalle_pago';
+	public $timestamps=false;
 
 	
 }

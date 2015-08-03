@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 
 class PagoController extends \BaseController {
 
@@ -32,7 +33,15 @@ class PagoController extends \BaseController {
     public function insertarPago()
     {
     	$concepto= Concepto::all()->lists('concepto','idconcepto');
-        return View::make('pago.insertar', array('concepto' => $concepto )); 
+        return View::make('pago.insertar', array('concepto' => $concepto,'fecha_pago'=> Carbon::now())); 
+    }
+	/**
+     * Mostrar el el detalle de un pago para su impresion
+     */
+    public function detallePago($idpago)
+    {
+		$pago=Pago::where('idpago','=',$idpago)->get();
+        return View::make('pago.detalle_pago', array('pago' => $pago,'fecha_pago'=> Carbon::now())); 
     }
 
     /**
@@ -40,7 +49,7 @@ class PagoController extends \BaseController {
      */
     public function listarPagos()
     {
-        $pagos = Pago::all();
+        $pagos = Pago::paginate(20);
         return View::make('pago.listar', array('pagos' => $pagos));
     }
 
@@ -51,13 +60,10 @@ class PagoController extends \BaseController {
 	 */
 	public function insert()
 	{
-    date_default_timezone_set('America/Lima');
 		$pago = new Pago;
 		$pago->nro_boleta = Input::get('nro_boleta');
 		$pago->serie = Input::get('serie');
-    $hoy = date("H:i:s");
-		$pago->fecha_pago = Input::get('fecha')." ".$hoy;
-    echo $hoy;
+		$pago->fecha_pago = Input::get('fecha');
 		$pago->idalumno = Input::get('idalumno');
 		$pago->monto_total = Input::get('Total');
 		if($pago->save())

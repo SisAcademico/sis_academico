@@ -17,6 +17,7 @@
             <div class="box box-success">
                 <div class="box-header with-border" align="center">
                     <h3 class="box-title">Lista Pagos</h3>
+					<a class="btn btn-primary pull-right" href="{{ URL::to( '/pago/insertar') }}"><i class="fa fa-plus"></i> Agregar pago</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                 @if (count($errors) > 0)
@@ -31,7 +32,7 @@
                 @endif
             <div class="form-group">
                 <div class="form-inline">
-                    {{ Form::label('Codigo', Lang::get('Codigo: '),array('class'=>'col-sm-2 control-label')) }}
+                    {{ Form::label('Codigo', Lang::get('Codigo: '),array('class'=>'col-sm-1 control-label')) }}
                     <div class="col-xs-2">
                          <input id="idalumno" type="text" placeholder="Ingrese Codigo" class="form-control" name="idalumno" maxlength="10" required>
                     </div>
@@ -63,20 +64,14 @@
                                               <td>{{ $pago->idalumno }}</td>
                                               <td>{{ $pago->fecha_pago }}</td>
                                               <td>{{ $pago->monto_total }}</td>
-                                              <td><a class="btn btn-xs btn-success" href="{{ URL::to('/'); }}/pago/{{ $pago->idpago }}"><i class="fa fa-eye"></i> </a></td>
+                                              <td><a class="btn btn-xs btn-success" href="{{ URL::to('/pago/detalle') }}/{{ $pago->idpago }}"><i class="fa fa-eye"></i> </a></td>
                                           </tr>
                                       @endforeach
                                       </tbody>
 								  </table>
 								</div><!-- /.box-body -->
 								<div class="box-footer clearfix text-center">
-								  <ul class="pagination pagination-sm no-margin">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">&raquo;</a></li>
-								  </ul>
+                                    {{$pagos-> links();}}
 								</div>
             {{ Form::close() }}
         </div>

@@ -95,6 +95,7 @@ Route::resource('concepto', 'ConceptoController');
 Route::any('concepto/{id}/destroy','ConceptoController@destroy');
 Route::get('pago/listar', 'PagoController@listarPagos');
 Route::get('pago/insertar', 'PagoController@insertarPago');
+Route::get('pago/detalle/{id}', 'PagoController@detallePago');
 Route::post('pago/agregar','PagoController@ajaxc');
 
 //matriculas y detalles matriculas

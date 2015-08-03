@@ -12,15 +12,6 @@
 
 @section('contenido')
    <!-- Main row -->
-    <?php
-    date_default_timezone_set('America/Lima');
-   //date = date(DATE_RFC2822);
-    $date = date("Y-m-d");
-
-    //$date1 = date_create('2000-01-01');
-        //$date date_format('2000-01-01','Y-m-d H:i:s');
-
-    ?>
     <div class="row">
 
 </div>
@@ -47,17 +38,17 @@
 
             <div class="form-group">
                 <div class="form-inline">
-                    {{ Form::label('serie', Lang::get('Serie: '),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-xs-1">
+                    {{ Form::label('serie', Lang::get('Serie: '),array('class'=>'col-md-2 control-label')) }}
+                        <div class="col-md-2">
                             <input name="serie" type="text" class="form-control" placeholder="" value= "001" readonly>
                         </div>
-                    {{ Form::label('nro_boleta', Lang::get('Nro. Boleta: '),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-xs-2">
+                    {{ Form::label('nro_boleta', Lang::get('Nro. Boleta: '),array('class'=>'col-md-2 control-label')) }}
+                        <div class="col-md-2">
                             <input name="nro_boleta" type="text" class="form-control" placeholder="" value= "0000001" readonly>
                         </div>
-                    {{ Form::label('fecha', Lang::get('Fecha: '),array('class'=>'col-sm-1 control-label')) }}
-                        <div class="col-xs-2">
-                            <input name='fecha' id="theInput" placeholder="Seleccione Fecha" class="form-control" placeholder="" value='<?php echo $date;?>' readonly>
+                    {{ Form::label('fecha', Lang::get('Fecha: '),array('class'=>'col-md-1 control-label')) }}
+                        <div class="col-md-2">
+                            <input name='fecha' id="theInput" class="form-control"  value='{{$fecha_pago}}' readonly>
                         </div>
                 </div>
             </div>
@@ -74,31 +65,32 @@
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    {{ Form::label('nombres', Lang::get('Nombre: '),array('class'=>'col-sm-2 control-label')) }}
-                         <div class="col-xs-2">
+                    {{ Form::label('nombres', Lang::get('Nombre: '),array('class'=>'col-md-2 control-label')) }}
+                         <div class="col-md-4">
                             <b id = "nombres" class='form-control' placeholder ='Nombres'> </b>
                        </div>
-                    {{ Form::label('apellidos', Lang::get('Apellido: '),array('class'=>'col-sm-2 control-label')) }}
-                         <div class="col-xs-2">
+                    {{ Form::label('apellidos', Lang::get('Apellido: '),array('class'=>'col-md-2 control-label')) }}
+                         <div class="col-xs-4">
                             <b id="apellidos" class='form-control' placeholder ='Apellidos'></b>
                         </div>
                 </div>
             </div>
             <div class="form-group">
-                    {{ Form::label('Concepto', Lang::get('Concepto: '),array('class'=>'col-sm-2 control-label')) }}
-                        <div class="col-sm-3">
+                    {{ Form::label('Concepto', Lang::get('Concepto: '),array('class'=>'col-md-2 control-label')) }}
+                        <div class="col-md-3">
                             {{ Form::select('idconcepto',$concepto,null,array('class'=>'form-control','required'=>'required', 'id' =>'idconcepto')) }}
                         </div>
                      
                     {{ Form::label('Importe', Lang::get('Importe: '),array('class'=>'col-sm-1 control-label')) }}
-                    <div class="col-xs-2">
+                    <div class="col-md-3">
                          <b id="importe" class='form-control' placeholder ='importe' ></b>
                     </div> 
                     <button type="button" class="btn btn-info " id='btn-agregar'>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar
                     </button>  
             </div>
-            <div class="col-md-10">
+            <div class="col-md-12 well">
+			<div class="row">
             <table id="detalle_pago" class="table table-striped" >
                 <thead>
                     <tr>
@@ -113,16 +105,19 @@
                     
                 </tbody>
             </table>
+			</div>
 
-            <p>
+            <div class="row bg-gray color-palette" style="padding-top:15px;padding-right:15px;">
                 <div class="form-group">
                 {{ Form::label('Total', Lang::get('Total: '),array('class'=>'col-sm-2 control-label')) }}
-                    <div class="col-xs-2">
+                    <div class="col-md-2">
                          {{ Form::number('Total','0.00', array('class'=>'form-control','readonly'=>'readonly', 'min'=>0)) }}
-                    </div>  
-                {{ Form::submit(Lang::get('Guardar'), array('class' => 'btn btn-info pull-right')) }}                    
+                    </div>
+				<div class="col-md-8">
+                {{ Form::submit(Lang::get('Procesar pago'), array('class' => 'btn btn-success pull-right')) }}                    
+				</div>
                 </div>
-            </p>              
+            </div>              
             
             </div>
             {{ Form::close() }}
@@ -130,6 +125,11 @@
       <!-- INICIO: BOX PANEL -->
     </div><!-- /.box -->
 </div>
+<!-- INICIO: Pie de BOX -->
+<div class="box-footer clearfix">
+  <a href="{{ URL::to( '/pago/listar') }}" class="btn btn-sm btn-danger btn-flat pull-right"><i class="fa fa-chevron-left"></i> Retornar a lista de pagos</a>
+</div>
+<!-- FIN: Pie de Box -->
         @section ('scrips_n')
         <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
                 <script src="{{asset('/js/ja.js')}}" type="text/javascript"></script>
